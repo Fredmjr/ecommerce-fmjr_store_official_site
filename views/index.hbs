@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    {{! favicon }}
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon-180x180.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="assets/favicon/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="assets/favicon/apple-touch-icon-120x120.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/favicon/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="assets/favicon/android-chrome-512x512.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    {{! meta keys }}
+    <meta name="keywords" content="torrent" />
+    <meta
+      name="description"
+      content="A simple, straightforward torrent downloading application. It supports both .torrent files and in‑app torrent search. The app is primarily designed for downloading movies, but with .torrent files you can attempt to download other types of content. Keep in mind that non‑movie downloads may not always work smoothly."
+    />
+    <meta name="subject" content="torrent downloader" />
+    <meta name="og:url" content="https://jetstorrent.alwaysdata.net/" />
+    <meta name="og:title" content="jets_torrent" />
+    <meta name="DC.title" content="jets_torrent" />
+    <meta name="author" content="jetstorrent" />
+    <meta
+      name="og:image"
+      content="https://jetstorrent.alwaysdata.net/assets/logos/jets_torrents.png"
+    />
+    <meta
+      name="og:description"
+      content="A simple, straightforward torrent downloading application. It supports both .torrent files and in‑app torrent search. The app is primarily designed for downloading movies, but with .torrent files you can attempt to download other types of content. Keep in mind that non‑movie downloads may not always work smoothly."
+    />
+    <meta name="og:site_name" content="jets_torrent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index,follow" />
+    {{! css }}
+    <link href="dist/css/app.css" rel="stylesheet" />
+    <link href="dist/css/shell_css_anima.css" rel="stylesheet" />
+    <link href="dist/css/header.css" rel="stylesheet" />
+    <title>jets_torrent</title>
+  </head>
+  <body>
+
+    <div id="home">
+      {{! banner }}
+      <div id="bannr1">
+        <div id="bannr1Cntnts">
+          <span class="bnnrsclscl">
+            <a href="mailto:fredmjr37@gmail.com" class="atagscialscl"><img
+                id="emlicn"
+                src="dist/icons/contact.svg"
+                class="bnnricons"
+              />fredmjr37@gmail.com</a>
+          </span>
+          <span class="bnnrsclscl"><img
+              id="cntntsicn"
+              src="dist/icons/email.svg"
+              class="bnnricons"
+            />
+            <a class="atagscialscl" href="tel:0975986004">+260975986004</a>
+            /
+            <a class="atagscialscl" href="tel:0760932304">+260760932304</a>
+          </span>
+        </div>
+      </div>
+
+      {{! Navbar }}
+      <div id="navbar">
+        <div id="navbar_cntnts">
+          {{! left navbar }}
+          <div id="navbr_lft">
+            <button id="shellsnvbrlgBtn">logo</button>
+
+          </div>
+          {{! right navbar }}
+          <div id="navbr_rght">
+            <button id="navbrsgnupBtn">Sign up for free</button>
+            <button id="navbrloginBtn">Log in</button>
+            <button id="navbrmenuBtn"><img
+                id="navbrmenuicon"
+                src="dist/icons/menu.svg"
+                class="app-icon"
+              />
+              <div id="navbrmenudrpdwn">
+                <p id="sttngsttl">
+                  <span id="sttngstxt">
+                    <img id="sttngsicn" src="dist/icons/settings.svg" alt="" />
+                    Settings
+                  </span>
+                  <span id="sttngsclsBtn">x</span></p>
+                <div class="sttngscrd">
+                  <p>Dark mode</p>
+                  <div id="drkmdBtn">
+                    <span id="offid">off</span>
+                    <div id="mdcrcl">
+                      <img
+                        class="cirlccl"
+                        src="dist/icons/circle.svg"
+                        alt=""
+                      /></div></div>
+                </div>
+
+                <br />
+                <div id="sttngsftr">
+                  <div id="sttngsftrlnks">
+                    <span>Privacy</span>
+                    .
+                    <span>Terms of use</span>
+                    .
+                    <span>Help</span>
+                    .
+                    <span>Feedback </span>
+                  </div>
+
+                  <p id="sttngsftrendnote">Be part of the digital customer
+                    community by subscribing to tatored web developement
+                    subscription projects</p>
+                </div>
+              </div>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      {{!  category}}
+      <div id="ctgry">
+        <div id="ctgry_cntnts">
+          <div>1</div>
+          <div>2</div>
+        </div>
+      </div>
+
+      {{! main }}
+      <div id="main">
+        {{! hero }}
+        <div id="hero">
+          <div id="sidemenu">sidemenu</div>
+          <div id="header">
+            <div id="header_thmub">header_thmub</div>
+            <div id="header_ftr">
+              <div class="headerftr_crd">1</div>
+              <div class="headerftr_crd">2</div>
+              <div class="headerftr_crd">3</div>
+              <div class="headerftr_crd">4</div>
+            </div>
+          </div>
+          <div id="hero_todayspecial">
+            <div id="hero_todayspecialcrd">hero_todayspecialcrd</div>
+          </div>
+        </div>
+
+        {{! semi hero }}
+        <div id="semi_hero">
+          <div class="semiheropromocard_crds">1</div>
+          <div class="semiheropromocard_crds">1</div>
+          <div class="semiheropromocard_crds">1</div>
+          <div class="semiheropromocard_crds">1</div>
+        </div>
+
+        {{! newletter }}
+        <div id="newsletter">
+          <div id="newsletter_cntnts">newsletter_cntnts</div>
+        </div>
+      </div>
+
+      {{! footer }}
+      <div id="ftr">
+        <div id="quklnks">
+          <div id="quklnks_brf">quklnks_brf</div>
+          <div id="quklnks_scls">
+            <div class="quklnksscls_crd">1</div>
+            <div class="quklnksscls_crd">2</div>
+            <div class="quklnksscls_crd">3</div>
+            <div class="quklnksscls_crd">4</div>
+          </div>
+        </div>
+        <div id="dvdr"></div>
+        <div id="end_note">
+          <div>1</div>
+          <div>2</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

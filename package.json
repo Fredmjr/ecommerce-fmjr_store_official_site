@@ -1,0 +1,34 @@
+{
+  "type": "module",
+  "name": "jets_torrent_server",
+  "version": "1.0.0",
+  "description": "jets_torrents, torrent downloader",
+  "license": "ISC",
+  "author": "fmjr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "jts_ssh": "ansible-playbook -i jets_ssh_automations/ssh_jetstorrent.yml jets_ssh_automations/automations_jetstorrent_playbook.yml",
+    "git": "git push",
+    "dev": "nodemon",
+    "css": "node inventory/clean-css/clean-css.js",
+    "woff2": "node inventory/ttf2woff2/ttf2woff2.js",
+    "svgo": "node inventory/svgo/svgo.js"
+  },
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "clean-css": "^5.3.3",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "hbs": "^4.2.0",
+    "jose": "^6.1.3",
+    "potrace": "^2.1.8",
+    "sequelize": "^6.37.7",
+    "sharp": "^0.34.5",
+    "sqlite3": "^5.1.7",
+    "svgo": "^4.0.1",
+    "ttf2woff2": "^8.0.1",
+    "uuid": "^13.0.0"
+  }
+}
