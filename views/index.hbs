@@ -5,6 +5,11 @@
     {{! favicon }}
 
     <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
       rel="icon"
       type="image/png"
       sizes="32x32"
@@ -16,41 +21,6 @@
       sizes="16x16"
       href="assets/favicon/favicon-16x16.png"
     />
-
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="assets/favicon/apple-touch-icon-180x180.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="assets/favicon/apple-touch-icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="assets/favicon/apple-touch-icon-120x120.png"
-    />
-
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="assets/favicon/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="assets/favicon/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="assets/favicon/android-chrome-512x512.png"
-    />
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
 
     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
@@ -59,29 +29,31 @@
     <meta name="keywords" content="torrent" />
     <meta
       name="description"
-      content="A simple, straightforward torrent downloading application. It supports both .torrent files and in‑app torrent search. The app is primarily designed for downloading movies, but with .torrent files you can attempt to download other types of content. Keep in mind that non‑movie downloads may not always work smoothly."
+      content="A centralized place for Graphics, Web & Desktop App
+Development Services, Crash & Normal Course Classes,
+Books on Sale, Digital Art, and many more."
     />
-    <meta name="subject" content="torrent downloader" />
-    <meta name="og:url" content="https://jetstorrent.alwaysdata.net/" />
-    <meta name="og:title" content="jets_torrent" />
-    <meta name="DC.title" content="jets_torrent" />
-    <meta name="author" content="jetstorrent" />
+    <meta name="subject" content="Online Store" />
+    <meta name="og:url" content="https://fmjrstores/" />
+    <meta name="og:title" content="fmjr_stores" />
+    <meta name="DC.title" content="fmjr_stores" />
+    <meta name="author" content="fmjr_stores" />
     <meta
       name="og:image"
-      content="https://jetstorrent.alwaysdata.net/assets/logos/jets_torrents.png"
+      content="https://guest.alwaysdata.net/assets/logos/fmjr_stores.png"
     />
     <meta
       name="og:description"
-      content="A simple, straightforward torrent downloading application. It supports both .torrent files and in‑app torrent search. The app is primarily designed for downloading movies, but with .torrent files you can attempt to download other types of content. Keep in mind that non‑movie downloads may not always work smoothly."
+      content="A centralized place for Graphics, Web & Desktop App
+Development Services, Crash & Normal Course Classes,
+Books on Sale, Digital Art, and many more."
     />
-    <meta name="og:site_name" content="jets_torrent" />
+    <meta name="og:site_name" content="fmjr_stores" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index,follow" />
     {{! css }}
     <link href="dist/css/app.css" rel="stylesheet" />
-    <link href="dist/css/shell_css_anima.css" rel="stylesheet" />
-    <link href="dist/css/header.css" rel="stylesheet" />
-    <title>jets_torrent</title>
+    <title>fmjr_stores</title>
   </head>
   <body>
 
@@ -94,7 +66,9 @@
                 id="emlicn"
                 src="dist/icons/contact.svg"
                 class="bnnricons"
-              />fredmjr37@gmail.com</a>
+              />
+              <span id="emlsclsid">
+                fredmjr37@gmail.com</span></a>
           </span>
           <span class="bnnrsclscl"><img
               id="cntntsicn"
@@ -113,14 +87,27 @@
         <div id="navbar_cntnts">
           {{! left navbar }}
           <div id="navbr_lft">
-            <button id="shellsnvbrlgBtn">logo</button>
+            <button id="fmjrnvbrlgBtn">
+              <img
+                src="assets/logos/fmjr_stores official.png"
+                width="25"
+                alt=""
+              />
+              <img src="assets/logos/fmjr_stores ttl.png" width="55" alt="" />
+            </button>
 
           </div>
           {{! right navbar }}
           <div id="navbr_rght">
             <div id="purchase_pnl">
-              <button>likc</button>
-              <button>cart</button>
+              <button id="notifyBtn">
+                <div id="notifyinfo">0</div>
+                <img src="dist/icons/notify.svg" width="20" alt="" />
+              </button>
+              <button id="basketBtn">
+                <div id="basketinfo">0</div>
+                <img src="dist/icons/basket v2.svg" width="20" alt="ccc" />
+              </button>
             </div>
             <button id="navbrsgnupBtn">Sign up for free</button>
             <button id="navbrloginBtn">Log in</button>
@@ -174,7 +161,17 @@
       {{!  category}}
       <div id="ctgry">
         <div id="ctgry_cntnts">
-          <div id="ctgry_ttl">1</div>
+          <div id="ctgry_ttl">
+            <span>
+              <img
+                id="ctgry_ttlicon"
+                src="dist/icons/three menu.svg"
+                width="15"
+                class="app-icon"
+              />
+            </span>
+            Categories
+          </div>
           <div id="ctgry_ctgries">
             <div id="ctgryctgries_cntnts">1</div>
             <div id="ctgry_menu">
@@ -188,14 +185,137 @@
       <div id="main">
         {{! hero }}
         <div id="hero">
-          <div id="sidemenu">sidemenu</div>
+          <div id="sidemenu">
+            <div class="sidemenuCtrycl">
+              <span>
+                <img src="dist/icons/home.svg" width="12" class="app-icon" />
+              </span>
+              Home</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img src="dist/icons/form.svg" width="15" class="app-icon" />
+              </span>Portfolio</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img src="dist/icons/pen.svg" width="15" class="app-icon" />
+              </span>Graphics</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img src="dist/icons/domain.svg" width="12" class="app-icon" />
+              </span>Web Dev</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img
+                  src="dist/icons/improvement.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>
+              Desktop Dev</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img
+                  src="dist/icons/online-edu.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>Courses</div>
+            <div class="sidemenuCtrycl"><span>
+                <img
+                  src="dist/icons/open-book.svg"
+                  width="13"
+                  class="app-icon"
+                />
+              </span>Author/Books</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img
+                  src="dist/icons/show-room.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>Show room</div>
+            <div class="sidemenuCtrycl"><span>
+                <img
+                  src="dist/icons/social-network.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>Social channels</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img src="dist/icons/ad.svg" width="15" class="app-icon" />
+              </span>Ads-workspace</div>
+            <div class="sidemenuCtrycl">
+              <span>
+                <img
+                  src="dist/icons/workspace.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>
+              fmjr-Graphics Workspace</div>
+            <div class="sidemenuCtrycl"><span>
+                <img
+                  src="dist/icons/negotiation.svg"
+                  width="15"
+                  class="app-icon"
+                />
+              </span>Cliental</div>
+
+          </div>
           <div id="header">
             <div id="header_thmub">header_thmub</div>
             <div id="header_ftr">
-              <div class="headerftr_crd">1</div>
-              <div class="headerftr_crd">2</div>
-              <div class="headerftr_crd">3</div>
-              <div class="headerftr_crd">4</div>
+              <div class="headerftr_crd">
+                <span>
+                  <img
+                    src="dist/icons/shop.svg"
+                    width="25"
+                    class="headerftr_crdicon"
+                  />
+                </span>
+                <div class="headerftr_crdlwrinfo">
+                  <p class="headerftr_crdtll">Easy start, buy or track</p>
+                  <p class="headerftr_crddscptn">Single click buy, encroll or
+                    track project</p>
+                </div>
+              </div>
+              <div class="headerftr_crd">
+                <span>
+                  <img
+                    src="dist/icons/credit-card.svg"
+                    width="25"
+                    class="headerftr_crdicon"
+                  />
+                </span>
+                <div class="headerftr_crdlwrinfo">
+                  <p class="headerftr_crdtll">Secure payment</p>
+                  <p class="headerftr_crddscptn">100% payment security</p>
+                </div>
+              </div>
+              <div class="headerftr_crd"><span>
+                  <img
+                    src="dist/icons/customer-service.svg"
+                    width="25"
+                    class="headerftr_crdicon"
+                  />
+                </span>
+                <div class="headerftr_crdlwrinfo">
+                  <p class="headerftr_crdtll">Customer Support</p>
+                  <p class="headerftr_crddscptn">Customer support availability</p>
+                </div></div>
+              <div class="headerftr_crd"><span>
+                  <img
+                    src="dist/icons/buy.svg"
+                    width="25"
+                    class="headerftr_crdicon"
+                  />
+                </span>
+                <div class="headerftr_crdlwrinfo">
+                  <p class="headerftr_crdtll">Shop with Easy</p>
+                  <p class="headerftr_crddscptn">Shop with a peace of mind</p>
+                </div></div>
             </div>
           </div>
           <div id="hero_todayspecial">
@@ -239,5 +359,7 @@
         </div>
       </div>
     </div>
+
+    <script src="src/js/app.js"></script>
   </body>
 </html>
