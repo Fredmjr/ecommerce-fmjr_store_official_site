@@ -549,6 +549,30 @@ button {
     flex-wrap: wrap;
     height: fit-content;
   }
+  .semiheropromocard_crds {
+    width: 45%;
+  }
+  #newsletter_cntnts {
+    width: 100%;
+  }
+  #end_note {
+    padding: 5px 10px;
+  }
+  /* its there a bereak with footer check here  */
+  #quklnks {
+    flex-wrap: wrap;
+    padding: 10px 10px;
+  }
+  #quklnks_brf {
+    width: 100%;
+  }
+  #quklnks_scls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .quklnksscls_crd {
+    width: 50%;
+  }
 }
 
 /* small screen */
@@ -624,6 +648,7 @@ button {
   }
   #quklnks {
     flex-wrap: wrap;
+    padding: 10px 10px;
   }
   #quklnks_brf {
     width: 100%;
