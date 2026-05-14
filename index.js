@@ -5,6 +5,7 @@ import appRouter from "./routes/app.routes.js";
 /*import apiRouter from "./routes/api.routes.js";
 import userRouter from "./routes/user.routes.js"; */
 import sequelize from "./config/db.js";
+import corsMiddleware from "./middleware/cors/cors.js";
 
 const app = express();
 app.use(express.json());
@@ -20,7 +21,7 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.render("index.hbs");
 });
-app.use("/app", appRouter);
+app.use("/app", corsMiddleware, appRouter);
 /*app.use("/api", apiRouter);
 app.use("/usr", userRouter); */
 
