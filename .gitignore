@@ -20,3 +20,6 @@ jets_ssh_automations
 
 ./prmmng_envs
 prmmng_envs
+
+./fmjrstores_ssh_automations
+fmjrstores_ssh_automations

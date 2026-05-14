@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "jts_ssh": "ansible-playbook -i jets_ssh_automations/ssh_jetstorrent.yml jets_ssh_automations/automations_jetstorrent_playbook.yml",
+    "ansible": "ansible-playbook -i fmjrstores_ssh_automations/ssh.yml fmjrstores_ssh_automations/playbook.yml",
     "git": "git push",
     "dev": "nodemon",
     "css": "node inventory/clean-css/clean-css.js",
