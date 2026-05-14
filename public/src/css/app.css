@@ -464,8 +464,91 @@ button {
   background-color: var(--fmjr--dkr5);
   color: var(--fmjr--dkr1);
   padding: 20px;
-  box-sizing: border-box;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+#header_thmubrght {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#header_thmubrghtthumb {
+  width: 2%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+#header_thmubrghtthumbCntnts {
+  width: 100%;
+  height: 70%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#header_thmubrghtdtls {
+  width: 95%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.htumbscrllr {
+  width: 50%;
+  height: 3%;
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: var(--fmjr--clr1);
+  margin: 2px 0px;
+}
+#header_thmublft {
+  width: 50%;
+  height: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#tophdrdscptn {
+  font-size: 30px;
+  font-weight: bolder;
+  box-sizing: border-box;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+#tophdrttl {
+  color: #f54168;
+  box-sizing: border-box;
+}
+#tophdrsubdscptn {
+  color: var(--fmjr--dkr2);
+  font-weight: lighter;
+  font-family: reddir-light;
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+.tophdrgetsrttdBtn {
+  border: none;
+  outline: none;
+  background-color: var(--fmjr--clr1);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 10px;
+  border-radius: 3px;
+  padding: 10px 10px;
+  font-weight: bold;
+  width: 60%;
 }
 .headerftr_crd {
   padding: 5px;
@@ -801,5 +884,30 @@ button {
   }
   #ctgry_ttlicon {
     width: 12px;
+  }
+  #tophdrdscptn {
+    font-size: 20px;
+  }
+  #tophdrgetsrttdBtnPnl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #tophdrttl {
+    text-align: center;
+  }
+  #tophdrdscptn {
+    text-align: center;
+  }
+  #tophdrsubdscptn {
+    text-align: center;
+    font-size: 9px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 5px;
+  }
+  #header_thmubrghtdtlsImg {
+    width: 60%;
   }
 }

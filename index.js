@@ -1,8 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-/* import appRouter from "./routes/app.routes.js";
-import apiRouter from "./routes/api.routes.js";
+import appRouter from "./routes/app.routes.js";
+/*import apiRouter from "./routes/api.routes.js";
 import userRouter from "./routes/user.routes.js"; */
 import sequelize from "./config/db.js";
 
@@ -20,8 +20,8 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
   res.render("index.hbs");
 });
-/* app.use("/app", appRouter);
-app.use("/api", apiRouter);
+app.use("/app", appRouter);
+/*app.use("/api", apiRouter);
 app.use("/usr", userRouter); */
 
 (async () => {

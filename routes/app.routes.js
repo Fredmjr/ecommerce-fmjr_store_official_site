@@ -1,8 +1,8 @@
 import express from "express";
 
-import { appUrl } from "../controllers/app.controller.js";
+import { hdrdtUrl } from "../controllers/app.controller.js";
 const router = express.Router();
 
-router.get("/eg", appUrl);
+router.get("/hdrdt", hdrdtUrl);
 
 export default router;
