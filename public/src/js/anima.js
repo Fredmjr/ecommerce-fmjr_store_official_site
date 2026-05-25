@@ -1,3 +1,5 @@
+const home = document.querySelector("#home");
+
 //Reusabled fetch request
 const request2 = async (url, method, body = null, customHeaders = {}) => {
   const options = {
@@ -38,7 +40,7 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       const div = document.createElement("div");
       div.className = "thumb-item";
       div.style.height = "3%";
-      div.style.width = "50%";
+      div.style.width = "40%";
       div.style.backgroundColor = "#707070";
       div.style.borderRadius = "3px";
       div.style.marginTop = "1px";
@@ -62,8 +64,8 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       index = 1;
     }
 
-    setInterval(() => {
-      //info loop
+    /*     setInterval(() => {
+      //info & mage loop
       const btnpnl = document.querySelector("#tophdrgetsrttdBtnPnl");
       const ttl = document.querySelector("#tophdrttl");
       const dsc = document.querySelector("#tophdrdscptn");
@@ -92,7 +94,48 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
           }
         });
 
-        //img loop
+        //thumb scroll loop
+        allDivs.forEach((div, i) => {
+          div.style.height = i === index ? "10%" : "3%";
+          div.style.backgroundColor = i === index ? "#b3324f" : "#707070";
+        });
+        index = (index + 1) % items.length;
+      }, 500);
+    }, 5000); */
+
+    //with image tag
+    //UP & DOWN ANIMA
+    /*     setInterval(() => {
+      //info loop
+      const btnpnl = document.querySelector("#tophdrgetsrttdBtnPnl");
+      const ttl = document.querySelector("#tophdrttl");
+      const dsc = document.querySelector("#tophdrdscptn");
+      const sub = document.querySelector("#tophdrsubdscptn");
+      const img = document.querySelector("#header_thmubrghtdtlsImg");
+
+      const elements = [ttl, dsc, sub, btnpnl, img].filter((el) => el !== null);
+
+      elements.forEach((el) => {
+        if (el) {
+          el.style.transition =
+            "opacity 0.5s ease-in-out, transform 0.5s ease-out";
+          el.style.opacity = "0";
+          el.style.transform = "translateY(5px)";
+        }
+      });
+
+      setTimeout(() => {
+        if (ttl) ttl.textContent = items[index].title;
+        if (dsc) dsc.textContent = items[index].description;
+        if (sub) sub.textContent = items[index].subdescription;
+        if (btnpnl) btnpnl.innerHTML = items[index].button;
+        if (img && items[index].image) img.src = items[index].image;
+        elements.forEach((el) => {
+          if (el) {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          }
+        });
 
         //thumb scroll loop
         allDivs.forEach((div, i) => {
@@ -101,8 +144,78 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
         });
         index = (index + 1) % items.length;
       }, 500);
+    }, 5000); */
 
-      /*     index = (index + 1) % items.length; */
+    //RIGHT & LEFT ANIMA
+    setInterval(() => {
+      const btnpnl = document.querySelector("#tophdrgetsrttdBtnPnl");
+      const ttl = document.querySelector("#tophdrttl");
+      const dsc = document.querySelector("#tophdrdscptn");
+      const sub = document.querySelector("#tophdrsubdscptn");
+      const img = document.querySelector("#header_thmubrghtdtlsImg");
+
+      const textElements = [ttl, dsc, sub, btnpnl].filter((el) => el !== null);
+
+      // 1. Start Out-Animation
+      // Text moves down & fades
+      textElements.forEach((el) => {
+        el.style.transition =
+          "opacity 0.5s ease-in-out, transform 0.5s ease-out";
+        el.style.opacity = "0";
+        el.style.transform = "translateY(5px)";
+      });
+
+      // Image moves right & fades
+      if (img) {
+        img.style.transition =
+          "opacity 0.5s ease-in-out, transform 0.5s ease-out";
+        img.style.opacity = "0";
+        img.style.transform = "translateX(20px)";
+        img.dataset.imgId = items[index].imgId;
+      }
+
+      setTimeout(() => {
+        // 2. Swap Content
+        if (ttl) ttl.textContent = items[index].title;
+        if (dsc) dsc.textContent = items[index].description;
+        if (sub) sub.textContent = items[index].subdescription;
+        if (btnpnl) btnpnl.innerHTML = items[index].button;
+        if (img && items[index].img) img.src = items[index].img;
+        /*   console.log(items[index].img); */
+
+        // 3. Start In-Animation
+        // Text slides back up to center
+        textElements.forEach((el) => {
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+        });
+
+        // Image slides in from the right to center
+        if (img) {
+          img.style.opacity = "1";
+          img.style.transform = "translateX(0)";
+        }
+
+        // Thumb scroll loop
+        allDivs.forEach((div, i) => {
+          div.style.height = i === index ? "10%" : "3%";
+          div.style.backgroundColor = i === index ? "#b3324f" : "#707070";
+        });
+        //element dataset adjustment
+        /*    const hdr_img_swapper = document.querySelector(
+          "#header_thmubrghtdtlsImg",
+        );
+        if (hdr_img_swapper) {
+          const a = hdr_img_swapper.dataset.imgId;
+
+          if (a === "cliental" || a === "ads_workspace") {
+            console.log(a);
+            hdr_img_swapper.style.height = "70%";
+          }
+        } */
+
+        index = (index + 1) % items.length;
+      }, 500);
     }, 5000);
   }
 })();
@@ -131,3 +244,5 @@ const checkRotation = ({ matches }) => {
 // Listen and Initial Run
 mobileQuery.addEventListener("change", checkRotation);
 checkRotation(mobileQuery);
+
+//Animations (anima) mutation observer
