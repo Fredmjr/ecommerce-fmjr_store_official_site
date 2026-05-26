@@ -28,7 +28,7 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
 
 //header contents
 (async () => {
-  const data = await request2("http://localhost:8100/app/hdrdt", "GET");
+  const data = await request2("/app/hdrdt", "GET");
 
   if (data.erMgs) {
     console.log("err!");
