@@ -5,7 +5,7 @@ export const services = [
     subdescription: `A centralized place for Graphics, Web & Desktop AppDevelopment Services, Crash & Normal Course Classes, Books on Sale, Digital Art, and many more.`,
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrwlcm_getsrttdBtn">Get Started</button>',
-    img: "assets/imgs/welcome.png",
+    img: "dist/imgs/welcome.webp",
     imgId: "welcome",
   },
   {
@@ -15,7 +15,7 @@ export const services = [
       "Take a look at an amazing collection of past, current and future projects.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrprtfloBtn">View Projects</button>',
-    img: "assets/imgs/Portfolio.png",
+    img: "dist/imgs/Portfolio.webp",
     imgId: "portfolio",
   },
 
@@ -26,7 +26,7 @@ export const services = [
       "Professional branding and unique visual identity for all types of works.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrgrphcsdsgnBtn">Get Started</button>',
-    img: "assets/imgs/Graphics Design.png",
+    img: "dist/imgs/Graphics Design.webp",
     imgId: "graphics_design",
   },
   {
@@ -36,7 +36,7 @@ export const services = [
       "Modern and responsive websites built to deliver your desired expectations.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrwebdevBtn">Get Started</button>',
-    img: "assets/imgs/Web Dev.png",
+    img: "dist/imgs/Web Dev.webp",
     imgId: "web_dev",
   },
   {
@@ -45,7 +45,7 @@ export const services = [
     subdescription: "Powerful applications for Windows users.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrdsktpdevBtn">Get Started</button>',
-    img: "assets/imgs/Desktop Dev.png",
+    img: "dist/imgs/Desktop Dev.webp",
     imgId: "desktop_dev",
   },
   {
@@ -55,7 +55,7 @@ export const services = [
       "Step-by-step guides for refreshment, quick start and growth.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrcurssclssBtn">Enroll Now</button>',
-    img: "assets/imgs/Courses & Classes.png",
+    img: "dist/imgs/Courses & Classes.webp",
     imgId: "courses_classes",
   },
   {
@@ -65,7 +65,7 @@ export const services = [
       "Take a journey through deep, inspirational and educative insights captured in written words.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrathrbksBtn">Get Started</button>',
-    img: "assets/imgs/Author-Books.png",
+    img: "dist/imgs/Author-Books.webp",
     imgId: "author_books",
   },
   {
@@ -74,7 +74,7 @@ export const services = [
     subdescription: "Explore a collection of various featured creations.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrshwrmBtn">Get Started</button>',
-    img: "assets/imgs/Show room.png",
+    img: "dist/imgs/Show room.webp",
     imgId: "show_room",
   },
   {
@@ -84,7 +84,7 @@ export const services = [
       "Continue the journey on our social and personalized platforms.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrsclchnnlsBtn">Get Started</button>',
-    img: "assets/imgs/Social channels.png",
+    img: "dist/imgs/Social channels.webp",
     imgId: "social_channels",
   },
   {
@@ -94,7 +94,7 @@ export const services = [
       "Take advantage of our strategic platform to showcase works, integrate or reach new audience.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdradswrkspcBtn">Get Started</button>',
-    img: "assets/imgs/Ads-workspace.png",
+    img: "dist/imgs/Ads-workspace.webp",
     imgId: "ads_workspace",
   },
   {
@@ -104,7 +104,7 @@ export const services = [
       "A graphics design services and platform for a more personalized, organized interactions, tracking and updates.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrfmjrgrphcswrkspcBtn">Get Started</button>',
-    img: "assets/imgs/fmjr-Graphics.png",
+    img: "dist/imgs/fmjr-Graphics.webp",
     imgId: "fmjr_graphics",
   },
   {
@@ -114,7 +114,7 @@ export const services = [
       "A dedicated client platform for project tracking, payments, project management and support.",
     button:
       '<button class="tophdrgetsrttdBtn" id="tophdrclntlBtn">Get Started</button>',
-    img: "assets/imgs/Cliental.png",
+    img: "dist/imgs/Cliental.webp",
     imgId: "cliental",
   },
 ];
