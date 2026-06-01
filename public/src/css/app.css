@@ -39,6 +39,7 @@
 
   /* myycolors */
   --fmjr--clr1: #b3324f;
+  --fmjr--clr2: #952a41;
   --fmjr--dkr1: #ffff;
   --fmjr--dkr2: #d0d0d0;
   --fmjr--dkr3: #eaebec;
@@ -49,6 +50,7 @@
   /* svg color filter */
   --fmjr-fltr: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
     brightness(87%) contrast(92%);
+  --fmjr-fltr2: brightness(0) invert(1);
 }
 
 body {
@@ -67,6 +69,10 @@ button {
   border-radius: 3px;
   background-color: var(--drk-theme1);
   font-family: reddir-regular;
+  /* 2 of 2 js_prtt_scrpt */
+  /* no user text selection */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 #bannr1 {
@@ -140,6 +146,41 @@ button {
   width: 100%;
   padding: 0px 30px;
   box-sizing: border-box;
+}
+.ctgryctgries_cntntsBtns {
+  font-size: 9px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--fmjr--dkr1);
+  cursor: pointer;
+  font-weight: bolder;
+  box-sizing: border-box;
+  height: 50%;
+  padding: 10px 10px;
+  border-radius: 3px;
+}
+#ctgry_menuBtn {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  color: var(--fmjr--dkr1);
+  background-color: var(--fmjr--clr2);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px 10px;
+}
+.ctgryctgries_cntntsBtns:hover {
+  background-color: var(--fmjr--clr2);
+}
+#ctgry_menuBtnlicon {
+  filter: var(--fmjr-fltr2);
 }
 #navbr_lft {
   display: flex;
@@ -821,6 +862,7 @@ button {
   #ctgryctgries_cntnts {
     display: none;
   }
+
   #ctgry_menu {
     display: flex;
     width: 100%;
@@ -897,6 +939,7 @@ button {
   .headerftr_crdicon {
     width: 15px;
   }
+
   #ctgry_ttl {
     width: 50%;
     font-size: 9px;
