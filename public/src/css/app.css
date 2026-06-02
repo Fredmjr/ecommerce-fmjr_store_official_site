@@ -174,7 +174,7 @@ button {
   background-color: var(--fmjr--clr2);
   border-radius: 3px;
   box-sizing: border-box;
-  padding: 10px 10px;
+  padding: 10px 15px;
 }
 .ctgryctgries_cntntsBtns:hover {
   background-color: var(--fmjr--clr2);
