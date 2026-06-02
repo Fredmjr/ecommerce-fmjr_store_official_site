@@ -45,33 +45,21 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       div.style.borderRadius = "3px";
       div.style.marginTop = "1px";
       div.style.marginBottom = "1px";
-      //smooth transition
       div.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
       container.appendChild(div);
     });
 
     let index = 0;
     const allDivs = container.querySelectorAll(".thumb-item");
-    //first default scroll card
     if (allDivs.length > 0) {
       allDivs[0].style.height = "10%";
       allDivs[0].style.backgroundColor = "#b3324f";
       document.querySelector("#tophdrttl").textContent = items[0].title;
       document.querySelector("#tophdrdscptn").textContent =
         items[0].description;
-
-      // Prepare index for the first interval run (next item)
       index = 1;
     }
 
-    //RIGHT & LEFT ANIMA
-    //optimized for image download and other content swap - in short image availability is inmportant before swap is done.
-    //you can reuse this code in the fture but make sure image download is priority first, the text and scroll bars.
-    //animateOut(): Handles fading and sliding everything out of view.
-    //swapUIContent(): Updates the text, thumbnails, and images instantly while hidden.
-    //preloadNextImage(): Silently downloads the next image ahead of time.
-
-    // Handles the exit animation (Fades out and moves elements)
     function animateOut(textElements, img) {
       textElements.forEach((el) => {
         el.style.transition =
@@ -88,13 +76,14 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       }
     }
 
-    // Swaps text data, changes image source from cache, and sets up entry tracking
+    // MODIFIED: Separated content assignment from the Fade-In trigger
     function swapUIContent(
       textElements,
       img,
       currentItem,
       allDivs,
       currentIndex,
+      proceedToFadeIn,
     ) {
       // Teleport elements to opposite starting positions instantly while invisible
       textElements.forEach((el) => {
@@ -105,12 +94,19 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       if (img && currentItem.img) {
         img.style.transition = "none";
         img.style.transform = "translateX(-30px)";
-        img.src = currentItem.img; // Pulls instantly from preloaded browser cache
-        img.dataset.imgId = currentItem.imgId;
-      }
 
-      // Force a browser UI layout recalculation
-      document.body.offsetHeight;
+        // Setup the onload listener BEFORE changing the source
+        img.onload = () => {
+          // Trigger the fade-in only when the asset is 100% loaded and decoded
+          proceedToFadeIn();
+          img.onload = null; // Clean up memory
+        };
+        img.src = currentItem.img;
+        img.dataset.imgId = currentItem.imgId;
+      } else {
+        // Fallback if there's no image element
+        proceedToFadeIn();
+      }
 
       // Update text contents cleanly
       const [ttl, dsc, sub, btnpnl] = textElements;
@@ -119,22 +115,6 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       if (sub) sub.textContent = currentItem.subdescription;
       if (btnpnl) btnpnl.innerHTML = currentItem.button;
 
-      // Animate all text elements back into view
-      textElements.forEach((el) => {
-        el.style.transition =
-          "opacity 0.5s ease-in-out, transform 0.5s ease-out";
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      });
-
-      // Animate image back into view
-      if (img) {
-        img.style.transition =
-          "opacity 0.5s ease-in-out, transform 0.5s ease-out";
-        img.style.opacity = "1";
-        img.style.transform = "translateX(0)";
-      }
-
       // Handle scroll bar focus indicators
       allDivs.forEach((div, i) => {
         div.style.height = i === currentIndex ? "10%" : "3%";
@@ -142,22 +122,18 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       });
     }
 
-    // Background Image Downloader Pipeline
     function preloadNextImage(items, nextIndex) {
       if (items[nextIndex] && items[nextIndex].img) {
         const preloadWorker = new Image();
-        preloadWorker.src = items[nextIndex].img; // Forces browser download into RAM cache
+        preloadWorker.src = items[nextIndex].img;
       }
     }
 
-    // ==========================================
-    // 2. RUNTIME EXECUTION BLOCK
-    // ==========================================
-
-    // Preload the very first upcoming slide (Index 1) on initial page load
     preloadNextImage(items, 1);
 
-    // The Core Animation Loop Interface
+    // ==========================================
+    // RUNTIME EXECUTION BLOCK (FIXED LOOP)
+    // ==========================================
     setInterval(() => {
       const btnpnl = document.querySelector("#tophdrgetsrttdBtnPnl");
       const ttl = document.querySelector("#tophdrttl");
@@ -171,15 +147,42 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
       // Step A: Fire exit animations immediately
       animateOut(textElements, img);
 
-      // Step B: Wait for the 0.5s exit transition, then swap data and trigger arrival entry
+      // Step B: Wait for the 0.5s exit transition to complete
       setTimeout(() => {
-        // Perform the content layout changes
-        swapUIContent(textElements, img, currentItem, allDivs, index);
+        // Define the function that handles animating things back into view
+        const fadeInElements = () => {
+          // Force a browser UI layout recalculation before triggering animations
+          document.body.offsetHeight;
+
+          textElements.forEach((el) => {
+            el.style.transition =
+              "opacity 0.5s ease-in-out, transform 0.5s ease-out";
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          });
+
+          if (img) {
+            img.style.transition =
+              "opacity 0.5s ease-in-out, transform 0.5s ease-out";
+            img.style.opacity = "1";
+            img.style.transform = "translateX(0)";
+          }
+        };
+
+        // Pass fadeInElements as a callback into the swap function
+        swapUIContent(
+          textElements,
+          img,
+          currentItem,
+          allDivs,
+          index,
+          fadeInElements,
+        );
 
         // Increment index counter target safely
         index = (index + 1) % items.length;
 
-        // Step C: Preload the NEXT image immediately while user reads current slide
+        // Step C: Preload the NEXT image immediately
         const nextIndex = (index + 1) % items.length;
         preloadNextImage(items, nextIndex);
       }, 500);
