@@ -14,7 +14,8 @@ fs.readdirSync(srcDir).forEach(async (file) => {
     const name = path.parse(file).name;
 
     const task = await sharp(path.join(srcDir, file))
-      .webp({ quality: 80, effort: 6 })
+      /* .webp({ quality: 80 , effort: 6 }) */ //normal
+      .webp({ quality: 30, effort: 6 }) //intense
       .toFile(path.join(distDir, `${name}.webp`));
     if (task) {
       console.log(`${name}.webp`);
