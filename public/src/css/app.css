@@ -782,11 +782,15 @@ button {
 }
 
 /* Responsive Logic for existing elements */
-/* medium screen */
+/* large screen */
 @media (min-width: 994px) {
   .headerftr_crd {
     justify-content: center;
     height: 70%;
+  }
+  #header_thmubrghtdtlsImg {
+    height: 65%;
+    width: auto;
   }
 }
 
