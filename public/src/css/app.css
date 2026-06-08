@@ -869,7 +869,7 @@ button {
   height: 100%;
   padding: 5px;
   background-color: var(--fmjr--dkr1);
-  border-radius: 5px;
+  border-radius: 2px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -1135,6 +1135,19 @@ button {
   align-items: center;
   color: var(--fmjr--dkr4);
 }
+#endnote_lft {
+  font-size: 9px;
+}
+.endnoterghticns {
+  width: 23px;
+  border-radius: 1px;
+  box-shadow: 1px 1px var(--fmjr--clr1);
+}
+#endnote_rght {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
 #portfoliosctn {
   height: 500px;
   width: 100%;
@@ -1191,7 +1204,7 @@ button {
     height: 100%;
   }
   #end_note {
-    padding: 5px 10px;
+    padding: 5px 0px;
   }
   .headerftr_crd {
     justify-content: center;
@@ -1462,5 +1475,14 @@ button {
   }
   #newslettercntnts_card {
     width: 100%;
+  }
+  .endnoterghticns {
+    width: 15px;
+  }
+  #endnote_rght {
+    gap: 2px;
+  }
+  #endnote_lft {
+    font-size: 6.5px;
   }
 }
