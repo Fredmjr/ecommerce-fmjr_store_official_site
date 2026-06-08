@@ -175,11 +175,35 @@ Books on Sale, Digital Art, and many more."
           </div>
           <div id="ctgry_ctgries">
             <div id="ctgryctgries_cntnts">
-              <button class="ctgryctgries_cntntsBtns">Chat / Messages</button>
-              <button class="ctgryctgries_cntntsBtns">Announcements</button>
-              <button class="ctgryctgries_cntntsBtns">Events</button>
-              <button class="ctgryctgries_cntntsBtns">Calendar</button>
-              <button class="ctgryctgries_cntntsBtns">FAQs</button>
+              <button class="ctgryctgries_cntntsBtns">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/chat_messages.svg"
+                  width="15"
+                />Chat / Messages</button>
+              <button class="ctgryctgries_cntntsBtns">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/annoucement.svg"
+                  width="15"
+                />Announcements</button>
+              <button class="ctgryctgries_cntntsBtns"><img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="15"
+                />Calendar</button>
+              <button class="ctgryctgries_cntntsBtns"><img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/events.svg"
+                  width="15"
+                />Events & Schedules
+              </button>
+
+              <button class="ctgryctgries_cntntsBtns"><img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/faqs.svg"
+                  width="15"
+                />FAQs</button>
             </div>
             <div id="ctgry_menu">
               <button id="ctgry_menuBtn">
@@ -391,7 +415,7 @@ Books on Sale, Digital Art, and many more."
                     Upscale your graphics design skills with a simple graphics
                     design crash course guide.</div> }}
                   <p id="disntdmainprice"><s>K550.00</s></p>
-                  <p id="disntmainprice">K500.00</p>
+                  <p id="disntmainprice">K500</p>
                   <p id="disntmainpricepermnth">(per month x3)</p>
                   <br />
                   <br />
@@ -405,22 +429,112 @@ Books on Sale, Digital Art, and many more."
         </div>
         {{! todayspecial 2 }}
         <div id="hero_todayspecial2">
-          <div id="hero_todayspecialcrd2">hero_todayspecialcrd</div>
+          <div id="hero_todayspecialcrd2">
+            <div id="hero_todayspecialcrd2rlft">
+              <div id="hero_todayspecialcrd2rlftpricstag">
+                9%
+                <br />
+                <p id="hero_todayspecialcrdpricstagoff">OFF</p>
+              </div>
+              <img
+                id="hero_todayspecialcrd2rlftimg"
+                src="dist/imgs/graphics_design_crash_course_v2.webp"
+                alt="graphics_design_crash_course"
+              />
+            </div>
+            <div id="hero_todayspecialcrd2rght">
+              <div id="hero_todayspecialcrd2rghttop">
+                <p id="hero_todayspecialcrd2rghtttl">Web Development Class</p>
+                <p id="hero_todayspecialcrd2rghtdscrptn">Start coding your
+                  future today. Master front-end and back-end skills.</p>
+              </div>
+
+              <button id="hero_todayspecialcrd2rghtBtn">Enroll Now</button>
+            </div>
+            <div id="hero_todayspecialcrd2mid">
+
+              <div id="hero_todayspecialcrd2midcntnts1">
+                <p id="hero_todayspecialcrd2midcntnts1prsubctag"><s
+                  >K550.00</s></p>
+                <p id="hero_todayspecialcrd2midcntnts1prctag">K500</p>
+                <p id="hero_todayspecialcrd2midcntnts1permnth">(per month x3)</p></div>
+              <div id="hero_todayspecialcrd2midcntnts2">9% OFF</div>
+            </div>
+          </div>
         </div>
         {{! semi hero }}
         <div id="semi_hero">
+          {{!  Web dev Class}}
           <div class="semiheropromocard_crds">
             <div class="semiheropromocard_crdslft">
               <p class="semiheropromocard_crdslftttl">Web Development Class</p>
-              <p class="semiheropromocard_crdslftdscrptn">Lorem ipsum, dolor sit
-                amet consectetur adipisicing elit. Quis laboriosam inventore.</p>
+              <p class="semiheropromocard_crdslftdscrptn">Start coding your
+                future today. Master front-end and back-end skills.</p>
               <button class="semiheropromocard_crdslftBtn">Get Started</button>
             </div>
-            <div class="semiheropromocard_crdslftrght">graphics</div>
+            <div class="semiheropromocard_crdslftrght">
+              <img
+                class="semiheropromocard_crdslftrghtimg"
+                src="dist/imgs/default_no_img.webp"
+                {{! width="80%" }}
+                alt="default_no_img"
+              />
+            </div>
           </div>
-          <div class="semiheropromocard_crds">1</div>
-          <div class="semiheropromocard_crds">1</div>
-          <div class="semiheropromocard_crds">1</div>
+          {{! Desktop dev Class }}
+          <div class="semiheropromocard_crds">
+            <div class="semiheropromocard_crdslft">
+              <p class="semiheropromocard_crdslftttl">Desktop Development Class</p>
+              <p class="semiheropromocard_crdslftdscrptn">Master Windows app
+                development, design UIs, handle data and ship professional
+                software.</p>
+              <button class="semiheropromocard_crdslftBtn">Get Started</button>
+            </div>
+            <div class="semiheropromocard_crdslftrght">
+              <img
+                class="semiheropromocard_crdslftrghtimg"
+                src="dist/imgs/default_no_img.webp"
+                {{! width="80%" }}
+                alt="default_no_img"
+              />
+            </div>
+          </div>
+          {{! Web dev Pricing }}
+          <div class="semiheropromocard_crds">
+            <div class="semiheropromocard_crdslft">
+              <p class="semiheropromocard_crdslftttl">Web Development Pricing</p>
+              <p class="semiheropromocard_crdslftdscrptn">Clear pricelist for
+                every project. Choose a plan that fits your budget.</p>
+              <button class="semiheropromocard_crdslftBtn">Check Pricelist</button>
+            </div>
+            <div class="semiheropromocard_crdslftrght">
+              <img
+                class="semiheropromocard_crdslftrghtimg"
+                src="dist/imgs/default_no_img.webp"
+                {{! width="80%" }}
+                alt="default_no_img"
+              />
+            </div>
+          </div>
+          {{! Desktop dev Pricing }}
+          <div class="semiheropromocard_crds">
+            <div class="semiheropromocard_crdslft">
+              <p class="semiheropromocard_crdslftttl">Desktop Development
+                pricing</p>
+              <p class="semiheropromocard_crdslftdscrptn">Fair rates,
+                professional results. Transparent pricing so you know costs
+                before we start.</p>
+              <button class="semiheropromocard_crdslftBtn">Check Pricelist</button>
+            </div>
+            <div class="semiheropromocard_crdslftrght">
+              <img
+                class="semiheropromocard_crdslftrghtimg"
+                src="dist/imgs/default_no_img.webp"
+                {{! width="80%" }}
+                alt="default_no_img"
+              />
+            </div>
+          </div>
         </div>
 
         {{! newletter }}
