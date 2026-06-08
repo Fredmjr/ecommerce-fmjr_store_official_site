@@ -769,7 +769,15 @@ button {
   box-sizing: border-box;
   background-color: var(--fmjr--dkr1);
 }
-
+#newslettercntnts_card {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  box-sizing: border-box;
+}
 #newsletter_cntnts {
   border-radius: 5px;
   padding: 10px;
@@ -779,6 +787,63 @@ button {
   justify-content: center;
   box-sizing: border-box;
   background: var(--fmjr-grdint1);
+  overflow: hidden;
+  height: 100%;
+}
+#newslettercntnts_cardleft {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+#newsletterssubpnl {
+  box-sizing: border-box;
+  padding: 7px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  background-color: var(--fmjr--dkr5);
+  color: var(--fmjr--dkr1);
+  width: 65%;
+  height: 75%;
+  overflow: hidden;
+}
+
+#newsletterstycnntdtxt {
+  font-weight: bolder;
+  font-size: 14px;
+  margin: 0px 5px;
+}
+#newsletterplank {
+  height: 50%;
+  width: 3px;
+  background-color: var(--fmjr--clr1);
+}
+#newslettersubscrptnBtn {
+  height: 100%;
+  width: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--fmjr--clr1);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 10px;
+  border-radius: 30px;
+  padding: 7px 10px;
+  font-weight: bold;
+}
+#newsletterinput {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: var(--fmjr--dkr1);
+  font-size: 10px;
+  width: 60%;
+  box-sizing: border-box;
+  padding: 0px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .semiheropromocard_crds {
   padding: 5px;
@@ -1123,6 +1188,7 @@ button {
 
   #newsletter_cntnts {
     width: 100%;
+    height: 100%;
   }
   #end_note {
     padding: 5px 10px;
@@ -1378,5 +1444,23 @@ button {
     display: flex;
     justify-content: center;
     display: none;
+  }
+  #newslettersubscrptnBtn {
+    font-size: 8px;
+    width: 40%;
+  }
+  #newsletterstycnntdtxt {
+    font-size: 8px;
+  }
+  #newsletterinput {
+    font-size: 8px;
+    width: 60%;
+  }
+  #newsletterssubpnl {
+    width: 80%;
+    padding: 7px;
+  }
+  #newslettercntnts_card {
+    width: 100%;
   }
 }
