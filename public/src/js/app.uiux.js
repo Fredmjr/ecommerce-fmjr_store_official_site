@@ -20,11 +20,14 @@ const swap_fade_anima = (el, type, cntnt) => {
 (() => {
   const a = getelem("newsletterinput");
   setInterval(() => {
-    if (showing) {
-      swap_fade_anima(a, "placeholder", newsletter_info1);
-    } else {
-      swap_fade_anima(a, "placeholder", newsletter_info2);
+    if (a.value === "") {
+      if (showing) {
+        swap_fade_anima(a, "placeholder", newsletter_info1);
+      } else {
+        swap_fade_anima(a, "placeholder", newsletter_info2);
+      }
     }
+
     showing = !showing;
   }, 10000);
 })();
