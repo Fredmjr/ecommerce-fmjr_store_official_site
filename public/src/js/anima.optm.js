@@ -214,3 +214,24 @@ const checkRotation = ({ matches }) => {
 // Listen and Initial Run
 mobileQuery.addEventListener("change", checkRotation);
 checkRotation(mobileQuery);
+
+//offline image
+//set image
+const cache_set_Img = async (imageUrl) => {
+  const cache = await caches.open("welcome_img");
+  await cache.add(imageUrl);
+  console.log("Image cached successfully for offline use!");
+};
+cache_set_Img("https://guest.alwaysdata.net/app/wlcmimg");
+//get image
+const cache_get_Img = async (imageUrl, imgElementId) => {
+  const cachedResponse = await caches.match(imageUrl);
+  /*   const imgElement = document.getElementById(imgElementId); */
+
+  if (cachedResponse) {
+    const blob = await cachedResponse.blob();
+    /*   imgElement.src = URL.createObjectURL(blob); */
+    console.log("imageeeeeeeeeeeeee", blob);
+  }
+};
+cache_get_Img();
