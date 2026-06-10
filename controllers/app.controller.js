@@ -1,4 +1,9 @@
 import { services } from "../inventory_assets/data/data.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const hdrdtUrl = async (req, res) => {
   try {
@@ -31,14 +36,16 @@ export const portflpgUrl = async (req, res) => {
 export const wlcmimgUrl = async (req, res) => {
   try {
     const filePath = path.join(
-      process.cwd(),
+      __dirname,
+      "..",
       "public",
       "dist",
       "imgs",
-      "logo.webp",
+      "welcome.webp",
     );
     res.sendFile(filePath);
   } catch (error) {
+    console.log(error);
     const erMgs_div = `
     <p>err_code: 001</p>
     <p>Unable to process request!</p>

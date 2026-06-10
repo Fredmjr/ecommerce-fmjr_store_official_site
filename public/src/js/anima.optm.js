@@ -222,16 +222,20 @@ const cache_set_Img = async (imageUrl) => {
   await cache.add(imageUrl);
   console.log("Image cached successfully for offline use!");
 };
-cache_set_Img("https://guest.alwaysdata.net/app/wlcmimg");
+cache_set_Img("app/wlcmimg");
 //get image
-const cache_get_Img = async (imageUrl, imgElementId) => {
-  const cachedResponse = await caches.match(imageUrl);
-  /*   const imgElement = document.getElementById(imgElementId); */
+const img_el = document.querySelector("#header_thmubrghtdtlsImg");
 
-  if (cachedResponse) {
-    const blob = await cachedResponse.blob();
-    /*   imgElement.src = URL.createObjectURL(blob); */
-    console.log("imageeeeeeeeeeeeee", blob);
-  }
-};
-cache_get_Img();
+if (img_el) {
+  const cache_get_Img = async () => {
+    const cachedResponse = await caches.match("app/wlcmimg");
+
+    /*    if (cachedResponse) {
+      const blob = await cachedResponse.blob();
+      img_el.src = URL.createObjectURL(blob);
+      console.log("imageeeeeeeeeeeeee", blob);
+      console.log("img_elimg_el", img_el);
+    } */
+  };
+  cache_get_Img();
+}
