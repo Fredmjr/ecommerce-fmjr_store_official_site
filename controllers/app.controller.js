@@ -1,5 +1,4 @@
 import { services } from "../inventory_assets/data/data.js";
-import path from "path";
 
 export const hdrdtUrl = async (req, res) => {
   try {
@@ -28,6 +27,7 @@ export const portflpgUrl = async (req, res) => {
     });
   }
 };
+
 export const wlcmimgUrl = async (req, res) => {
   try {
     const filePath = path.join(
