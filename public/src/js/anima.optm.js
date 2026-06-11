@@ -222,7 +222,8 @@ const cache_set_Img = async (imageUrl) => {
   await cache.add(imageUrl);
   console.log("Image cached successfully for offline use!");
 };
-cache_set_Img("app/wlcmimg");
+/* cache_set_Img("app/wlcmimg"); */
+cache_set_Img("https://guest.alwaysdata.net/app/wlcmimg");
 //get image
 const img_el = document.querySelector("#header_thmubrghtdtlsImg");
 
