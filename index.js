@@ -6,6 +6,7 @@ import appRouter from "./routes/app.routes.js";
 import userRouter from "./routes/user.routes.js"; */
 import sequelize from "./config/db.js";
 import corsMiddleware from "./middleware/cors/cors.js";
+import { ws_connect } from "./websockets/ws_connect.js";
 
 const app = express();
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use("/usr", userRouter); */
 
 (async () => {
   await sequelize.sync();
+  ws_connect();
   app.listen(port, () => {
     console.log("Application running");
   });
