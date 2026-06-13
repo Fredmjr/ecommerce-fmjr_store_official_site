@@ -26,10 +26,23 @@ app.use("/app", corsMiddleware, appRouter);
 /*app.use("/api", apiRouter);
 app.use("/usr", userRouter); */
 
+//NORMAL
+/* 
 (async () => {
   await sequelize.sync();
   ws_connect();
   app.listen(port, () => {
     console.log("Application running");
   });
+})(); */
+
+//APP + WEBSOCKET
+(async () => {
+  await sequelize.sync();
+  //app
+  const web_socket = app.listen(port, () => {
+    console.log("Application running");
+  });
+  //websocket
+  ws_connect(web_socket);
 })();
