@@ -3,7 +3,7 @@ const ws_connect = () => {
   /*   const socket = new WebSocket("ws://localhost:8101"); */
   //APP + WEBSOCKET
   const protocol = window.location.protocol === "https:" ? "wss://" : "ws://";
-  const socket = new WebSocket(`${protocol}${window.location.host}`);
+  const socket = new WebSocket(`${protocol}${window.location.host}/ws`);
 
   //onfline
   socket.addEventListener("open", (message) => {
