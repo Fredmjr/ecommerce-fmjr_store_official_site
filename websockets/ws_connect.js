@@ -1,8 +1,9 @@
 import { WebSocketServer } from "ws";
 
-export const ws_connect = (web_socket) => {
+export const ws_connect = (/* web_socket */) => {
   /*   const server = new WebSocketServer({ port: 8101 }) */ //NORMAL
-  const server = new WebSocketServer({ server: web_socket, path: "/ws" }); //APP+ WEBSOCKET
+  /* const server = new WebSocketServer({ server: web_socket, path: "/ws" });  */ //APP+ WEBSOCKET
+  const server = new WebSocketServer({ port: 8300 }); //REGISTED NORMAL SERVICE
   const clients = new Set();
 
   server.on("connection", (ws) => {

@@ -44,5 +44,5 @@ app.use("/usr", userRouter); */
     console.log("Application running");
   });
   //websocket
-  ws_connect(web_socket);
+  ws_connect(/* web_socket */);
 })();
