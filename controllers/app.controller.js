@@ -35,14 +35,8 @@ export const portflpgUrl = async (req, res) => {
 
 export const wlcmimgUrl = async (req, res) => {
   try {
-    const filePath = path.join(
-      __dirname,
-      "..",
-      "public",
-      "dist",
-      "imgs",
-      "welcome.webp",
-    );
+    const filePath = path.join(__dirname, "../public/dist/imgs/welcome.webp");
+    console.log(filePath);
     res.sendFile(filePath);
   } catch (error) {
     console.log(error);
