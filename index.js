@@ -10,7 +10,7 @@ import { ws_connect } from "./websockets/ws_connect.js";
 
 const app = express();
 app.use(express.json());
-const port = 8300;
+const port = 8100;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(__filename);
