@@ -1,3 +1,5 @@
+const anima_cache_home = document.querySelector("#home");
+let txt_img_anima_setInterval;
 //fetch request template
 const anima_cache_request = async (
   url,
@@ -102,25 +104,36 @@ const anima_cache_getelem = (e) => {
     const scll_br_anima = () => {
       const container = document.querySelector("#header_thmubrghtthumbCntnts");
       if (container && services && services.length > 0) {
-        container.innerHTML = ""; // Clear placeholders once
-        services.forEach(() => {
-          const div = document.createElement("div");
-          div.className = "thumb-item";
-          div.style.height = "3%";
-          div.style.width = "40%";
-          div.style.backgroundColor = "#707070";
-          div.style.borderRadius = "3px";
-          div.style.marginTop = "1px";
-          div.style.marginBottom = "1px";
-          div.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
-          container.appendChild(div);
-        });
+        setTimeout(() => {
+          /* container.innerHTML = ""; */
+          services.forEach(() => {
+            const div = document.createElement("div");
+            div.className = "thumb-item";
+            div.style.height = "3%";
+            div.style.width = "40%";
+            div.style.backgroundColor = "#707070";
+            div.style.borderRadius = "3px";
+            div.style.marginTop = "1px";
+            div.style.marginBottom = "1px";
+            div.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+            container.appendChild(div);
+            const allDivs = document.querySelectorAll(".thumb-item");
+            allDivs.forEach((div, i) => {
+              if (i === 0) {
+                div.style.height = i === 0 ? "10%" : "3%";
+                div.style.backgroundColor = i === 0 ? "#b3324f" : "#707070";
+              }
+            });
+          });
+        }, 3000);
       }
     };
     scll_br_anima();
 
+    //generic first element style before anima
+    /*   */
     //text & image contect anima
-    setInterval(() => {
+    txt_img_anima_setInterval = setInterval(() => {
       if (services && services.length > 0) {
         // 1Current index for this specific interval execution
         const activeIndex = currentIndex;
@@ -229,3 +242,12 @@ const anima_cache_getelem = (e) => {
     }, 3000);
   }
 })();
+
+//potfolio section
+home.addEventListener("click", (e) => {
+  //add more btns to cancel the anima
+  if (e.target.closest("#tophdrprtfloBtn")) {
+    //shutdown text & image content anima setInterval
+    clearInterval(txt_img_anima_setInterval);
+  }
+});
