@@ -64,8 +64,8 @@ const anima_cache_getelem = (e) => {
     const img_tag = img_nm.replace(/\.webp$/i, "");
     try {
       await anima_cache_set_Img(
-        `/app/onetimemgs/${e}`,
-        /* `https://guest.alwaysdata.net/app/onetimemgs/${e}`, */
+        /*  `/app/onetimemgs/${e}`, */
+        `https://guest.alwaysdata.net/app/onetimemgs/${e}`,
         img_tag,
       );
     } catch (err) {

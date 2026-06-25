@@ -56,7 +56,15 @@ export const wlcmimgUrl = async (req, res) => {
 export const onetimemgsUrl = async (req, res) => {
   const img_nm = req.params.id;
   try {
-    const filePath = path.join(__dirname, `../public/dist/imgs/${img_nm}`);
+    /*  const filePath = path.join(__dirname, `../public/dist/imgs/${img_nm}`); */
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "public",
+      "dist",
+      "imgs",
+      `${img_nm}`,
+    );
     console.log(filePath);
     //retur nothing but handle err in tyrcatch err on client
     if (!fs.existsSync(filePath)) {
