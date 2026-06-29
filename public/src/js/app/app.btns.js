@@ -92,11 +92,11 @@ home.addEventListener("click", async (e) => {
   };
   //sigup - password
   if (e.target.closest("#sgnup_pwd_seepwdicn")) {
-    see_hide("sgnup_pwd", "sgnup_pwd_seepwdicn");
+    see_hide("sgnup_pwd", "sgnup_pwd_seepwdicnimg");
   }
   //sign up - confirm password
   if (e.target.closest("#sgnup_pwd_seecnfrmpwdicn")) {
-    see_hide("sgnup_cnfrmpwd", "sgnup_pwd_seecnfrmpwdicn");
+    see_hide("sgnup_cnfrmpwd", "sgnup_pwd_seecnfrmpwdicnimg");
   }
 });
 
