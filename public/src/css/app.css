@@ -147,13 +147,14 @@ button {
 }
 .ctgry_ttl_drpdwnmenucl {
   text-align: start;
-  gap: 5px;
+  gap: 7px;
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 5px 5px;
+  padding: 7px 7px;
   white-space: nowrap;
-  margin: 5px 0px;
+  margin: 10px 0px;
+  font-size: 11px;
 }
 .ctgry_ttl_drpdwnmenucl:hover {
   background-color: var(--fmjr--clr1);
@@ -249,16 +250,19 @@ button {
   align-items: center;
   border-radius: 3px;
   padding: 5px 5px;
-  margin: 5px 0px;
+  margin: 10px 0px;
   white-space: nowrap;
-  font-size: 9px;
+  font-size: 11px;
 }
 .ctgry_menuBtn_drpdwnmenucl:hover {
   background-color: var(--fmjr--clr1);
 }
 .ctgry_menuBtn_drpdwnmenuclicn {
-  width: 11px;
+  width: 15px;
   filter: var(--fmjr-fltr2);
+}
+#ctgry_menuBtn_drpdwnmenuttlmenu {
+  background-color: var(--fmjr--clr1);
 }
 .ctgryctgries_cntntsBtns:hover {
   background-color: var(--fmjr--dkr5);
@@ -559,16 +563,16 @@ button {
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 5px 5px;
-  margin: 5px 0px;
+  padding: 5px 10px;
+  margin: 10px 0px;
   white-space: nowrap;
-  font-size: 9px;
+  font-size: 11px;
 }
 .navbrmenuBtn_drpdwnmenu_linkscl:hover {
   background-color: var(--fmjr--clr1);
 }
 .navbrmenuBtn_drpdwnmenu_linksclicn {
-  width: 11px;
+  width: 15px;
   filter: var(--fmjr-fltr2);
 }
 #navbrmenuBtn_drpdwnmenu_lwrslnks {
@@ -683,6 +687,10 @@ button {
   align-items: center;
   gap: 2%;
   font-weight: bold;
+}
+.navbrmenuBtn_drpdwnmenu_lwrslnkscl {
+  margin-left: 2px;
+  margin-right: 5px;
 }
 .navbrmenuBtn_drpdwnmenu_lwrslnkscl:hover {
   color: var(--fmjr--clr1);
