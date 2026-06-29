@@ -137,13 +137,14 @@ button {
   font-size: 10px;
   width: fit-content;
   height: fit-content;
-  padding: 10px 15px;
+  padding: 10px 7px;
   border-radius: 3px;
   box-sizing: border-box;
   z-index: 11;
 }
 #ctgry_ttl_drpdwnmenu_hmBtn {
   background-color: var(--fmjr--clr1);
+  font-weight: bolder;
 }
 .ctgry_ttl_drpdwnmenucl {
   text-align: start;
@@ -151,7 +152,10 @@ button {
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 7px 7px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 20px;
+  padding-left: 7px;
   white-space: nowrap;
   margin: 10px 0px;
   font-size: 11px;
@@ -245,11 +249,14 @@ button {
 }
 .ctgry_menuBtn_drpdwnmenucl {
   text-align: start;
-  gap: 5px;
+  gap: 7px;
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 5px 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 20px;
+  padding-left: 7px;
   margin: 10px 0px;
   white-space: nowrap;
   font-size: 11px;
@@ -263,6 +270,7 @@ button {
 }
 #ctgry_menuBtn_drpdwnmenuttlmenu {
   background-color: var(--fmjr--clr1);
+  font-family: reddir-extrabold;
 }
 .ctgryctgries_cntntsBtns:hover {
   background-color: var(--fmjr--dkr5);
@@ -556,6 +564,7 @@ button {
 }
 #navbrmenuBtn_drpdwnmenu_accntBtn {
   background-color: var(--fmjr--clr1);
+  font-family: reddir-extrabold;
 }
 .navbrmenuBtn_drpdwnmenu_linkscl {
   text-align: start;
@@ -563,7 +572,10 @@ button {
   display: flex;
   align-items: center;
   border-radius: 3px;
-  padding: 5px 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 20px;
+  padding-left: 7px;
   margin: 10px 0px;
   white-space: nowrap;
   font-size: 11px;
@@ -577,12 +589,13 @@ button {
 }
 #navbrmenuBtn_drpdwnmenu_lwrslnks {
   display: flex;
-  gap: 2px;
+  justify-content: space-between;
+  gap: 3px;
   font-size: 8px;
 }
 
 #navbrmenuBtn_drpdwnmenu_lwrsendnt {
-  text-align: start;
+  text-align: center;
   font-size: 6px;
   color: var(--fmjr--dkr2);
   font-family: reddir-light;
