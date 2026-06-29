@@ -20,21 +20,6 @@ export const hdrdtUrl = async (req, res) => {
   }
 };
 
-export const portflpgUrl = async (req, res) => {
-  try {
-    return res.status(200).render("components/portfolio");
-  } catch (error) {
-    const erMgs_div = `
-    <p>err_code: 001</p>
-    <p>Unable to process request!</p>
-    <p>Contact customer support, if issue persists</p>
-    `;
-    res.status(400).json({
-      erMgs: erMgs_div,
-    });
-  }
-};
-
 export const wlcmimgUrl = async (req, res) => {
   try {
     const filePath = path.join(__dirname, "../public/dist/imgs/welcome.webp");
@@ -88,6 +73,56 @@ export const cachdsrvcsUrl = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//NAVIGATION SECTION
+//sign up
+export const sgnuppgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/signup");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//login page
+export const lgnpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/login");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//CATEGORY SECTION
+//portfolio
+export const portflpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/portfolio");
+  } catch (error) {
     const erMgs_div = `
     <p>err_code: 001</p>
     <p>Unable to process request!</p>

@@ -524,7 +524,51 @@ button {
   padding: 12px 15px;
   font-weight: bold;
 }
+#sgnup_crtaccntBtn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 12px 15px;
+  font-weight: bold;
+}
 
+#sgnuppg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sgnup_subtxt {
+  font-size: 10px;
+  text-align: center;
+  margin: 15px 0px;
+}
+#sgnup_inptcl::placeholder {
+  color: var(--fmjr--dkr6);
+}
+
+#sgnup_lgntxtlink {
+  font-size: 10px;
+  text-align: center;
+}
+
+#rtntolgnpglnkBtn {
+  color: var(--fmjr--clr1);
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+#sgnuppgcntnts {
+  width: 40%;
+  padding: 15px 0px;
+  box-sizing: border-box;
+}
 #navbrloginBtn {
   border: none;
   outline: none;
@@ -535,6 +579,45 @@ button {
   border-radius: 3px;
   padding: 12px 15px;
   font-weight: bold;
+}
+#sgnup_ttl {
+  font-size: 20px;
+  text-align: center;
+  margin: 15px 0px;
+  font-family: reddir-extrabold;
+}
+.sgnup_inptcrdcl {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid var(--fmjr--dkr6);
+  border-radius: 3px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+#sgnuppgcntnts_tplogo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#sgnup_pwd_seecnfrmpwdicn {
+  cursor: pointer;
+}
+
+#sgnup_pwd_seepwdicn {
+  cursor: pointer;
+}
+
+.sgnup_inptcl {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 11px;
+  padding: 5px 5px;
+  width: 85%;
 }
 
 #navbrloginBtn:hover {
@@ -1493,6 +1576,9 @@ button {
     width: 50%;
     padding-right: 15%;
   }
+  #sgnuppgcntnts {
+    width: 50%;
+  }
 }
 
 /* small screen */
@@ -1788,5 +1874,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  #sgnuppgcntnts {
+    width: 65%;
   }
 }

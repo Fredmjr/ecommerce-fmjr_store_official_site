@@ -39,7 +39,7 @@ const anima_cache_set_Img = async (imageUrl, img_tag) => {
 };
 
 const anima_cache_getelem = (e) => {
-  return document.getElementById(e) || document.querySelector(`.${name}`);
+  return document.getElementById(e) || document.querySelector(`.${e}`);
 };
 
 //dowload, cache & transition content
@@ -243,11 +243,19 @@ const anima_cache_getelem = (e) => {
   }
 })();
 
-//potfolio section
+// anima if anyth button is clicked, this is a along shot
+// The object containing the selectors or elements you want to match against
+const targetElements = {
+  anima_el1: "tophdrprtfloBtn",
+  anima_el2: "navbrsgnupBtn",
+  anima_el3: "navbrloginBtn",
+};
+
 home.addEventListener("click", (e) => {
-  //add more btns to cancel the anima
-  if (e.target.closest("#tophdrprtfloBtn")) {
-    //shutdown text & image content anima setInterval
+  const selectors = Object.values(targetElements);
+  const combinedSelector = selectors.join(", ");
+
+  if (e.target.closest(combinedSelector)) {
     clearInterval(txt_img_anima_setInterval);
   }
 });
