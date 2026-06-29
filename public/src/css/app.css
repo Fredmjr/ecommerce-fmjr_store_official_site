@@ -141,6 +141,7 @@ button {
   border-radius: 3px;
   box-sizing: border-box;
   z-index: 11;
+  border-bottom: 2px solid var(--fmjr--clr1);
 }
 #ctgry_ttl_drpdwnmenu_hmBtn {
   background-color: var(--fmjr--clr1);
@@ -246,6 +247,7 @@ button {
   border-radius: 3px;
   box-sizing: border-box;
   z-index: 11;
+  border-bottom: 2px solid var(--fmjr--clr1);
 }
 .ctgry_menuBtn_drpdwnmenucl {
   text-align: start;
@@ -561,6 +563,7 @@ button {
   border-radius: 3px;
   box-sizing: border-box;
   z-index: 11;
+  border-bottom: 2px solid var(--fmjr--clr1);
 }
 #navbrmenuBtn_drpdwnmenu_accntBtn {
   background-color: var(--fmjr--clr1);
