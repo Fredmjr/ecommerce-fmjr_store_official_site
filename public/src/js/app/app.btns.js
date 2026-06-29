@@ -97,6 +97,9 @@ home.addEventListener("click", async (e) => {
   //sign up - confirm password
   if (e.target.closest("#sgnup_pwd_seecnfrmpwdicn")) {
     see_hide("sgnup_cnfrmpwd", "sgnup_pwd_seecnfrmpwdicnimg");
+  } //login - password
+  if (e.target.closest("#lgn_pwd_seecnfrmpwdicn")) {
+    see_hide("lgn_pwd", "lgn_pwd_seecnfrmpwdicnimg");
   }
 });
 

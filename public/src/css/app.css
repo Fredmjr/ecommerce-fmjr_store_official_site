@@ -537,6 +537,19 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#lgn_crtaccntBtn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
 
 #sgnuppg {
   width: 100%;
@@ -553,16 +566,36 @@ button:focus {
 #sgnup_inptcl::placeholder {
   color: var(--fmjr--dkr6);
 }
-
+#lgn_inptcl::placeholder {
+  color: var(--fmjr--dkr6);
+}
 #sgnup_lgntxtlink {
   font-size: 10px;
   text-align: center;
 }
-
+#lgn_sgnuptxtlink {
+  font-size: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+#lgn_sgnuptxtlink:hover {
+  color: var(--fmjr--clr1);
+}
 #rtntolgnpglnkBtn {
   color: var(--fmjr--clr1);
   font-weight: bolder;
   cursor: pointer;
+}
+#lgnpg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#lgnpgcntnts {
+  width: 40%;
+  padding: 15px 0px;
+  box-sizing: border-box;
 }
 
 #sgnuppgcntnts {
@@ -587,7 +620,24 @@ button:focus {
   margin: 15px 0px;
   font-family: reddir-extrabold;
 }
+#lgn_ttl {
+  font-size: 20px;
+  text-align: center;
+  margin: 15px 0px;
+  font-family: reddir-extrabold;
+}
 .sgnup_inptcrdcl {
+  width: 100%;
+  padding: 10px 7px;
+  border: 1px solid var(--fmjr--dkr6);
+  border-radius: 3px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lgn_inptcrdcl {
   width: 100%;
   padding: 10px 7px;
   border: 1px solid var(--fmjr--dkr6);
@@ -604,6 +654,12 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+#lgnpgcntnts_tplogo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #sgnup_pwd_seecnfrmpwdicn {
   cursor: pointer;
   width: 15%;
@@ -615,7 +671,17 @@ button:focus {
   justify-content: end;
   display: flex;
 }
-
+#lgn_pwd_seecnfrmpwdicn {
+  cursor: pointer;
+  width: 15%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: transparent;
+  justify-content: end;
+  display: flex;
+}
 #sgnup_pwd_seepwdicn {
   cursor: pointer;
   width: 15%;
@@ -629,6 +695,15 @@ button:focus {
 }
 
 .sgnup_inptcl {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 11px;
+  padding: 5px 5px;
+  width: 85%;
+}
+.lgn_inptcl {
   box-sizing: border-box;
   border: none;
   outline: none;
@@ -1597,6 +1672,9 @@ button:focus {
   #sgnuppgcntnts {
     width: 50%;
   }
+  #lgnpgcntnts {
+    width: 50%;
+  }
 }
 
 /* small screen */
@@ -1894,6 +1972,9 @@ button:focus {
     justify-content: center;
   }
   #sgnuppgcntnts {
+    width: 85%;
+  }
+  #lgnpgcntnts {
     width: 85%;
   }
 }
