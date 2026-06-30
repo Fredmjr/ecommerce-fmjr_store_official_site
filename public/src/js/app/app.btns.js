@@ -42,6 +42,13 @@ const app_btns_request = async (
   }
 };
 
+//default spinner
+const spinner_fuc = () => {
+  const spinner = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+  app_btns_getelem("main").innerHTML = "";
+  app_btns_getelem("main").innerHTML = spinner;
+};
+
 //main menu
 app_btns_getelem("navbrmenuBtn").addEventListener("click", () => {
   closeopenFunc(app_btns_getelem("navbrmenuBtn_drpdwnmenu"));
@@ -70,12 +77,18 @@ app_btns_getelem("ctgry_menuBtn").addEventListener("click", () => {
 //sign up
 app_btns_getelem("navbrsgnupBtn").addEventListener("click", async () => {
   const data = await app_btns_request("/app/sgnuppg", "GET");
-  app_btns_getelem("main").innerHTML = data;
+  spinner_fuc();
+  if (data) {
+    app_btns_getelem("main").innerHTML = data;
+  }
 });
 //login
 app_btns_getelem("navbrloginBtn").addEventListener("click", async () => {
   const data = await app_btns_request("/app/lgnpg", "GET");
-  app_btns_getelem("main").innerHTML = data;
+  spinner_fuc();
+  if (data) {
+    app_btns_getelem("main").innerHTML = data;
+  }
 });
 //see or hide universal passsword
 home.addEventListener("click", async (e) => {
@@ -107,6 +120,30 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#rtntolgnpglnkBtn")) {
     const data = await app_btns_request("/app/lgnpg", "GET");
-    app_btns_getelem("main").innerHTML = data;
+    spinner_fuc();
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//switch from login to sign up page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#lgn_sgnuptxtlink")) {
+    const data = await app_btns_request("/app/sgnuppg", "GET");
+    spinner_fuc();
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//forgot password
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#lgn_frgtpwdBtn")) {
+    const data = await app_btns_request("/app/frgotpwdpg", "GET");
+    spinner_fuc();
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
   }
 });
