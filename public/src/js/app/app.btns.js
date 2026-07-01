@@ -55,6 +55,7 @@ app_btns_getelem("navbrmenuBtn").addEventListener("click", () => {
   app_btns_getelem("ctgry_ttl_drpdwnmenu").style.display = "none";
   app_btns_getelem("ctgry_menuBtn_drpdwnmenu").style.display = "none";
 });
+
 //category menu + small screen query reeesponsiveness
 app_btns_getelem("ctgry_ttl").addEventListener("click", () => {
   const mobileQuery = window.matchMedia("(max-width: 576px)");
@@ -76,8 +77,8 @@ app_btns_getelem("ctgry_menuBtn").addEventListener("click", () => {
 
 //sign up
 app_btns_getelem("navbrsgnupBtn").addEventListener("click", async () => {
-  const data = await app_btns_request("/app/sgnuppg", "GET");
   spinner_fuc();
+  const data = await app_btns_request("/app/sgnuppg", "GET");
   if (data) {
     app_btns_getelem("main").innerHTML = data;
   }
@@ -110,17 +111,39 @@ home.addEventListener("click", async (e) => {
   //sign up - confirm password
   if (e.target.closest("#sgnup_pwd_seecnfrmpwdicn")) {
     see_hide("sgnup_cnfrmpwd", "sgnup_pwd_seecnfrmpwdicnimg");
-  } //login - password
+  }
+  //login - password
   if (e.target.closest("#lgn_pwd_seecnfrmpwdicn")) {
     see_hide("lgn_pwd", "lgn_pwd_seecnfrmpwdicnimg");
+  }
+  //account management  - old password
+  if (e.target.closest("#accntspgcntnts_oldpwdinpt_seepwdicn")) {
+    see_hide(
+      "accntspgcntnts_oldpwdinpt",
+      "accntspgcntnts_oldpwdinpt_seepwdicnimg",
+    );
+  }
+  //account management  - new password
+  if (e.target.closest("#accntspgcntnts_newpwdinpt_seepwdicn")) {
+    see_hide(
+      "accntspgcntnts_newpwdinpt",
+      "accntspgcntnts_newpwdinpt_seepwdicnimg",
+    );
+  }
+  //account management  - confirm password
+  if (e.target.closest("#accntspgcntnts_cnfrmpwdinpt_seepwdicn")) {
+    see_hide(
+      "accntspgcntnts_cnfrmpwdinpt",
+      "accntspgcntnts_cnfrmpwdinpt_seepwdicnimg",
+    );
   }
 });
 
 //switch from sign up to login page
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#rtntolgnpglnkBtn")) {
-    const data = await app_btns_request("/app/lgnpg", "GET");
     spinner_fuc();
+    const data = await app_btns_request("/app/lgnpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
     }
@@ -140,10 +163,113 @@ home.addEventListener("click", async (e) => {
 //forgot password
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#lgn_frgtpwdBtn")) {
-    const data = await app_btns_request("/app/frgotpwdpg", "GET");
     spinner_fuc();
+    const data = await app_btns_request("/app/frgotpwdpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
     }
+  }
+});
+//accounts page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#nvbr_accntsBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/accntspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//review page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linksrvwBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/rvwpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//Issue Box page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linkissbxBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/issbxpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//dowload page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linkdwnldBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/dwnldpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//busket page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linkscartBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/bsktpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//notify page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linksnotfyBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/notfypg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//account management + flip anima
+let flip = false;
+home.addEventListener("click", async (e) => {
+  if (app_btns_getelem("accntspgcntnts_subbnnrrghtBtnicn")) {
+    app_btns_getelem("accntspgcntnts_subbnnrrghtBtnicn").style.display =
+      "inline-block";
+    app_btns_getelem("accntspgcntnts_subbnnrrghtBtnicn").style.transition =
+      "transform 0.4s ease";
+  }
+
+  if (e.target.closest("#accntspgcntnts_subbnnr")) {
+    closeopenFunc(app_btns_getelem("accntspgcntnts_accntdtls"));
+
+    flip = !flip;
+    app_btns_getelem("accntspgcntnts_subbnnrrghtBtnicn").style.transform = flip
+      ? "rotate(180deg)"
+      : "rotate(0deg)";
+  }
+});
+//passord management
+let flip2 = false;
+home.addEventListener("click", async (e) => {
+  if (app_btns_getelem("accntspgcntnts_genericttlbnnricnid")) {
+    app_btns_getelem("accntspgcntnts_genericttlbnnricnid").style.display =
+      "inline-block";
+    app_btns_getelem("accntspgcntnts_genericttlbnnricnid").style.transition =
+      "transform 0.4s ease";
+  }
+
+  if (e.target.closest("#accntspgcntnts_bnnrpwsmngmnt")) {
+    closeopenFunc(app_btns_getelem("accntspgcntnts_accntdtls2"));
+
+    flip2 = !flip2;
+    app_btns_getelem("accntspgcntnts_genericttlbnnricnid").style.transform =
+      flip2 ? "rotate(180deg)" : "rotate(0deg)";
   }
 });

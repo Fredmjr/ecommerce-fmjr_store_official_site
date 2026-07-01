@@ -116,9 +116,105 @@ export const lgnpgUrl = async (req, res) => {
     });
   }
 };
+//forgot password page
 export const frgotpwdpgUrl = async (req, res) => {
   try {
     return res.status(200).render("components/forgotpassword");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//accounts page
+export const accntspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/accounts");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//review page
+export const rvwpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/review");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//issue box page
+export const issbxpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/issue_box");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//dowload page
+export const dwnldpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/dowload");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//bustket page
+export const bsktpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/busket");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//notification page
+export const notfypgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/notifications");
   } catch (error) {
     const erMgs_div = `
     <p>err_code: 001</p>

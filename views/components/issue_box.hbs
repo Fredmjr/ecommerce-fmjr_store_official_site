@@ -1,0 +1,34 @@
+<div id="issbxpg">
+  <div id="issbxpgcntnts">
+    <p id="issbxpg_ttl">Issue Submission</p>
+    {{! email }}
+    <label for="issbxpg_eml">Email Address</label>
+    <div class="issbxpg_inptcrdcl">
+      <input
+        type="issbxpg_eml"
+        id="issbxpg_eml"
+        name="email"
+        placeholder="Enter Email Address"
+        class="issbxpg_inptcl"
+        required
+      />
+    </div>
+    {{! txt box }}
+    <label for="issbxpg_rvwbox">Issue Box</label>
+    <textarea
+      id="issbxpg_rvwbox"
+      rows="5"
+      cols="40"
+      placeholder="Review text here"
+    ></textarea>
+    {{! bulleting }}
+    <div id="issbxpgcntnts_bulleting">
+      <p class="issbxpgcntnts_bulletingtxt"><img
+          src="dist/icons/check.svg"
+          class="issbxpgcntnts_bulleting_linksclicn"
+          width="12"
+        />Provide valid Email Address. Response will be sent to it!</p>
+    </div>
+    <button id="issbxpgcntnts_rvwBtn">Submit</button>
+  </div>
+</div>
