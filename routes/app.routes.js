@@ -5,13 +5,17 @@ import {
   bsktpgUrl,
   cachdsrvcsUrl,
   dwnldpgUrl,
+  fdbkpgUrl,
   frgotpwdpgUrl,
   hdrdtUrl,
+  hlppgUrl,
   issbxpgUrl,
   lgnpgUrl,
   notfypgUrl,
   onetimemgsUrl,
   portflpgUrl,
+  prvcydataUrl,
+  prvcypgUrl,
   rvwpgUrl,
   sgnuppgUrl,
   wlcmimgUrl,
@@ -32,5 +36,9 @@ router.get("/issbxpg", issbxpgUrl);
 router.get("/dwnldpg", dwnldpgUrl);
 router.get("/bsktpg", bsktpgUrl);
 router.get("/notfypg", notfypgUrl);
+router.get("/prvcypg", prvcypgUrl);
+router.get("/hlppg", hlppgUrl);
+router.get("/fdbkpg", fdbkpgUrl);
+router.get("/prvcydata", prvcydataUrl);
 
 export default router;

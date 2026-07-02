@@ -216,7 +216,10 @@ home.addEventListener("click", async (e) => {
 
 //busket page
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linkscartBtn")) {
+  if (
+    e.target.closest("#navbrmenuBtn_drpdwnmenu_linkscartBtn") ||
+    e.target.closest("#basketBtn")
+  ) {
     spinner_fuc();
     const data = await app_btns_request("/app/bsktpg", "GET");
     if (data) {
@@ -227,9 +230,79 @@ home.addEventListener("click", async (e) => {
 
 //notify page
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_linksnotfyBtn")) {
+  if (
+    e.target.closest("#navbrmenuBtn_drpdwnmenu_linksnotfyBtn") ||
+    e.target.closest("#notifyBtn")
+  ) {
     spinner_fuc();
     const data = await app_btns_request("/app/notfypg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//Privcy
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_lwrslnkprvcyBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/prvcypg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+      const prvcy_data = await app_btns_request("/app/prvcydata", "GET");
+      if (prvcy_data) {
+        console.log(prvcy_data);
+        //title
+        const p = `<div class="prvcycrd">
+                <p id="prvcypg_ttl">${prvcy_data.prvcy_data.ttl}</p> 
+                <p id="prvcypg_dscrptn">${prvcy_data.prvcy_data.dscrptn}</p> 
+                <div id="prvcycrd_subInfo"></div>                
+            </div>   
+            `;
+        app_btns_getelem("prvcypgcntnts").innerHTML = p;
+        //contents
+        prvcy_data.prvcy_data.cntnts.forEach((e) => {
+          const p_child = document.createElement("div");
+          const p_child_subcntnts = e.sub_contents
+            ? `
+            ${e.sub_contents
+              .map(
+                (el) => `<p  class="prvcycrd_chldcrdcl_subcntntscl">${el}</p>`,
+              )
+              .join("")}
+          `
+            : "";
+          p_child.innerHTML = `<img src="dist/imgs/privacy_thumb.webp" width="45"/>
+              <div class="prvcycrd_chldinfo">
+                <p class="prvcycrd_chldinfottl">${e.title}</p>
+                <p>${e.content}</p> 
+                ${p_child_subcntnts}          
+            </div>             
+        `;
+          app_btns_getelem("prvcycrd_subInfo").appendChild(p_child);
+          p_child.className = "prvcycrd_chldcrdcl";
+        });
+      }
+    }
+  }
+});
+
+//help
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_lwrslnkhlpBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/hlppg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//feedback
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_lwrslnkfdbkBtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/fdbkpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
     }

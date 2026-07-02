@@ -1,5 +1,6 @@
 import { services } from "../inventory_assets/data/data.js";
 import { cacahed_services } from "../inventory_assets/data/data.cache.js";
+import { prvcy_data } from "../inventory_assets/data/data.privacy.js";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
@@ -215,6 +216,70 @@ export const bsktpgUrl = async (req, res) => {
 export const notfypgUrl = async (req, res) => {
   try {
     return res.status(200).render("components/notifications");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//privacy
+export const prvcypgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/privacy");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//privacy - data
+export const prvcydataUrl = async (req, res) => {
+  try {
+    return res.status(200).json({ prvcy_data });
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//help
+export const hlppgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/help");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//feedback
+export const fdbkpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/feedback");
   } catch (error) {
     const erMgs_div = `
     <p>err_code: 001</p>
