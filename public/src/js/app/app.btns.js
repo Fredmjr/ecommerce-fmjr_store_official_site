@@ -24,6 +24,19 @@ const scroll_bar_fuc = (e) => {
   } */
 };
 
+//resuable window height adjustmentdue to keyboard
+const win_height_fuc = (e) => {
+  window.visualViewport.addEventListener("resize", () => {
+    const keyboardHeight = window.innerHeight - window.visualViewport.height;
+
+    if (keyboardHeight > 0) {
+      e.style.bottom = `${keyboardHeight}px`;
+    } else {
+      e.style.bottom = "20px";
+    }
+  });
+};
+
 //Reusabled fetch request
 const app_btns_request = async (
   url,
@@ -357,6 +370,7 @@ home.addEventListener("click", async (e) => {
       closeopenFunc(app_btns_getelem("floatpop"));
       document.body.style.overflow = "hidden";
       scroll_bar_fuc(app_btns_getelem("floatpop"));
+      win_height_fuc(app_btns_getelem("floatpop"));
     }
   }
 });
