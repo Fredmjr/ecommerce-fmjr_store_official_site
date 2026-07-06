@@ -11,6 +11,19 @@ closeopenFunc = (a) => {
   }
 };
 
+//resuable hide or show scroll bar
+const scroll_bar_fuc = (e) => {
+  const current_x = window.getComputedStyle(e).overflowX;
+  const current_y = window.getComputedStyle(e).overflowY;
+  if (current_x === "scroll" || current_y === "scroll") {
+    e.style.overflowX = "hidden";
+    e.style.overflowY = "hidden";
+  } /*  else {
+    e.style.overflowX = "auto";
+    e.style.overflowY = "auto";
+  } */
+};
+
 //Reusabled fetch request
 const app_btns_request = async (
   url,
@@ -309,6 +322,58 @@ home.addEventListener("click", async (e) => {
   }
 });
 
+//feedback
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#ctgryctgries_accmntsBtn")) {
+    console.log("hoahoi");
+    spinner_fuc();
+    const data = await app_btns_request("/app/anncmntpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//chat & messages - large screen
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#ctgryctgries_chtmsgsBtn")) {
+    const data = await app_btns_request("/app/chtpg", "GET");
+    if (data) {
+      app_btns_getelem("floatpop").innerHTML = "";
+      app_btns_getelem("floatpop").innerHTML = data;
+      closeopenFunc(app_btns_getelem("floatpop"));
+      document.body.style.overflow = "hidden";
+      scroll_bar_fuc(app_btns_getelem("floatpop"));
+    }
+  }
+});
+//chat & messages - small screen
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#ctgry_menuBtn_drpdwnmenuchtmgsBtn")) {
+    const data = await app_btns_request("/app/chtpg", "GET");
+    if (data) {
+      app_btns_getelem("floatpop").innerHTML = "";
+      app_btns_getelem("floatpop").innerHTML = data;
+      closeopenFunc(app_btns_getelem("floatpop"));
+      document.body.style.overflow = "hidden";
+      scroll_bar_fuc(app_btns_getelem("floatpop"));
+    }
+  }
+});
+
+//close chat & messages float popup
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#chtpg_prflusrmgspnlrghtclschtmgsBtn")) {
+    const data = await app_btns_request("/app/chtpg", "GET");
+    if (data) {
+      app_btns_getelem("floatpop").innerHTML = "";
+      app_btns_getelem("floatpop").innerHTML = data;
+      document.body.style.overflowY = "scroll";
+      closeopenFunc(app_btns_getelem("floatpop"));
+    }
+  }
+});
+
 //account management + flip anima
 let flip = false;
 home.addEventListener("click", async (e) => {
@@ -344,5 +409,14 @@ home.addEventListener("click", async (e) => {
     flip2 = !flip2;
     app_btns_getelem("accntspgcntnts_genericttlbnnricnid").style.transform =
       flip2 ? "rotate(180deg)" : "rotate(0deg)";
+  }
+});
+
+//feedback messages dropdown menu
+home.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".fdbkpg_fdcarddrpwnmenuBtn");
+  if (btn) {
+    const specificMenu = btn.querySelector(".fdbkpg_fdcarddrpwnmenu");
+    closeopenFunc(specificMenu);
   }
 });

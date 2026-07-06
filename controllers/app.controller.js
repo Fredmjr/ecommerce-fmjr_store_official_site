@@ -292,6 +292,38 @@ export const fdbkpgUrl = async (req, res) => {
   }
 };
 
+//annoucement
+export const anncmntpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/annoucement");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//chat
+export const chtpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/chat");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
 //CATEGORY SECTION
 //portfolio
 export const portflpgUrl = async (req, res) => {

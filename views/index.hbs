@@ -59,6 +59,9 @@ Books on Sale, Digital Art, and many more."
   <body>
 
     <div id="home">
+      {{! float-pop }}
+      <div id="floatpop" style="display: none;"></div>
+
       {{! banner }}
       <div id="bannr1">
         <div id="bannr1Cntnts">
@@ -352,13 +355,19 @@ Books on Sale, Digital Art, and many more."
           </div>
           <div id="ctgry_ctgries">
             <div id="ctgryctgries_cntnts">
-              <button class="ctgryctgries_cntntsBtns">
+              <button
+                class="ctgryctgries_cntntsBtns"
+                id="ctgryctgries_chtmsgsBtn"
+              >
                 <img
                   class="ctgryctgries_icnscl"
                   src="dist/icons/chat_messages.svg"
                   width="15"
                 />Chat / Messages</button>
-              <button class="ctgryctgries_cntntsBtns">
+              <button
+                class="ctgryctgries_cntntsBtns"
+                id="ctgryctgries_accmntsBtn"
+              >
                 <img
                   class="ctgryctgries_icnscl"
                   src="dist/icons/annoucement.svg"
@@ -392,7 +401,10 @@ Books on Sale, Digital Art, and many more."
                       src="dist/icons/semi menu.svg"
                       class="ctgry_menuBtn_drpdwnmenuclicn"
                     />Updates Menu</p>
-                  <p class="ctgry_menuBtn_drpdwnmenucl"><img
+                  <p
+                    class="ctgry_menuBtn_drpdwnmenucl"
+                    id="ctgry_menuBtn_drpdwnmenuchtmgsBtn"
+                  ><img
                       src="dist/icons/chat_messages.svg"
                       class="ctgry_menuBtn_drpdwnmenuclicn"
                     />Chat / Messages</p>

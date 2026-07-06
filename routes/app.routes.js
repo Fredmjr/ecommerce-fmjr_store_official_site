@@ -2,8 +2,10 @@ import express from "express";
 
 import {
   accntspgUrl,
+  anncmntpgUrl,
   bsktpgUrl,
   cachdsrvcsUrl,
+  chtpgUrl,
   dwnldpgUrl,
   fdbkpgUrl,
   frgotpwdpgUrl,
@@ -40,5 +42,7 @@ router.get("/prvcypg", prvcypgUrl);
 router.get("/hlppg", hlppgUrl);
 router.get("/fdbkpg", fdbkpgUrl);
 router.get("/prvcydata", prvcydataUrl);
+router.get("/anncmntpg", anncmntpgUrl);
+router.get("/chtpg", chtpgUrl);
 
 export default router;
