@@ -31,9 +31,9 @@ const win_height_fuc = (e) => {
 
     if (keyboardHeight > 0) {
       e.style.bottom = `${keyboardHeight}px`;
-    } else {
+    } /* else {
       e.style.bottom = "20px";
-    }
+    } */
   });
 };
 
