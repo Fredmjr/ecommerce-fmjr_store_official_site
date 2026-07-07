@@ -24,6 +24,30 @@ const scroll_bar_fuc = (e) => {
   } */
 };
 
+//reusable disbale scroll feature
+const disable_scroll_ft_fuc = (e) => {
+  document.body.style.overflow = "hidden";
+  document.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!e.contains(event.target)) {
+        event.preventDefault();
+      }
+    },
+    { passive: false },
+  );
+};
+
+//reusable enable scroll feature
+const enable_scroll_ft_fuc = (e) => {
+  document.body.style.overflow = "";
+  document.removeEventListener("touchmove", (event) => {
+    if (!e.contains(event.target)) {
+      event.preventDefault();
+    }
+  });
+};
+
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
   window.visualViewport.addEventListener("resize", () => {
@@ -37,18 +61,8 @@ const win_height_fuc2 = (e) => {
       e.style.bottom = "20px";
     }
   });
-  function disableBodyScroll() {
-    document.body.style.overflow = "hidden";
 
-    // Fix for mobile devices
-    document.addEventListener("touchmove", preventScroll, { passive: false });
-  }
-  function preventScroll(el) {
-    if (!e.contains(el.target)) {
-      el.preventDefault();
-    }
-  }
-  disableBodyScroll();
+  disable_scroll_ft_fuc(e);
 };
 
 /* const win_height_fuc = (e) => {
@@ -421,11 +435,12 @@ home.addEventListener("click", async (e) => {
       document.body.style.overflow = "hidden";
       scroll_bar_fuc(app_btns_getelem("floatpop"));
       win_height_fuc2(app_btns_getelem("chtpg_typngmgspnl"));
-      document.body.style.overflowY = "hidden";
+      enable_scroll_ft_fuc(app_btns_getelem("chtpg_typngmgspnl"));
+      /* document.body.style.overflowY = "hidden";
       app_btns_getelem("home").style.overflowY = "hidden";
       app_btns_getelem("floatpop").style.overflowY = "hidden";
       app_btns_getelem("chtpg").style.overflowY = "hidden";
-      app_btns_getelem("chtpgcntnts").style.overflowY = "hidden";
+      app_btns_getelem("chtpgcntnts").style.overflowY = "hidden"; */
       /*    win_height_fuc(app_btns_getelem("chtpg"));  */
     }
   }
