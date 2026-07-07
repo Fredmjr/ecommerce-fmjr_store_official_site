@@ -43,14 +43,21 @@ const win_height_fuc = (e) => {
 
       if (isKeyboardOpen) {
         e.style.height = `${vvHeight}px`;
-        e.style.bottom = "0px";
+        e.style.top = `${window.visualViewport.offsetTop}px`;
+
+        document.body.style.overflow = "hidden";
+        document.body.style.height = `${vvHeight}px`;
       } else {
         e.style.height = "100%";
-        // e.style.bottom = "20px";
+        e.style.top = "0px";
+
+        document.body.style.overflow = "";
+        document.body.style.height = "";
       }
     };
 
     window.visualViewport.addEventListener("resize", handleResize);
+    window.visualViewport.addEventListener("scroll", handleResize);
   });
 };
 
