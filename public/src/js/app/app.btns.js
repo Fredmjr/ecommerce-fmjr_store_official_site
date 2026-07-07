@@ -401,7 +401,7 @@ home.addEventListener("click", async (e) => {
 
 //close chat & messages float popup
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#chtpg_prflusrmgspnlrghtclschtmgsBtn")) {
+  if (e.target.closest("#chtpg_prflusrmgspnlrghtclschtmgspnlbtn")) {
     const data = await app_btns_request("/app/chtpg", "GET");
     if (data) {
       app_btns_getelem("floatpop").innerHTML = "";
