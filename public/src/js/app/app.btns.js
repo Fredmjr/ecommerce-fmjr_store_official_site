@@ -26,41 +26,31 @@ const scroll_bar_fuc = (e) => {
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc = (e) => {
-  window.visualViewport.addEventListener("resize", () => {
-    /*     const keyboardHeight = window.innerHeight - window.visualViewport.height;
+  if (!window.visualViewport) return;
 
-    if (keyboardHeight > 0) {
-      e.style.bottom = `${keyboardHeight}px`;
-    }  else {
-      e.style.bottom = "20px";
-    }  */
+  const handleResize = () => {
+    const vvHeight = window.visualViewport.height;
+    const isKeyboardOpen = window.innerHeight - vvHeight > 50;
 
-    if (!window.visualViewport) return;
+    if (isKeyboardOpen) {
+      e.style.position = "fixed";
+      e.style.height = `${vvHeight}px`;
+      e.style.top = `${window.visualViewport.offsetTop}px`;
 
-    const handleResize = () => {
-      const vvHeight = window.visualViewport.height;
-      const isKeyboardOpen = window.innerHeight - vvHeight > 50;
+      document.body.style.overflow = "hidden"; // prevent scroll
+      document.body.style.height = "100%"; // keep full height
+    } else {
+      e.style.position = "";
+      e.style.height = "100%";
+      e.style.top = "0px";
 
-      if (isKeyboardOpen) {
-        e.style.height = `${vvHeight}px`;
-        e.style.top = `${window.visualViewport.offsetTop}px`;
+      document.body.style.overflow = "";
+      document.body.style.height = "";
+    }
+  };
 
-        document.body.style.overflow = "hidden";
-        document.body.style.height = `${vvHeight}px`;
-      } else {
-        e.style.height = "100%";
-        e.style.top = "0px";
-
-        document.body.style.overflow = "";
-        document.body.style.height = "";
-      }
-    };
-
-    window.visualViewport.addEventListener("resize", handleResize);
-    window.visualViewport.addEventListener("scroll", handleResize);
-    document.body.style.overflowY = "hidden";
-    app_btns_getelem("home").style.overflowY = "hidden";
-  });
+  window.visualViewport.addEventListener("resize", handleResize);
+  window.visualViewport.addEventListener("scroll", handleResize);
 };
 
 //Reusabled fetch request
