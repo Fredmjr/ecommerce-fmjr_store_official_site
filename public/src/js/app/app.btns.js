@@ -18,6 +18,7 @@ const scroll_bar_fuc = (e) => {
   if (current_x === "scroll" || current_y === "scroll") {
     e.style.overflowX = "hidden";
     e.style.overflowY = "hidden";
+    document.body.style.overflowY = "hidden";
   } /*  else {
     e.style.overflowX = "auto";
     e.style.overflowY = "auto";
@@ -26,39 +27,15 @@ const scroll_bar_fuc = (e) => {
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc = (e) => {
-  if (!window.visualViewport) return;
+  window.visualViewport.addEventListener("resize", () => {
+    const keyboardHeight = window.innerHeight - window.visualViewport.height;
 
-  const handleResize = () => {
-    const vvHeight = window.visualViewport.height;
-    // Detect if keyboard is open (visual viewport is significantly smaller than layout viewport)
-    const isKeyboardOpen = window.innerHeight - vvHeight > 100;
-
-    if (isKeyboardOpen) {
-      // 1. Size and position the target element to match the active visual viewport
-      e.style.height = `${vvHeight}px`;
-      e.style.top = `${window.visualViewport.offsetTop}px`;
-
-      // 2. Lock the outer containers to prevent scrolling into the void
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-      document.body.style.height = `${vvHeight}px`;
-    } else {
-      // 3. Reset styles when keyboard closes
-      e.style.height = "100vh"; // Or your original height
-      e.style.top = "0px";
-
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-      document.body.style.height = "";
-    }
-  };
-
-  // Attach listeners cleanly once, NOT nested inside each other
-  window.visualViewport.addEventListener("resize", handleResize);
-  window.visualViewport.addEventListener("scroll", handleResize);
-
-  // Initial run to capture current state
-  handleResize();
+    if (keyboardHeight > 0) {
+      e.style.bottom = `${keyboardHeight}px`;
+    } /* else {
+      e.style.bottom = "20px";
+    }   */
+  });
 };
 
 //Reusabled fetch request
