@@ -26,20 +26,17 @@ const scroll_bar_fuc = (e) => {
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", () => {
-      // Calculate how much the keyboard is blocking the screen
-      const keyboardHeight = window.innerHeight - window.visualViewport.height;
+  window.visualViewport.addEventListener("resize", () => {
+    const keyboardHeight = window.innerHeight - window.visualViewport.height;
 
-      if (keyboardHeight > 0) {
-        // Keyboard is open: push the panel up by the keyboard's height
-        e.style.bottom = `${keyboardHeight}px`;
-      } else {
-        // Keyboard is closed: snap back to the bottom
-        e.style.bottom = "0px";
-      }
-    });
-  }
+    if (keyboardHeight > 0) {
+      e.style.bottom = `${keyboardHeight}px`;
+      app_btns_getelem("chtpg_mgspnl").style.paddingBottom =
+        `${keyboardHeight}px`;
+    } else {
+      e.style.bottom = "20px";
+    }
+  });
 };
 
 /* const win_height_fuc = (e) => {
