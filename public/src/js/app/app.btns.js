@@ -26,6 +26,17 @@ const scroll_bar_fuc = (e) => {
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
+  window.visualViewport.addEventListener("resize", () => {
+    const keyboardHeight = window.innerHeight - window.visualViewport.height;
+
+    if (keyboardHeight > 0) {
+      e.style.bottom = `${keyboardHeight}px`;
+      app_btns_getelem("chtpg_mgspnl").style.paddingBottom =
+        `${keyboardHeight}px`;
+    } else {
+      e.style.bottom = "20px";
+    }
+  });
   function disableBodyScroll() {
     document.body.style.overflow = "hidden";
 
