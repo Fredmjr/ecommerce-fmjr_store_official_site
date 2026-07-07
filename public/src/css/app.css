@@ -701,6 +701,8 @@ button:focus {
   /*  background-color: var(--fmjr--dkr10); */
   /*   background-color: var(--fmjr--dkr5); */
   /*  border-bottom: 1px solid var(--fmjr--dkr4); */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 #hlppg {
   width: 100%;
@@ -3168,7 +3170,7 @@ button:focus {
     height: 81%;
   }
   #chtpg_typngmgspnl {
-    height: 12%;
+    height: 11%;
   }
   #chtpg_typngmgspnlBtn {
     width: 20px;
