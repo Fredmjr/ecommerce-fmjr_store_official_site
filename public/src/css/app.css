@@ -832,6 +832,11 @@ button:focus {
   cursor: pointer;
   padding: 0px 7px;
 }
+#chtpg_prflusrmgspnlrghtdotmenupnltn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
 #chtpg_prflusrmgspnlrghtclschtmgspnlbtn {
   background-color: var(--fmjr--clr2);
   padding: 3px;
@@ -843,6 +848,8 @@ button:focus {
   width: 35px;
   box-sizing: border-box;
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 #chtpg_prflusrmgspnlrghtdotmenuBtn {
   filter: var(--fmjr-fltr2);
@@ -3155,10 +3162,10 @@ button:focus {
     padding: 0px;
   }
   #chtpg_prflusrmgspnl {
-    height: 10%;
+    height: 8%;
   }
   #chtpg_mgspnl {
-    height: 79%;
+    height: 81%;
   }
   #chtpg_typngmgspnl {
     height: 12%;
@@ -3180,5 +3187,8 @@ button:focus {
   #chtpg_prflusrmgspnlrghtclschtmgspnlbtn {
     height: 30px;
     width: 30px;
+  }
+  #chtpg_inptcrdcladdattcmntBtn {
+    padding: 20px;
   }
 }
