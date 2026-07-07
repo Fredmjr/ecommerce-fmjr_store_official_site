@@ -408,7 +408,7 @@ home.addEventListener("click", async (e) => {
       closeopenFunc(app_btns_getelem("floatpop"));
       document.body.style.overflow = "hidden";
       scroll_bar_fuc(app_btns_getelem("floatpop"));
-      win_height_fuc2(app_btns_getelem("chtpg_typngmgspnl"));
+      win_height_fuc2(app_btns_getelem("chtpgcntnts"));
       document.body.style.overflowY = "hidden";
       app_btns_getelem("home").style.overflowY = "hidden";
       app_btns_getelem("floatpop").style.overflowY = "hidden";
