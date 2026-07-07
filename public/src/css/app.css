@@ -832,6 +832,23 @@ button:focus {
   cursor: pointer;
   padding: 0px 7px;
 }
+#chtpg_prflusrmgspnlrghtclschtmgspnlbtn {
+  background-color: var(--fmjr--clr2);
+  padding: 3px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55%;
+  width: 35px;
+  box-sizing: border-box;
+}
+#chtpg_prflusrmgspnlrghtdotmenuBtn {
+  filter: var(--fmjr-fltr2);
+  cursor: pointer;
+  padding: 0px 7px;
+}
+
 #chtpg_prflusrmgspnlrghtttl {
   font-weight: bold;
   margin: 3px 0px;
@@ -934,6 +951,8 @@ button:focus {
   width: 40px;
   height: 40px;
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 #chtpg_typngmgspnlBtn {
   filter: var(--fmjr-fltr2);
@@ -1621,7 +1640,7 @@ button:focus {
   font-size: 11px;
   padding: 10px;
   width: 100%;
-  height: fit-content;
+  height: 90%;
   height: 40%;
   font-size: 11px;
   color: var(--fmjr--dkr1);
@@ -3138,5 +3157,22 @@ button:focus {
   }
   #chtpg_typngmgspnl {
     height: 12%;
+  }
+  #chtpg_typngmgspnlBtn {
+    width: 20px;
+  }
+  #chtpg_typngmgspnlbtnpnl {
+    width: 58px;
+    height: 55px;
+  }
+  #chtpg_inptcrdcl {
+    width: 85%;
+    padding: 10px 10px;
+  }
+  #chtpg_typngmgspnlattcmntBtn {
+    width: 15px;
+  }
+  #chtpg_prflusrmgspnlrghtclschtmgspnlbtn {
+    height: 65%;
   }
 }
