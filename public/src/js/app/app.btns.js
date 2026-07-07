@@ -31,6 +31,8 @@ const win_height_fuc2 = (e) => {
 
     if (keyboardHeight > 0) {
       e.style.bottom = `${keyboardHeight}px`;
+      app_btns_getelem("chtpg_mgspnl").style.paddingBottom =
+        `${keyboardHeight}px`;
     } else {
       e.style.bottom = "20px";
     }
@@ -406,8 +408,12 @@ home.addEventListener("click", async (e) => {
       closeopenFunc(app_btns_getelem("floatpop"));
       document.body.style.overflow = "hidden";
       scroll_bar_fuc(app_btns_getelem("floatpop"));
-      win_height_fuc2(app_btns_getelem("chtpg_mgspnl"));
       win_height_fuc2(app_btns_getelem("chtpg_typngmgspnl"));
+      document.body.style.overflowY = "hidden";
+      app_btns_getelem("home").style.overflowY = "hidden";
+      app_btns_getelem("floatpop").style.overflowY = "hidden";
+      app_btns_getelem("chtpg").style.overflowY = "hidden";
+      app_btns_getelem("chtpgcntnts").style.overflowY = "hidden";
       /*    win_height_fuc(app_btns_getelem("chtpg"));  */
     }
   }
