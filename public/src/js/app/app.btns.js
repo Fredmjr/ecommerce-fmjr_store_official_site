@@ -32,9 +32,9 @@ const win_height_fuc2 = (e) => {
     // Fix for mobile devices
     document.addEventListener("touchmove", preventScroll, { passive: false });
   }
-  function preventScroll(e) {
-    if (!e.contains(e.target)) {
-      e.preventDefault();
+  function preventScroll(el) {
+    if (!e.contains(el.target)) {
+      el.preventDefault();
     }
   }
   disableBodyScroll();
