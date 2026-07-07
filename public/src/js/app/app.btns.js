@@ -27,31 +27,15 @@ const scroll_bar_fuc = (e) => {
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
   window.visualViewport.addEventListener("resize", () => {
-    if (!window.visualViewport) return;
+    const keyboardHeight = window.innerHeight - window.visualViewport.height;
 
-    const handleResize = () => {
-      const vvHeight = window.visualViewport.height;
-      const isKeyboardOpen = window.innerHeight - vvHeight > 50;
-
-      if (isKeyboardOpen) {
-        e.style.height = `${vvHeight}px`;
-        e.style.top = `${window.visualViewport.offsetTop}px`;
-
-        document.body.style.overflow = "hidden";
-        document.body.style.height = `${vvHeight}px`;
-      } else {
-        e.style.height = "100%";
-        e.style.top = "0px";
-
-        document.body.style.overflow = "";
-        document.body.style.height = "";
-      }
-    };
-
-    window.visualViewport.addEventListener("resize", handleResize);
-    window.visualViewport.addEventListener("scroll", handleResize);
-    app_btns_getelem("chtpg_mgspnl").style.paddingBottom =
-      `${keyboardHeight}px`;
+    if (keyboardHeight > 0) {
+      e.style.bottom = `${keyboardHeight}px`;
+      app_btns_getelem("chtpg_mgspnl").style.paddingBottom =
+        `${keyboardHeight}px`;
+    } else {
+      e.style.bottom = "20px";
+    }
   });
 };
 
