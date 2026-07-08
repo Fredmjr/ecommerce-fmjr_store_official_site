@@ -39,14 +39,14 @@ const disable_scroll_ft_fuc = (e) => {
 };
 
 //reusable enable scroll feature
-const enable_scroll_ft_fuc = (e) => {
+/* const enable_scroll_ft_fuc = (e) => {
   document.body.style.overflow = "auto";
   document.removeEventListener("touchmove", (event) => {
     if (!e.contains(event.target)) {
       event.preventDefault();
     }
   });
-};
+}; */
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
@@ -454,7 +454,7 @@ home.addEventListener("click", async (e) => {
       app_btns_getelem("floatpop").innerHTML = data;
       document.body.style.overflowY = "scroll";
       closeopenFunc(app_btns_getelem("floatpop"));
-      enable_scroll_ft_fuc(app_btns_getelem("home"));
+      /* enable_scroll_ft_fuc(app_btns_getelem("home")); */
     }
   }
 });
