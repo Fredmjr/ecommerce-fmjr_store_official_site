@@ -364,7 +364,10 @@ home.addEventListener("click", async (e) => {
 
 //feedback
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#ctgryctgries_accmntsBtn")) {
+  if (
+    e.target.closest("#ctgryctgries_accmntsBtn") ||
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkanncmntsBtn")
+  ) {
     console.log("hoahoi");
     spinner_fuc();
     const data = await app_btns_request("/app/anncmntpg", "GET");
@@ -460,5 +463,47 @@ home.addEventListener("click", async (e) => {
   if (btn) {
     const specificMenu = btn.querySelector(".fdbkpg_fdcarddrpwnmenu");
     closeopenFunc(specificMenu);
+  }
+});
+
+//calendar
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgryctgries_clndrBtn") ||
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkclndrBtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/clndrpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//events_schedules
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgryctgries_evntsschdlsBtn") ||
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkevntsschdlsBtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/evntsschdlspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//faqs
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgryctgries_faqsBtn") ||
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkfaqsBtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/faqspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
   }
 });

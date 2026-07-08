@@ -324,6 +324,54 @@ export const chtpgUrl = async (req, res) => {
   }
 };
 
+//calendar
+export const clndrpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/calendar");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//events_schedules
+export const evntsschdlspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/events_schedules");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//faqs
+export const faqspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/faqs");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
 //CATEGORY SECTION
 //portfolio
 export const portflpgUrl = async (req, res) => {

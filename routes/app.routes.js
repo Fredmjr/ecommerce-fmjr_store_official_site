@@ -6,7 +6,10 @@ import {
   bsktpgUrl,
   cachdsrvcsUrl,
   chtpgUrl,
+  clndrpgUrl,
   dwnldpgUrl,
+  evntsschdlspgUrl,
+  faqspgUrl,
   fdbkpgUrl,
   frgotpwdpgUrl,
   hdrdtUrl,
@@ -44,5 +47,8 @@ router.get("/fdbkpg", fdbkpgUrl);
 router.get("/prvcydata", prvcydataUrl);
 router.get("/anncmntpg", anncmntpgUrl);
 router.get("/chtpg", chtpgUrl);
+router.get("/clndrpg", clndrpgUrl);
+router.get("/evntsschdlspg", evntsschdlspgUrl);
+router.get("/faqspg", faqspgUrl);
 
 export default router;
