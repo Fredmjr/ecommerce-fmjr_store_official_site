@@ -25,12 +25,14 @@ const scroll_bar_fuc = (e) => {
 };
 
 //reusable disbale scroll feature
+let allowScroll = false;
 const disable_scroll_ft_fuc = (e) => {
+  allowScroll = false; // Reset to false when disabling
   document.body.style.overflow = "hidden";
   document.addEventListener(
     "touchmove",
     (event) => {
-      if (!e.contains(event.target)) {
+      if (!allowScroll && !e.contains(event.target)) {
         event.preventDefault();
       }
     },
@@ -39,14 +41,11 @@ const disable_scroll_ft_fuc = (e) => {
 };
 
 //reusable enable scroll feature
-/* const enable_scroll_ft_fuc = (e) => {
+const enable_scroll_ft_fuc = () => {
+  allowScroll = true;
   document.body.style.overflow = "auto";
-  document.removeEventListener("touchmove", (event) => {
-    if (!e.contains(event.target)) {
-      event.preventDefault();
-    }
-  });
-}; */
+  console.log("enabled");
+};
 
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
@@ -64,42 +63,6 @@ const win_height_fuc2 = (e) => {
 
   disable_scroll_ft_fuc(e);
 };
-
-/* const win_height_fuc = (e) => {
-  window.visualViewport.addEventListener("resize", () => { */
-/*     const keyboardHeight = window.innerHeight - window.visualViewport.height;
-
-    if (keyboardHeight > 0) {
-      e.style.bottom = `${keyboardHeight}px`;
-    }  else {
-      e.style.bottom = "20px";
-    }  */
-/* 
-    if (!window.visualViewport) return;
-
-    const handleResize = () => {
-      const vvHeight = window.visualViewport.height;
-      const isKeyboardOpen = window.innerHeight - vvHeight > 50;
-
-      if (isKeyboardOpen) {
-        e.style.height = `${vvHeight}px`;
-        e.style.top = `${window.visualViewport.offsetTop}px`;
-
-        document.body.style.overflow = "hidden";
-        document.body.style.height = `${vvHeight}px`;
-      } else {
-        e.style.height = "100%";
-        e.style.top = "0px";
-
-        document.body.style.overflow = "";
-        document.body.style.height = "";
-      }
-    };
-
-    window.visualViewport.addEventListener("resize", handleResize);
-    window.visualViewport.addEventListener("scroll", handleResize);
-  });
-}; */
 
 //Reusabled fetch request
 const app_btns_request = async (
@@ -435,12 +398,6 @@ home.addEventListener("click", async (e) => {
       document.body.style.overflow = "hidden";
       scroll_bar_fuc(app_btns_getelem("floatpop"));
       win_height_fuc2(app_btns_getelem("chtpg_typngmgspnl"));
-      /* document.body.style.overflowY = "hidden";
-      app_btns_getelem("home").style.overflowY = "hidden";
-      app_btns_getelem("floatpop").style.overflowY = "hidden";
-      app_btns_getelem("chtpg").style.overflowY = "hidden";
-      app_btns_getelem("chtpgcntnts").style.overflowY = "hidden"; */
-      /*    win_height_fuc(app_btns_getelem("chtpg"));  */
     }
   }
 });
@@ -454,7 +411,7 @@ home.addEventListener("click", async (e) => {
       app_btns_getelem("floatpop").innerHTML = data;
       document.body.style.overflowY = "scroll";
       closeopenFunc(app_btns_getelem("floatpop"));
-      /* enable_scroll_ft_fuc(app_btns_getelem("home")); */
+      enable_scroll_ft_fuc();
     }
   }
 });

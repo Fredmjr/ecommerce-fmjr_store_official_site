@@ -58,6 +58,9 @@
   --fmjr-fltr: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
     brightness(87%) contrast(92%);
   --fmjr-fltr2: brightness(0) invert(1);
+
+  /* higher color */
+  --fmjr--hghr: #e54165;
 }
 
 body {
@@ -67,6 +70,24 @@ body {
   background-color: var(--fmjr--dkr5);
   height: fit-content;
 }
+body::placeholder {
+  color: var(--fmjr--dkr4);
+}
+body::-webkit-scrollbar {
+  width: 7px;
+}
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--fmjr--clr1);
+  border-radius: 20px;
+  padding: 2px 3px;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--fmjr--hghr);
+}
+
 #floatpop {
   height: 100%;
   width: 100%;
@@ -1698,6 +1719,7 @@ button:focus {
 #chtpg_typngmgspnltxtarainpt::-webkit-scrollbar-thumb:hover {
   background: var(--fmjr--clr1);
 }
+
 .frgotpwd_inptcl {
   box-sizing: border-box;
   border: none;
