@@ -1,11 +1,168 @@
 <div id="clndrpg">
   <div id="clndrpgcntnts">
-    <div>
+    {{! defualt message }}
+    {{! <div>
       <div class="generic_cntnts_img"><img
           src="dist/imgs/service_unavailable.webp"
           width="55"
         /></div>
       <p class="generic_cntnts_txt">Service Unavailable</p>
+    </div> }}
+
+    {{! calendar }}
+    <div class="clndrcrd_top">
+      <p>Calendar</p>
+    </div>
+    <div class="clndrcrd_bttm">
+      <div class="clndrcrd_bttm_lft">
+        <div class="clndrcrd_bttm_lftmonth">
+          <button id="clndrcrd_bttm_lftmonth_genericbtnsfrwd"><img
+              class="clndrcrd_bttm_lftmonthbtnicns"
+              src="dist/icons/backward_arrow.svg"
+              width="4"
+              alt=""
+            /></button>
+          <p id="clndrcrd_bttm_lftmonthtopttl"><span><img
+                class="genricspinricn"
+                width="12"
+                src="dist/icons/loading.svg"
+                alt=""
+              /></span></p>
+          <button id="clndrcrd_bttm_lftmonth_genericbtnsbkwd"><img
+              class="clndrcrd_bttm_lftmonthbtnicns"
+              src="dist/icons/forward_arrow.svg"
+              width="4"
+              alt=""
+            /></button>
+        </div>
+        <div class="clndrcrd_bttm_lftcndrpnl">
+          <div class="clndrcrd_bttm_lftcndrpnl_datecntnr">
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">SUN</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">MON</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">TUE</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">WED</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">THR</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">FRI</p>
+            <p class="clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl">SAT</p>
+          </div>
+          <div class="clndrcrd_bttm_lftcndrpnl_dayscntnr"><div
+              class="genricspinricn_cntnr"
+            ><img
+                class="genricspinricn"
+                width="17"
+                src="dist/icons/loading.svg"
+                alt=""
+              /></div></div>
+        </div>
+        <div class="clndrcrd_bttm_lftft"><img
+            class="genricspinricn"
+            width="7"
+            src="dist/icons/loading.svg"
+            alt=""
+          /></div>
+      </div>
+      <div class="clndrcrd_bttm_rght">
+        <p class="clndrcrd_bttm_rghtttl">Current Month's Events</p>
+        {{! calendar cards }}
+        <div id="clndrcrd_bttm_rghtcrdcntnr">
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+          <div class="clndrcrd_bttm_rghtcrd">
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner">
+                <img
+                  class="ctgryctgries_icnscl"
+                  src="dist/icons/calendar.svg"
+                  width="10"
+                /></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">12 July 2026 - 09:00hrs</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">Store Launch Day</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Provident a maiores sed expedita,
+              libero aperiam ad fugit optio sit.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

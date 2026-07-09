@@ -2,8 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import appRouter from "./routes/app.routes.js";
-/*import apiRouter from "./routes/api.routes.js";
-import userRouter from "./routes/user.routes.js"; */
+import apiRouter from "./routes/api.routes.js";
+/*import userRouter from "./routes/user.routes.js"; */
 import sequelize from "./config/db.js";
 import corsMiddleware from "./middleware/cors/cors.js";
 import { ws_connect } from "./websockets/ws_connect.js";
@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
   res.render("index.hbs");
 });
 app.use("/app", corsMiddleware, appRouter);
-/*app.use("/api", apiRouter);
-app.use("/usr", userRouter); */
+app.use("/api", apiRouter);
+/*app.use("/usr", userRouter); */
 
 //NORMAL
 /* 

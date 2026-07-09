@@ -711,6 +711,10 @@ button:focus {
 
 #clndrpg {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 #faqspg {
@@ -730,12 +734,248 @@ button:focus {
 
 #clndrpgcntnts {
   width: 100%;
-  padding: 150px 0px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.clndrcrd_bttm {
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 7px;
+}
+.clndrcrd_top {
+  width: 100%;
+  background-color: var(--fmjr--dkr5);
+  color: var(--fmjr--dkr1);
+  text-align: center;
+  padding: 3px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.clndrcrd_bttm_rght {
+  width: 50%;
+  height: 350px;
+  padding: 15px;
+  border-radius: 3px;
+  border: 1px solid var(--fmjr--dkr3);
+  font-size: 9px;
+  box-sizing: border-box;
+}
+.clndrcrd_bttm_rghtcrddttm {
+  color: var(--fmjr--dkr4);
+  display: flex;
+  box-sizing: border-box;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  margin: 2px 0px;
+}
+.clndrcrd_bttm_rghtcrddttmrdio {
+  background-color: transparent;
+  background-color: var(--fmjr--dkr1);
+  border: 1px dotted var(--fmjr--dkr4);
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 35%;
+  bottom: 50%;
+  left: -13px;
+  z-index: 10;
+  padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.clndrcrd_bttm_rghtcrddttmrdioinner {
+  background-color: var(--fmjr--clr1);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clndrcrd_bttm_rghtcrddttmtxt {
+  margin: 2px 0px;
+  font-weight: bold;
+  font-size: 7px;
+}
+.clndrcrd_bttm_rghtcrdttl {
+  font-weight: bolder;
+  margin: 2px 0px;
+  font-size: 10px;
+}
 
+.clndrcrd_bttm_rghtcrddscrptn {
+  color: var(--fmjr--dkr4);
+  box-sizing: border-box;
+  margin: 3px 0px;
+}
+
+.clndrcrd_bttm_rghtttl {
+  font-weight: bolder;
+  margin-left: 5px 0px;
+  height: 5%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#clndrcrd_bttm_rghtcrdcntnr {
+  width: 100%;
+  height: 94%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-left: 15px;
+  overflow-y: auto;
+}
+.clndrcrd_bttm_lftmonth {
+  height: 10%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--fmjr--dkr3);
+  padding: 0px 5px;
+  border-radius: 20px;
+}
+.clndrcrd_bttm_lftmonthbtnicns {
+  filter: var(--fmjr-fltr2);
+}
+.clndrcrd_bttm_lftmonth_btns {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-color: var(--fmjr--dkr5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#clndrcrd_bttm_lftmonth_genericbtnsbkwd {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-color: var(--fmjr--dkr5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+#clndrcrd_bttm_lftmonth_genericbtnsfrwd {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-color: var(--fmjr--dkr5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.clndrcrd_bttm_lftmonth_btns:hover {
+  background-color: var(--fmjr--dkr5);
+}
+.clndrcrd_bttm_lftcndrpnl {
+  height: 85%;
+  box-sizing: border-box;
+}
+.clndrcrd_bttm_lftcndrpnl_datecntnr {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 1%;
+}
+.clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl {
+  width: 14%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
+  color: var(--fmjr--dkr4);
+}
+
+.clndrcrd_bttm_lftcndrpnl_datecntnr_txtcl:hover {
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+}
+.clndrcrd_bttm_lftcndrpnl_new_datecntnr_txtcl {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
+  color: var(--fmjr--dkr4);
+  margin: 0px;
+  text-align: center;
+}
+
+.clndrcrd_bttm_lftcndrpnl_new_datecntnr_txtcl:hover {
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+}
+#clndrcrd_bttm_lftmonthtopttl {
+  font-weight: bold;
+  font-size: 10px;
+}
+.clndrcrd_bttm_lftft {
+  height: 5%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.clndrcrd_bttm_rghtcrd {
+  background-color: var(--fmjr--dkr3);
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 20px;
+  border-radius: 3px;
+  margin-left: 5px;
+  position: relative;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.clndrcrd_bttm_lft {
+  width: 50%;
+  height: 350px;
+  padding: 15px;
+  border-radius: 3px;
+  border: 1px solid var(--fmjr--dkr3);
+  box-sizing: border-box;
+}
 #evntsschdlspgcntnts {
   width: 100%;
   padding: 150px 0px;
@@ -1516,7 +1756,22 @@ button:focus {
   align-items: center;
   padding: 15px 0px;
 }
-
+.genricspinricn_cntnr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.clndrcrd_bttm_lftcndrpnl_dayscntnr {
+  box-sizing: border-box;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1px;
+}
 .logouticn {
   filter: var(--fmjr-fltr2);
   margin: 0px 3px;
@@ -2753,6 +3008,9 @@ button:focus {
     justify-content: center;
     align-self: center;
   }
+  #clndrpgcntnts {
+    width: 70%;
+  }
 }
 
 /* medium screen */
@@ -3255,5 +3513,15 @@ button:focus {
   }
   #chtpg_inptcrdcladdattcmntBtn {
     padding: 20px;
+  }
+  .clndrcrd_bttm {
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .clndrcrd_bttm_rght {
+    width: 100%;
+  }
+  .clndrcrd_bttm_lft {
+    width: 100%;
   }
 }

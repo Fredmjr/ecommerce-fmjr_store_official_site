@@ -13,3 +13,7 @@
   animation: spin 1s linear infinite;
   width: 20px;
 }
+.genricspinricn {
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}
