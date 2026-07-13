@@ -1,10 +1,14 @@
-import { month_date_data } from "../inventory_assets/data/data_components/month_date_data.js";
+import {
+  fmjr_clndr_evnt_data,
+  month_date_data,
+} from "../inventory_assets/data/data_components/month_date_data.js";
 
 //events_schedules
 export const dtmtndataapiUrl = async (req, res) => {
   try {
     return res.status(200).json({
       month_date_data,
+      fmjr_clndr_evnt_data,
     });
   } catch (error) {
     console.log(error);

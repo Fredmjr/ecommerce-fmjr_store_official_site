@@ -105,3 +105,49 @@ export const month_date_data = [
     end: "SAT",
   },
 ];
+
+export const fmjr_clndr_evnt_data = {
+  august_26: {
+    aug_1: {
+      date: "1 August 2026",
+      ttl: "Beta Version - Early Store Access",
+      evnt_num: "evnt_1",
+      data_evnttag: "august_26_1",
+      dscrptn:
+        "Explore store features, test-drive the seamless interface, preview services, learning packages, inspo, and more before the official launch day.",
+    },
+    aug_2: {
+      date: "7 August 2026",
+      ttl: "Official Store Launch Day",
+      evnt_num: "evnt_2",
+      data_evnttag: "august_26_7",
+      dscrptn:
+        "The official launch day! Explore fmjr_stores, try out our features, experience the user seamless interface, and browse our premium services, learning packages, inspo and more.",
+    },
+  },
+  /*  july_26: {
+    july_1: {
+      date: "2 July 2026",
+      ttl: "Beta Version Launch Day",
+      evnt_num: "evnt_1",
+      data_evnttag: "july_26_2",
+      dscrptn: "testing",
+    },
+    july_2: {
+      date: "5 July 2026",
+      ttl: "Official Store Launch Day",
+      evnt_num: "evnt_2",
+      data_evnttag: "july_26_5",
+      dscrptn: "official",
+    },
+  },
+  september_26: {
+    september_1: {
+      date: "23 september 2026",
+      ttl: "Beta Version Launch Day",
+      evnt_num: "evnt_1",
+      data_evnttag: "september_26_23",
+      dscrptn: "testing",
+    },
+  }, */
+};
