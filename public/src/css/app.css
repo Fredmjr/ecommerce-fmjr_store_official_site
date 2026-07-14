@@ -764,7 +764,7 @@ button:focus {
   height: 350px;
   padding: 15px;
   border-radius: 3px;
-  border: 1px solid var(--fmjr--dkr3);
+  border: 1px solid var(--fmjr--dkr2);
   font-size: 9px;
   box-sizing: border-box;
 }
@@ -1011,7 +1011,7 @@ button:focus {
   height: 350px;
   padding: 15px;
   border-radius: 3px;
-  border: 1px solid var(--fmjr--dkr3);
+  border: 1px solid var(--fmjr--dkr2);
   box-sizing: border-box;
 }
 #evntsschdlspgcntnts {
