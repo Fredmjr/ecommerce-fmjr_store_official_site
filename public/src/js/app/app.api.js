@@ -43,6 +43,9 @@ const app_api_getelem = (e) => {
 //mont and date api
 let calendar_obj_data;
 let fmjr_clndr_evnt;
+let calendar_btn_clicked = false;
+let calendar_event_btn_clicked = false;
+
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgryctgries_clndrBtn") ||
@@ -71,6 +74,46 @@ home.addEventListener("click", async (e) => {
       //event calendar year range data - variable
       fmjr_clndr_evnt = data.fmjr_clndr_evnt_data;
     }
+    calendar_btn_clicked = true;
+    calendar_event_btn_clicked = false;
+  }
+});
+
+//events_schedules
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgryctgries_evntsschdlsBtn") ||
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkevntsschdlsBtn")
+  ) {
+    const data = await app_api_request("/api/dtmtndataapi", "GET");
+    if (data) {
+      console.log(
+        "clicked and showing data.usr_clndr_evnt_data: ",
+        data.usr_clndr_evnt_data,
+      );
+      /*  app_api_getelem("clndrcrd_bttm_lftcndrpnl_dayscntnr").innerHTML =
+        "loading"; */
+      //localstorage - mont & days
+      const parsed_data = typeof data === "string" ? JSON.parse(data) : data;
+      parsed_data.month_date_data.forEach((e) => {
+        if (e.month_tag) {
+          localStorage.setItem(e.month_tag, JSON.stringify(e));
+        }
+      });
+
+      //calendar year range data - variable
+      calendar_obj_data = data.month_date_data;
+
+      //localstorage - fmjr events
+      localStorage.setItem(
+        "usr_clndr_evnt_data",
+        JSON.stringify(parsed_data.usr_clndr_evnt_data),
+      );
+      //event calendar year range data - variable
+      fmjr_clndr_evnt = data.usr_clndr_evnt_data;
+    }
+    calendar_event_btn_clicked = true;
+    calendar_btn_clicked = false;
   }
 });
 
@@ -145,7 +188,7 @@ const apibsrvr = new MutationObserver((mutations) => {
           const event_mnth_cntnr = app_api_getelem(
             "clndrcrd_bttm_rghtcrdcntnr",
           );
-
+          //fmjr store events & event day styles
           const event_mnth_cntnr_fuc = () => {
             //day card - render notes
             if (month_events) {
@@ -183,7 +226,51 @@ const apibsrvr = new MutationObserver((mutations) => {
               event_mnth_cntnr.innerHTML = a;
             }
           };
-          event_mnth_cntnr_fuc();
+          if (calendar_btn_clicked === true) {
+            event_mnth_cntnr_fuc();
+          }
+
+          //custmer or user events & event day styles
+          const event_mnth_cntnr_fuc2 = () => {
+            //day card - render notes
+            if (month_events) {
+              event_mnth_cntnr.innerHTML = "";
+              for (const event_key in month_events) {
+                const temp = document.createElement("div");
+                temp.innerHTML = `
+            <div class="clndrcrd_bttm_rghtcrddttmrdio">
+              <div class="clndrcrd_bttm_rghtcrddttmrdioinner2">
+                <img class="ctgryctgries_icnscl" src="dist/icons/calendar.svg" width="10"></div></div>
+            <div class="clndrcrd_bttm_rghtcrddttm">
+              <p class="clndrcrd_bttm_rghtcrddttmtxt">${month_events[event_key].date}</p>
+            </div>
+            <p class="clndrcrd_bttm_rghtcrdttl">${month_events[event_key].ttl}</p>
+            <p class="clndrcrd_bttm_rghtcrddscrptn">${month_events[event_key].dscrptn}</p>`;
+                temp.className = "clndrcrd_bttm_rghtcrd";
+                event_mnth_cntnr.appendChild(temp);
+                //day card - styles
+                const elem_for_styles = app_api_getelem(
+                  month_events[event_key].data_evnttag,
+                );
+                if (elem_for_styles) {
+                  elem_for_styles.style.backgroundColor = "#380a86";
+                  elem_for_styles.style.color = "white";
+                }
+              }
+            } else {
+              event_mnth_cntnr.innerHTML = "";
+              const a = `<div id="generic_empty_event_clndnr">
+            <div id+"generic_empty_event_clndnr_img">
+            <div  id="generic_empty_event_clndnr_img"><img src="dist/imgs/calendar_events_unavailable.webp" width="45"></div>
+            <p style="text-align:center;">No Upcoming Events</p>
+             </div>
+            </div>`;
+              event_mnth_cntnr.innerHTML = a;
+            }
+          };
+          if (calendar_event_btn_clicked === true) {
+            event_mnth_cntnr_fuc2();
+          }
         };
 
         //auto current selected month

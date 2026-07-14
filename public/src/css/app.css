@@ -42,6 +42,7 @@
   --fmjr--clr2: #742234;
   --fmjr--clr3: #f5deb3;
   --fmjr--clr4: #ff8044;
+  --fmjr--clr5: #380a86;
   --fmjr--dkr1: #ffff;
   --fmjr--dkr2: #d0d0d0;
   --fmjr--dkr3: #eaebec;
@@ -716,11 +717,14 @@ button:focus {
   align-items: center;
   box-sizing: border-box;
 }
-
-#faqspg {
-  width: 100%;
-}
 #evntsschdlspg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+#faqspg {
   width: 100%;
 }
 
@@ -733,6 +737,12 @@ button:focus {
 }
 
 #clndrpgcntnts {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#evntsschdlspgcntnts {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -797,6 +807,16 @@ button:focus {
 }
 .clndrcrd_bttm_rghtcrddttmrdioinner {
   background-color: var(--fmjr--clr1);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clndrcrd_bttm_rghtcrddttmrdioinner2 {
+  background-color: var(--fmjr--clr5);
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -989,7 +1009,7 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 8px;
+  font-size: 7px;
   font-weight: bold;
 }
 
@@ -1013,13 +1033,6 @@ button:focus {
   border-radius: 3px;
   border: 1px solid var(--fmjr--dkr2);
   box-sizing: border-box;
-}
-#evntsschdlspgcntnts {
-  width: 100%;
-  padding: 150px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #faqspgcntnts {
@@ -3047,6 +3060,9 @@ button:focus {
     align-self: center;
   }
   #clndrpgcntnts {
+    width: 70%;
+  }
+  #evntsschdlspgcntnts {
     width: 70%;
   }
 }
