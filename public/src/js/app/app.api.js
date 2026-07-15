@@ -132,6 +132,9 @@ const apibsrvr = new MutationObserver((mutations) => {
       const el4 = node.matches?.("#clndrcrd_bttm_lftmonth_genericbtnsfrwd")
         ? node
         : node.querySelector?.("#clndrcrd_bttm_lftmonth_genericbtnsfrwd");
+      const el5 = node.matches?.("#accntspgcntnts_subbnnrclndrsec_crtbtn")
+        ? node
+        : node.querySelector?.("#accntspgcntnts_subbnnrclndrsec_crtbtn");
 
       //calendar year range data - data render
       if (el1) {
@@ -302,8 +305,171 @@ const apibsrvr = new MutationObserver((mutations) => {
             new_index = index;
           }
         });
+      }
+      if (el5) {
+        const el_yr = app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_date_yrid",
+        );
+        const el_mnth = app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_date_mnthid",
+        );
+        const el_day = app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_date_dayid",
+        );
 
-        console.log("fmjr_clndr_evnt", fmjr_clndr_evnt);
+        const el_ttl = app_api_getelem(
+          "accntspgcntnts_subbnnrclndrsec_details_eventttl",
+        );
+        const el_dscrptn = app_api_getelem(
+          "accntspgcntnts_subbnnrclndrsec_dscrptnbox",
+        );
+
+        //resuable day of month
+        const get_next_day_fuc = (day, month_name, year, is_forward) => {
+          day = Number(day);
+          const month_days = {
+            January: 31,
+            March: 31,
+            May: 31,
+            July: 31,
+            August: 31,
+            October: 31,
+            December: 31,
+            April: 30,
+            June: 30,
+            September: 30,
+            November: 30,
+            February: 28,
+          };
+
+          if (month_name === "February") {
+            const is_leap_year =
+              (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+            month_days["February"] = is_leap_year ? 29 : 28;
+          }
+
+          const max_days = month_days[month_name];
+
+          if (is_forward) {
+            if (day >= max_days) {
+              return day;
+            }
+            return day + 1;
+          } else {
+            if (day <= 1) {
+              return day;
+            }
+            return day - 1;
+          }
+        };
+        //resuable month of year
+        const get_next_nonth_fuc = (month_nm, is_mnth_forward) => {
+          const m = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+
+          const index = m.indexOf(month_nm);
+          if (index === -1) return month_nm;
+
+          if (is_mnth_forward) {
+            return m[(index + 1) % 12];
+          } else {
+            return m[(index - 1 + 12) % 12];
+          }
+        };
+        //resuable year
+        const get_next_yr_fuc = (yr, is_yr_forward) => {
+          const numeric_yr = Number(yr);
+          if (is_yr_forward) {
+            return numeric_yr + 1;
+          } else if (yr === "2026") {
+            return numeric_yr;
+          } else {
+            return numeric_yr - 1;
+          }
+        };
+
+        //add day
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_dateadddaybtn",
+        ).addEventListener("click", () => {
+          let is_forward = true;
+          const selcted_day = get_next_day_fuc(
+            el_day.innerText,
+            el_mnth.innerText,
+            el_yr.innerText,
+            is_forward,
+          );
+          el_day.innerText = selcted_day;
+        });
+        //sub day
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_datesubdaybtn",
+        ).addEventListener("click", () => {
+          let is_forward = false;
+          const selcted_day = get_next_day_fuc(
+            el_day.innerText,
+            el_mnth.innerText,
+            el_yr.innerText,
+            is_forward,
+          );
+          el_day.innerText = selcted_day;
+        });
+
+        //next month
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_datenxtmnthbtn",
+        ).addEventListener("click", () => {
+          let is_forward = true;
+          const m = get_next_nonth_fuc(el_mnth.innerText, is_forward);
+          el_mnth.innerText = m;
+        });
+        //previous month
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_dateprvusmnthbtn",
+        ).addEventListener("click", () => {
+          let is_forward = false;
+          const m = get_next_nonth_fuc(el_mnth.innerText, is_forward);
+          el_mnth.innerText = m;
+        });
+        //next year
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_datenextyrbtn",
+        ).addEventListener("click", () => {
+          let is_yr_forward = true;
+          const y = get_next_yr_fuc(el_yr.innerText, is_yr_forward);
+          el_yr.innerText = y;
+        });
+        //previous
+        app_api_getelem(
+          "accntspgcntnts_subbnnrclndrseccl_datenprvusyrbtn",
+        ).addEventListener("click", () => {
+          let is_yr_forward = false;
+          const y = get_next_yr_fuc(el_yr.innerText, is_yr_forward);
+          el_yr.innerText = y;
+        });
+        //final create event
+        el5.addEventListener("click", () => {
+          console.log(
+            "EVENT DETAILS - DATE: ",
+            el_day.innerText,
+            el_mnth.innerText,
+            el_yr.innerText,
+          );
+          console.log("EVENT DETAILS - TITLE: ", el_ttl.value);
+          console.log("EVENT DETAILS - DESCRPTION: ", el_dscrptn.value);
+        });
       }
     });
   });

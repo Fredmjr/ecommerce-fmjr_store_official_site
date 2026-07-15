@@ -15,7 +15,7 @@
       </span>
     </button>
     {{! info }}
-    <div id="accntspgcntnts_accntdtls">
+    <div id="accntspgcntnts_accntdtls" style="display: none;">
       <div id="accntspgcntnts_ldngicn"><img
           class="ldngicn"
           width="30"
@@ -38,7 +38,7 @@
       </span>
     </button>
     {{! Info }}
-    <div id="accntspgcntnts_accntdtls2">
+    <div id="accntspgcntnts_accntdtls2" style="display: none;">
       {{! old password }}
       <label for="accntspgcntnts_oldpwdinpt">Old Password</label>
       <div class="accntspgcntnts_inptcrdcl">
@@ -104,6 +104,122 @@
       </div>
 
       <button id="accntspgcntnts_svaccntsdtlsBtn">Save Changes</button>
+    </div>
+
+    {{! calendar upload }}
+    {{! title bar }}
+    <button id="accntspgcntnts_subbnnrclndr">
+      <p id="accntspgcntnts_subbnnrclndrlft">Calendar & Schedules</p>
+      <span id="accntspgcntnts_subbnnrclndrrghtBtn">
+        <img
+          id="accntspgcntnts_subbnnrclndrBtnicn"
+          src="dist/icons/down arrow.svg"
+          width="5"
+        />
+      </span>
+    </button>
+    {{! info }}
+    <div id="accntspgcntnts_subbnnrclndrsec" style="display: none;">
+      <p class="accntspgcntnts_subbnnrclndrsec_generictxt">Create New Event</p>
+
+      {{! date selection }}
+      <div id="accntspgcntnts_subbnnrclndrsec_cntnts">
+        <div id="accntspgcntnts_subbnnrclndrsec_datepnl">
+          {{! day }}
+          <div class="accntspgcntnts_subbnnrclndrseccl_datecl">
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl1"
+              id="accntspgcntnts_subbnnrclndrseccl_dateadddaybtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(180deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+            <p
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_txtcl"
+              id="accntspgcntnts_subbnnrclndrseccl_date_dayid"
+            >1</p>
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl2"
+              id="accntspgcntnts_subbnnrclndrseccl_datesubdaybtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(0deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+          </div>
+          {{! month }}
+          <div id="accntspgcntnts_subbnnrclndrseccl_dateclmd">
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl1"
+              id="accntspgcntnts_subbnnrclndrseccl_datenxtmnthbtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(180deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+            <p
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_txtcl"
+              id="accntspgcntnts_subbnnrclndrseccl_date_mnthid"
+            >July</p>
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl2"
+              id="accntspgcntnts_subbnnrclndrseccl_dateprvusmnthbtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(0deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+          </div>
+          {{! year }}
+          <div class="accntspgcntnts_subbnnrclndrseccl_datecl">
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl1"
+              id="accntspgcntnts_subbnnrclndrseccl_datenextyrbtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(180deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+            <p
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_txtcl"
+              id="accntspgcntnts_subbnnrclndrseccl_date_yrid"
+            >2026</p>
+            <button
+              class="accntspgcntnts_subbnnrclndrseccl_datecl_btnscl2"
+              id="accntspgcntnts_subbnnrclndrseccl_datenprvusyrbtn"
+            ><img
+                src="dist/icons/down arrow.svg"
+                width="5"
+                style="transform: rotate(0deg);"
+                class="accntspgcntnts_subbnnrclndrseccl_datecl_icnscl"
+              /></button>
+          </div>
+        </div>
+      </div>
+      <div class="accntspgcntnts_inptcrdcl">
+        <input
+          class="accntspgcntnts_inptcl"
+          id="accntspgcntnts_subbnnrclndrsec_details_eventttl"
+          placeholder="Enter Event Title"
+          required=""
+        />
+      </div>
+      <textarea
+        id="accntspgcntnts_subbnnrclndrsec_dscrptnbox"
+        rows="5"
+        cols="40"
+        placeholder="Describe your event"
+      ></textarea>
+      <br /><br />
+      <div id="accntspgcntnts_subbnnrclndrsec_crtbtnpnl">
+        <button id="accntspgcntnts_subbnnrclndrsec_crtbtn">Create</button>
+      </div>
     </div>
 
     <br /><br />
