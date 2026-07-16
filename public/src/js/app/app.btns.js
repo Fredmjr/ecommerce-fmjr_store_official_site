@@ -366,7 +366,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgryctgries_accmntsBtn") ||
-    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkanncmntsBtn")
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkanncmntsBtn") ||
+    e.target.closest("#quklnksscls_crdlnks_accmntsbtn")
   ) {
     console.log("hoahoi");
     spinner_fuc();
@@ -392,7 +393,10 @@ home.addEventListener("click", async (e) => {
 });
 //chat & messages - small screen
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#ctgry_menuBtn_drpdwnmenuchtmgsBtn")) {
+  if (
+    e.target.closest("#ctgry_menuBtn_drpdwnmenuchtmgsBtn") ||
+    e.target.closest("#quklnksscls_crdlnks_cntctusbtn")
+  ) {
     const data = await app_btns_request("/app/chtpg", "GET");
     if (data) {
       app_btns_getelem("floatpop").innerHTML = "";
@@ -478,7 +482,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgryctgries_clndrBtn") ||
-    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkclndrBtn")
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkclndrBtn") ||
+    e.target.closest("#quklnksscls_crdlnks_eventsbtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/clndrpg", "GET");
@@ -510,6 +515,29 @@ home.addEventListener("click", async (e) => {
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/faqspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//Footr links
+//promotions
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#quklnksscls_crdlnks_prmtnsbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/qkprmtnspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//Why fmjr_stores?
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#quklnksscls_crdlnks_whyfmjrstrsbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/whyfmjrstrspg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
     }

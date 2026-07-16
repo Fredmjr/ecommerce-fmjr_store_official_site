@@ -372,6 +372,38 @@ export const faqspgUrl = async (req, res) => {
   }
 };
 
+//faqs
+export const qkprmtnspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/quick_links/promotions");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//fwhy_fmjr_stores
+export const whyfmjrstrspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/quick_links/why_fmjr_stores");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
 //CATEGORY SECTION
 //portfolio
 export const portflpgUrl = async (req, res) => {

@@ -21,8 +21,10 @@ import {
   portflpgUrl,
   prvcydataUrl,
   prvcypgUrl,
+  qkprmtnspgUrl,
   rvwpgUrl,
   sgnuppgUrl,
+  whyfmjrstrspgUrl,
   wlcmimgUrl,
 } from "../controllers/app.controller.js";
 const router = express.Router();
@@ -50,5 +52,7 @@ router.get("/chtpg", chtpgUrl);
 router.get("/clndrpg", clndrpgUrl);
 router.get("/evntsschdlspg", evntsschdlspgUrl);
 router.get("/faqspg", faqspgUrl);
+router.get("/qkprmtnspg", qkprmtnspgUrl);
+router.get("/whyfmjrstrspg", whyfmjrstrspgUrl);
 
 export default router;

@@ -49,7 +49,8 @@ let calendar_event_btn_clicked = false;
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgryctgries_clndrBtn") ||
-    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkclndrBtn")
+    e.target.closest("#ctgry_menuBtn_drpdwnmenulnkclndrBtn") ||
+    e.target.closest("#quklnksscls_crdlnks_eventsbtn")
   ) {
     const data = await app_api_request("/api/dtmtndataapi", "GET");
     if (data) {
@@ -135,6 +136,9 @@ const apibsrvr = new MutationObserver((mutations) => {
       const el5 = node.matches?.("#accntspgcntnts_subbnnrclndrsec_crtbtn")
         ? node
         : node.querySelector?.("#accntspgcntnts_subbnnrclndrsec_crtbtn");
+      const el6 = node.matches?.("#whyfmjrstrpg")
+        ? node
+        : node.querySelector?.("#whyfmjrstrpg");
 
       //calendar year range data - data render
       if (el1) {
@@ -306,6 +310,8 @@ const apibsrvr = new MutationObserver((mutations) => {
           }
         });
       }
+
+      //calendar
       if (el5) {
         const el_yr = app_api_getelem(
           "accntspgcntnts_subbnnrclndrseccl_date_yrid",
@@ -470,6 +476,40 @@ const apibsrvr = new MutationObserver((mutations) => {
           console.log("EVENT DETAILS - TITLE: ", el_ttl.value);
           console.log("EVENT DETAILS - DESCRPTION: ", el_dscrptn.value);
         });
+      }
+
+      //why fmjr stores
+      if (el6) {
+        (async () => {
+          /*   spinner_fuc(); */
+          const data = await app_btns_request("/api/cnrsatnsapi", "GET");
+          if (data) {
+            /*  app_btns_getelem("main").innerHTML = data */
+            console.log(data);
+            data.conversation.forEach((e) => {
+              const temp_el = document.createElement("p");
+              const p_el = app_api_getelem("whyfmjrstrspgcrd_bttm_rght");
+              temp_el.innerHTML = `
+               <div class="clndrcrd_bttm_rghtcrd">
+                <div class="clndrcrd_bttm_rghtcrddttmrdio">
+                  <div class="clndrcrd_bttm_rghtcrddttmrdioinner2">
+                    <img
+                      class="ctgryctgries_icnscl"
+                      src="dist/icons/faqs.svg"
+                      width="10"
+                    /></div></div>
+                <div class="clndrcrd_bttm_rghtcrddttm">
+                </div>
+                <p class="whyfmjrstrspgcrd_bttm_rghtspkr1">
+                  ${e.speaker_1}
+                </p>
+                <p class="whyfmjrstrspgcrd_bttm_rghtspkr2">${e.speaker_2}</p>
+              </div>
+              `;
+              p_el.appendChild(temp_el);
+            });
+          }
+        })();
       }
     });
   });
