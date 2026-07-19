@@ -556,3 +556,13 @@ home.addEventListener("click", async (e) => {
     }
   }
 });
+// cookies
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#quklnksscls_crdlnks_cookiesbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/cookiespg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
