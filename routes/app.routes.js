@@ -24,6 +24,7 @@ import {
   qkprmtnspgUrl,
   rvwpgUrl,
   sgnuppgUrl,
+  trmscndtnspgUrl,
   whyfmjrstrspgUrl,
   wlcmimgUrl,
 } from "../controllers/app.controller.js";
@@ -54,5 +55,6 @@ router.get("/evntsschdlspg", evntsschdlspgUrl);
 router.get("/faqspg", faqspgUrl);
 router.get("/qkprmtnspg", qkprmtnspgUrl);
 router.get("/whyfmjrstrspg", whyfmjrstrspgUrl);
+router.get("/trmscndtnspg", trmscndtnspgUrl);
 
 export default router;

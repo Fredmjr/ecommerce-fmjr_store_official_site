@@ -404,6 +404,22 @@ export const whyfmjrstrspgUrl = async (req, res) => {
   }
 };
 
+//terms and condtions
+export const trmscndtnspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/quick_links/terms_condtions");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
 //CATEGORY SECTION
 //portfolio
 export const portflpgUrl = async (req, res) => {

@@ -297,7 +297,10 @@ home.addEventListener("click", async (e) => {
 
 //Privcy
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#navbrmenuBtn_drpdwnmenu_lwrslnkprvcyBtn")) {
+  if (
+    e.target.closest("#navbrmenuBtn_drpdwnmenu_lwrslnkprvcyBtn") ||
+    e.target.closest("#quklnksscls_crdlnks_prvcyplcybtn")
+  ) {
     spinner_fuc();
     const data = await app_btns_request("/app/prvcypg", "GET");
     if (data) {
@@ -538,6 +541,16 @@ home.addEventListener("click", async (e) => {
   if (e.target.closest("#quklnksscls_crdlnks_whyfmjrstrsbtn")) {
     spinner_fuc();
     const data = await app_btns_request("/app/whyfmjrstrspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//terms and condtions
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#quklnksscls_crdlnks_trmscndtnsbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/trmscndtnspg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
     }

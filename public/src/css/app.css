@@ -1186,6 +1186,13 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+#trmscndtnspg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #fdbkpg {
   width: 100%;
   display: flex;
@@ -1461,6 +1468,75 @@ button:focus {
   padding: 25px 0px;
   box-sizing: border-box;
 }
+
+#trmscndtnspgcntnts_ttl {
+  font-size: 20px;
+  text-align: center;
+  margin: 15px 0px;
+  font-family: reddir-extrabold;
+  margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 7px;
+}
+#trmscndtnspgcntnts_maintrmscndtns_cntnts {
+  height: 350px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+  background-color: var(--fmjr--dkr3);
+  color: var(--fmjr--dkr4);
+  overflow-y: scroll;
+}
+#trmscndtnspgcntnts_maintrmscndtns {
+  height: fit-content;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: var(--fmjr--dkr3);
+  border-radius: 3px;
+}
+
+#trmscndtnspgcntnts_maintrmscndtns_cntnts::placeholder {
+  color: var(--fmjr--clr1);
+}
+#trmscndtnspgcntnts_maintrmscndtns_cntnts::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 5px;
+}
+#trmscndtnspgcntnts_maintrmscndtns_cntnts::-webkit-scrollbar-track {
+  background: transparent;
+}
+#trmscndtnspgcntnts_maintrmscndtns_cntnts::-webkit-scrollbar-thumb {
+  background: var(--fmjr--clr1);
+  border-radius: 20px;
+}
+#trmscndtnspgcntnts_maintrmscndtns_cntnts::-webkit-scrollbar-thumb:hover {
+  background: var(--fmjr--clr1);
+}
+
+#trmscndtnspgcntnts_ttldscrptn {
+  color: var(--fmjr--dkr5);
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.trmscndtnspgcntnts_maintrmscndtns_cntnts_ttlcl {
+  color: var(--fmjr--dkr5);
+  font-size: 11px;
+  font-weight: bold;
+  margin: 3px 0px;
+}
+
+.trmscndtnspgcntnts_maintrmscndtns_cntnts_dscrptncl {
+  font-size: 10px;
+}
+#trmscndtnspgcntnts {
+  width: 70%;
+  padding: 25px 0px;
+  box-sizing: border-box;
+}
+
 #fdbkpg_fdcardpnl {
   width: 100%;
 }
@@ -3430,6 +3506,9 @@ button:focus {
   #prvcypgcntnts {
     width: 85%;
   }
+  #trmscndtnspgcntnts {
+    width: 85%;
+  }
   #fdbkpgcntnts {
     width: 65%;
   }
@@ -3790,6 +3869,9 @@ button:focus {
     width: 85%;
   }
   #prvcypgcntnts {
+    width: 85%;
+  }
+  #trmscndtnspgcntnts {
     width: 85%;
   }
   #fdbkpgcntnts {
