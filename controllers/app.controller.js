@@ -439,7 +439,7 @@ export const cookiespgUrl = async (req, res) => {
 //portfolio
 export const portflpgUrl = async (req, res) => {
   try {
-    return res.status(200).render("components/portfolio");
+    return res.status(200).render("components/categories/portfolio");
   } catch (error) {
     const erMgs_div = `
     <p>err_code: 001</p>

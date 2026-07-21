@@ -1,20 +1,28 @@
 import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
 
-const likeModel = sequelize.define("like", {
+const imgModel = sequelize.define("img", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
-  usr_id: {
+  site_sec: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  like_num: {
+  site_sub_sec: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  site_sub_sec_group: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  img_filepath: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
 });
 
-export default likeModel;
+export default imgModel;

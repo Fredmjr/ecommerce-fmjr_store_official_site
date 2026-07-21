@@ -95,6 +95,14 @@ const app_btns_request = async (
   }
 };
 
+//cache image template
+const app_btn_cache_set_Img = async (imageUrl, img_tag) => {
+  const cache = await caches.open(img_tag);
+  await cache.add(imageUrl);
+  /*   console.log("Image cached successfully for offline use!"); */
+  return { set: true };
+};
+
 //default spinner
 const spinner_fuc = () => {
   const spinner = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
@@ -563,6 +571,82 @@ home.addEventListener("click", async (e) => {
     const data = await app_btns_request("/app/cookiespg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//CATEGORIES SECTION
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_homebtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenu_hmBtn")
+  ) {
+    window.location.reload();
+  }
+});
+//portfolio
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_prtflobtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_prtflobtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/portflpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+      //get all image array
+      const data_imgs_nms = await app_btns_request(
+        "/api/prtfloimgsnamesapi",
+        "GET",
+      );
+      if (data_imgs_nms) {
+        console.log(data_imgs_nms);
+      }
+      const p_el = app_api_getelem(
+        "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
+      );
+      p_el.innerHTML = "";
+
+      //dowload each image & cache it
+      for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
+        const plain_nm =
+          data_imgs_nms.fltrd_results[i].img_filepath.match(
+            /\/([^/]+)\.webp$/,
+          )?.[1];
+        plain_nm_ext = plain_nm + ".webp";
+        console.log(plain_nm_ext);
+
+        try {
+          const { set } = await app_btn_cache_set_Img(
+            `/api/prtfloimgsapi/${plain_nm_ext}`,
+            /* `https://guest.alwaysdata.net/app/onetimemgs/${e}`, */
+            plain_nm,
+          );
+
+          if (set) {
+            const cachedResponse = await caches.match(
+              `/api/prtfloimgsapi/${plain_nm_ext}`,
+            );
+
+            if (cachedResponse) {
+              const offline_img_blob = URL.createObjectURL(
+                await cachedResponse.blob(),
+              );
+              console.log(offline_img_blob);
+              const temp_el = document.createElement("div");
+
+              temp_el.className =
+                "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd";
+              temp_el.innerHTML = `
+              <img class="portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd_thumbimg" src="${offline_img_blob}" width="30" alt="">
+          `;
+              p_el.appendChild(temp_el);
+            }
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }
   }
 });
