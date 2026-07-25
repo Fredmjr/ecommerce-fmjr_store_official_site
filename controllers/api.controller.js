@@ -4,6 +4,7 @@ import {
   usr_clndr_evnt_data,
 } from "../inventory_assets/data/data_components/month_date_data.js";
 import { conversation } from "../inventory_assets/data/data_components/data.conversation.js";
+import { faqs_data } from "../inventory_assets/data/data_components/data.faqs.js";
 import imgModel from "../models/img.model.js";
 import fs from "fs";
 import path from "path";

@@ -585,6 +585,9 @@ home.addEventListener("click", async (e) => {
   }
 });
 //portfolio
+let img_set_sttus = false;
+let imgs_render_fuc;
+let imgs_render_default_cover_fuc;
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_prtflobtn") ||
@@ -594,59 +597,183 @@ home.addEventListener("click", async (e) => {
     const data = await app_btns_request("/app/portflpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
-      //get all image array
+      //1. get all image array
       const data_imgs_nms = await app_btns_request(
         "/api/prtfloimgsnamesapi",
         "GET",
       );
-      if (data_imgs_nms) {
-        console.log(data_imgs_nms);
-      }
-      const p_el = app_api_getelem(
-        "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
-      );
-      p_el.innerHTML = "";
 
-      //dowload each image & cache it
+      //2. dowload each image & cache it
+      let set;
       for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
         const plain_nm =
           data_imgs_nms.fltrd_results[i].img_filepath.match(
             /\/([^/]+)\.webp$/,
           )?.[1];
         plain_nm_ext = plain_nm + ".webp";
-        console.log(plain_nm_ext);
-
         try {
-          const { set } = await app_btn_cache_set_Img(
+          set = await app_btn_cache_set_Img(
             `/api/prtfloimgsapi/${plain_nm_ext}`,
             /* `https://guest.alwaysdata.net/app/onetimemgs/${e}`, */
             plain_nm,
           );
+          console.log("cached img", plain_nm_ext, set);
+        } catch (error) {
+          console.log(err);
+        }
+      }
+      img_set_sttus = true;
+      //3. contains panel
+      /*       if (data_imgs_nms) {
+        console.log(data_imgs_nms);
+      } */
+      /*       const p_el = app_api_getelem(
+        "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
+      );
+      p_el.innerHTML = "";
+      img_set_sttus = true; */
 
-          if (set) {
-            const cachedResponse = await caches.match(
-              `/api/prtfloimgsapi/${plain_nm_ext}`,
-            );
+      //4. render page images
+      const a_fuc = async () => {
+        console.log("testing");
+        //render images panel
 
-            if (cachedResponse) {
-              const offline_img_blob = URL.createObjectURL(
-                await cachedResponse.blob(),
+        //...............LETS START HERE TODAY FRED, IM TIRED - YESTERNIGHT ME :)
+        //INSTRUCTIONS: left rendser fmjr logo ->clcik portfolio btn-> render top (main imag preview) & btom pnls (imgs) //aim fmjr welcome log instead of hardcoded cards
+
+        for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
+          const plain_nm =
+            data_imgs_nms.fltrd_results[i].img_filepath.match(
+              /\/([^/]+)\.webp$/,
+            )?.[1];
+          plain_nm_ext = plain_nm + ".webp";
+          console.log(plain_nm_ext);
+
+          try {
+            if (set) {
+              const cachedResponse = await caches.match(
+                `/api/prtfloimgsapi/${plain_nm_ext}`,
               );
-              console.log(offline_img_blob);
-              const temp_el = document.createElement("div");
 
-              temp_el.className =
-                "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd";
-              temp_el.innerHTML = `
+              if (cachedResponse) {
+                const offline_img_blob = URL.createObjectURL(
+                  await cachedResponse.blob(),
+                );
+                console.log(offline_img_blob);
+                const temp_el = document.createElement("div");
+
+                temp_el.className =
+                  "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd";
+                temp_el.dataset.prtflo_img = `${plain_nm_ext}`;
+                temp_el.innerHTML = `
               <img class="portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd_thumbimg" src="${offline_img_blob}" width="30" alt="">
           `;
-              p_el.appendChild(temp_el);
+                app_api_getelem(
+                  "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
+                ).appendChild(temp_el);
+              }
             }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      };
+      imgs_render_fuc = a_fuc;
+
+      //
+      const defult_img_cover_fuc = async () => {
+        try {
+          const plain_nm =
+            data_imgs_nms.fltrd_results[0].img_filepath.match(
+              /\/([^/]+)\.webp$/,
+            )?.[1];
+          plain_nm_ext = plain_nm + ".webp";
+          console.log("wdadadadadad", plain_nm_ext);
+          const cachedResponse = await caches.match(
+            `/api/prtfloimgsapi/${plain_nm_ext}`,
+          );
+
+          if (cachedResponse) {
+            const offline_img_blob = URL.createObjectURL(
+              await cachedResponse.blob(),
+            );
+            console.log(offline_img_blob);
+            const temp_img_el = document.createElement("img");
+            temp_img_el.src = `${offline_img_blob}`;
+            temp_img_el.id =
+              "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg";
+            const img_el = app_btns_getelem(
+              "portflpgcntnts_archdsgn_prtflomain_lft_top",
+            );
+            img_el.innerHTML = "";
+            img_el.appendChild(temp_img_el);
           }
         } catch (err) {
           console.log(err);
         }
+      };
+      imgs_render_default_cover_fuc = defult_img_cover_fuc;
+    }
+  }
+});
+
+//preview graphics portfolio file by click - but get images first
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".portflpgcntnts_archdsgn_prtflomain_crd")) {
+    if (img_set_sttus === true) {
+      // add spinmr bar
+      const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+      const elem_1 = `<div id="portflpgcntnts_archdsgn_prtflomain_lft_top">${spnr}</div>`;
+      const elem_2 = ` <div id="portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_pnl"><div id="portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete">${spnr}</div></div>`;
+      const rndr_pnl = app_btns_getelem(
+        "portflpgcntnts_archdsgn_prtflomain_lft",
+      );
+      rndr_pnl.innerHTML = "";
+      rndr_pnl.innerHTML = `
+        ${elem_1}
+       ${elem_2}
+        `;
+      app_api_getelem(
+        "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
+      ).innerHTML = "";
+      //render page images function
+      await imgs_render_fuc();
+
+      //default cover image function
+      await imgs_render_default_cover_fuc();
+    } else {
+      console.log("Unable to preview Portfolio File");
+    }
+  }
+});
+
+//get cached image and preview
+home.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    ".portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd",
+  );
+  if (el) {
+    try {
+      const cachedResponse = await caches.match(
+        `/api/prtfloimgsapi/${el.dataset.prtflo_img}`,
+      );
+
+      if (cachedResponse) {
+        const offline_img_blob = URL.createObjectURL(
+          await cachedResponse.blob(),
+        );
+        console.log(offline_img_blob);
+        const temp_img_el = document.createElement("img");
+        temp_img_el.src = `${offline_img_blob}`;
+        temp_img_el.id = "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg";
+        const img_el = app_btns_getelem(
+          "portflpgcntnts_archdsgn_prtflomain_lft_top",
+        );
+        img_el.innerHTML = "";
+        img_el.appendChild(temp_img_el);
       }
+    } catch (err) {
+      console.log(err);
     }
   }
 });
