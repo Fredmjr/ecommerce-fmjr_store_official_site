@@ -635,7 +635,7 @@ home.addEventListener("click", async (e) => {
 
       //4. render page images
       const a_fuc = async () => {
-        console.log("testing");
+        console.log("testing a_fuc function called");
         //render images panel
 
         //...............LETS START HERE TODAY FRED, IM TIRED - YESTERNIGHT ME :)
@@ -744,7 +744,7 @@ home.addEventListener("click", async (e) => {
       await imgs_render_fuc();
 
       //default cover image function
-      await imgs_render_default_cover_fuc();
+      /*       await imgs_render_default_cover_fuc(); */
     } else {
       console.log("Unable to preview Portfolio File");
     }
