@@ -778,3 +778,10 @@ home.addEventListener("click", async (e) => {
     }
   }
 });
+//gblog page
+home.addEventListener("click", async (e) => {
+  const el = e.target.closest("#quklnksscls_crdlnks_blogbtn");
+  if (el) {
+    window.location.href = "/blog";
+  }
+});

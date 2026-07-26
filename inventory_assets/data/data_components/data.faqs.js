@@ -14,7 +14,7 @@ export const faqs_data = [
   },
   {
     question: "How secure are payments on the platform?",
-    ans: "All transactions are processed through a one-click system backed by a 100% secure payment guarantee. This ensures confidence and safety when purchasing courses or commissioning projects.",
+    ans: "All transactions are processed through a one-click system payment. This ensures confidence and safety when purchasing courses or commissioning projects.",
   },
   {
     question: "Are subscription refunds available?",

@@ -15,16 +15,22 @@ const port = 8100;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(__filename);
 app.set("view engine", "hbs");
-app.set("/views", path.join(__dirname, "views", "components"));
+app.set("/views", path.join(__dirname, "views", "components", "quick_links"));
 
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index.hbs");
 });
+
 app.use("/app", corsMiddleware, appRouter);
 app.use("/api", apiRouter);
 /*app.use("/usr", userRouter); */
+
+//blog
+app.get("/blog", (req, res) => {
+  return res.status(200).render("components/quick_links/blog.hbs");
+});
 
 //NORMAL
 /* 
