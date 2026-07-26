@@ -602,18 +602,10 @@ home.addEventListener("click", async (e) => {
         "/api/prtfloimgsnamesapi",
         "GET",
       );
-      console.log(
-        "array names data for /api/prtfloimgsnamesapi",
-        data_imgs_nms,
-      );
 
       //2. dowload each image & cache it
       let set;
       for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
-        console.log(
-          "testing for (let i) functions for all dowloads images for cached: ",
-          data_imgs_nms.fltrd_results.length,
-        );
         const plain_nm =
           data_imgs_nms.fltrd_results[i].img_filepath.match(
             /\/([^/]+)\.webp$/,
@@ -643,20 +635,13 @@ home.addEventListener("click", async (e) => {
 
       //4. render page images
       const a_fuc = async () => {
-        console.log("testing a_fuc function called");
+        console.log("testing");
         //render images panel
 
         //...............LETS START HERE TODAY FRED, IM TIRED - YESTERNIGHT ME :)
         //INSTRUCTIONS: left rendser fmjr logo ->clcik portfolio btn-> render top (main imag preview) & btom pnls (imgs) //aim fmjr welcome log instead of hardcoded cards
-        console.log(
-          "data_imgs_nms.fltrd_results.length: ",
-          data_imgs_nms.fltrd_results.length,
-        );
-        for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
-          console.log(
-            "testing for (let i) functions based of leght avavailabel",
-          );
 
+        for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
           const plain_nm =
             data_imgs_nms.fltrd_results[i].img_filepath.match(
               /\/([^/]+)\.webp$/,
@@ -698,10 +683,6 @@ home.addEventListener("click", async (e) => {
       //
       const defult_img_cover_fuc = async () => {
         try {
-          console.log(
-            "data_imgs_nms.fltrd_results[0].img_filepath: ",
-            data_imgs_nms.fltrd_results[0].img_filepath,
-          );
           const plain_nm =
             data_imgs_nms.fltrd_results[0].img_filepath.match(
               /\/([^/]+)\.webp$/,
@@ -759,7 +740,7 @@ home.addEventListener("click", async (e) => {
       await imgs_render_fuc();
 
       //default cover image function
-      /*       await imgs_render_default_cover_fuc(); */
+      await imgs_render_default_cover_fuc();
     } else {
       console.log("Unable to preview Portfolio File");
     }
