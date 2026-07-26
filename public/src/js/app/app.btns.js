@@ -640,8 +640,15 @@ home.addEventListener("click", async (e) => {
 
         //...............LETS START HERE TODAY FRED, IM TIRED - YESTERNIGHT ME :)
         //INSTRUCTIONS: left rendser fmjr logo ->clcik portfolio btn-> render top (main imag preview) & btom pnls (imgs) //aim fmjr welcome log instead of hardcoded cards
-
+        console.log(
+          "data_imgs_nms.fltrd_results.length: ",
+          data_imgs_nms.fltrd_results.length,
+        );
         for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
+          console.log(
+            "testing for (let i) functions based of leght avavailabel",
+          );
+
           const plain_nm =
             data_imgs_nms.fltrd_results[i].img_filepath.match(
               /\/([^/]+)\.webp$/,
