@@ -602,6 +602,10 @@ home.addEventListener("click", async (e) => {
         "/api/prtfloimgsnamesapi",
         "GET",
       );
+      console.log(
+        "array names data for /api/prtfloimgsnamesapi",
+        data_imgs_nms,
+      );
 
       //2. dowload each image & cache it
       let set;
