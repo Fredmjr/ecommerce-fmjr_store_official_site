@@ -780,6 +780,7 @@ button:focus {
 }
 #faqspg {
   width: 100%;
+  box-sizing: border-box;
 }
 
 #hlppgcntnts {
@@ -1344,8 +1345,9 @@ button:focus {
 .faqspgcntnts_crds_pnl {
   box-sizing: border-box;
   overflow: hidden;
-  /*   display: flex;
-  align-items: center; */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
 }
 .portflpgcntnts_archdsgn_prtflomain_crd {
@@ -1450,13 +1452,15 @@ button:focus {
 .faqspgcntnts_faqs_crd {
   width: 48%;
   height: fit-content;
-  padding: 0px 20px;
+  padding: 15px 20px;
   box-sizing: border-box;
   margin: 7px 0px;
+  border: 1px solid var(--fmjr--dkr2);
+  box-shadow: 1px 1px 2px var(--fmjr--dkr3);
 }
 .faqspgcntnts_faqs_answrscl {
   padding: 0px 10px;
-  font-size: 8px;
+  font-size: 9px;
   color: var(--fmjr--dkr7);
   font-weight: lighter;
   border-left: 2px solid var(--fmjr--clr1);
@@ -1464,6 +1468,10 @@ button:focus {
 
 .faqspgcntnts_faqs_qutnscl {
   font-weight: bolder;
+  margin-right: 0px;
+  margin-bottom: 7px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 .whyfmjrstrspgcrd_bttm_lft {
   width: 50%;
@@ -1491,7 +1499,8 @@ button:focus {
 
 #faqspgcntnts {
   width: 100%;
-  padding: 30px 0px;
+  padding: 30px 20px;
+  box-sizing: border-box;
 }
 #faqspgcntnts_crdspnl {
   width: 100%;
