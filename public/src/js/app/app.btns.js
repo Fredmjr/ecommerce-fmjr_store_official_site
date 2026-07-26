@@ -606,6 +606,10 @@ home.addEventListener("click", async (e) => {
       //2. dowload each image & cache it
       let set;
       for (let i = 0; i < data_imgs_nms.fltrd_results.length; i++) {
+        console.log(
+          "testing for (let i) functions for all dowloads images for cached: ",
+          data_imgs_nms.fltrd_results.length,
+        );
         const plain_nm =
           data_imgs_nms.fltrd_results[i].img_filepath.match(
             /\/([^/]+)\.webp$/,
