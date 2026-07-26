@@ -683,6 +683,10 @@ home.addEventListener("click", async (e) => {
       //
       const defult_img_cover_fuc = async () => {
         try {
+          console.log(
+            "data_imgs_nms.fltrd_results[0].img_filepath: ",
+            data_imgs_nms.fltrd_results[0].img_filepath,
+          );
           const plain_nm =
             data_imgs_nms.fltrd_results[0].img_filepath.match(
               /\/([^/]+)\.webp$/,
