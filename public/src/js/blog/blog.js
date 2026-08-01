@@ -286,6 +286,8 @@ let next_pg_blogs_fuc;
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(".blog_hero_rght_poplrtags_crdcl");
   if (el) {
+    blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
+      `<div id="blog_hero_lft_nxtpgpopupbtn">Next Page</div>`;
     const key_tag = el.innerHTML;
     console.log(key_tag);
     const filtered_blog_tag_data = external_blog_data_obj.blog_data.filter(
