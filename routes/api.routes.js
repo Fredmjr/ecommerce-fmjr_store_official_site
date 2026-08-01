@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  blogdataapiUrl,
   cnrsatnsapiUrl,
   dtmtndataapiUrl,
   prtfloimgsapiUrl,
@@ -12,5 +13,6 @@ router.get("/dtmtndataapi", dtmtndataapiUrl);
 router.get("/cnrsatnsapi", cnrsatnsapiUrl);
 router.get("/prtfloimgsnamesapi", prtfloimgsnamesapiUrl);
 router.get("/prtfloimgsapi/:id", prtfloimgsapiUrl);
+router.get("/blogdataapi", blogdataapiUrl);
 
 export default router;

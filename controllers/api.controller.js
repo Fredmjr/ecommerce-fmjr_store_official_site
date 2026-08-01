@@ -9,6 +9,7 @@ import imgModel from "../models/img.model.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { loadJsonlfile_fuc } from "../inventory_assets/data/jsonl/blog.functions.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -118,6 +119,27 @@ export const prtfloimgsapiUrl = async (req, res) => {
     <p>Contact customer support, if issue persists</p>
     `;
     res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//all blog data
+export const blogdataapiUrl = async (req, res) => {
+  try {
+    const items = loadJsonlfile_fuc();
+    return res.status(200).json({
+      data_success: true,
+      blog_data: items,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
       erMgs: erMgs_div,
     });
   }
