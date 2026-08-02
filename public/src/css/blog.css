@@ -497,6 +497,28 @@ body {
 .blog_hero_lft_crdmain:hover {
   border: 1px solid var(--fmjr--dkr6);
 }
+.blog_hero_lft_errpnl {
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.blog_hero_lft_errpnl_cntnts {
+  width: 100%;
+  box-sizing: border-box;
+}
+.blog_hero_lft_errpnl_txt {
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+.blog_hero_lft_errpnl_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 
 .blog_hero_lft_crdmain_ldngcrd {
   box-sizing: border-box;

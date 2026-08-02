@@ -400,3 +400,116 @@ document.body.addEventListener("click", async (e) => {
     main_blog_crd_render_fuc();
   }
 });
+
+//search blog
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(".quklnksbrf_sclsicns");
+  if (el) {
+    const srchd_ttl = blog_getelem("blog_hero_rght_poplrtags_srch").value;
+    console.log(srchd_ttl);
+    if (srchd_ttl) {
+      const data = await blog_request("/api/srchddataapi", "POST", {
+        srchd_ttl: srchd_ttl,
+      });
+
+      //err data
+      if (data.erMgs) {
+        blog_getelem("blog_hero_lft").innerHTML = `
+      <div class="blog_hero_lft_errpnl"> <div class="blog_hero_lft_errpnl_cntnts"> 
+      <div class="blog_hero_lft_errpnl_img"><img class="ldngicn" width="70" src="dist/imgs/not_found_thumbmg.webp" alt=""></div>
+      <p class="blog_hero_lft_errpnl_txt"> ${data.erMgs}</p></div></div>
+      `;
+      } else if (data.blog_data) {
+        //good data
+        console.log(
+          "leghttttttttttttttttttttttttttttttt",
+          data.blog_data.length,
+        );
+        const reusable_crds_redner_data = data.blog_data;
+        const reusable_crds_redner = () => {
+          blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
+            `<div id="blog_hero_lft_nxtpgpopupbtn">Next Page</div>`;
+
+          const temp = (arg_data) => {
+            blog_getelem("blog_hero_lft").innerHTML = "";
+            /*       const actual_length = arg_data */
+            let calculated_loop = 4;
+            if (arg_data.length <= 4) {
+              calculated_loop = arg_data.length;
+            }
+            for (let i = 0; i < calculated_loop; i++) {
+              console.log("arg_data: ", arg_data);
+              //tag cards
+              //THSE EG LESS THAN 3 SHOW ERR FIX BY ONLY LOOP FOR THOSE
+              const tagsObj = arg_data[i].data.blog_tags;
+              const tagsHTML = Object.values(tagsObj)
+                .map(
+                  (tag) =>
+                    `<button class="blog_hero_lft_crdmain_info_top_crdcl">${tag}</button>`,
+                )
+                .join("");
+              //main card
+              const e = document.createElement("div");
+              e.className = "blog_hero_lft_crdmain_ldngcrd_cntnr";
+              e.dataset.blog_tag = arg_data[i].id;
+              e.innerHTML = ` <div class="blog_hero_lft_crd">
+          <div class="blog_hero_lft_crdhandle" data->${arg_data[i].date}</div>
+          <div class="blog_hero_lft_crdmain">
+            <div class="blog_hero_lft_crdmain_thumbimg"></div>
+            <div class="blog_hero_lft_crdmain_info">
+              <p class="blog_hero_lft_crdmain_info_ttl">${arg_data[i].data.title}</p>
+              <p class="blog_hero_lft_crdmain_info_dscrptn">${arg_data[i].data.descrption}</p>
+              <br />
+              <div class="blog_hero_lft_crdmain_info_top">${tagsHTML}</div>
+
+            </div>
+          </div>
+        </div>`;
+              blog_getelem("blog_hero_lft").appendChild(e);
+            }
+          };
+          const arg_data = reusable_crds_redner_data;
+          if (reusable_crds_redner_data.length <= 4) {
+            console.log("less", reusable_crds_redner_data.length);
+            console.log(
+              "reusable_crds_redner_dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              arg_data,
+            );
+            temp(arg_data);
+            blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
+              `<button id="blog_hero_lft_rtrntohmblogsg_btn" >Home Blogs</button>`;
+            blog_getelem("blog_hero_lft_rtrntohmblogsg_btn").style.display =
+              "block";
+          } else {
+            console.log("great", reusable_crds_redner_data.length);
+            //remove first 4 blogs coz they being rendered, the rest pass the over for next page blogs display
+            const blogs_indexed_to_remove = new Set([0, 1, 2, 3]);
+            remaining_unrendered_blogs = reusable_crds_redner_data.filter(
+              (_, index) => !blogs_indexed_to_remove.has(index),
+            );
+            blog_getelem("blog_hero_lft_nxtpgpopupbtn").style.display = "block";
+            console.log(
+              "reusable_crds_redner_dataatttttttttttttttttttttttttttttttttttt",
+              arg_data,
+            );
+            temp(arg_data);
+            next_pg_blogs_fuc = temp;
+          }
+        };
+        reusable_crds_redner();
+      } else {
+        // default
+        blog_getelem("blog_hero_lft").innerHTML = `
+      <div class="blog_hero_lft_errpnl"> <div class="blog_hero_lft_errpnl_cntnts"> 
+      <div class="blog_hero_lft_errpnl_img"><img class="ldngicn" width="70" src="dist/imgs/search_failed_thumbmg.webp" alt=""></div>
+      <p class="blog_hero_lft_errpnl_txt">Unable to search blog.</p></div></div>
+      `;
+      }
+      console.log(data);
+    } else {
+      blog_getelem("blog_hero_lft").innerHTML = `
+      <div>Search field is empty</div> 
+      `;
+    }
+  }
+});

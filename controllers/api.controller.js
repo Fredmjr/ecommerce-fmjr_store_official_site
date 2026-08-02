@@ -144,3 +144,33 @@ export const blogdataapiUrl = async (req, res) => {
     });
   }
 };
+//searched blog data
+export const srchddataapiUrl = async (req, res) => {
+  const { srchd_ttl } = req.body;
+  try {
+    const items = loadJsonlfile_fuc();
+    const result = items.filter((item) =>
+      item.data?.title?.toLowerCase().includes(srchd_ttl.trim().toLowerCase()),
+    );
+    console.log(result.length);
+    if (!result || result.length === 0) {
+      return res.status(404).json({
+        erMgs: "No blog found with such title.",
+      });
+    } else {
+    }
+    return res.status(200).json({
+      blog_data: result,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
