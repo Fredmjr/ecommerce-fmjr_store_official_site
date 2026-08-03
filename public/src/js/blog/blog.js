@@ -179,35 +179,11 @@ document.body.addEventListener("click", async (e) => {
 //click on main card
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(".blog_hero_lft_crdmain_ldngcrd_cntnr");
-  const el2 = e.target.closest(".blog_hero_rght_rcnttposts_crd");
 
   const display_blog_contents_fuc = (elem, data_obj_for_display) => {
-    console.log(
-      "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-      elem.dataset.blog_tag,
-    );
-    console.log(elem.dataset.blog_tag);
-    console.log(data_obj_for_display);
-    let tempral_dataset;
-    if (data_obj_for_display.blog_data) {
-      tempral_dataset = data_obj_for_display.blog_data;
-      console.log(
-        "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-        data_obj_for_display.blog_data,
-      );
-    } else {
-      tempral_dataset = data_obj_for_display.blog_tag;
-      console.log(
-        "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-        elem.dataset.blog_tag,
-      );
-    }
-
-    const selected_blog = tempral_dataset.find(
+    const selected_blog = data_obj_for_display.blog_data.find(
       (item) => item.id === elem.dataset.blog_tag,
     );
-
-    console.log(selected_blog);
     if (selected_blog) {
       blog_getelem("blog_hero_lft").innerHTML = "";
 
@@ -247,9 +223,9 @@ document.body.addEventListener("click", async (e) => {
          </div>
          </br>
          <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote">
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/share.svg" alt=""><span>0</span>Shares</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/share.svg" alt=""><span>0</span>Shares</p>
          </div>
          </br></br>
          <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn_pnl">
@@ -261,7 +237,6 @@ document.body.addEventListener("click", async (e) => {
     }
   };
   if (el) {
-    console.log("external_blog_data_obj: ", external_blog_data_obj);
     display_blog_contents_fuc(el, external_blog_data_obj);
   }
 });
@@ -444,7 +419,7 @@ document.body.addEventListener("click", async (e) => {
       if (data.erMgs) {
         blog_getelem("blog_hero_lft").innerHTML = `
       <div class="blog_hero_lft_errpnl"> <div class="blog_hero_lft_errpnl_cntnts"> 
-      <div class="blog_hero_lft_errpnl_img"><img class="ldngicn" width="70" src="dist/imgs/not_found_thumbmg.webp" alt=""></div>
+      <div class="blog_hero_lft_errpnl_img"><img width="70" src="dist/imgs/not_found_thumbmg.webp" alt=""></div>
       <p class="blog_hero_lft_errpnl_txt"> ${data.erMgs}</p></div></div>
       `;
       } else if (data.blog_data) {
@@ -535,7 +510,9 @@ document.body.addEventListener("click", async (e) => {
       }
     } else {
       blog_getelem("blog_hero_lft").innerHTML = `
-      <div>Search field is empty</div> 
+      <div class="blog_hero_lft_errpnl"> <div class="blog_hero_lft_errpnl_cntnts"> 
+      <div class="blog_hero_lft_errpnl_img"><img width="70" src="dist/imgs/not_found_thumbmg.webp" alt=""></div>
+      <p class="blog_hero_lft_errpnl_txt">Search field is empty</p></div></div>
       `;
     }
   }
@@ -578,7 +555,6 @@ document.body.addEventListener("click", async (e) => {
 })();
 
 //display side blogs contents
-
 document.body.addEventListener("click", async (e) => {
   const el2 = e.target.closest(".blog_hero_rght_rcnttposts_crd");
 
@@ -625,9 +601,9 @@ document.body.addEventListener("click", async (e) => {
          </div>
          </br>
          <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote">
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
-         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/share.svg" alt=""><span>0</span>Shares</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="dist/icons/share.svg" alt=""><span>0</span>Shares</p>
          </div>
          </br></br>
          <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn_pnl">
@@ -640,7 +616,6 @@ document.body.addEventListener("click", async (e) => {
   };
 
   if (el2) {
-    console.log("top3Latest_obj: ", top3Latest_obj);
     display_blog_contents_fuc(el2, top3Latest_obj);
   }
 });

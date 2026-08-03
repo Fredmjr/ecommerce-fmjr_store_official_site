@@ -403,6 +403,13 @@ body {
 .blog_hero_rght_rcnttposts_crd_info_dscrptn {
   color: var(--fmjr--dkr4);
   font-size: 7px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
+  line-clamp: 3;
+  text-overflow: ellipsis;
 }
 .blog_hero_lft_crdmain_info_dscrptn {
   color: var(--fmjr--dkr4);
@@ -635,7 +642,15 @@ body {
   padding: 3px;
   margin: 10px 0px;
   box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid var(--fmjr--dkr3);
 }
+.blog_hero_rght_rcnttposts_crd:focus,
+.blog_hero_rght_rcnttposts_crd:active {
+  background-color: var(--fmjr--dkr8);
+}
+
 .blog_hero_lft_crdmain {
   display: flex;
   align-items: center;
