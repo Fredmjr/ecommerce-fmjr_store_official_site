@@ -521,9 +521,9 @@ document.body.addEventListener("click", async (e) => {
 //side blogs
 (async () => {
   const data = await blog_request("/api/blogdataapi", "GET");
-  /*   blog_getelem("blog_hero_rght_rcnttpostspnl").innerHTML = `
+  blog_getelem("blog_hero_rght_rcnttpostspnl").innerHTML = `
  <div id="blog_hero_rght_rcnttpostspnl_spnnrspnl"><div id="spnrpnl"><span><img class="ldngicn" width="20" src="dist/icons/loading.svg" alt=""></span></div></div>
-  `; */
+  `;
   if (data) {
     const items = data.blog_data;
     const top3Latest = [...items]
