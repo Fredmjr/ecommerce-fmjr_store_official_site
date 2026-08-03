@@ -160,7 +160,7 @@ export const srchddataapiUrl = async (req, res) => {
     } else {
     }
     return res.status(200).json({
-      blog_data: result,
+      blog_data: items,
     });
   } catch (error) {
     console.log(error);

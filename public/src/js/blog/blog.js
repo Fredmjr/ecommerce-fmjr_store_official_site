@@ -619,3 +619,58 @@ document.body.addEventListener("click", async (e) => {
     display_blog_contents_fuc(el2, top3Latest_obj);
   }
 });
+
+//Mobile colapse contents
+const mobileQuery = window.matchMedia("(max-width: 576px)");
+const mobile_callapsable_contents_fuc = (e) => {
+  if (e.matches) {
+    //navibar drop down menu
+    const el1 = blog_getelem("blog_hero_rght_txt_srchttl");
+    const el2 = blog_getelem("blog_hero_rght_poplrtags_srchpnl");
+    const el3 = blog_getelem("blog_hero_rght_txt_pplrblgtgsttl");
+    const el4 = blog_getelem("blog_hero_rght_poplrtagspnl");
+    console.log("changed", el1, el2, el3, el4);
+    const e_array = [el1, el2, el3, el4];
+    for (let i = 0; i < e_array.length; i++) {
+      blog_getelem(
+        "blog_navbar_rghtmenubtn_drpdwnmenu_insrtcntnts",
+      ).appendChild(e_array[i]);
+    }
+
+    //media elements
+    const media_el1 = blog_getelem("blog_hero_rght_txt_rcntblgspstttl");
+    const media_el2 = blog_getelem("blog_hero_rght_rcnttpostspnl");
+    const t = [media_el1, media_el2];
+    const e = document.createElement("div");
+    e.className = "media_query_section_cntnts";
+    for (let i = 0; i < t.length; i++) {
+      console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]);
+      blog_getelem("media_query_section").appendChild(t[i]);
+      blog_getelem("blog_hero_rght_promcrd").style.display = "none";
+    }
+  }
+  if (!e.matches) {
+    //navibar drop down menu
+    const el1 = blog_getelem("blog_hero_rght_txt_srchttl");
+    const el2 = blog_getelem("blog_hero_rght_poplrtags_srchpnl");
+    const el3 = blog_getelem("blog_hero_rght_txt_pplrblgtgsttl");
+    const el4 = blog_getelem("blog_hero_rght_poplrtagspnl");
+    //media elements
+    const media_el1 = blog_getelem("blog_hero_rght_txt_rcntblgspstttl");
+    const media_el2 = blog_getelem("blog_hero_rght_rcnttpostspnl");
+    const media_el3 = blog_getelem("blog_hero_rght_promcrd");
+
+    const t = [el1, el2, el3, el4, media_el1, media_el2, media_el3];
+    console.log("tttttttttttt: ", t);
+    const e = document.createElement("div");
+    e.className = "media_query_section_cntnts";
+    for (let i = 0; i < t.length; i++) {
+      console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]);
+      blog_getelem("blog_hero_rght").appendChild(t[i]);
+    }
+    blog_getelem("blog_hero_rght_promcrd").style.display = "block";
+  }
+};
+//based on chnage
+mobileQuery.addEventListener("change", mobile_callapsable_contents_fuc);
+mobile_callapsable_contents_fuc(mobileQuery);
