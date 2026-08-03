@@ -43,6 +43,9 @@ const blog_getelem = (e) => {
   return document.getElementById(e) || document.querySelector(`.${e}`);
 };
 
+//variables
+let top3Latest_obj;
+
 //blog data
 let external_blog_data_obj;
 const main_blog_crd_render_fuc = async () => {
@@ -176,11 +179,32 @@ document.body.addEventListener("click", async (e) => {
 //click on main card
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(".blog_hero_lft_crdmain_ldngcrd_cntnr");
-  if (el) {
-    console.log(el.dataset.blog_tag);
-    console.log(external_blog_data_obj);
-    const selected_blog = external_blog_data_obj.blog_data.find(
-      (item) => item.id === el.dataset.blog_tag,
+  const el2 = e.target.closest(".blog_hero_rght_rcnttposts_crd");
+
+  const display_blog_contents_fuc = (elem, data_obj_for_display) => {
+    console.log(
+      "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      elem.dataset.blog_tag,
+    );
+    console.log(elem.dataset.blog_tag);
+    console.log(data_obj_for_display);
+    let tempral_dataset;
+    if (data_obj_for_display.blog_data) {
+      tempral_dataset = data_obj_for_display.blog_data;
+      console.log(
+        "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+        data_obj_for_display.blog_data,
+      );
+    } else {
+      tempral_dataset = data_obj_for_display.blog_tag;
+      console.log(
+        "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
+        elem.dataset.blog_tag,
+      );
+    }
+
+    const selected_blog = tempral_dataset.find(
+      (item) => item.id === elem.dataset.blog_tag,
     );
 
     console.log(selected_blog);
@@ -235,6 +259,10 @@ document.body.addEventListener("click", async (e) => {
       elem_temp = e;
       blog_getelem("blog_hero_lft").appendChild(e);
     }
+  };
+  if (el) {
+    console.log("external_blog_data_obj: ", external_blog_data_obj);
+    display_blog_contents_fuc(el, external_blog_data_obj);
   }
 });
 
@@ -411,7 +439,7 @@ document.body.addEventListener("click", async (e) => {
       const data = await blog_request("/api/srchddataapi", "POST", {
         srchd_ttl: srchd_ttl,
       });
-
+      //main blogs
       //err data
       if (data.erMgs) {
         blog_getelem("blog_hero_lft").innerHTML = `
@@ -505,11 +533,114 @@ document.body.addEventListener("click", async (e) => {
       <p class="blog_hero_lft_errpnl_txt">Unable to search blog.</p></div></div>
       `;
       }
-      console.log(data);
     } else {
       blog_getelem("blog_hero_lft").innerHTML = `
       <div>Search field is empty</div> 
       `;
     }
+  }
+});
+
+//side blogs
+(async () => {
+  const data = await blog_request("/api/blogdataapi", "GET");
+  /*   blog_getelem("blog_hero_rght_rcnttpostspnl").innerHTML = `
+ <div id="blog_hero_rght_rcnttpostspnl_spnnrspnl"><div id="spnrpnl"><span><img class="ldngicn" width="20" src="dist/icons/loading.svg" alt=""></span></div></div>
+  `; */
+  if (data) {
+    const items = data.blog_data;
+    const top3Latest = [...items]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
+    top3Latest_obj = top3Latest;
+    blog_getelem("blog_hero_rght_rcnttpostspnl").innerHTML = "";
+    for (let i = 0; i < top3Latest.length; i++) {
+      console.log(
+        "taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag",
+        top3Latest[i].id,
+      );
+      const e = document.createElement("div");
+      e.className = "blog_hero_rght_rcnttposts_crd";
+      e.dataset.blog_tag = top3Latest[i].id;
+      e.innerHTML = `
+            <div class="blog_hero_rght_rcnttposts_crd_thumbimg"></div>
+            <div class="blog_hero_rght_rcnttposts_crd_info">
+              <p class="blog_hero_rght_rcnttposts_crd_info_ttl">${top3Latest[i].data.title}</p>
+              <p class="blog_hero_rght_rcnttposts_crd_info_dscrptn">${top3Latest[i].data.descrption}</p>
+              <p class="blog_hero_rght_rcnttposts_crd_info_date">${top3Latest[i].date}</p>
+    `;
+      blog_getelem("blog_hero_rght_rcnttpostspnl").appendChild(e);
+    }
+
+    console.log(top3Latest);
+    console.log("for side menu", data.blog_data);
+  }
+})();
+
+//display side blogs contents
+
+document.body.addEventListener("click", async (e) => {
+  const el2 = e.target.closest(".blog_hero_rght_rcnttposts_crd");
+
+  const display_blog_contents_fuc = (elem, data_obj_for_display) => {
+    const selected_blog = data_obj_for_display.find(
+      (item) => item.id === elem.dataset.blog_tag,
+    );
+    if (selected_blog) {
+      blog_getelem("blog_hero_lft").innerHTML = "";
+
+      const { title, blog_tags, ...contentOnly } = selected_blog.data;
+      const tagsHTML = Object.values(contentOnly)
+        .map((tag) => `<p>${tag}</p>`)
+        .join("");
+      const e = document.createElement("div");
+      e.className = "blog_hero_lft_crdmain_selectedcrd";
+      e.innerHTML = `
+         <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
+         <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">${selected_blog.data.title}</p>
+         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
+         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
+          <button id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btn">
+          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu">
+          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
+          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/facebook.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn"width="15" src="dist/icons/instagram.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/linkedin.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/behance.svg" alt="">
+          </div>
+          </div>
+          <img
+            id="cntntsicn"
+            src="dist/icons/dots.svg"
+            class="bnnricons"
+            width="25"
+          /></button>
+          </div>
+         </div>
+         </div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_thumbimg"></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_info">
+         ${tagsHTML}
+         </div>
+         </br>
+         <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote">
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
+         <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img class="ldngicn" width="11" src="dist/icons/share.svg" alt=""><span>0</span>Shares</p>
+         </div>
+         </br></br>
+         <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn_pnl">
+         <button id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn">Home Blogs</button>
+         </div>
+        `;
+      elem_temp = e;
+      blog_getelem("blog_hero_lft").appendChild(e);
+    }
+  };
+
+  if (el2) {
+    console.log("top3Latest_obj: ", top3Latest_obj);
+    display_blog_contents_fuc(el2, top3Latest_obj);
   }
 });

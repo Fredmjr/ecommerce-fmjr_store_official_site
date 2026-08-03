@@ -612,16 +612,29 @@ body {
   justify-content: center;
   align-items: center;
 }
+#blog_hero_rght_rcnttpostspnl_spnnrspnl {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#blog_hero_rght_rcnttpostspnl_spnnrspnl {
+  height: 280px;
+}
 .blog_hero_rght_rcnttposts_crd {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100px;
+  width: 100%;
   box-sizing: border-box;
   gap: 7px;
   overflow: hidden;
   padding: 3px;
   margin: 10px 0px;
+  box-sizing: border-box;
 }
 .blog_hero_lft_crdmain {
   display: flex;
