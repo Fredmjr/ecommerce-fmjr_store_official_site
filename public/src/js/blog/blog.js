@@ -674,3 +674,20 @@ const mobile_callapsable_contents_fuc = (e) => {
 //based on chnage
 mobileQuery.addEventListener("change", mobile_callapsable_contents_fuc);
 mobile_callapsable_contents_fuc(mobileQuery);
+
+//close blog drop down menu
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest("#blog_navbar_rghtmenubtn");
+  if (el) {
+    blog_getelem("blog_navbar_rghtmenubtn_drpdwnmenu_pnl").style.display =
+      "block";
+  }
+});
+//close blog drop down menu
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest("#blog_navbar_rghtmenubtn_drpdwnmenu_clsbtn");
+  if (el) {
+    blog_getelem("blog_navbar_rghtmenubtn_drpdwnmenu_pnl").style.display =
+      "none";
+  }
+});
