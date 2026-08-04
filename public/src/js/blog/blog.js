@@ -375,6 +375,10 @@ document.body.addEventListener("click", async (e) => {
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest("#blog_hero_lft_nxtpgpopupbtn");
   if (el) {
+    console.log(
+      "remaining_unrendered_blogssssssssssssssssssssssss: ",
+      remaining_unrendered_blogs.length,
+    );
     if (remaining_unrendered_blogs.length <= 4) {
       next_pg_blogs_fuc(remaining_unrendered_blogs);
       blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
@@ -383,8 +387,12 @@ document.body.addEventListener("click", async (e) => {
     } else {
       next_pg_blogs_fuc(remaining_unrendered_blogs);
       //remove first 4 blogs coz they being rendered, the rest pass the over for next page blogs display
+      //NOTE IF 2ND PAGE SHOWS ERRS SWITCH BACK TO FLTERED NOT REMAING BLOG VARIABLE BUT REMAING SHOULD WORK FINE.
       const blogs_indexed_to_remove = new Set([0, 1, 2, 3]);
-      remaining_unrendered_blogs = filtered_blog_tag_data.filter(
+      /*  remaining_unrendered_blogs = filtered_blog_tag_data.filter(
+        (_, index) => !blogs_indexed_to_remove.has(index),
+      ); */
+      remaining_unrendered_blogs = remaining_unrendered_blogs.filter(
         (_, index) => !blogs_indexed_to_remove.has(index),
       );
     }
