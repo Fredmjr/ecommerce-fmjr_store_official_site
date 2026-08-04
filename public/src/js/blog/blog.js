@@ -533,7 +533,7 @@ document.body.addEventListener("click", async (e) => {
       <p class="blog_hero_lft_errpnl_txt">Search field is empty</p></div></div>
       `;
     }
-    scroll_top_elem_fuc(blog_getelem("blog_hero_lft"));
+    scroll_top_elem_fuc(blog_getelem("vst_store_bnnr"));
   }
 });
 
