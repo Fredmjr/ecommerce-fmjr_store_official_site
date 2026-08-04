@@ -43,6 +43,14 @@ const blog_getelem = (e) => {
   return document.getElementById(e) || document.querySelector(`.${e}`);
 };
 
+//resuable scroll to top of elem fucntion
+const scroll_top_elem_fuc = (e) => {
+  e.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
+
 //variables
 let top3Latest_obj;
 
@@ -238,6 +246,7 @@ document.body.addEventListener("click", async (e) => {
   };
   if (el) {
     display_blog_contents_fuc(el, external_blog_data_obj);
+    scroll_top_elem_fuc(blog_getelem("blog_hero_lft"));
   }
 });
 
@@ -281,6 +290,7 @@ document.body.addEventListener("click", async (e) => {
   );
   if (el) {
     main_blog_crd_render_fuc();
+    scroll_top_elem_fuc(document.body);
   }
 });
 //poplar tag click
@@ -523,6 +533,7 @@ document.body.addEventListener("click", async (e) => {
       <p class="blog_hero_lft_errpnl_txt">Search field is empty</p></div></div>
       `;
     }
+    scroll_top_elem_fuc(blog_getelem("blog_hero_lft"));
   }
 });
 
@@ -625,6 +636,7 @@ document.body.addEventListener("click", async (e) => {
 
   if (el2) {
     display_blog_contents_fuc(el2, top3Latest_obj);
+    scroll_top_elem_fuc(blog_getelem("blog_hero_lft"));
   }
 });
 

@@ -730,6 +730,7 @@ body {
   justify-content: center;
   box-sizing: border-box;
   margin: 3px 0px;
+  align-items: center;
 }
 
 #disntmainprctagthumbnl {
