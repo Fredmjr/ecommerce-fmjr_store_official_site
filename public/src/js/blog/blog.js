@@ -51,6 +51,12 @@ const scroll_top_elem_fuc = (e) => {
   });
 };
 
+//default image thumbnail
+const fmjr_stores_default_thumbnail_fuc = (e) => {
+  const img = `<img class="fmjr_stores_default_thumbnail" src="dist/icons/fmjr_stores default thumbnail v7.webp" alt=""`;
+  e.innerHTML = img;
+};
+
 //variables
 let top3Latest_obj;
 
@@ -113,7 +119,7 @@ const main_blog_crd_render_fuc = async () => {
           e.innerHTML = ` <div class="blog_hero_lft_crd">
           <div class="blog_hero_lft_crdhandle" data->${data.blog_data[i].date}</div>
           <div class="blog_hero_lft_crdmain">
-            <div class="blog_hero_lft_crdmain_thumbimg"></div>
+            <div class="blog_hero_lft_crdmain_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
             <div class="blog_hero_lft_crdmain_info">
               <p class="blog_hero_lft_crdmain_info_ttl">${data.blog_data[i].data.title}</p>
               <p class="blog_hero_lft_crdmain_info_dscrptn">${data.blog_data[i].data.descrption}</p>
@@ -205,7 +211,7 @@ document.body.addEventListener("click", async (e) => {
          <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">${selected_blog.data.title}</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
-         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
           <button id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btn">
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu">
           <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
@@ -225,7 +231,7 @@ document.body.addEventListener("click", async (e) => {
           </div>
          </div>
          </div>
-         <div id="blog_hero_lft_crdmain_selectedcrd_thumbimg"></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
          <div id="blog_hero_lft_crdmain_selectedcrd_info">
          ${tagsHTML}
          </div>
@@ -337,7 +343,7 @@ document.body.addEventListener("click", async (e) => {
         e.innerHTML = ` <div class="blog_hero_lft_crd">
           <div class="blog_hero_lft_crdhandle" data->${arg_data[i].date}</div>
           <div class="blog_hero_lft_crdmain">
-            <div class="blog_hero_lft_crdmain_thumbimg"></div>
+            <div class="blog_hero_lft_crdmain_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
             <div class="blog_hero_lft_crdmain_info">
               <p class="blog_hero_lft_crdmain_info_ttl">${arg_data[i].data.title}</p>
               <p class="blog_hero_lft_crdmain_info_dscrptn">${arg_data[i].data.descrption}</p>
@@ -406,6 +412,7 @@ document.body.addEventListener("click", async (e) => {
         (_, index) => !blogs_indexed_to_remove.has(index),
       );
     }
+    scroll_top_elem_fuc(blog_getelem("vst_store_bnnr"));
   }
 });
 
@@ -419,6 +426,7 @@ document.body.addEventListener("click", async (e) => {
     /*     next_pg_blogs_fuc(remaining_unrendered_blogs); */
 
     main_blog_crd_render_fuc();
+    scroll_top_elem_fuc(blog_getelem("blog_hero_lft"));
   }
 });
 
@@ -476,7 +484,7 @@ document.body.addEventListener("click", async (e) => {
               e.innerHTML = ` <div class="blog_hero_lft_crd">
           <div class="blog_hero_lft_crdhandle" data->${arg_data[i].date}</div>
           <div class="blog_hero_lft_crdmain">
-            <div class="blog_hero_lft_crdmain_thumbimg"></div>
+            <div class="blog_hero_lft_crdmain_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
             <div class="blog_hero_lft_crdmain_info">
               <p class="blog_hero_lft_crdmain_info_ttl">${arg_data[i].data.title}</p>
               <p class="blog_hero_lft_crdmain_info_dscrptn">${arg_data[i].data.descrption}</p>
@@ -533,7 +541,7 @@ document.body.addEventListener("click", async (e) => {
       <p class="blog_hero_lft_errpnl_txt">Search field is empty</p></div></div>
       `;
     }
-    scroll_top_elem_fuc(blog_getelem("vst_store_bnnr"));
+    scroll_top_elem_fuc(blog_getelem("blod_hdr"));
   }
 });
 
@@ -559,7 +567,7 @@ document.body.addEventListener("click", async (e) => {
       e.className = "blog_hero_rght_rcnttposts_crd";
       e.dataset.blog_tag = top3Latest[i].id;
       e.innerHTML = `
-            <div class="blog_hero_rght_rcnttposts_crd_thumbimg"></div>
+            <div class="blog_hero_rght_rcnttposts_crd_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
             <div class="blog_hero_rght_rcnttposts_crd_info">
               <p class="blog_hero_rght_rcnttposts_crd_info_ttl">${top3Latest[i].data.title}</p>
               <p class="blog_hero_rght_rcnttposts_crd_info_dscrptn">${top3Latest[i].data.descrption}</p>
@@ -594,7 +602,7 @@ document.body.addEventListener("click", async (e) => {
          <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">${selected_blog.data.title}</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
-         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
           <button id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btn">
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu">
           <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
@@ -614,7 +622,7 @@ document.body.addEventListener("click", async (e) => {
           </div>
          </div>
          </div>
-         <div id="blog_hero_lft_crdmain_selectedcrd_thumbimg"></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_thumbimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div>
          <div id="blog_hero_lft_crdmain_selectedcrd_info">
          ${tagsHTML}
          </div>
