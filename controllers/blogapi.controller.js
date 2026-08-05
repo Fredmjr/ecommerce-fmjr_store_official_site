@@ -19,3 +19,18 @@ export const shareUrl = async (req, res) => {
     });
   }
 };
+export const sharetestUrl = async (req, res) => {
+  try {
+    return res.status(200).send("hi");
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};

@@ -47,7 +47,7 @@ Books on Sale, Digital Art, and many more.">
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">How Being a Designer Makes You a Better Programmer</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
-         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="https://guest.alwaysdata.net/dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div><p>Musonda Fred</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>28 July 2026 - 9:33 pm</p></div>
+         <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="https://guest.alwaysdata.net/dist/imgs/fmjr_stores%20default%20thumbnail%20v7.webp" alt=""></div><p>Musonda Fred</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>28 July 2026 - 9:33 pm</p></div>
           <button id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btn">
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu" style="display: none;">
           <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
@@ -58,7 +58,6 @@ Books on Sale, Digital Art, and many more.">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="https://guest.alwaysdata.net/dist/icons/behance.svg" alt="">
           </div>
           </div>
-          <img id="cntntsicn" src="https://guest.alwaysdata.net/dist/icons/dots.svg" class="bnnricons" width="25"></button>
           </div>
          </div>
          
@@ -143,7 +142,6 @@ Books on Sale, Digital Art, and many more.">
       </div></div>
     
 
-    <script src="https://guest.alwaysdata.net/src/js/blog/blog.js"></script>
   
 </body></html>
     `;
