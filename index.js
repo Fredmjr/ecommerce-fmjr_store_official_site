@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import appRouter from "./routes/app.routes.js";
 import apiRouter from "./routes/api.routes.js";
+import blogapiRouter from "./routes/blogapi.routes.js";
 /*import userRouter from "./routes/user.routes.js"; */
 import sequelize from "./config/db.js";
 import corsMiddleware from "./middleware/cors/cors.js";
@@ -31,6 +32,7 @@ app.use("/api", apiRouter);
 app.get("/blog", (req, res) => {
   return res.status(200).render("components/quick_links/blog.hbs");
 });
+app.use("/blog", corsMiddleware, blogapiRouter);
 
 //NORMAL
 /* 
