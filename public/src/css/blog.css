@@ -1023,6 +1023,7 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--fmjr--dkr5);
   display: flex;
