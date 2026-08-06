@@ -1043,7 +1043,7 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   gap: 10px;
   align-items: center;
   background-color: var(--fmjr--dkr5);
