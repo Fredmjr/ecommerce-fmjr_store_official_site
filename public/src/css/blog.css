@@ -1221,10 +1221,9 @@ body {
     text-align: center;
   }
   #shared_m {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
     padding: 5px;
+  }
+  #shared_m_cntnts {
+    width: 100%;
   }
 }
