@@ -1220,4 +1220,11 @@ body {
     margin: -2px 0px;
     text-align: center;
   }
+  #shared_m {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 5px;
+  }
 }
