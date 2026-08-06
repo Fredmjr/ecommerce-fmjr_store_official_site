@@ -1007,6 +1007,7 @@ body {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  margin-right: 7px;
 }
 #hero_todayspecialcrd2rght {
   width: 70%;
