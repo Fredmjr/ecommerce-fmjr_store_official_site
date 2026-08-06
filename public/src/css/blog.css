@@ -997,6 +997,7 @@ body {
   width: 60%;
   padding: 20px 1px;
   box-sizing: border-box;
+  color: var(--fmjr--dkr1);
 }
 #hero_todayspecialcrd2 {
   /*   border: 1px solid var(--fmjr--clr1); */
@@ -1252,5 +1253,9 @@ body {
   }
   #shared_m_cntnts {
     width: 100%;
+  }
+  #shared_m_cntnts_hero_todayspecial2 {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
