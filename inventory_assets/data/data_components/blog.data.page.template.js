@@ -43,8 +43,8 @@ Books on Sale, Digital Art, and many more.">
     <div id="vst_store_bnnr"><button id="vst_store_bnnr_btn">
         <span><img id="vst_store_bnnr_btn_icn" src="https://guest.alwaysdata.net/dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span>Check out Store</button></div>
 
-    <div id="shared_main_card">
     <div id="shared_main_pnl">
+    <div id="shared_main_card">
     <div class="blog_hero_lft_crdmain_selectedcrd">
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">How Being a Designer Makes You a Better Programmer</p>
