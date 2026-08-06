@@ -766,8 +766,10 @@ body {
 #shared_main_card {
   padding: 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 #shared_main_pnl {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
