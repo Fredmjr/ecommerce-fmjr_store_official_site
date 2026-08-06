@@ -1007,10 +1007,10 @@ body {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin-right: 7px;
+  margin-right: 15px;
 }
 #hero_todayspecialcrd2rght {
-  width: 70%;
+  width: fit-content;
   color: var(--fmjr--dkr1);
   height: 100%;
   box-sizing: border-box;
