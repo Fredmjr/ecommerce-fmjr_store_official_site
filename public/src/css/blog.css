@@ -153,6 +153,13 @@ body {
   display: flex;
   align-items: center;
 }
+#shared_blog_hero {
+  height: fit-content;
+  padding: 20px 70px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
 #blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btn {
   position: relative;
 }
@@ -1064,6 +1071,11 @@ body {
     padding-left: 10px;
     padding-right: 10px;
   }
+  #shared_blog_hero {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   #blog_hero_rght {
     width: 40%;
   }
@@ -1094,6 +1106,10 @@ body {
     width: 100%;
   }
   #blog_hero {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #shared_blog_hero {
     padding-left: 10px;
     padding-right: 10px;
   }
