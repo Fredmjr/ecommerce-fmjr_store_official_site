@@ -261,10 +261,9 @@ body {
   padding-right: 3px;
   padding-top: 1px;
   padding-bottom: 1px;
-  height: 100%;
+  height: fit-content;
   gap: 3px;
   overflow: hidden;
-  overflow-y: scroll;
   border-radius: 3px;
   border: 1px solid var(--fmjr--dkr3);
 }

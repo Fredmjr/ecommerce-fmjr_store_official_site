@@ -73,45 +73,6 @@ Books on Sale, Digital Art, and many more.">
          </div>
          <br><br>
         </div></div>
-      <div id="blog_hero_rght">
-        
-        
-        
-        <br>
-        
-
-        
-        
-
-        <div class="blog_hero_rght_promcrd" style="display: none;">
-          <div id="hero_todayspecialcrdcntnts">
-
-            <div>
-              <div id="disntmainprctagthumbnl">
-                <div id="disntmainprctagthumbnlimgpnl">
-                  <div id="hero_todayspecialcrdpricstag">
-                    9%
-                    <br>
-                    <p id="disntmainprctagdscptn">OFF</p>
-                  </div>
-                  <img id="disntmainprctagthumbnlimg" src="https://guest.alwaysdata.net/dist/imgs/graphics_design_crash_course_v2.webp" alt="graphics_design_crash_course">
-                </div>
-
-              </div>
-              <br>
-              <p id="disntmainprctagmainttl1">Graphics Design</p>
-              <p id="disntmainprctagmainttl2">Crash Course</p>
-              <p id="disntdmainprice"><s>K550.00</s></p>
-              <p id="disntmainprice">K500</p>
-              <p id="disntmainpricepermnth">(per month x3)</p>
-              <br>
-              <br>
-              <div id="disntmainprctagbtn_pnl">
-                <button id="disntmainprctagBtn">Enroll now</button></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     
 
