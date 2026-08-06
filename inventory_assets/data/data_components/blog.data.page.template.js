@@ -97,7 +97,7 @@ Books on Sale, Digital Art, and many more.">
       </div></div>
     
 
-  
+  <script src="https://guest.alwaysdata.net/src/js/blog.share/blog.share.js"></script>
 </body></html>
     `;
   return dynamic_blog_data_page_data;
