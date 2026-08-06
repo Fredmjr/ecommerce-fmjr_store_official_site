@@ -772,7 +772,10 @@ body {
 }
 #shared_m_cntnts {
   width: 70%;
+  padding: 10px;
   box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid var(--fmjr--dkr3);
 }
 
 #hero_todayspecialcrdcntnts {

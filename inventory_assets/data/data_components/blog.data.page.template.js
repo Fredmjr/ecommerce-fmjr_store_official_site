@@ -45,7 +45,7 @@ Books on Sale, Digital Art, and many more.">
 
     <div id="shared_m">
    <div id="shared_m_cntnts">
-   zxZxZx
+  <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">How Being a Designer Makes You a Better Programmer</p>
     </div>
     </div>
 
