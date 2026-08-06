@@ -254,8 +254,9 @@ body {
   border-radius: 3px;
   border: 1px solid var(--fmjr--dkr3);
 }
+
 #shared_blog_hero_lft {
-  width: 70%;
+  width: 100%;
   box-sizing: border-box;
   padding-left: 15px;
   padding-right: 3px;
