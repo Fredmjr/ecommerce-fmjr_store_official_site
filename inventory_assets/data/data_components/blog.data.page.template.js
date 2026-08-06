@@ -76,7 +76,7 @@ Books on Sale, Digital Art, and many more.">
     </div>
     
 
-    <div id="shared_media_query_section"><div id="shared_hero_todayspecial2">
+    <div id="shared_media_query_section"><div id="hero_todayspecial2">
         <div id="hero_todayspecialcrd2">
           <div id="hero_todayspecialcrd2rlft">
             <div id="hero_todayspecialcrd2rlftpricstag">

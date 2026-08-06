@@ -153,7 +153,6 @@ body {
   display: flex;
   align-items: center;
 }
-
 #shared_blog_hero {
   height: fit-content;
   padding: 20px 70px;
@@ -260,10 +259,11 @@ body {
   box-sizing: border-box;
   padding-left: 15px;
   padding-right: 3px;
-  padding-top: 7px;
+  padding-top: 1px;
   padding-bottom: 1px;
   height: fit-content;
   gap: 3px;
+  overflow: hidden;
   border-radius: 3px;
   border: 1px solid var(--fmjr--dkr3);
 }
@@ -972,13 +972,6 @@ body {
   padding: 20px 1px;
   box-sizing: border-box;
 }
-#shared_hero_todayspecial2 {
-  justify-content: center;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 20px 1px;
-  box-sizing: border-box;
-}
 #hero_todayspecialcrd2 {
   /*   border: 1px solid var(--fmjr--clr1); */
   border-radius: 5px;
@@ -1162,11 +1155,6 @@ body {
 
   /* promo card css */
   #hero_todayspecial2 {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  #shared_hero_todayspecial2 {
     display: flex;
     flex-wrap: wrap;
   }
