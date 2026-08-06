@@ -999,6 +999,15 @@ body {
   box-sizing: border-box;
   color: var(--fmjr--dkr1);
 }
+#hero_todayspecialcrd2rlft {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
 #hero_todayspecialcrd2 {
   /*   border: 1px solid var(--fmjr--clr1); */
   border-radius: 5px;
@@ -1220,15 +1229,7 @@ body {
     display: flex;
     flex-wrap: wrap;
   }
-  #hero_todayspecialcrd2rlft {
-    width: 20%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-  }
+
   #hero_todayspecialcrd2rght {
     width: 70%;
     color: var(--fmjr--dkr1);
