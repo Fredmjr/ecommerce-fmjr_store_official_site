@@ -43,7 +43,7 @@ Books on Sale, Digital Art, and many more.">
     <div id="vst_store_bnnr"><button id="vst_store_bnnr_btn">
         <span><img id="vst_store_bnnr_btn_icn" src="https://guest.alwaysdata.net/dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span>Check out Store</button></div>
     <div id="blog_hero">
-      <div id="blog_hero_lft"><div class="blog_hero_lft_crdmain_selectedcrd">
+      <div id="shared_blog_hero_lft"><div class="blog_hero_lft_crdmain_selectedcrd">
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">How Being a Designer Makes You a Better Programmer</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
@@ -72,9 +72,6 @@ Books on Sale, Digital Art, and many more.">
          <p class="blog_hero_lft_crdmain_selectedcrd_info_endnote_lnkscl"><img width="11" src="https://guest.alwaysdata.net/dist/icons/share.svg" alt=""><span>0</span>Shares</p>
          </div>
          <br><br>
-         <div id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn_pnl">
-         <button id="blog_hero_lft_crdmain_selectedcrd_info_endnote_rtnhm_btn">Home Blogs</button>
-         </div>
         </div></div>
       <div id="blog_hero_rght">
         
@@ -118,7 +115,7 @@ Books on Sale, Digital Art, and many more.">
     </div>
     
 
-    <div id="media_query_section"><div id="hero_todayspecial2">
+    <div id="shared_media_query_section"><div id="hero_todayspecial2">
         <div id="hero_todayspecialcrd2">
           <div id="hero_todayspecialcrd2rlft">
             <div id="hero_todayspecialcrd2rlftpricstag">

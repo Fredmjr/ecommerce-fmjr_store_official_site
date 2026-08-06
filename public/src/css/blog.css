@@ -247,6 +247,21 @@ body {
   border-radius: 3px;
   border: 1px solid var(--fmjr--dkr3);
 }
+#shared_blog_hero_lft {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 15px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  height: 100%;
+  gap: 3px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: 3px;
+  border: 1px solid var(--fmjr--dkr3);
+}
+
 #blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls {
   display: flex;
   gap: 7px;
@@ -923,6 +938,11 @@ body {
   z-index: 10;
 }
 #media_query_section {
+  width: 100%;
+  height: fit-content;
+  box-sizing: border-box;
+}
+#shared_media_query_section {
   width: 100%;
   height: fit-content;
   box-sizing: border-box;
