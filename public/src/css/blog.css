@@ -983,6 +983,11 @@ body {
 }
 
 /* prom card */
+#hero_todayspecialcrdpricstagoff {
+  font-size: 7px;
+  margin: -2px 0px;
+  text-align: center;
+}
 #hero_todayspecial2 {
   display: none;
   justify-content: center;
@@ -1038,7 +1043,8 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   align-items: center;
   background-color: var(--fmjr--dkr5);
   display: flex;
@@ -1245,11 +1251,6 @@ body {
     justify-content: end;
   }
 
-  #hero_todayspecialcrdpricstagoff {
-    font-size: 7px;
-    margin: -2px 0px;
-    text-align: center;
-  }
   #shared_m {
     padding: 5px;
   }
