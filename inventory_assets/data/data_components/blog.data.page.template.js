@@ -74,33 +74,26 @@ Books on Sale, Digital Art, and many more.">
     </div>
 
     <div id="shared_media_query_section"><div id="shared_m_cntnts_hero_todayspecial2">
-        <div id="hero_todayspecialcrd2">
-            <div id="hero_todayspecialcrd2rlft">
-              <div id="hero_todayspecialcrd2rlftpricstag">
-                9%
-                <br>
-                <p id="hero_todayspecialcrdpricstagoff">OFF</p>
-              </div>
-              <img id="hero_todayspecialcrd2rlftimg" src="dist/imgs/graphics_design_crash_course_v2.webp" alt="graphics_design_crash_course">
+        <div id="shared_m_cntnts_hero_todayspecialcrd2">
+          <div id="hero_todayspecialcrd2rlft">
+            <div id="hero_todayspecialcrd2rlftpricstag">
+              9%
+              <br>
+              <p id="hero_todayspecialcrdpricstagoff">OFF</p>
             </div>
-            <div id="hero_todayspecialcrd2rght">
-              <div id="hero_todayspecialcrd2rghttop">
-                <p id="hero_todayspecialcrd2rghtttl">Web Development Class</p>
-                <p id="hero_todayspecialcrd2rghtdscrptn">Start coding your
-                  future today. Master front-end and back-end skills.</p>
-              </div>
-
-              <button id="hero_todayspecialcrd2rghtBtn">Enroll Now</button>
-            </div>
-            <div id="hero_todayspecialcrd2mid">
-
-              <div id="hero_todayspecialcrd2midcntnts1">
-                <p id="hero_todayspecialcrd2midcntnts1prsubctag"><s>K550.00</s></p>
-                <p id="hero_todayspecialcrd2midcntnts1prctag">K500</p>
-                <p id="hero_todayspecialcrd2midcntnts1permnth">(per month x3)</p></div>
-              <div id="hero_todayspecialcrd2midcntnts2">9% OFF</div>
-            </div>
+            <img id="hero_todayspecialcrd2rlftimg" src="https://guest.alwaysdata.net/dist/imgs/graphics_design_crash_course_v2.webp" alt="graphics_design_crash_course">
           </div>
+          <div id="hero_todayspecialcrd2rght">
+            <div id="hero_todayspecialcrd2rghttop">
+              <p id="hero_todayspecialcrd2rghtttl">Graphics Design Crash Class</p>
+              <p id="hero_todayspecialcrd2rghtdscrptn">Start coding your future
+                today. Master front-end and back-end skills.</p>
+            </div>
+
+            <button id="hero_todayspecialcrd2rghtBtn">Enroll Now</button>
+          </div>
+
+        </div>
       </div></div>
     
 
