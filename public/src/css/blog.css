@@ -765,7 +765,7 @@ body {
 /* promo card css */
 #shared_main_card {
   padding: 20px;
-  width: 70px;
+  width: 100%;
 }
 #shared_main_pnl {
   display: flex;
