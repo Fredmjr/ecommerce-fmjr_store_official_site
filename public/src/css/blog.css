@@ -276,6 +276,25 @@ body {
   border-radius: 20px;
   border: 1px solid var(--fmjr--dkr2);
 }
+#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn {
+  display: flex;
+  gap: 7px;
+  padding: 5px 10px;
+  align-items: center;
+  border-radius: 20px;
+  background-color: var(--fmjr--dkr5);
+  color: var(--fmjr--dkr1);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 5px 0px;
+}
+#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn:active,
+#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn:focus {
+  background-color: var(--fmjr--clr1);
+}
 
 #blog_ftr {
   display: flex;

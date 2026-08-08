@@ -208,7 +208,7 @@ document.body.addEventListener("click", async (e) => {
       const e = document.createElement("div");
       e.className = "blog_hero_lft_crdmain_selectedcrd";
       e.innerHTML = `
-         <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
+         <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr" data-blog_share_id="${selected_blog.id}">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">${selected_blog.data.title}</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
@@ -216,11 +216,13 @@ document.body.addEventListener("click", async (e) => {
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu">
           <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/facebook.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn"width="15" src="dist/icons/instagram.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/linkedin.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/behance.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappbusnssbtn" width="15" src="dist/icons/whatsapp_business.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappmssgnrbtn" width="15" src="dist/icons/whatsapp_messenger.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharefcbookbtn" width="15" src="dist/icons/facebook.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareinstgrmbtn" width="15" src="dist/icons/instagram.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/sms.svg" alt="">
           </div>
+          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn"><img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/link.svg" alt="">Copy link</div>
           </div>
           <img
             id="cntntsicn"
@@ -267,17 +269,6 @@ document.body.addEventListener("click", async (e) => {
         "blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu",
       ),
     );
-  }
-});
-
-//social blog
-//facebook
-document.body.addEventListener("click", async (e) => {
-  const el = e.target.closest(
-    ".blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn",
-  );
-  if (el) {
-    console.log(el);
   }
 });
 
@@ -599,7 +590,7 @@ document.body.addEventListener("click", async (e) => {
       const e = document.createElement("div");
       e.className = "blog_hero_lft_crdmain_selectedcrd";
       e.innerHTML = `
-         <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr">
+         <div  id="blog_hero_lft_crdmain_selectedcrd_topbnnr" data-blog_share_id="${selected_blog.id}">
          <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ttl">${selected_blog.data.title}</p>
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr">
          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft"><div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_prflimg"><img class="fmjr_stores_default_thumbnail" src="dist/imgs/fmjr_stores default thumbnail v7.webp" alt=""></div><p>${selected_blog.uploaded_by}</p><div class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_circle"></div><p>${selected_blog.date} - ${selected_blog.time}</p></div>
@@ -607,11 +598,13 @@ document.body.addEventListener("click", async (e) => {
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu">
           <p id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sclsttl">Share Blog</p>
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/facebook.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn"width="15" src="dist/icons/instagram.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/linkedin.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" width="15" src="dist/icons/behance.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappbusnssbtn" width="15" src="dist/icons/whatsapp_business.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappmssgnrbtn" width="15" src="dist/icons/whatsapp_messenger.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharefcbookbtn" width="15" src="dist/icons/facebook.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareinstgrmbtn" width="15" src="dist/icons/instagram.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/sms.svg" alt="">
           </div>
+          <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn"><img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/link.svg" alt="">Copy link</div>
           </div>
           <img
             id="cntntsicn"
@@ -717,5 +710,105 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     blog_getelem("blog_navbar_rghtmenubtn_drpdwnmenu_pnl").style.display =
       "none";
+  }
+});
+
+//share blog links
+//business whatsapp
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappbusnssbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("buessinss, with id: ", id);
+    window.location.href = `https://api.whatsapp.com/send?text=https://guest.alwaysdata.net/blog/share/${id}`;
+  }
+});
+//whastapp
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappmssgnrbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("whatsapp, with id: ", id);
+    window.location.href = `https://api.whatsapp.com/send?text=https://guest.alwaysdata.net/blog/share/${id}`;
+  }
+});
+//facebook
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharefcbookbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("facebook, with id: ", id);
+    window.location.href = `https://www.facebook.com/sharer/sharer.php?u=https://guest.alwaysdata.net/blog/share/${id}`;
+  }
+});
+//instagram
+/* document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareinstgrmbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("instagram, with id: ", id);
+
+
+
+    if (navigator.share) {  
+    const shareUrl = `https://guest.alwaysdata.net/blog/share/${id}`;
+      navigator
+        .share({
+          title: "Check this out!",
+          url: shareUrl,
+        })
+        .then(() => console.log("Shared successfully")) 
+        .catch((error) => console.error("Error sharing:", error));
+    } 
+  }
+}); */
+//email
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareemailbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("email, with id: ", id);
+    window.location.href = `mailto:?subject=Check%20this%20out&body=https://guest.alwaysdata.net/blog/share/${id}`;
+  }
+});
+//sms
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    console.log("email, with id: ", id);
+    const smsLink = `sms:?&body=${encodeURIComponent("Check this out: ${id}")}`;
+    window.location.href = smsLink;
+  }
+});
+//copy link
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn",
+  );
+  if (el) {
+    const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
+      .blog_share_id;
+    navigator.clipboard
+      .writeText(`https://guest.alwaysdata.net/blog/share/${id}`)
+      .catch((err) => console.error("Copy failed", err));
   }
 });
