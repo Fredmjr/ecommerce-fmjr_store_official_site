@@ -795,7 +795,7 @@ document.body.addEventListener("click", async (e) => {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
     console.log("email, with id: ", id);
-    const smsLink = `sms:?&body=${encodeURIComponent(`Check this out: ${id}`)}`;
+    const smsLink = `sms:?&body=${encodeURIComponent(`Check this out: https://guest.alwaysdata.net/blog/share/${id}`)}`;
     window.location.href = smsLink;
   }
 });
