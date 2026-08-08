@@ -219,7 +219,7 @@ document.body.addEventListener("click", async (e) => {
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappbusnssbtn" width="15" src="dist/icons/whatsapp_business.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappmssgnrbtn" width="15" src="dist/icons/whatsapp_messenger.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharefcbookbtn" width="15" src="dist/icons/facebook.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareinstgrmbtn" width="15" src="dist/icons/instagram.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareemailbtn" width="15" src="dist/icons/email.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/sms.svg" alt="">
           </div>
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn"><img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/link.svg" alt="">Copy link</div>
@@ -601,7 +601,7 @@ document.body.addEventListener("click", async (e) => {
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappbusnssbtn" width="15" src="dist/icons/whatsapp_business.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharewhtsappmssgnrbtn" width="15" src="dist/icons/whatsapp_messenger.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharefcbookbtn" width="15" src="dist/icons/facebook.svg" alt="">
-          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareinstgrmbtn" width="15" src="dist/icons/instagram.svg" alt="">
+          <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_shareemailbtn" width="15" src="dist/icons/email.svg" alt="">
           <img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/sms.svg" alt="">
           </div>
           <div id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_copylinkbtn"><img class="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_scls_icn" id="blog_hero_lft_crdmain_selectedcrd_topbnnr_ftr_lft_btndrpdwnmenu_sharesmsbtn" width="15" src="dist/icons/link.svg" alt="">Copy link</div>
@@ -795,7 +795,7 @@ document.body.addEventListener("click", async (e) => {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
     console.log("email, with id: ", id);
-    const smsLink = `sms:?&body=${encodeURIComponent("Check this out: ${id}")}`;
+    const smsLink = `sms:?&body=${encodeURIComponent(`Check this out: ${id}`)}`;
     window.location.href = smsLink;
   }
 });
