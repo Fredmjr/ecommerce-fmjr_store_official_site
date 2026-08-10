@@ -43,7 +43,7 @@ export const shareUrl = async (req, res) => {
     });
   }
 };
-export const sharetestUrl = async (req, res) => {
+/* export const sharetestUrl = async (req, res) => {
   try {
     return res.status(200).send("hi");
   } catch (error) {
@@ -58,3 +58,4 @@ export const sharetestUrl = async (req, res) => {
     });
   }
 };
+ */

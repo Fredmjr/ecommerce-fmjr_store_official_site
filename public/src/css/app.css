@@ -1390,6 +1390,14 @@ button:focus {
   width: 100%;
   height: fit-content;
 }
+#portflpgcntnts_archdsgn_prtflomain_crdhldr_spnrpnl {
+  width: 49%;
+  box-sizing: border-box;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #clndrcrd_bttm_lftmonthtopttl {
   font-weight: bold;
   font-size: 10px;

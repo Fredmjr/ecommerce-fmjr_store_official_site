@@ -624,6 +624,22 @@ home.addEventListener("click", async (e) => {
         }
       }
       img_set_sttus = true;
+      const grphics_pnl = app_api_getelem(
+        "portflpgcntnts_archdsgn_prtflomain_crdhldr_gfrphcspnl",
+      );
+      grphics_pnl.innerHTML = "";
+      grphics_pnl.innerHTML = `<div class="portflpgcntnts_archdsgn_prtflomain_crd">
+            <div class="portflpgcntnts_archdsgn_prtflomain_crdthumgimg">
+              <img src="dist/imgs/portifolio_1.webp" width="30" alt="" />
+            </div>
+            <div class="portflpgcntnts_archdsgn_prtflomain_crdinfo">
+              <p class="portflpgcntnts_archdsgn_prtflomain_crdinfottl">Graphics
+                Portifolio</p>
+              <p class="portflpgcntnts_archdsgn_prtflomain_crdinfodate">22 Feb
+                2025 - 22 Feb 2026</p>
+            </div>
+          </div>`;
+
       //3. contains panel
       /*       if (data_imgs_nms) {
         console.log(data_imgs_nms);
