@@ -4555,4 +4555,9 @@ button:focus {
   #fullview_pnl_bttm_cntntspnl {
     width: 100%;
   }
+  #portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete {
+    padding: 3px 15px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
