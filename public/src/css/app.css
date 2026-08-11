@@ -1332,7 +1332,7 @@ button:focus {
 }
 #fullview_pnl_bttm {
   width: 100%;
-  height: 35px;
+  height: 45px;
   /* height: 7%; */
   box-sizing: border-box;
   font-size: 8;
@@ -1431,6 +1431,9 @@ button:focus {
 #portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg:focus,
 #portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg:active {
   background-color: transparent;
+}
+#portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd {
@@ -4551,8 +4554,5 @@ button:focus {
   }
   #fullview_pnl_bttm_cntntspnl {
     width: 100%;
-  }
-  #fullview_pnl_bttm {
-    height: 35px;
   }
 }
