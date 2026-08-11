@@ -719,6 +719,7 @@ home.addEventListener("click", async (e) => {
             temp_img_el.src = `${offline_img_blob}`;
             temp_img_el.id =
               "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg";
+            temp_img_el.dataset.prtflo_img = plain_nm_ext;
             const img_el = app_btns_getelem(
               "portflpgcntnts_archdsgn_prtflomain_lft_top",
             );
@@ -783,15 +784,81 @@ home.addEventListener("click", async (e) => {
         const temp_img_el = document.createElement("img");
         temp_img_el.src = `${offline_img_blob}`;
         temp_img_el.id = "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg";
+        temp_img_el.dataset.prtflo_img = `${plain_nm_ext}`;
         const img_el = app_btns_getelem(
           "portflpgcntnts_archdsgn_prtflomain_lft_top",
         );
         img_el.innerHTML = "";
         img_el.appendChild(temp_img_el);
+
+        //chnage fullview card dataset
+        console.log("chnageeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
+        app_btns_getelem(
+          "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg",
+        ).dataset.prtflo_img = el.dataset.prtflo_img;
       }
     } catch (err) {
       console.log(err);
     }
+  }
+});
+
+//graphics portfoilo image full view
+home.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    "#portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg",
+  );
+  if (el) {
+    try {
+      console.log("heeeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
+      const cachedResponse = await caches.match(
+        `/api/prtfloimgsapi/${el.dataset.prtflo_img}`,
+      );
+
+      if (cachedResponse) {
+        const offline_img_blob = URL.createObjectURL(
+          await cachedResponse.blob(),
+        );
+        console.log(offline_img_blob);
+        /* const temp_img_el = document.createElement("img");
+        temp_img_el.src = `${offline_img_blob}`;
+        temp_img_el.id = "fullview_pnl_mid_thumbimg";
+        temp_img_el.dataset.prtflo_img = `${plain_nm_ext}`; */
+        const float_el_pnl = app_btns_getelem("floatpop");
+        float_el_pnl.innerHTML = "";
+        float_el_pnl.style.display = "block";
+        const fullview_pnl = `<div id="fullview_pnl">
+        <div id="fullview_pnl_cntnts">
+        <div id="fullview_pnl_mid"><img src="${offline_img_blob}" id="fullview_pnl_mid_thumbimg"></div>
+        <div id="fullview_pnl_bttm">
+        <div id="fullview_pnl_bttm_cntntspnl">
+        <button id="fullview_pnl_top_btn">
+        <span><img id="fullview_pnl_top_btnicon" src="dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span>Close Fullview</button>
+        <p id="fullview_pnl_mid_thumbimg_ttlid">Graphics Design Portfolio</p>
+        <div id="fullview_pnl_btm_endnotescntnts">
+        <p class="fullview_pnl_mid_thumbimg_txtscl"><img class="fullview_pnl_mid_thumbimg_iconscl" width="11" src="dist/icons/comments.svg" alt=""><span>0</span>Coments</p>
+        <p class="fullview_pnl_mid_thumbimg_txtscl"><img  class="fullview_pnl_mid_thumbimg_iconscl" " width="11" src="dist/icons/likes.svg" alt=""><span>0</span>Likes</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        `;
+
+        /*   float_el_pnl.appendChild(temp_img_el); */
+        float_el_pnl.innerHTML = fullview_pnl;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+});
+
+//close full previw page
+home.addEventListener("click", async (e) => {
+  const el = e.target.closest("#fullview_pnl_top_btn");
+  if (el) {
+    closeopenFunc(app_btns_getelem("floatpop"));
   }
 });
 //gblog page
