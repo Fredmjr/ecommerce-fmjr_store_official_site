@@ -71,14 +71,32 @@ export const prtfloimgsnamesapiUrl = async (req, res) => {
         erMgs: erMgs_div,
       });
     }
-    const fltrd_results = result.map((e) => ({
+    const raw_results = result.map((e) => ({
       id: e.dataValues.id,
       cache_nm: `prtflo_graphics_design_${
         e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1]
       }`,
       img_filepath: e.dataValues.img_filepath,
     }));
-    /*  console.log(fltrd_results); */
+
+    //organise
+    const order = [
+      "prtflo_graphics_design_cover_page",
+      "prtflo_graphics_design_sub_cover",
+      "prtflo_graphics_design_intro_page",
+      "prtflo_graphics_design_page_1",
+      "prtflo_graphics_design_page_2",
+      "prtflo_graphics_design_page_3",
+      "prtflo_graphics_design_page_4",
+      "prtflo_graphics_design_end_page",
+    ];
+    const sorted = raw_results.sort(
+      (x, y) => order.indexOf(x.cache_nm) - order.indexOf(y.cache_nm),
+    );
+
+    console.log("sortedddddddddddddddddddddd", sorted);
+    const fltrd_results = sorted;
+
     return res.status(200).json({
       fltrd_results,
     });
