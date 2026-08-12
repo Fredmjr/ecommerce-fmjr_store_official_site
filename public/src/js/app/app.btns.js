@@ -665,7 +665,6 @@ home.addEventListener("click", async (e) => {
             )?.[1];
           plain_nm_ext = plain_nm + ".webp";
           console.log(plain_nm_ext);
-
           try {
             if (set) {
               const cachedResponse = await caches.match(
@@ -688,7 +687,7 @@ home.addEventListener("click", async (e) => {
                 //smooth natural append anima
                 const smooth_append_anima = (parent, child) => {
                   child.style.opacity = 0;
-                  child.style.transition = "opacity 1s ease";
+                  child.style.transition = "opacity 3s ease";
                   parent.appendChild(child);
                   requestAnimationFrame(() => (child.style.opacity = 1));
                 };
