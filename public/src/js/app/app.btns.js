@@ -885,6 +885,8 @@ home.addEventListener("click", async (e) => {
 
         /*   float_el_pnl.appendChild(temp_img_el); */
         float_el_pnl.innerHTML = fullview_pnl;
+        document.body.style.overflow = "hidden";
+        scroll_bar_fuc(app_btns_getelem("floatpop"));
       }
     } catch (err) {
       console.log(err);
@@ -897,6 +899,7 @@ home.addEventListener("click", async (e) => {
   const el = e.target.closest("#fullview_pnl_top_btn");
   if (el) {
     closeopenFunc(app_btns_getelem("floatpop"));
+    enable_scroll_ft_fuc();
   }
 });
 //gblog page
