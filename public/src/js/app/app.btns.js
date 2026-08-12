@@ -909,3 +909,22 @@ home.addEventListener("click", async (e) => {
     window.location.href = "/blog";
   }
 });
+
+//graphics design section
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_grphcsdsgnbtn") ||
+    e.target.closest("#sidemenuCtrycl_grphcsdsgnbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/grphcsflpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+
+      //iniate loading anima
+      document
+        .querySelectorAll(".grphcsflpgcntnts_ttm_main_crd")
+        .forEach((el) => el.classList.add("is-loading"));
+    }
+  }
+});
