@@ -685,9 +685,23 @@ home.addEventListener("click", async (e) => {
                 temp_el.innerHTML = `
               <img class="portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd_thumbimg" src="${offline_img_blob}" width="30" alt="">
           `;
-                app_api_getelem(
+                //smooth natural append anima
+                const smooth_append_anima = (parent, child) => {
+                  child.style.opacity = 0;
+                  child.style.transition = "opacity 1s ease";
+                  parent.appendChild(child);
+                  requestAnimationFrame(() => (child.style.opacity = 1));
+                };
+                smooth_append_anima(
+                  app_api_getelem(
+                    "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
+                  ),
+                  temp_el,
+                );
+                /*   app_api_getelem(
                   "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
-                ).appendChild(temp_el);
+                ).appendChild(temp_el); */
+                console.log("adding");
               }
             }
           } catch (err) {
@@ -724,7 +738,15 @@ home.addEventListener("click", async (e) => {
               "portflpgcntnts_archdsgn_prtflomain_lft_top",
             );
             img_el.innerHTML = "";
-            img_el.appendChild(temp_img_el);
+            /* img_el.appendChild(temp_img_el); */
+            //smooth natural append anima
+            const smooth_append_anima = (parent, child) => {
+              child.style.opacity = 0;
+              child.style.transition = "opacity 1s ease";
+              parent.appendChild(child);
+              requestAnimationFrame(() => (child.style.opacity = 1));
+            };
+            smooth_append_anima(img_el, temp_img_el);
           }
         } catch (err) {
           console.log(err);
@@ -789,13 +811,30 @@ home.addEventListener("click", async (e) => {
           "portflpgcntnts_archdsgn_prtflomain_lft_top",
         );
         img_el.innerHTML = "";
-        img_el.appendChild(temp_img_el);
+        /* img_el.appendChild(temp_img_el); */
+        //smooth natural append anima
+        const smooth_append_anima_3 = (parent, child) => {
+          child.style.opacity = 0;
+          child.style.transform = "translateY(20px)";
+          child.style.transition = "opacity 1.5s ease, transform 1.5s ease";
+          parent.appendChild(child);
 
-        //chnage fullview card dataset
-        console.log("chnageeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
-        app_btns_getelem(
-          "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg",
-        ).dataset.prtflo_img = el.dataset.prtflo_img;
+          // Force two frames so the browser registers the initial state
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              child.style.opacity = 1;
+              child.style.transform = "translateY(0)";
+            });
+          });
+        };
+        setTimeout(() => {
+          smooth_append_anima_3(img_el, temp_img_el);
+          //chnage fullview card dataset
+          console.log("chnageeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
+          app_btns_getelem(
+            "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg",
+          ).dataset.prtflo_img = el.dataset.prtflo_img;
+        }, 150);
       }
     } catch (err) {
       console.log(err);
