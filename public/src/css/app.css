@@ -1366,9 +1366,9 @@ button:focus {
   cursor: pointer;
   color: var(--fmjr--dkr1);
   font-family: reddir-regular;
-  font-size: 8px;
+  font-size: 9px;
   border-radius: 20px;
-  padding: 0px 15px;
+  padding: 0px 17px;
   height: 100%;
   font-weight: bold;
   width: fit-content;
@@ -4058,7 +4058,7 @@ button:focus {
     font-size: 7px;
   }
   #fullview_pnl_top_btn {
-    font-size: 7px;
+    font-size: 8px;
   }
   .fullview_pnl_mid_thumbimg_txtscl {
     font-size: 7px;
@@ -4544,7 +4544,7 @@ button:focus {
     font-size: 6px;
   }
   #fullview_pnl_top_btn {
-    font-size: 6px;
+    font-size: 7px;
   }
   .fullview_pnl_mid_thumbimg_txtscl {
     font-size: 6px;
