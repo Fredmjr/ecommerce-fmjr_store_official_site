@@ -93,8 +93,6 @@ export const prtfloimgsnamesapiUrl = async (req, res) => {
     const sorted = raw_results.sort(
       (x, y) => order.indexOf(x.cache_nm) - order.indexOf(y.cache_nm),
     );
-
-    console.log("sortedddddddddddddddddddddd", sorted);
     const fltrd_results = sorted;
 
     return res.status(200).json({
