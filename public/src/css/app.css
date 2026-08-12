@@ -1432,7 +1432,8 @@ button:focus {
 #portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg:active {
   background-color: transparent;
 }
-#portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg {
+#portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg,
+.portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete_crd {
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -4174,6 +4175,9 @@ button:focus {
     font-size: 9px;
     cursor: pointer;
   }
+  #ctgry_ttl {
+    -webkit-tap-highlight-color: transparent;
+  }
   #ctgry_ttlicon {
     width: 12px;
   }
@@ -4493,7 +4497,9 @@ button:focus {
     width: 49%;
     box-sizing: border-box;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
+
   .portflpgcntnts_archdsgn_prtflomain_crd_emptyplrhldr {
     width: 49%;
     box-sizing: border-box;
