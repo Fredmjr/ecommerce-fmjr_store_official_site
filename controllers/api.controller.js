@@ -6,10 +6,12 @@ import {
 import { conversation } from "../inventory_assets/data/data_components/data.conversation.js";
 import { faqs_data } from "../inventory_assets/data/data_components/data.faqs.js";
 import imgModel from "../models/img.model.js";
+import img_indiModel from "../models/img_indi.model.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonlfile_fuc } from "../inventory_assets/data/jsonl/blog.functions.js";
+import { graphics_design_categories_type } from "../inventory_assets/data/data_components/category.varaibles.data.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -186,6 +188,310 @@ export const srchddataapiUrl = async (req, res) => {
     <p>Contact customer support, if issue persists</p>
     `;
     return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//salll graphics design data
+export const grphcsdsgndataapiUrl = async (req, res) => {
+  try {
+    if (
+      !graphics_design_categories_type ||
+      graphics_design_categories_type.length === 0
+    ) {
+      return res.status(404).json({
+        erMgs: "Unalbe to retrive data",
+      });
+    }
+    console.log(graphics_design_categories_type);
+    return res.status(200).json({
+      grphc_dsgn_type: graphics_design_categories_type,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//graphics desgin section
+//general
+export const gnrlflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "general",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//church
+export const chrchflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "church",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//club & restaurant
+export const clbrstrntflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "club_restaurant",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//sports
+export const sprtsflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "sports",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//branding
+export const brndngflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "branding",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//thumbnail
+export const thmbnlsflyrsdataapiUrl = async (req, res) => {
+  try {
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group_tag: "thumbnail",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    console.log(results);
+    const raw_results = results.map((e) => ({
+      img_id: e.dataValues.id,
+      img_cache_nm: e.dataValues.img_filepath.match(/\/([^/]+)\.webp$/)?.[1],
+      img_filepath: e.dataValues.img_filepath,
+    }));
+    return res.status(200).json({
+      raw_results,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//
+export const grphcsdsgndatasctnapiUrl = async (req, res) => {
+  try {
+    //1. total poster flyers
+    const results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group: "posters_flyers",
+      },
+    });
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    //recent images
+    const src_dir =
+      "./public/dist/imgs/ctgry/graphics_design/posters_flyers/recent";
+    const recnt_flyers = fs
+      .readdirSync(src_dir)
+      .filter((file) => path.extname(file).toLowerCase() === ".webp")
+      .map((file) => path.parse(file).name);
+    console.log(recnt_flyers);
+    return res.status(200).json({
+      recnt_flyers: recnt_flyers,
+      all_flyers_count: results.length,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual recent poster or flyer for cache
+export const rcntpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/recent/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
       erMgs: erMgs_div,
     });
   }

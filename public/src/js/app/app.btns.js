@@ -47,6 +47,13 @@ const enable_scroll_ft_fuc = () => {
   console.log("enabled");
 };
 
+//reusable secon spinner
+const app_btns_spinner_fuc = (e) => {
+  const spinner = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+  e.innerHTML = "";
+  e.innerHTML = spinner;
+};
+
 //resuable window height adjustmentdue to keyboard
 const win_height_fuc2 = (e) => {
   window.visualViewport.addEventListener("resize", () => {
@@ -925,6 +932,102 @@ home.addEventListener("click", async (e) => {
       document
         .querySelectorAll(".grphcsflpgcntnts_ttm_main_crd")
         .forEach((el) => el.classList.add("is-loading"));
+    }
+  }
+});
+//display semi poster/flyer categories
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#grphc_dsgn_type_pstr_flyrs")) {
+    const semi_catgry_types = [
+      /*  "All", */
+      "Recent",
+      "General",
+      "Church",
+      "Club/Restaurant",
+      "Sports",
+      "Branding",
+      "Thumbnails",
+    ];
+    const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_semi_ctgry");
+    el_prnt.innerHTML = "";
+    for (let i = 0; i < semi_catgry_types.length; i++) {
+      const el_chld = document.createElement("button");
+      el_chld.className = "semi_grphc_dsgn_type_pstr_flyrs_crdscl";
+      el_chld.id = `semi_grphc_dsgn_type_pstr_flyrs_${i}`;
+      el_chld.innerHTML = semi_catgry_types[i];
+
+      el_prnt.appendChild(el_chld);
+    }
+  }
+});
+//graphics desgin section
+//recent flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_0")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/gnrlflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//general flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_1")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/gnrlflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//church flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_2")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/chrchflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//club restaurant flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_3")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/clbrstrntflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//sports flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_4")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/sprtsflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//branding flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_5")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/brndngflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
+    }
+  }
+});
+//thumbnail flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_6")) {
+    app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+    const data = await app_btns_request("/api/thmbnlsflyrsdataapi", "GET");
+    if (data) {
+      console.log(data);
     }
   }
 });

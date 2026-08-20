@@ -139,6 +139,14 @@ const apibsrvr = new MutationObserver((mutations) => {
       const el6 = node.matches?.("#whyfmjrstrpg")
         ? node
         : node.querySelector?.("#whyfmjrstrpg");
+      const el7 = node.matches?.("#grphcsflpg")
+        ? node
+        : node.querySelector?.("#grphcsflpg");
+      const el8 = node.matches?.(
+        "#grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_0",
+      )
+        ? node
+        : node.querySelector?.("#grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_0");
 
       //calendar year range data - data render
       if (el1) {
@@ -509,6 +517,125 @@ const apibsrvr = new MutationObserver((mutations) => {
               p_el.appendChild(temp_el);
             });
           }
+        })();
+      }
+      //all graphics desgn section api
+      if (el7) {
+        const grphc_dsgn_auto_data_api = async () => {
+          const data = await app_api_request("/api/grphcsdsgndataapi", "GET");
+          if (data) {
+            const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_ctgry");
+            el_prnt.innerHTML = "";
+            for (let i = 0; i < data.grphc_dsgn_type.length; i++) {
+              console.log(data.grphc_dsgn_type[i]);
+              const el_chld = document.createElement("button");
+              el_chld.className = "grphcsflpgcntnts_bttm_ctgry_crd";
+              el_chld.id = data.grphc_dsgn_type[i].id;
+              el_chld.innerHTML = `
+                  <div class="grphcsflpgcntnts_bttm_ctgry_crd_img"></div>
+                  <div class="grphcsflpgcntnts_bttm_ctgry_crd_info">
+                    <p class="grphcsflpgcntnts_bttm_ctgry_crd_ttl">${data.grphc_dsgn_type[i].title}</p>
+                    <p class="grphcsflpgcntnts_bttm_ctgry_crd_dscrptn" id="grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_${i}">0 in Collection</p>
+                  </div>
+                `;
+
+              el_prnt.appendChild(el_chld);
+            }
+          }
+        };
+        grphc_dsgn_auto_data_api();
+      }
+
+      //total all flyers counts
+      if (el8) {
+        (async (e) => {
+          const data_obj = await app_btns_request(
+            "/api/grphcsdsgndatasctnapi",
+            "GET",
+          );
+          //all posters & flyers total number
+          el8.innerHTML = `${data_obj.all_flyers_count} in Collection`;
+          //recent posters & flyers
+          //reusable promise cached checker & if not cached download then cache & render/display img
+          //ALLOWWED eg exmaple
+          //DISALLOWED eg example.webp
+          //DISALLOWED eg /public/dist/imgs/example.webp
+          const argument_arr_obj = data_obj.recnt_flyers;
+          const renewly_cached = [];
+          const endpoint = "/api/rcntpstrflyrsindiimgapi";
+          const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+          const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+          const img_cache_checker_or_dwnld_cache_fuc = async (
+            obj,
+            arr,
+            arg_endpoint,
+            prnt_e,
+            chld_e_classnm,
+          ) => {
+            prnt_e.innerHTML = "";
+            const tasks_array_fuc = obj.map(async (ind_task) => {
+              const img = ind_task + ".webp";
+              const img_plain_nm = ind_task;
+              console.log(img);
+              const cachedResponse = await caches.match(
+                `${arg_endpoint}/${img}`,
+              );
+
+              if (cachedResponse) {
+                const offline_img_blob = URL.createObjectURL(
+                  await cachedResponse.blob(),
+                );
+                console.log("cached", offline_img_blob);
+                //render here
+                const chld_e = document.createElement("img");
+                chld_e.className = chld_e_classnm;
+                chld_e.src = offline_img_blob;
+                prnt_e.appendChild(chld_e);
+              } else {
+                try {
+                  set = await app_btn_cache_set_Img(
+                    `${endpoint}/${img}`,
+                    img_plain_nm,
+                  );
+                  console.log("dwnld thencached img", img);
+                  //reuse later
+                  arr.push(img);
+                } catch (err) {
+                  console.log(err);
+                }
+              }
+            });
+
+            await Promise.all(tasks_array_fuc);
+            const tasks_done = true;
+            return { tasks_done, arr, arg_endpoint };
+          };
+          img_cache_checker_or_dwnld_cache_fuc(
+            argument_arr_obj,
+            renewly_cached,
+            endpoint,
+            prnt_e_var,
+            chld_e_var_classnm,
+          ).then((e) => {
+            console.log("done", e.tasks_done, e.arr, e.arg_endpoint);
+            if (e.arr.length > 0) {
+              (async () => {
+                for (let i = 0; i <= e.arr.length; i++) {
+                  const new_cachedResponse = await caches.match(
+                    `${e.arg_endpoint}/${e.arr[i]}`,
+                  );
+
+                  if (new_cachedResponse) {
+                    const new_offline_img_blob = URL.createObjectURL(
+                      await new_cachedResponse.blob(),
+                    );
+                    console.log("new cached", new_offline_img_blob);
+                    //render here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                  }
+                }
+              })();
+            }
+          });
         })();
       }
     });
