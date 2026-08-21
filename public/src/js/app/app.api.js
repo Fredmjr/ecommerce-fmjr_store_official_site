@@ -586,10 +586,19 @@ const apibsrvr = new MutationObserver((mutations) => {
                   await cachedResponse.blob(),
                 );
                 console.log("cached", offline_img_blob);
-                //render here
-                const chld_e = document.createElement("img");
+                //render here v1.0.0.0
+                const img_sclspnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+               `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = offline_img_blob;
+                const chld_e = document.createElement("div");
                 chld_e.className = chld_e_classnm;
-                chld_e.src = offline_img_blob;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
                 prnt_e.appendChild(chld_e);
               } else {
                 try {
@@ -608,7 +617,7 @@ const apibsrvr = new MutationObserver((mutations) => {
 
             await Promise.all(tasks_array_fuc);
             const tasks_done = true;
-            return { tasks_done, arr, arg_endpoint };
+            return { tasks_done, arr, arg_endpoint, prnt_e, chld_e_classnm };
           };
           img_cache_checker_or_dwnld_cache_fuc(
             argument_arr_obj,
@@ -617,10 +626,17 @@ const apibsrvr = new MutationObserver((mutations) => {
             prnt_e_var,
             chld_e_var_classnm,
           ).then((e) => {
-            console.log("done", e.tasks_done, e.arr, e.arg_endpoint);
+            console.log(
+              "done",
+              e.tasks_done,
+              e.arr,
+              e.arg_endpoint,
+              e.prnt_e,
+              e.chld_e_classnm,
+            );
             if (e.arr.length > 0) {
               (async () => {
-                for (let i = 0; i <= e.arr.length; i++) {
+                for (let i = 0; i < e.arr.length; i++) {
                   const new_cachedResponse = await caches.match(
                     `${e.arg_endpoint}/${e.arr[i]}`,
                   );
@@ -630,7 +646,20 @@ const apibsrvr = new MutationObserver((mutations) => {
                       await new_cachedResponse.blob(),
                     );
                     console.log("new cached", new_offline_img_blob);
-                    //render here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    //render here v2.0.0.0
+                    const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                    const chld_e_img = document.createElement("img");
+                    chld_e_img.style.width = "100%";
+                    chld_e_img.src = new_offline_img_blob;
+                    const chld_e = document.createElement("div");
+                    chld_e.className = e.chld_e_classnm;
+                    chld_e.innerHTML = img_sclspnl;
+                    chld_e.appendChild(chld_e_img);
+                    e.prnt_e.appendChild(chld_e);
                   }
                 }
               })();

@@ -940,7 +940,7 @@ home.addEventListener("click", async (e) => {
   if (e.target.closest("#grphc_dsgn_type_pstr_flyrs")) {
     const semi_catgry_types = [
       /*  "All", */
-      "Recent",
+      /*       "Recent", */
       "General",
       "Church",
       "Club/Restaurant",
@@ -1029,5 +1029,11 @@ home.addEventListener("click", async (e) => {
     if (data) {
       console.log(data);
     }
+  }
+});
+//flyers popup menu
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl")) {
+    console.log("s");
   }
 });
