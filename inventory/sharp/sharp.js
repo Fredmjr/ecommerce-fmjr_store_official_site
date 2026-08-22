@@ -3,8 +3,8 @@ import fs from "fs";
 import path from "path";
 
 //sub dir images
-/* const srcDir = "public/assets/imgs";
-const distDir = "public/dist/imgs" */ //sub dir images
+const srcDir = "public/assets/imgs";
+const distDir = "public/dist/imgs"; //sub dir images
 /* const srcDir = "public/assets/imgs/ctgry/portfolio";
 const distDir = "public/dist/imgs/ctgry/portfolio"; */
 

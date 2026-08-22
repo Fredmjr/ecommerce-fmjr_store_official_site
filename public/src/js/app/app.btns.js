@@ -1037,3 +1037,24 @@ home.addEventListener("click", async (e) => {
     console.log("s");
   }
 });
+//flyers popup menu - like icon
+home.addEventListener("click", (e) => {
+  const icon = e.target
+    .closest(".grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl")
+    ?.querySelector(
+      ".grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl",
+    );
+
+  if (icon) {
+    if (icon.src.includes("like.svg")) {
+      // Switch to like_2
+      icon.src = "dist/icons/like_2.svg";
+      icon.style.filter = "";
+    } else {
+      // Switch back to like
+      icon.src = "dist/icons/like.svg";
+      icon.style.filter =
+        "invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg) brightness(87%) contrast(92%)";
+    }
+  }
+});

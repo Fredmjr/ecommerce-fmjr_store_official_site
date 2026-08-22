@@ -866,11 +866,7 @@ button:focus {
   font-weight: bold;
   color: var(--fmjr--dkr1);
 }
-#semi_grphc_dsgn_type_pstr_flyrs_0 {
-  border: none;
-  background-color: var(--fmjr--clr1);
-  color: var(--fmjr--dkr1);
-}
+
 .grphcsflpgcntnts_bttm_ctgry_crd {
   border-left: 3px solid var(--fmjr--clr1);
   border-top: 1px solid var(--fmjr--dkr2);
@@ -886,6 +882,7 @@ button:focus {
   font-family: reddir-regular;
   background-color: var(--fmjr--dkr1);
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 }
 .grphcsflpgcntnts_bttm_ctgry_crd:focus,
 .grphcsflpgcntnts_bttm_ctgry_crd:active {
@@ -957,22 +954,25 @@ button:focus {
 
 .grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl {
   position: absolute;
-  right: 10px;
-  left: 10px;
-  bottom: 10px;
-  height: fit-content;
-  padding: 50px 10px;
-  background-color: var(--fmjr--dkr10);
-  gap: 5px;
-  border-radius: 3px;
+  width: fit-content;
+  background-color: var(--fmjr--dkr1);
+  padding: 7px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   cursor: pointer;
-  background-color: var(--fmjr--dkr5);
-  color: var(--fmjr--clr3);
   z-index: 10;
-  /*   border: 1px solid var(--fmjr--dkr2);
-  box-shadow: 0.5px 0.5px 0.5px var(--fmjr--dkr2); */
+  right: 10px;
+  top: 10px;
+  border: 1px solid var(--fmjr--dkr3);
+  box-shadow: 1px 0px px var(--fmjr--dkr3);
 }
+
+.grphcsflpgcntnts_bttm_ctgry_crd_img_icncl {
+  filter: var(--fmjr-fltr2);
+}
+
 #grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl_bttm {
   width: 100%;
   box-sizing: border-box;
@@ -996,6 +996,11 @@ button:focus {
   filter: var(--fmjr-fltr2);
   box-sizing: border-box;
 }
+.grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl {
+  /*  filter: var(--fmjr-fltr); */
+  box-sizing: border-box;
+}
+
 .grphcsflpgcntnts_ttm_main_crd.is-loading {
   background: linear-gradient(
     90deg,
@@ -1044,8 +1049,13 @@ button:focus {
 .grphcsflpgcntnts_bttm_ctgry_crd_img {
   height: 35px;
   width: 35px;
-  background-color: var(--fmjr--dkr4);
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/dist/imgs/fmjr_stores\ default\ thumbnail_plain_1.webp");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #evntsschdlspg {
   width: 100%;

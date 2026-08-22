@@ -532,7 +532,7 @@ const apibsrvr = new MutationObserver((mutations) => {
               el_chld.className = "grphcsflpgcntnts_bttm_ctgry_crd";
               el_chld.id = data.grphc_dsgn_type[i].id;
               el_chld.innerHTML = `
-                  <div class="grphcsflpgcntnts_bttm_ctgry_crd_img"></div>
+                  <div class="grphcsflpgcntnts_bttm_ctgry_crd_img"><img class="grphcsflpgcntnts_bttm_ctgry_crd_img_icncl" src="dist/icons/${data.grphc_dsgn_type[i].icon}.svg" width="15"></div>
                   <div class="grphcsflpgcntnts_bttm_ctgry_crd_info">
                     <p class="grphcsflpgcntnts_bttm_ctgry_crd_ttl">${data.grphc_dsgn_type[i].title}</p>
                     <p class="grphcsflpgcntnts_bttm_ctgry_crd_dscrptn" id="grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_${i}">0 in Collection</p>
@@ -589,15 +589,18 @@ const apibsrvr = new MutationObserver((mutations) => {
                 //render here v1.0.0.0
                 const img_sclspnl = `
                 <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
-                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">FUllview
                `;
-
+                const img_popuppnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+               `;
                 const chld_e_img = document.createElement("img");
                 chld_e_img.style.width = "100%";
                 chld_e_img.src = offline_img_blob;
                 const chld_e = document.createElement("div");
                 chld_e.className = chld_e_classnm;
-                chld_e.innerHTML = img_sclspnl;
+                chld_e.innerHTML = img_popuppnl;
                 chld_e.appendChild(chld_e_img);
                 prnt_e.appendChild(chld_e);
               } else {
