@@ -110,11 +110,76 @@ const app_btn_cache_set_Img = async (imageUrl, img_tag) => {
   return { set: true };
 };
 
+//reusable promise cached checker & if not cached download then cache & render/display img
+//ALLOWWED eg exmaple
+//DISALLOWED eg example.webp
+//DISALLOWED eg /public/dist/imgs/example.webp
+const app_btns_img_cache_checker_or_dwnld_cache_fuc = async (
+  obj,
+  arr,
+  arg_endpoint,
+  prnt_e,
+  chld_e_classnm,
+) => {
+  prnt_e.innerHTML = "";
+  const tasks_array_fuc = obj.map(async (ind_task) => {
+    const img = ind_task + ".webp";
+    const img_plain_nm = ind_task;
+    console.log(img);
+    const cachedResponse = await caches.match(`${arg_endpoint}/${img}`);
+
+    if (cachedResponse) {
+      const offline_img_blob = URL.createObjectURL(await cachedResponse.blob());
+      console.log("cached", offline_img_blob);
+      //render here v1.0.0.0
+      const img_sclspnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">FUllview
+               `;
+      const img_popuppnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+               `;
+      const chld_e_img = document.createElement("img");
+      chld_e_img.style.width = "100%";
+      chld_e_img.src = offline_img_blob;
+      const chld_e = document.createElement("div");
+      chld_e.className = chld_e_classnm;
+      chld_e.innerHTML = img_popuppnl;
+      chld_e.appendChild(chld_e_img);
+      prnt_e.appendChild(chld_e);
+    } else {
+      try {
+        set = await app_btn_cache_set_Img(
+          `${arg_endpoint}/${img}`,
+          img_plain_nm,
+        );
+        console.log("dwnld thencached img", img);
+        //reuse later
+        arr.push(img);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+
+  await Promise.all(tasks_array_fuc);
+  const tasks_done = true;
+  return { tasks_done, arr, arg_endpoint, prnt_e, chld_e_classnm };
+};
+
 //default spinner
 const spinner_fuc = () => {
   const spinner = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
   app_btns_getelem("main").innerHTML = "";
   app_btns_getelem("main").innerHTML = spinner;
+};
+
+//reusable close next, current & previous page panel
+const close_nxt_crrnt_prvs_pg_panel = () => {
+  {
+    app_api_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "none";
+  }
 };
 
 //main menu
@@ -940,7 +1005,7 @@ home.addEventListener("click", async (e) => {
   if (e.target.closest("#grphc_dsgn_type_pstr_flyrs")) {
     const semi_catgry_types = [
       /*  "All", */
-      /*       "Recent", */
+      "Recent",
       "General",
       "Church",
       "Club/Restaurant",
@@ -965,19 +1030,131 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_0")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/gnrlflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
-    }
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    //recent posters & flyers - click based
+    //reusable promise cached checker
+    //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+    //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+    const argument_arr_obj = data_obj.recnt_flyers;
+    const renewly_cached = [];
+    const endpoint = "/api/rcntpstrflyrsindiimgapi";
+    const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+    const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+    app_btns_img_cache_checker_or_dwnld_cache_fuc(
+      argument_arr_obj,
+      renewly_cached,
+      endpoint,
+      prnt_e_var,
+      chld_e_var_classnm,
+    ).then((e) => {
+      console.log(
+        "done",
+        e.tasks_done,
+        e.arr,
+        e.arg_endpoint,
+        e.prnt_e,
+        e.chld_e_classnm,
+      );
+      if (e.arr.length > 0) {
+        (async () => {
+          for (let i = 0; i < e.arr.length; i++) {
+            const new_cachedResponse = await caches.match(
+              `${e.arg_endpoint}/${e.arr[i]}`,
+            );
+
+            if (new_cachedResponse) {
+              const new_offline_img_blob = URL.createObjectURL(
+                await new_cachedResponse.blob(),
+              );
+              console.log("new cached", new_offline_img_blob);
+              //render here v2.0.0.0
+              const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+              const chld_e_img = document.createElement("img");
+              chld_e_img.style.width = "100%";
+              chld_e_img.src = new_offline_img_blob;
+              const chld_e = document.createElement("div");
+              chld_e.className = e.chld_e_classnm;
+              chld_e.innerHTML = img_sclspnl;
+              chld_e.appendChild(chld_e_img);
+              e.prnt_e.appendChild(chld_e);
+            }
+          }
+        })();
+      }
+    });
   }
 });
 //general flyers
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_1")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/gnrlflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+      const argument_arr_obj = data_obj.gnrl_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/gnrlpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+      app_btns_img_cache_checker_or_dwnld_cache_fuc(
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ).then((e) => {
+        console.log(
+          "done",
+          e.tasks_done,
+          e.arr,
+          e.arg_endpoint,
+          e.prnt_e,
+          e.chld_e_classnm,
+        );
+        if (e.arr.length > 0) {
+          (async () => {
+            for (let i = 0; i < e.arr.length; i++) {
+              const new_cachedResponse = await caches.match(
+                `${e.arg_endpoint}/${e.arr[i]}`,
+              );
+
+              if (new_cachedResponse) {
+                const new_offline_img_blob = URL.createObjectURL(
+                  await new_cachedResponse.blob(),
+                );
+                console.log("new cached", new_offline_img_blob);
+                //render here v2.0.0.0
+                const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = new_offline_img_blob;
+                const chld_e = document.createElement("div");
+                chld_e.className = e.chld_e_classnm;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
+                e.prnt_e.appendChild(chld_e);
+              }
+            }
+          })();
+        }
+      });
     }
   }
 });
@@ -986,18 +1163,193 @@ home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_2")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data = await app_btns_request("/api/chrchflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+      const argument_arr_obj = data_obj.church_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/chrchpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+      app_btns_img_cache_checker_or_dwnld_cache_fuc(
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ).then((e) => {
+        console.log(
+          "done",
+          e.tasks_done,
+          e.arr,
+          e.arg_endpoint,
+          e.prnt_e,
+          e.chld_e_classnm,
+        );
+        if (e.arr.length > 0) {
+          (async () => {
+            for (let i = 0; i < e.arr.length; i++) {
+              const new_cachedResponse = await caches.match(
+                `${e.arg_endpoint}/${e.arr[i]}`,
+              );
+
+              if (new_cachedResponse) {
+                const new_offline_img_blob = URL.createObjectURL(
+                  await new_cachedResponse.blob(),
+                );
+                console.log("new cached", new_offline_img_blob);
+                //render here v2.0.0.0
+                const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = new_offline_img_blob;
+                const chld_e = document.createElement("div");
+                chld_e.className = e.chld_e_classnm;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
+                e.prnt_e.appendChild(chld_e);
+              }
+            }
+          })();
+        }
+      });
     }
   }
 });
 //club restaurant flyers
+let global_clb_rstrnt_remaining_arr_flyrs;
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_3")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/clbrstrntflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+
+      //rrender actual flyer data
+      const render_thirty_func = (
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ) => {
+        app_btns_img_cache_checker_or_dwnld_cache_fuc(
+          argument_arr_obj,
+          renewly_cached,
+          endpoint,
+          prnt_e_var,
+          chld_e_var_classnm,
+        ).then((e) => {
+          console.log(
+            "done",
+            e.tasks_done,
+            e.arr,
+            e.arg_endpoint,
+            e.prnt_e,
+            e.chld_e_classnm,
+          );
+          if (e.arr.length > 0) {
+            (async () => {
+              for (let i = 0; i < e.arr.length; i++) {
+                const new_cachedResponse = await caches.match(
+                  `${e.arg_endpoint}/${e.arr[i]}`,
+                );
+
+                if (new_cachedResponse) {
+                  const new_offline_img_blob = URL.createObjectURL(
+                    await new_cachedResponse.blob(),
+                  );
+                  console.log("new cached", new_offline_img_blob);
+                  //render here v2.0.0.0
+                  const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                  const chld_e_img = document.createElement("img");
+                  chld_e_img.style.width = "100%";
+                  chld_e_img.src = new_offline_img_blob;
+                  const chld_e = document.createElement("div");
+                  chld_e.className = e.chld_e_classnm;
+                  chld_e.innerHTML = img_sclspnl;
+                  chld_e.appendChild(chld_e_img);
+                  e.prnt_e.appendChild(chld_e);
+                }
+              }
+            })();
+          }
+        });
+      };
+
+      //30 per render
+      const track_thirty_renders_fuc = (
+        original_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ) => {
+        if (original_arr_obj.length > 30) {
+          //track 30 renders
+          const thirty_arr = original_arr_obj.slice(0, 30);
+          global_clb_rstrnt_remaining_arr_flyrs = original_arr_obj.slice(30);
+
+          console.log("thirty_array: ", thirty_arr.length);
+          console.log(
+            "remaining_renders_array: ",
+            global_clb_rstrnt_remaining_arr_flyrs.length,
+          );
+          console.log("total: ", original_arr_obj.length);
+          //render 30
+          const argument_arr_obj = thirty_arr;
+          render_thirty_func(
+            argument_arr_obj,
+            renewly_cached,
+            endpoint,
+            prnt_e_var,
+            chld_e_var_classnm,
+          );
+          //show next page button
+
+          const nxt_pg_pl = app_api_getelem("grphcsflpgcntnts_ttm_lwstbttm");
+          nxt_pg_pl.style.display = "flex";
+          nxt_pg_pl.innerHTML = `
+          <button id="grphcsflpgcntnts_ttm_lwstbttm_nxtpgbtn">Next Page<span><img id="grphcsflpgcntnts_ttm_lwstbttm_nxtpgbtn_icn" src="dist/icons/long_forward_arrow.svg" width="15" class="app-icon"></span></button>
+          `;
+        } else {
+          console.log("less thann 30 - render immediate");
+        }
+      };
+
+      const original_arr_obj = data_obj.clb_rstrnt_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/clbsrstrntpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+
+      track_thirty_renders_fuc(
+        original_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      );
     }
   }
 });
@@ -1005,9 +1357,66 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_4")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/sprtsflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+      const argument_arr_obj = data_obj.sprts_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/sprtspstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+      app_btns_img_cache_checker_or_dwnld_cache_fuc(
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ).then((e) => {
+        console.log(
+          "done",
+          e.tasks_done,
+          e.arr,
+          e.arg_endpoint,
+          e.prnt_e,
+          e.chld_e_classnm,
+        );
+        if (e.arr.length > 0) {
+          (async () => {
+            for (let i = 0; i < e.arr.length; i++) {
+              const new_cachedResponse = await caches.match(
+                `${e.arg_endpoint}/${e.arr[i]}`,
+              );
+
+              if (new_cachedResponse) {
+                const new_offline_img_blob = URL.createObjectURL(
+                  await new_cachedResponse.blob(),
+                );
+                console.log("new cached", new_offline_img_blob);
+                //render here v2.0.0.0
+                const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = new_offline_img_blob;
+                const chld_e = document.createElement("div");
+                chld_e.className = e.chld_e_classnm;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
+                e.prnt_e.appendChild(chld_e);
+              }
+            }
+          })();
+        }
+      });
     }
   }
 });
@@ -1015,9 +1424,66 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_5")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/brndngflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+      const argument_arr_obj = data_obj.branding_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/brndngpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+      app_btns_img_cache_checker_or_dwnld_cache_fuc(
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ).then((e) => {
+        console.log(
+          "done",
+          e.tasks_done,
+          e.arr,
+          e.arg_endpoint,
+          e.prnt_e,
+          e.chld_e_classnm,
+        );
+        if (e.arr.length > 0) {
+          (async () => {
+            for (let i = 0; i < e.arr.length; i++) {
+              const new_cachedResponse = await caches.match(
+                `${e.arg_endpoint}/${e.arr[i]}`,
+              );
+
+              if (new_cachedResponse) {
+                const new_offline_img_blob = URL.createObjectURL(
+                  await new_cachedResponse.blob(),
+                );
+                console.log("new cached", new_offline_img_blob);
+                //render here v2.0.0.0
+                const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = new_offline_img_blob;
+                const chld_e = document.createElement("div");
+                chld_e.className = e.chld_e_classnm;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
+                e.prnt_e.appendChild(chld_e);
+              }
+            }
+          })();
+        }
+      });
     }
   }
 });
@@ -1025,9 +1491,66 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_6")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
-    const data = await app_btns_request("/api/thmbnlsflyrsdataapi", "GET");
-    if (data) {
-      console.log(data);
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    if (data_obj) {
+      //recent posters & flyers - click based
+      //reusable promise cached checker
+      //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+      //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
+      const argument_arr_obj = data_obj.thumbnail_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/thmbnlpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+      app_btns_img_cache_checker_or_dwnld_cache_fuc(
+        argument_arr_obj,
+        renewly_cached,
+        endpoint,
+        prnt_e_var,
+        chld_e_var_classnm,
+      ).then((e) => {
+        console.log(
+          "done",
+          e.tasks_done,
+          e.arr,
+          e.arg_endpoint,
+          e.prnt_e,
+          e.chld_e_classnm,
+        );
+        if (e.arr.length > 0) {
+          (async () => {
+            for (let i = 0; i < e.arr.length; i++) {
+              const new_cachedResponse = await caches.match(
+                `${e.arg_endpoint}/${e.arr[i]}`,
+              );
+
+              if (new_cachedResponse) {
+                const new_offline_img_blob = URL.createObjectURL(
+                  await new_cachedResponse.blob(),
+                );
+                console.log("new cached", new_offline_img_blob);
+                //render here v2.0.0.0
+                const img_sclspnl = `
+                      <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                      <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">
+                    `;
+
+                const chld_e_img = document.createElement("img");
+                chld_e_img.style.width = "100%";
+                chld_e_img.src = new_offline_img_blob;
+                const chld_e = document.createElement("div");
+                chld_e.className = e.chld_e_classnm;
+                chld_e.innerHTML = img_sclspnl;
+                chld_e.appendChild(chld_e_img);
+                e.prnt_e.appendChild(chld_e);
+              }
+            }
+          })();
+        }
+      });
     }
   }
 });
@@ -1056,5 +1579,20 @@ home.addEventListener("click", (e) => {
       icon.style.filter =
         "invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg) brightness(87%) contrast(92%)";
     }
+  }
+});
+
+//close next, current & previous page panel if any tags & graphics types btns are clicked
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_0") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_1") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_2") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_3") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_4") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_5") ||
+    e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_6")
+  ) {
+    close_nxt_crrnt_prvs_pg_panel();
   }
 });

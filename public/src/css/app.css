@@ -583,7 +583,31 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
-
+#grphcsflpgcntnts_ttm_lwstbttm_nxtpgbtn {
+  border: none;
+  outline: none;
+  width: 25%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+#grphcsflpgcntnts_ttm_lwstbttm_nxtpgbtn_icn {
+  filter: var(--fmjr-fltr2);
+}
+#grphcsflpgcntnts_ttm_lwstbttm {
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
 #rvwpg_rvwBtn {
   border: none;
   outline: none;
@@ -883,6 +907,11 @@ button:focus {
   background-color: var(--fmjr--dkr1);
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+}
+#semi_grphc_dsgn_type_pstr_flyrs_0 {
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  border: none;
 }
 .grphcsflpgcntnts_bttm_ctgry_crd:focus,
 .grphcsflpgcntnts_bttm_ctgry_crd:active {

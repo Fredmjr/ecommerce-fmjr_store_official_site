@@ -2,18 +2,24 @@ import express from "express";
 import {
   blogdataapiUrl,
   brndngflyrsdataapiUrl,
+  brndngpstrflyrsindiimgapiUrl,
   chrchflyrsdataapiUrl,
+  chrchpstrflyrsindiimgapiUrl,
   clbrstrntflyrsdataapiUrl,
+  clbsrstrntpstrflyrsindiimgapiUrl,
   cnrsatnsapiUrl,
   dtmtndataapiUrl,
   gnrlflyrsdataapiUrl,
+  gnrlpstrflyrsindiimgapiUrl,
   grphcsdsgndataapiUrl,
   grphcsdsgndatasctnapiUrl,
   prtfloimgsapiUrl,
   prtfloimgsnamesapiUrl,
   rcntpstrflyrsindiimgapiUrl,
   sprtsflyrsdataapiUrl,
+  sprtspstrflyrsindiimgapiUrl,
   srchddataapiUrl,
+  thmbnlpstrflyrsindiimgapiUrl,
   thmbnlsflyrsdataapiUrl,
 } from "../controllers/api.controller.js";
 
@@ -34,5 +40,14 @@ router.get("/brndngflyrsdataapi", brndngflyrsdataapiUrl);
 router.get("/thmbnlsflyrsdataapi", thmbnlsflyrsdataapiUrl);
 router.get("/grphcsdsgndatasctnapi", grphcsdsgndatasctnapiUrl);
 router.get("/rcntpstrflyrsindiimgapi/:id", rcntpstrflyrsindiimgapiUrl);
+router.get("/gnrlpstrflyrsindiimgapi/:id", gnrlpstrflyrsindiimgapiUrl);
+router.get("/chrchpstrflyrsindiimgapi/:id", chrchpstrflyrsindiimgapiUrl);
+router.get(
+  "/clbsrstrntpstrflyrsindiimgapi/:id",
+  clbsrstrntpstrflyrsindiimgapiUrl,
+);
+router.get("/sprtspstrflyrsindiimgapi/:id", sprtspstrflyrsindiimgapiUrl);
+router.get("/brndngpstrflyrsindiimgapi/:id", brndngpstrflyrsindiimgapiUrl);
+router.get("/thmbnlpstrflyrsindiimgapi/:id", thmbnlpstrflyrsindiimgapiUrl);
 
 export default router;

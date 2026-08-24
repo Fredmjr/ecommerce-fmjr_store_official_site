@@ -35,6 +35,61 @@ const app_api_spinner_fuc = (e) => {
   app_btns_getelem("main").innerHTML = spinner;
 };
 
+//reusable promise cached checker & if not cached download then cache & render/display img
+//ALLOWWED eg exmaple
+//DISALLOWED eg example.webp
+//DISALLOWED eg /public/dist/imgs/example.webp
+const app_api_img_cache_checker_or_dwnld_cache_fuc = async (
+  obj,
+  arr,
+  arg_endpoint,
+  prnt_e,
+  chld_e_classnm,
+) => {
+  prnt_e.innerHTML = "";
+  const tasks_array_fuc = obj.map(async (ind_task) => {
+    const img = ind_task + ".webp";
+    const img_plain_nm = ind_task;
+    console.log(img);
+    const cachedResponse = await caches.match(`${arg_endpoint}/${img}`);
+
+    if (cachedResponse) {
+      const offline_img_blob = URL.createObjectURL(await cachedResponse.blob());
+      console.log("cached", offline_img_blob);
+      //render here v1.0.0.0
+      const img_sclspnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">FUllview
+               `;
+      const img_popuppnl = `
+                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+               `;
+      const chld_e_img = document.createElement("img");
+      chld_e_img.style.width = "100%";
+      chld_e_img.src = offline_img_blob;
+      const chld_e = document.createElement("div");
+      chld_e.className = chld_e_classnm;
+      chld_e.innerHTML = img_popuppnl;
+      chld_e.appendChild(chld_e_img);
+      prnt_e.appendChild(chld_e);
+    } else {
+      try {
+        set = await app_btn_cache_set_Img(`${endpoint}/${img}`, img_plain_nm);
+        console.log("dwnld thencached img", img);
+        //reuse later
+        arr.push(img);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+
+  await Promise.all(tasks_array_fuc);
+  const tasks_done = true;
+  return { tasks_done, arr, arg_endpoint, prnt_e, chld_e_classnm };
+};
+
 //reusable button function
 const app_api_getelem = (e) => {
   return document.getElementById(e) || document.querySelector(`.${e}`);
@@ -527,7 +582,7 @@ const apibsrvr = new MutationObserver((mutations) => {
             const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_ctgry");
             el_prnt.innerHTML = "";
             for (let i = 0; i < data.grphc_dsgn_type.length; i++) {
-              console.log(data.grphc_dsgn_type[i]);
+              /*  console.log(data.grphc_dsgn_type[i]); */
               const el_chld = document.createElement("button");
               el_chld.className = "grphcsflpgcntnts_bttm_ctgry_crd";
               el_chld.id = data.grphc_dsgn_type[i].id;
@@ -556,73 +611,15 @@ const apibsrvr = new MutationObserver((mutations) => {
           //all posters & flyers total number
           el8.innerHTML = `${data_obj.all_flyers_count} in Collection`;
           //recent posters & flyers
-          //reusable promise cached checker & if not cached download then cache & render/display img
-          //ALLOWWED eg exmaple
-          //DISALLOWED eg example.webp
-          //DISALLOWED eg /public/dist/imgs/example.webp
+          //reusable promise cached checker
+          //arguements: array data, empty newly added array, endpoint url (individual imgs), parent variable & child classname
+          //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
           const argument_arr_obj = data_obj.recnt_flyers;
           const renewly_cached = [];
           const endpoint = "/api/rcntpstrflyrsindiimgapi";
           const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
           const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
-          const img_cache_checker_or_dwnld_cache_fuc = async (
-            obj,
-            arr,
-            arg_endpoint,
-            prnt_e,
-            chld_e_classnm,
-          ) => {
-            prnt_e.innerHTML = "";
-            const tasks_array_fuc = obj.map(async (ind_task) => {
-              const img = ind_task + ".webp";
-              const img_plain_nm = ind_task;
-              console.log(img);
-              const cachedResponse = await caches.match(
-                `${arg_endpoint}/${img}`,
-              );
-
-              if (cachedResponse) {
-                const offline_img_blob = URL.createObjectURL(
-                  await cachedResponse.blob(),
-                );
-                console.log("cached", offline_img_blob);
-                //render here v1.0.0.0
-                const img_sclspnl = `
-                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
-                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/semi menu.svg" width="10">FUllview
-               `;
-                const img_popuppnl = `
-                <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
-                <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
-               `;
-                const chld_e_img = document.createElement("img");
-                chld_e_img.style.width = "100%";
-                chld_e_img.src = offline_img_blob;
-                const chld_e = document.createElement("div");
-                chld_e.className = chld_e_classnm;
-                chld_e.innerHTML = img_popuppnl;
-                chld_e.appendChild(chld_e_img);
-                prnt_e.appendChild(chld_e);
-              } else {
-                try {
-                  set = await app_btn_cache_set_Img(
-                    `${endpoint}/${img}`,
-                    img_plain_nm,
-                  );
-                  console.log("dwnld thencached img", img);
-                  //reuse later
-                  arr.push(img);
-                } catch (err) {
-                  console.log(err);
-                }
-              }
-            });
-
-            await Promise.all(tasks_array_fuc);
-            const tasks_done = true;
-            return { tasks_done, arr, arg_endpoint, prnt_e, chld_e_classnm };
-          };
-          img_cache_checker_or_dwnld_cache_fuc(
+          app_api_img_cache_checker_or_dwnld_cache_fuc(
             argument_arr_obj,
             renewly_cached,
             endpoint,

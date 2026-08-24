@@ -440,17 +440,103 @@ export const grphcsdsgndatasctnapiUrl = async (req, res) => {
         erMgs: "Unable to retrive content",
       });
     }
-    //recent images
+    //reusbale datavalues filter function
+    const fltr_datavalues_fuc = (arr_obj, properties) => {
+      const data = arr_obj.map((obj) =>
+        Object.fromEntries(
+          Object.entries(obj.dataValues).filter(([key]) =>
+            properties.includes(key),
+          ),
+        ),
+      );
+      return data;
+    };
+    //all images array
+    const all_results = await img_indiModel.findAll({
+      where: {
+        site_sub_sec_group: "posters_flyers",
+      },
+    });
+    const universal_props = ["id", "site_sub_sec_group_tag", "img_filepath"];
+    const incorrected_file_nm_results = fltr_datavalues_fuc(
+      all_results,
+      universal_props,
+    );
+    const fltrd_all_results = incorrected_file_nm_results.map((obj) => {
+      const match = obj.img_filepath.match(/([^\/]+)(?=\.[^.]+$)/);
+      return {
+        ...obj,
+        img_filepath: match ? match[1] : obj.img_filepath,
+      };
+    });
+    //1. general
+    const gnrl_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "general")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+
+    //2. church
+    const church_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "church")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+    //3. Club Restaurant
+    const clb_rstrnt_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "club_restaurant")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+    //4. sports
+    const sprts_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "sports")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+    //5. branding
+    const branding_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "branding")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+
+    //5. thumbnail
+    const thumbnail_flyrs = [
+      ...new Set(
+        fltrd_all_results
+          .filter((obj) => obj.site_sub_sec_group_tag === "thumbnail")
+          .map((obj) => obj.img_filepath),
+      ),
+    ];
+
+    //final. recent images
     const src_dir =
       "./public/dist/imgs/ctgry/graphics_design/posters_flyers/recent";
     const recnt_flyers = fs
       .readdirSync(src_dir)
       .filter((file) => path.extname(file).toLowerCase() === ".webp")
       .map((file) => path.parse(file).name);
-    console.log(recnt_flyers);
+
     return res.status(200).json({
-      recnt_flyers: recnt_flyers,
       all_flyers_count: results.length,
+      recnt_flyers: recnt_flyers,
+      clb_rstrnt_flyrs: clb_rstrnt_flyrs,
+      gnrl_flyrs: gnrl_flyrs,
+      church_flyrs: church_flyrs,
+      sprts_flyrs: sprts_flyrs,
+      branding_flyrs: branding_flyrs,
+      thumbnail_flyrs: thumbnail_flyrs,
     });
   } catch (error) {
     console.log(error);
@@ -471,6 +557,198 @@ export const rcntpstrflyrsindiimgapiUrl = async (req, res) => {
     const filePath = path.join(
       __dirname,
       `../public/dist/imgs/ctgry/graphics_design/posters_flyers/recent/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual general poster or flyer for cache
+export const gnrlpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/general/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual church poster or flyer for cache
+export const chrchpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/church/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual sports poster or flyer for cache
+export const sprtspstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/sports/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual sports poster or flyer for cache
+export const brndngpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/branding/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual sports poster or flyer for cache
+export const thmbnlpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/thumbnail/${img_nm}`,
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+
+    return res.sendFile(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//dowload individual clubs & rwestaurant poster or flyer for cache
+export const clbsrstrntpstrflyrsindiimgapiUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      `../public/dist/imgs/ctgry/graphics_design/posters_flyers/club_restaurant/${img_nm}`,
     );
     console.log(filePath);
     //retur nothing but handle err in tyrcatch err on client
