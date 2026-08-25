@@ -75,7 +75,10 @@ const app_api_img_cache_checker_or_dwnld_cache_fuc = async (
       prnt_e.appendChild(chld_e);
     } else {
       try {
-        set = await app_btn_cache_set_Img(`${endpoint}/${img}`, img_plain_nm);
+        set = await app_btn_cache_set_Img(
+          `${arg_endpoint}/${img}`,
+          img_plain_nm,
+        );
         console.log("dwnld thencached img", img);
         //reuse later
         arr.push(img);

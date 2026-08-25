@@ -1242,6 +1242,12 @@ home.addEventListener("click", async (e) => {
       //return: task done signal,  empty newly added (arr), endpoint url (individual imgs), parent variable & child classname
 
       //rrender actual flyer data
+      const original_arr_obj = data_obj.clb_rstrnt_flyrs;
+      const renewly_cached = [];
+      const endpoint = "/api/clbsrstrntpstrflyrsindiimgapi";
+      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
+      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+
       const render_thirty_func = (
         argument_arr_obj,
         renewly_cached,
@@ -1336,12 +1342,6 @@ home.addEventListener("click", async (e) => {
           console.log("less thann 30 - render immediate");
         }
       };
-
-      const original_arr_obj = data_obj.clb_rstrnt_flyrs;
-      const renewly_cached = [];
-      const endpoint = "/api/clbsrstrntpstrflyrsindiimgapi";
-      const prnt_e_var = app_api_getelem("grphcsflpgcntnts_bttm_main");
-      const chld_e_var_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
 
       track_thirty_renders_fuc(
         original_arr_obj,
