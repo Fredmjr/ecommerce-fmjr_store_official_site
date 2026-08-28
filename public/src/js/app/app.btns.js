@@ -182,6 +182,13 @@ const close_nxt_crrnt_prvs_pg_panel = () => {
   }
 };
 
+//resuable scroll to top of elem fucntion
+const app_btns_scroll_top_elem_fuc = (e) => {
+  e.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
 //main menu
 app_btns_getelem("navbrmenuBtn").addEventListener("click", () => {
   closeopenFunc(app_btns_getelem("navbrmenuBtn_drpdwnmenu"));
@@ -1598,7 +1605,10 @@ home.addEventListener("click", async (e) => {
 });
 //author and books section
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#sidemenuCtrycl_authrbooksbtn")) {
+  if (
+    e.target.closest("#sidemenuCtrycl_authrbooksbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_authrbksbtn")
+  ) {
     spinner_fuc();
     const data = await app_btns_request("/app/authrbookspg", "GET");
     if (data) {
@@ -1672,9 +1682,7 @@ home.addEventListener("click", async (e) => {
         //books
         if (authr_bks_obj_data.offcl_rlssd_bks) {
           authr_bks_prnt_el.innerHTML = "";
-          console.log(authr_bks_obj_data.offcl_rlssd_bks);
           authr_bks_obj_data.offcl_rlssd_bks.forEach((e, index) => {
-            console.log(e);
             const chld_el = document.createElement("div");
             chld_el.className =
               "authrbookspgcntnts_maincntnts_contents_cookcrd";
@@ -1713,6 +1721,11 @@ home.addEventListener("click", async (e) => {
       "GET",
     );
     if (authr_bks_obj_data.offcl_rlssd_bks) {
+      //scoll to section
+      app_btns_scroll_top_elem_fuc(
+        app_btns_getelem("authrbookspgcntnts_ctgry"),
+      );
+      //main jobs
       console.log(authr_bks_obj_data.offcl_rlssd_bks);
       authr_bks_obj_data.offcl_rlssd_bks.forEach((e, index) => {
         console.log(e);
@@ -1720,7 +1733,7 @@ home.addEventListener("click", async (e) => {
         chld_el.className = "authrbookspgcntnts_maincntnts_contents_cookcrd";
         chld_el.id = `authrbookspgcntnts_maincntnts_contents_cookcrd_ofclrlssdbksid_${index}`;
         chld_el.innerHTML = `
-            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl"><img class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="height:100%;"></div>
+            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl"><div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_popupricetag" >${e.bk_price}</div><img class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="height:100%;"></div>
              <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info">
             <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl">${e.bk_ttl}</p>
             <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_dscrptn">${e.bk_dscrptn}</p>
@@ -1751,7 +1764,8 @@ home.addEventListener("click", async (e) => {
     const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
     e.innerHTML = "";
     e.innerHTML = err_icn_mgs;
-    console.log("hhhh");
+    //scoll to section
+    app_btns_scroll_top_elem_fuc(app_btns_getelem("authrbookspgcntnts_ctgry"));
   }
 });
 
@@ -1767,7 +1781,8 @@ home.addEventListener("click", async (e) => {
     const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
     e.innerHTML = "";
     e.innerHTML = err_icn_mgs;
-    console.log("hhhh");
+    //scoll to section
+    app_btns_scroll_top_elem_fuc(app_btns_getelem("authrbookspgcntnts_ctgry"));
   }
 });
 //affiliated books
@@ -1782,7 +1797,7 @@ home.addEventListener("click", async (e) => {
     const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
     e.innerHTML = "";
     e.innerHTML = err_icn_mgs;
-    console.log("hhhh");
+    app_btns_scroll_top_elem_fuc(app_btns_getelem("authrbookspgcntnts_ctgry"));
   }
 });
 
@@ -1793,7 +1808,12 @@ home.addEventListener("click", async (e) => {
     const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
     app_btns_spinner_fuc(e);
     const data = await app_btns_request("/app/hirebkspcsctn", "GET");
-    e.innerHTML = data;
+    if (data) {
+      e.innerHTML = data;
+      app_btns_scroll_top_elem_fuc(
+        app_btns_getelem("authrbookspgcntnts_ctgry"),
+      );
+    }
   }
 });
 
@@ -1814,17 +1834,15 @@ home.addEventListener("click", async (e) => {
     ready_upload_files_preview.innerHTML = "";
     file_input.value = "";
     file_input.click();
-
     file_input.onchange = () => {
       const files = file_input.files;
       global_file_input_files = file_input.files;
       const er_msg_pnl = app_btns_getelem(
         "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_ermgpnl",
       );
-      console.log("1file_input: ", file_input);
       if (files.length > 5) {
         er_msg_pnl.innerHTML = "";
-        er_msg_pnl = "";
+        er_msg_pnl.innerHTML = "";
         er_msg_pnl.innerHTML = `<p class="er_msg_pnl_txtmsg">Only 5 file selection are allowed!</p>`;
 
         setTimeout(() => {
@@ -1834,17 +1852,9 @@ home.addEventListener("click", async (e) => {
       } else if (files.length > 0) {
         for (let i = 0; i < files.length; i++) {
           const fl_size = (files[i].size / (1024 * 1024)).toFixed(2); //convert to MBs
-          console.log(fl_size);
           const fl_nm = files[i].name;
           //too large (10 MB limit) change
-          console.log("origin: ", files[i].size);
-          console.log("subbbbbb: ", 10 * 1024 * 1024);
-          if (files[i].size > 10 * 1024 * 1024) {
-            const e = document.createElement("p");
-            e.className = "er_msg_pnl_txtmsg";
-            e.innerHTML = `File ${fl_nm} exceeds 10 MB limit!`;
-            er_msg_pnl.appendChild(e);
-          } else {
+          const fl_prvw = () => {
             const e = document.createElement("div");
             e.className =
               "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl";
@@ -1861,6 +1871,15 @@ home.addEventListener("click", async (e) => {
                 </div>
             `;
             ready_upload_files_preview.appendChild(e);
+          };
+          if (files[i].size > 10 * 1024 * 1024) {
+            const e = document.createElement("p");
+            e.className = "er_msg_pnl_txtmsg";
+            e.innerHTML = `File ${fl_nm} exceeds 10 MB limit!`;
+            er_msg_pnl.appendChild(e);
+            fl_prvw();
+          } else {
+            fl_prvw();
           }
         }
         setTimeout(() => {
@@ -1911,6 +1930,77 @@ home.addEventListener("click", async (e) => {
           prnt.appendChild(e);
         }
       }
+    }
+  }
+});
+
+//hire book space - sumit book form
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_submtfrmbtn",
+    )
+  ) {
+    const eml_input = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_eml",
+    );
+
+    const hirebkspc_input = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rvwbox",
+    );
+    const er_msg_pnl = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_ermgpnl",
+    );
+    if (eml_input.value && hirebkspc_input.value) {
+      if (
+        eml_input.value &&
+        hirebkspc_input.value &&
+        !global_file_input_files
+      ) {
+        /*    console.log(
+          "email & descrption: ",
+          eml_input.value,
+          hirebkspc_input.value,
+        ); */
+        e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+      } else if (
+        eml_input.value &&
+        hirebkspc_input.value &&
+        global_file_input_files
+      ) {
+        /* console.log(
+          "email & descrption: ",
+          eml_input.value,
+          hirebkspc_input.value,
+        );
+        console.log("orignal: ", global_file_input_files); */
+        e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+      }
+    } else {
+      const e = document.createElement("p");
+      e.className = "er_msg_pnl_txtmsg";
+      er_msg_pnl.innerHTML = "";
+      e.innerHTML = `Email or Description field is empty!`;
+      er_msg_pnl.appendChild(e);
+      setTimeout(() => {
+        er_msg_pnl.innerHTML = "";
+      }, 5000);
+    }
+  }
+});
+
+//fmjr-Graphics Workspace
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_fmjrgrphcswrkspbtn") ||
+    e.target.closest("#sidemenuCtrycl_fmjrgrphcswrkspbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/fmjrgrphcswrkspcpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
     }
   }
 });

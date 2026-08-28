@@ -13,6 +13,7 @@ import {
   evntsschdlspgUrl,
   faqspgUrl,
   fdbkpgUrl,
+  fmjrgrphcswrkspcpgUrl,
   frgotpwdpgUrl,
   grphcsflpgUrl,
   hdrdtUrl,
@@ -64,5 +65,6 @@ router.get("/cookiespg", cookiespgUrl);
 router.get("/grphcsflpg", grphcsflpgUrl);
 router.get("/authrbookspg", authrbookspgUrl);
 router.get("/hirebkspcsctn", hirebkspcsctnUrl);
+router.get("/fmjrgrphcswrkspcpg", fmjrgrphcswrkspcpgUrl);
 
 export default router;

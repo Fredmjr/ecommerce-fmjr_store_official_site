@@ -500,3 +500,22 @@ export const hirebkspcsctnUrl = async (req, res) => {
     });
   }
 };
+
+//fmjr graphics workspace
+//faqs
+export const fmjrgrphcswrkspcpgUrl = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .render("components/categories/fmjr_graphics_workspace");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
