@@ -1,0 +1,76 @@
+<div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl">
+  <div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_ttl">Book Form
+    Submission</div>
+  {{! email }}
+  <label for="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_eml">Email
+    Address</label>
+  <div class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_inptcrdcl">
+    <input
+      type="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_eml"
+      id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_eml"
+      name="email"
+      placeholder="Enter Email Address"
+      class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_inptcrdcl_inptcl"
+      required
+    />
+  </div>
+  {{! txt box }}
+  <label for="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rvwbox">Book
+    Description</label>
+  <br />
+  <textarea
+    id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rvwbox"
+    class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox"
+    rows="5"
+    cols="40"
+    placeholder="Description text here"
+  ></textarea>
+  {{! bulleting }}
+  <div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_bulleting">
+    <p
+      class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_bulleting_bulletingtxt"
+    ><img
+        src="dist/icons/check.svg"
+        class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_bulleting_linksclicn"
+        width="12"
+      />Provide valid Email Address. Response will be sent to it!</p>
+  </div>
+  {{! upload }}
+  <p>Attach files</p>
+  <div
+    id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl"
+  >
+    <div
+      id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_img"
+    ><img src="dist/imgs/upload_file_thumbnail.webp" width="40" alt="" /></div>
+
+    <p
+      id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txt"
+    >Drag and drop file here or
+      <span
+        id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink"
+      >Choose file</span></p>
+    <input
+      type="file"
+      id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink_filinput"
+      style="display:none;"
+      multiple
+      accept=".pdf,.doc,.docx,.txt,.jpeg,.jpg,.png"
+    />
+  </div>
+  <div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_flfrmt"><span
+    >Supported formats: pdfs, doc, txt, jpeg, png</span><span>Maximum size: 10MB</span></div>
+  {{! upload err panel }}
+  <div
+    id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_ermgpnl"
+  ></div>
+
+  {{! ready to upload peview files }}
+  <div
+    id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles"
+  ></div>
+  <button
+    id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_submtfrmbtn"
+  >Submit</button>
+  <br />
+</div>

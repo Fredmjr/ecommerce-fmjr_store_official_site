@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  auhtrbksdatasctnapiUrl,
   blogdataapiUrl,
   brndngflyrsdataapiUrl,
   brndngpstrflyrsindiimgapiUrl,
@@ -49,5 +50,6 @@ router.get(
 router.get("/sprtspstrflyrsindiimgapi/:id", sprtspstrflyrsindiimgapiUrl);
 router.get("/brndngpstrflyrsindiimgapi/:id", brndngpstrflyrsindiimgapiUrl);
 router.get("/thmbnlpstrflyrsindiimgapi/:id", thmbnlpstrflyrsindiimgapiUrl);
+router.get("/auhtrbksdatasctnapi", auhtrbksdatasctnapiUrl);
 
 export default router;

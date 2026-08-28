@@ -1596,3 +1596,321 @@ home.addEventListener("click", async (e) => {
     close_nxt_crrnt_prvs_pg_panel();
   }
 });
+//author and books section
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#sidemenuCtrycl_authrbooksbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/authrbookspg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+      //auhtor books category cards
+      const atthr_bks_ctgry_pnl = app_btns_getelem("authrbookspgcntnts_ctgry");
+      if (atthr_bks_ctgry_pnl) {
+        const a = [
+          {
+            ttl: "Officially Released Books",
+            icon: "official_released_books",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_0",
+            sub_txt: "0 In Collection",
+          },
+          {
+            ttl: "Upcoming Books",
+            icon: "up_coming_books",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_1",
+            sub_txt: "0 In Collection",
+          },
+          {
+            ttl: "Book Drafts & Ideas",
+            icon: "book_drafts_ideas",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_2",
+            sub_txt: "0 In Collection",
+          },
+          {
+            ttl: "Affiliated Books",
+            icon: "affiliated_books",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_3",
+            sub_txt: "0 In Collection",
+          },
+          {
+            ttl: "Hire Book-Space",
+            icon: "hire_book_space",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_4",
+            sub_txt: "Sale your book here",
+          },
+        ];
+        //category cards
+        for (let i = 0; i < a.length; i++) {
+          const chld_el = document.createElement("div");
+          chld_el.className = "authrbookspgcntnts_ctgry_crd";
+          chld_el.id = `authrbookspgcntnts_ctgry_crd_id_${i}`;
+          chld_el.innerHTML = `
+          <div class="authrbookspgcntnts_ctgry_crd">
+            <div class="authrbookspgcntnts_ctgry_crd_thumbnl" id="${a[i].id}"><div class="authrbookspgcntnts_ctgry_crd_thumbnl_content"><img class="authrbookspgcntnts_ctgry_crd_thumbnl_content_icnscl" width="12" src="dist/icons/${a[i].icon}.svg" alt=""></div></div>
+            <div class="authrbookspgcntnts_ctgry_crd_info">
+              <p class="authrbookspgcntnts_ctgry_crd_info_ttl">${a[i].ttl}</p>
+              <p class="authrbookspgcntnts_ctgry_crd_info_dscrptn">${a[i].sub_txt}</p>
+            </div>
+          </div>`;
+
+          atthr_bks_ctgry_pnl.appendChild(chld_el);
+        }
+
+        //officially released books
+        const authr_bks_prnt_el = app_btns_getelem(
+          "authrbookspgcntnts_maincntnts_contents",
+        );
+        app_btns_spinner_fuc(authr_bks_prnt_el);
+        const authr_bks_obj_data = await app_btns_request(
+          "/api/auhtrbksdatasctnapi",
+          "GET",
+        );
+        //category book count
+        app_btns_getelem(
+          "authrbookspgcntnts_ctgry_crd_info_dscrptn",
+        ).innerHTML =
+          `${authr_bks_obj_data.offcl_rlssd_bks.length} In Collection`;
+        //books
+        if (authr_bks_obj_data.offcl_rlssd_bks) {
+          authr_bks_prnt_el.innerHTML = "";
+          console.log(authr_bks_obj_data.offcl_rlssd_bks);
+          authr_bks_obj_data.offcl_rlssd_bks.forEach((e, index) => {
+            console.log(e);
+            const chld_el = document.createElement("div");
+            chld_el.className =
+              "authrbookspgcntnts_maincntnts_contents_cookcrd";
+            chld_el.id = `authrbookspgcntnts_maincntnts_contents_cookcrd_ofclrlssdbksid_${index}`;
+            chld_el.innerHTML = `
+            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl"><div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_popupricetag" >${e.bk_price}</div><img class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="height:100%;"></div>
+             <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl">${e.bk_ttl}</p>
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_dscrptn">${e.bk_dscrptn}</p>
+            <br><br>
+            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm">
+             <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm_rght">
+            <button class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm_rght_buynowbtn">Buy Now</button></div>
+            </div>
+            </div>
+                `;
+
+            authr_bks_prnt_el.appendChild(chld_el);
+          });
+        }
+      }
+    }
+  }
+});
+
+//officially released books by click
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_0")) {
+    const authr_bks_prnt_el = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents",
+    );
+    app_btns_spinner_fuc(authr_bks_prnt_el);
+    authr_bks_prnt_el.innerHTML = "";
+    const authr_bks_obj_data = await app_btns_request(
+      "/api/auhtrbksdatasctnapi",
+      "GET",
+    );
+    if (authr_bks_obj_data.offcl_rlssd_bks) {
+      console.log(authr_bks_obj_data.offcl_rlssd_bks);
+      authr_bks_obj_data.offcl_rlssd_bks.forEach((e, index) => {
+        console.log(e);
+        const chld_el = document.createElement("div");
+        chld_el.className = "authrbookspgcntnts_maincntnts_contents_cookcrd";
+        chld_el.id = `authrbookspgcntnts_maincntnts_contents_cookcrd_ofclrlssdbksid_${index}`;
+        chld_el.innerHTML = `
+            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl"><img class="authrbookspgcntnts_maincntnts_contents_cookcrd_thmbnl_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="height:100%;"></div>
+             <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl">${e.bk_ttl}</p>
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_dscrptn">${e.bk_dscrptn}</p>
+            <br><br>
+            <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm">
+             <div class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm_rght">
+            <button class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_btm_rght_buynowbtn">Buy Now</button>
+            </div>
+            </div>
+            </div>
+                `;
+
+        authr_bks_prnt_el.appendChild(chld_el);
+      });
+    }
+  }
+});
+
+//upcoming books
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_1")) {
+    const err_icn_mgs = `<div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/no_books_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">No Upcoming Books Available</p>
+    </div>
+    <div>`;
+    const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+    e.innerHTML = "";
+    e.innerHTML = err_icn_mgs;
+    console.log("hhhh");
+  }
+});
+
+//drafted & idea books
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_2")) {
+    const err_icn_mgs = `<div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/no_books_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">No Drafted & Idea Books Available</p>
+    </div>
+    <div>`;
+    const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+    e.innerHTML = "";
+    e.innerHTML = err_icn_mgs;
+    console.log("hhhh");
+  }
+});
+//affiliated books
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_3")) {
+    const err_icn_mgs = `<div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/no_books_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">No Affiliated Books Available</p>
+    </div>
+    <div>`;
+    const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+    e.innerHTML = "";
+    e.innerHTML = err_icn_mgs;
+    console.log("hhhh");
+  }
+});
+
+//hire book space
+let global_file_input_files;
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_4")) {
+    const e = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+    app_btns_spinner_fuc(e);
+    const data = await app_btns_request("/app/hirebkspcsctn", "GET");
+    e.innerHTML = data;
+  }
+});
+
+//book form submission
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink",
+    )
+  ) {
+    const file_input = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink_filinput",
+    );
+    const ready_upload_files_preview = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles",
+    );
+
+    ready_upload_files_preview.innerHTML = "";
+    file_input.value = "";
+    file_input.click();
+
+    file_input.onchange = () => {
+      const files = file_input.files;
+      global_file_input_files = file_input.files;
+      const er_msg_pnl = app_btns_getelem(
+        "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_ermgpnl",
+      );
+      console.log("1file_input: ", file_input);
+      if (files.length > 5) {
+        er_msg_pnl.innerHTML = "";
+        er_msg_pnl = "";
+        er_msg_pnl.innerHTML = `<p class="er_msg_pnl_txtmsg">Only 5 file selection are allowed!</p>`;
+
+        setTimeout(() => {
+          er_msg_pnl.innerHTML = "";
+          file_input.value = "";
+        }, 5000);
+      } else if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+          const fl_size = (files[i].size / (1024 * 1024)).toFixed(2); //convert to MBs
+          console.log(fl_size);
+          const fl_nm = files[i].name;
+          //too large (10 MB limit) change
+          console.log("origin: ", files[i].size);
+          console.log("subbbbbb: ", 10 * 1024 * 1024);
+          if (files[i].size > 10 * 1024 * 1024) {
+            const e = document.createElement("p");
+            e.className = "er_msg_pnl_txtmsg";
+            e.innerHTML = `File ${fl_nm} exceeds 10 MB limit!`;
+            er_msg_pnl.appendChild(e);
+          } else {
+            const e = document.createElement("div");
+            e.className =
+              "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl";
+            e.innerHTML = `
+                <div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_img" ><img src="dist/imgs/file_thumbnail.webp" width="35" alt=""></div>
+                <div class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info">
+                  <p class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info_ttl">${fl_nm}</p>
+                  <p class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info_size">${fl_size}MB</p>
+                </div>
+                <div class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_rmvfilpnl">
+                  <button class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_rmvfilpnl_btn" data-fl_data_nm="${fl_nm}"><span>
+                      <img src="dist/icons/trash.svg" width="10">
+                    </span></button>
+                </div>
+            `;
+            ready_upload_files_preview.appendChild(e);
+          }
+        }
+        setTimeout(() => {
+          er_msg_pnl.innerHTML = "";
+        }, 5000);
+      }
+    };
+  }
+});
+//book form submission - removed selected file
+home.addEventListener("click", async (e) => {
+  const elem = e.target.closest(
+    ".authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_rmvfilpnl_btn",
+  );
+  if (elem) {
+    if (global_file_input_files) {
+      //remove file
+      const file_to_rmv = elem.dataset.fl_data_nm;
+      const filtered_files = Array.from(global_file_input_files).filter(
+        (file) => file.name !== file_to_rmv,
+      );
+      const dataTransfer = new DataTransfer();
+      filtered_files.forEach((file) => dataTransfer.items.add(file));
+      global_file_input_files = dataTransfer.files;
+
+      //render after removed file
+      const prnt = app_btns_getelem(
+        "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles",
+      );
+      prnt.innerHTML = "";
+      if (global_file_input_files.length > 0) {
+        for (let i = 0; i < global_file_input_files.length; i++) {
+          const e = document.createElement("div");
+          e.className =
+            "authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl";
+          e.innerHTML = `
+                <div id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_img" ><img src="dist/imgs/file_thumbnail.webp" width="35" alt=""></div>
+                <div class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info">
+                  <p class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info_ttl">${global_file_input_files[i].name}</p>
+                  <p class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_info_size">${(global_file_input_files[i].size / (1024 * 1024)).toFixed(2)}MB</p>
+                </div>
+                <div class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_rmvfilpnl">
+                  <button class="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_crdcl_rmvfilpnl_btn" data-fl_data_nm="${global_file_input_files[i].name}"><span>
+                      <img src="dist/icons/trash.svg" width="10">
+                    </span></button>
+                </div>
+            `;
+          prnt.appendChild(e);
+        }
+      }
+    }
+  }
+});

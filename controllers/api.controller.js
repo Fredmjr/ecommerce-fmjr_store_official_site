@@ -774,3 +774,49 @@ export const clbsrstrntpstrflyrsindiimgapiUrl = async (req, res) => {
     });
   }
 };
+//dowload individual clubs & rwestaurant poster or flyer for cache
+export const auhtrbksdatasctnapiUrl = async (req, res) => {
+  const offcl_rlssd_bks = [
+    {
+      bk_ttl: "Encoded Truth (TTS, The Scripture is Key Uncut Edition)",
+      bk_id: "3e629840-c548-418d-9f72-591eec68a6gu",
+      bk_price: "K100",
+      bk_img_nm: "through_the_scripture_the_scripture_is_key_book_cover",
+      bk_img_path:
+        "public/dist/imgs/ctgry/author_books/official_released_books",
+      bk_dscrptn:
+        "Welcome to Encoded Truth (Also titled as Through The Scripture, The Scripture is Key Uncut Edition), a concise guide to understanding the significance and power of God's written word. This document is designed to provide a brief yet impactful exploration of the scriptures, offering guidance and insight to its readers. And also provide practical guidance for spiritual growth, inspire readers to engage with God's written word. And be inspired to live a life guided by the written word",
+    },
+    {
+      bk_ttl: "Through The Scripture, The Scripture is Key",
+      bk_id: "ye629840-c548-418d-9f32-591eec6a6hu",
+      bk_price: "K75",
+      bk_img_nm: "encoded_truth_book_coverthrough",
+      bk_img_path:
+        "public/dist/imgs/ctgry/author_books/official_released_books",
+      bk_dscrptn:
+        "The purpose of the Through The Scripture, The Scripture is Key is to explain how and why the scriptures where introduced and what was the main objective was to bring in the scriptures. nspiration is the building block of all great things, it is the backbone of creativity and production. Even God himself used the word, the spirit, and himself as inspiration to make man. It is the same inspiration that is in the scriptures.",
+    },
+  ];
+  const up_cmng_bks = [];
+  const bk_drfts_ids = [];
+  const affltd_bks = [];
+  try {
+    return res.status(200).json({
+      offcl_rlssd_bks,
+      up_cmng_bks,
+      bk_drfts_ids,
+      affltd_bks,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};

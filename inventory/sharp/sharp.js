@@ -12,6 +12,10 @@ const distDir = "public/dist/imgs/ctgry/portfolio"; */
 /* const srcDir = "public/assets/imgs/ctgry/graphics_design/thumbnail";
 const distDir = "public/dist/imgs/ctgry/graphics_design/thumbnail"; */
 
+//authotrs & books images
+/* const srcDir = "public/assets/imgs/ctgry/author_books/official_released_books";
+const distDir = "public/dist/imgs/ctgry/author_books/official_released_books"; */
+
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }

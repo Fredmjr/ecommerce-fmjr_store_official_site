@@ -3,6 +3,7 @@ import express from "express";
 import {
   accntspgUrl,
   anncmntpgUrl,
+  authrbookspgUrl,
   bsktpgUrl,
   cachdsrvcsUrl,
   chtpgUrl,
@@ -15,6 +16,7 @@ import {
   frgotpwdpgUrl,
   grphcsflpgUrl,
   hdrdtUrl,
+  hirebkspcsctnUrl,
   hlppgUrl,
   issbxpgUrl,
   lgnpgUrl,
@@ -60,5 +62,7 @@ router.get("/whyfmjrstrspg", whyfmjrstrspgUrl);
 router.get("/trmscndtnspg", trmscndtnspgUrl);
 router.get("/cookiespg", cookiespgUrl);
 router.get("/grphcsflpg", grphcsflpgUrl);
+router.get("/authrbookspg", authrbookspgUrl);
+router.get("/hirebkspcsctn", hirebkspcsctnUrl);
 
 export default router;

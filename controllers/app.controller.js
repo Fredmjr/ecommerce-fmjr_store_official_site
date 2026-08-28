@@ -466,3 +466,37 @@ export const grphcsflpgUrl = async (req, res) => {
     });
   }
 };
+//author & books section
+export const authrbookspgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/author_book");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//author & books section - hire book space
+//faqs
+export const hirebkspcsctnUrl = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .render("components/categories/author_books/author_books");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
