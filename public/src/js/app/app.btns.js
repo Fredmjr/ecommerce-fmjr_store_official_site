@@ -2004,3 +2004,60 @@ home.addEventListener("click", async (e) => {
     }
   }
 });
+//Courses & Classes
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_corsclsswrkspcpgbtn") ||
+    e.target.closest("#sidemenuCtrycl_corsclsswrkspcpgbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/corsclsswrkspcpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//Courses & Classes - preview course by click
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn")) {
+    const linkbtns_pnl = document.createElement("div");
+    linkbtns_pnl.id = "cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main";
+    const arr_d = [
+      "Account Details",
+      "Course / Class Details",
+      "Payments",
+      "Activities",
+      "Track Progress",
+      "Chat & Messages",
+    ];
+    for (let i = 0; i < arr_d.length; i++) {
+      const e = document.createElement("button");
+      e.className = "cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn";
+      e.textContent = arr_d[i];
+      linkbtns_pnl.appendChild(e);
+      console.log(e);
+    }
+
+    if (linkbtns_pnl) {
+      const prnt_e = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+      prnt_e.innerHTML = "";
+      const chld_e = document.createElement("div");
+      chld_e.id = "cors_clss_wrkspcpg_cntnts_main_prvwpnl";
+      chld_e.innerHTML = `
+    <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft">
+    <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_ttlbar">All Courses & Classes</div>
+    ${linkbtns_pnl.outerHTML}
+    <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_bttm">caaaaa</div>
+    </div>
+    <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght">
+     <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar_pnl">
+     <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar">Account Details</div>
+     <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu"><img id="ctgry_ttlicon" src="dist/icons/three menu.svg" width="15" class="app-icon"></div>
+     </div>
+      <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main"></div>
+    </div>
+    `;
+      prnt_e.appendChild(chld_e);
+    }
+  }
+});
