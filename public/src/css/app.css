@@ -664,7 +664,7 @@ button {
   align-items: center;
   gap: 5px;
   height: 100%;
-  width: 15%;
+  width: 25%;
   box-sizing: border-box;
 }
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid {
@@ -673,6 +673,7 @@ button {
   box-sizing: border-box;
   overflow-y: scroll;
   margin-bottom: 10px;
+  padding: 3px;
 }
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid::placeholder {
   color: var(--fmjr--clr1);
@@ -5990,5 +5991,14 @@ button:focus {
   }
   #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl {
     display: none;
+  }
+  #cors_clss_wrkspcpg_cntnts_main {
+    padding: 5px;
+  }
+  .cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_sndr_crd_cntnts {
+    width: 95%;
+  }
+  .cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_rcvr_mgs {
+    width: 95%;
   }
 }
