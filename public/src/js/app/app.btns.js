@@ -2020,6 +2020,7 @@ home.addEventListener("click", async (e) => {
 //Courses & Classes - preview course by click
 home.addEventListener("click", async (e) => {
   if (e.target.closest(".cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn")) {
+    //large screen side menu
     const linkbtns_pnl = document.createElement("div");
     linkbtns_pnl.id = "cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main";
     const arr_d = [
@@ -2033,8 +2034,23 @@ home.addEventListener("click", async (e) => {
     for (let i = 0; i < arr_d.length; i++) {
       const e = document.createElement("button");
       e.className = "cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn";
+      e.id = `cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_${i}`;
       e.textContent = arr_d[i];
       linkbtns_pnl.appendChild(e);
+      console.log(e);
+    }
+    //small screen dop down menu
+    //small screen dop down menu
+    const drpdwn_linkbtns_pnl = document.createElement("div");
+    drpdwn_linkbtns_pnl.id =
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu";
+    for (let i = 0; i < arr_d.length; i++) {
+      const e = document.createElement("button");
+      e.className =
+        "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnscl";
+      e.id = `cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_${i}`;
+      e.textContent = arr_d[i];
+      drpdwn_linkbtns_pnl.appendChild(e);
       console.log(e);
     }
 
@@ -2053,11 +2069,78 @@ home.addEventListener("click", async (e) => {
      <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar_pnl">
      <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar">Account Details</div>
      <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu"><img id="ctgry_ttlicon" src="dist/icons/three menu.svg" width="15" class="app-icon"></div>
+     <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl" style="display: none;">${drpdwn_linkbtns_pnl.outerHTML}</div>
      </div>
       <div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main"></div>
     </div>
     `;
       prnt_e.appendChild(chld_e);
     }
+  }
+});
+
+///Courses & Classes - show drop down menu
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu")) {
+    closeopenFunc(
+      app_btns_getelem(
+        "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl",
+      ),
+    );
+  }
+});
+
+//chats and messsages temp
+const chts_messgs_temp = `
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section">
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_top">
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_top_lft">Chat Messages</div>
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_top_rght">
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_top_rght_msgsid">0 Messages</div>
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_top_rght_prtcpntsid">0 Participants</div>
+</div>
+</div>
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid">
+<div class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_rcvr_crd">
+<div class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_rcvr_crd_cntnts">
+<p class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_rcvr_date">Musonda Fred - 11:20AM</p>
+<div  class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_rcvr_mgs"> EOIA ASY y ekj asyd oksopda hyida daosdua apdkasldapo sdpaosdpasd asyu asda dasidoa saspdoas dasa da[dia da0d[a daduap dadoad aapsdoapd aua da[spdoa da[doasd apda sda da[dia da[dopad asd ad adia da[da dauda [pdpa da[0d s[d as[d ad as[da [da dad a[d [sduada dadua[d a[daud asdasd asuda da[da[s d</div>
+</div>
+</div>
+
+
+<div class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_sndr_crd">
+<div class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_sndr_crd_cntnts">
+<p class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_sndr_date">You - 11:20AM</p>
+<div  class="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_mid_mgssctn_sndr_mgs"> EOIA ASY y ekj asyd oksopda hyida daosdua apdkasldapo sdpaosdpasd asyu asda dasidoa saspdoas dasa da[dia da0d[a daduap dadoad aapsdoapd aua da[spdoa da[doasd apda sda da[dia da[dopad asd ad adia da[da dauda [pdpa da[0d s[d as[d ad as[da [da dad a[d [sduada dadua[d a[daud asdasd asuda da[da[s d</div>
+</div>
+</div>
+</div>
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr">
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_cotnts">
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_rght_mgspnl"><textarea id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_txtarainpt" name="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_txtarainpt" placeholder="Messsage" rows="1" style="resize: none;" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="none"></textarea></div>
+<div id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_rght">
+<button id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_attchfile_btn"><img src="dist/icons/paperclip.svg" width="10"></button>
+<button id="cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_sndmgs_btn"><img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl_icncl" src="dist/icons/send_message.svg" width="10"></button>
+</div>
+</div>
+</div>
+</div>
+`;
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_5",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_5",
+    )
+  ) {
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght",
+    );
+
+    prnt.innerHTML = "";
+    prnt.innerHTML = chts_messgs_temp;
   }
 });
