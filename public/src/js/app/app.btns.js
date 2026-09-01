@@ -2235,6 +2235,9 @@ const crs_clss_detils = `
 <div class="crs_clss_detils_crd_info">
 <p id="crs_clss_detils_crd_info_ttl">Graphics Design Crash course</p>
 <p id="crs_clss_detils_crd_info_dscrptn">IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas </p>
+<p id="crs_clss_detils_crd_info_uplddate"><span><img src="dist/icons/time.svg"  width="8"></span>Published: 20 September 2026</p>
+<p id="crs_clss_detils_crd_info_updtddate"><span><img src="dist/icons/time.svg" width="8"></span>Uploaded: 23 September 2026</p>
+<br>
 <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ftr">
   <div class="generic_tag_cl"><span><img src="dist/icons/official_released_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>30 Lessons</div>
   <div class="generic_tag_cl"><span><img src="dist/icons/time.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>3 Months Duration</div>
@@ -2246,11 +2249,51 @@ const crs_clss_detils = `
 <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Understanding Programming</div>
 <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">UIUX Designn</div>
 </div>
-<div class="cors_clss_wrkspcpg_dvdr_line"></div>
-<div id="crs_clss_detils_crd_prgrss">
-<div id="crs_clss_detils_crd_prgrss_barpnl"><div id="crs_clss_detils_crd_prgrss_bar"></div></div>
-<p class="crs_clss_detils_crd_prgrss_txt">70%</p>
+<br><br>
+<div id="crs_clss_detils_crd_subscrptnbox">
+<div id="crs_clss_detils_crd_subscrptnbox_price">
+<p id="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
+<p id="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
 </div>
+<div id="crs_clss_detils_crd_subscrptnbox_mid">
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Tutor (Tutors)</p>
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Roadmap</p>
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Session Materials</p>
+</div>
+<div id="crs_clss_detils_crd_subscrptnbox_enrlld">
+<button id="crs_clss_detils_crd_subscrptnbox_enrlld_btn">Active</button>
+</div>
+</div>
+
+<div id="crs_clss_detils_crd_roadmap_dtls">
+<p id="crs_clss_detils_crd_roadmap_dtls_ttl">Key Roadmap</p>
+<div id="crs_clss_detils_crd_roadmap_dtls_dwnldbtnpnl"><button id="crs_clss_detils_crd_roadmap_dtls_dwnldbtn"><span><img src="dist/icons/download.svg" class="cors_clss_wrkspcpg_genric_icn" width="12"></span>Download Roadmap</button></div>
+</div>
+<br><br>
+<div id="crs_clss_detils_crd_ttrinfo">
+<p id="crs_clss_detils_crd_ttrinfo_ttl">Tutor Infomation</p>
+<br>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Username: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Email Address: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Facebook Social Handle: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Instgram Social Handle: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Tick Tok Social Handle: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">fmjr_stores Guest</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">LinkedIn Tok Social Handle: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Behance Social Handle: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 1: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 2: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Unlisted</p>
+</div>
+
+
 </div>
 `;
 home.addEventListener("click", async (e) => {
