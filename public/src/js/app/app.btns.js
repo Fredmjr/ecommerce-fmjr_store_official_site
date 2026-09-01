@@ -2137,10 +2137,135 @@ home.addEventListener("click", async (e) => {
     )
   ) {
     const prnt = app_btns_getelem(
-      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght",
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
     );
 
     prnt.innerHTML = "";
     prnt.innerHTML = chts_messgs_temp;
+  }
+});
+//Accounts details
+const prfl_sectn_temp = `
+<div id="prfl_sectn_tem_crd">
+<div id="prfl_sectn_tem_crd_pflimg"><img id="prfl_sectn_tem_crd_pflimg_id" width="50" src="dist/imgs/default_profile_img_1.webp" alt=""></span></div>
+<div id="prfl_sectn_tem_crd_pflinfo">
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Username: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">fmjr_stores Guest</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Email Address: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Email Address Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 1: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Contact Unlisted</p>
+<p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 2: </p>
+<p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">Contact Unlisted</p>
+</br>
+<button id="prfl_sectn_tem_crd_pfl_edtbtn"><img id="ctgry_ttlicon" src="dist/icons/refresh.svg" width="15" class="app-icon">Update Details</button>
+</div>
+</div>
+`;
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_0",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_0",
+    )
+  ) {
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
+    );
+
+    prnt.innerHTML = "";
+    prnt.innerHTML = prfl_sectn_temp;
+  }
+});
+//update accounts details - courses & classes
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#prfl_sectn_tem_crd_pfl_edtbtn")) {
+    const data = await app_btns_request("/app/lgnpg", "GET");
+    spinner_fuc();
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//close dropdown menu if btns rae clicked - courses & classes
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_0",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_1",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_2",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_3",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_4",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_5",
+    )
+  ) {
+    closeopenFunc(
+      app_btns_getelem(
+        "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl",
+      ),
+    );
+  }
+});
+//auto load account details - courses & classes
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn")) {
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
+    );
+    prnt.innerHTML = "";
+    prnt.innerHTML = prfl_sectn_temp;
+  }
+});
+//Cousrse & classes deatils - courses & classes
+const crs_clss_detils = `
+<div class="crs_clss_detils_crd">
+<div class="crs_clss_detils_crd_img"></div>
+<div class="crs_clss_detils_crd_info">
+<p id="crs_clss_detils_crd_info_ttl">Graphics Design Crash course</p>
+<p id="crs_clss_detils_crd_info_dscrptn">IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas IIH AGS AIJ ats el asg aspas a asdasdas </p>
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ftr">
+  <div class="generic_tag_cl"><span><img src="dist/icons/official_released_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>30 Lessons</div>
+  <div class="generic_tag_cl"><span><img src="dist/icons/time.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>3 Months Duration</div>
+  <div class="generic_tag_cl"><span><img src="dist/icons/location.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Online Session</div></div>
+</div>
+<div class="cors_clss_wrkspcpg_dvdr_line"></div>
+<div id="crs_clss_detils_crd_tags">
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Graphics Design</div>
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Understanding Programming</div>
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">UIUX Designn</div>
+</div>
+<div class="cors_clss_wrkspcpg_dvdr_line"></div>
+<div id="crs_clss_detils_crd_prgrss">
+<div id="crs_clss_detils_crd_prgrss_barpnl"><div id="crs_clss_detils_crd_prgrss_bar"></div></div>
+<p class="crs_clss_detils_crd_prgrss_txt">70%</p>
+</div>
+</div>
+`;
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_1",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_1",
+    )
+  ) {
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
+    );
+    prnt.innerHTML = "";
+    prnt.innerHTML = crs_clss_detils;
   }
 });
