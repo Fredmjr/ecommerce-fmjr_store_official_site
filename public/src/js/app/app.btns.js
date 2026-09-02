@@ -2027,7 +2027,6 @@ home.addEventListener("click", async (e) => {
       "Account Details",
       "Course / Class Details",
       "Payments",
-      "Activities",
       "Track Progress",
       "Chat & Messages",
     ];
@@ -2130,10 +2129,10 @@ const chts_messgs_temp = `
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest(
-      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_5",
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_4",
     ) ||
     e.target.closest(
-      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_5",
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_4",
     )
   ) {
     const prnt = app_btns_getelem(
@@ -2296,6 +2295,7 @@ const crs_clss_detils = `
 
 </div>
 `;
+//course or class details
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest(
@@ -2310,5 +2310,174 @@ home.addEventListener("click", async (e) => {
     );
     prnt.innerHTML = "";
     prnt.innerHTML = crs_clss_detils;
+  }
+});
+
+//Track Progress
+const trck_prgrss_temp = (percntg_bar) => {
+  console.log(percntg_bar);
+  //percentage bar
+  const r = 35,
+    c = 2 * Math.PI * r;
+  const svgNS = "http://www.w3.org/2000/svg";
+
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("class", "progress-ring");
+  svg.setAttribute("width", "80");
+  svg.setAttribute("height", "80");
+
+  const bg = document.createElementNS(svgNS, "circle");
+  bg.setAttribute("class", "bg");
+  bg.setAttribute("cx", "40");
+  bg.setAttribute("cy", "40");
+  bg.setAttribute("r", r);
+
+  const prog = document.createElementNS(svgNS, "circle");
+  prog.setAttribute("class", "progress");
+  prog.setAttribute("cx", "40");
+  prog.setAttribute("cy", "40");
+  prog.setAttribute("r", r);
+  prog.setAttribute("stroke-dasharray", c);
+  prog.setAttribute("stroke-dashoffset", c - (c * percntg_bar) / 100);
+
+  const txt = document.createElementNS(svgNS, "text");
+  txt.setAttribute("x", "50%");
+  txt.setAttribute("y", "50%");
+  txt.setAttribute("text-anchor", "middle");
+  txt.setAttribute("dy", ".3em");
+  txt.textContent = percntg_bar + "%";
+
+  svg.append(bg, prog, txt);
+
+  //main details
+  return (t = `
+<div class="trck_prgrss_card">
+<div class="trck_prgrss_card_lft">
+<div class="trck_prgrss_card_lft_ttl">Course / Class Progress</div>
+<div class="trck_prgrss_card_lft_prntgbar">${svg.outerHTML}</div>
+</div>
+<div class="trck_prgrss_card_rght">
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+<div class="trck_prgrss_card_rght_crd">
+<div class="trck_prgrss_card_rght_crd_img"><span><img class="trck_prgrss_card_rght_crd_img_thumb" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></span></div>
+<div class="trck_prgrss_card_rght_crd_info">
+<div class="trck_prgrss_card_rght_crd_info_lft">
+<p class="trck_prgrss_card_rght_crd_info_lft_ttl">Graphics Desgin Guide 2026</p>
+<p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Lesson #1</p>
+</div>
+<div class="trck_prgrss_card_rght_crd_info_rght"><div class="trck_prgrss_card_rght_crd_info_rght_btn">Completed</div></div>
+</div>
+</div>
+
+
+</div>
+</div>
+`);
+};
+
+//Track Progress
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_3",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_3",
+    )
+  ) {
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
+    );
+    prnt.innerHTML = "";
+    prnt.innerHTML = trck_prgrss_temp(0);
   }
 });
