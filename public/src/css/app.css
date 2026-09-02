@@ -387,7 +387,8 @@ button {
 .cors_clss_wrkspcpg_cntnts_main_crdlet {
   font-family: reddir-regular;
   height: 350px;
-  width: 250px;
+  /*   width: 250px; */
+  width: 24%;
   padding: 10px;
   border-radius: 3px;
   border-radius: 3px;
@@ -429,6 +430,25 @@ button {
   outline: none;
   cursor: pointer;
 }
+.cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn {
+  background-color: var(--fmjr--dkr5);
+  color: var(--fmjr--dkr1);
+  font-size: 10px;
+  width: 100%;
+  height: 100%;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn:active,
+.cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn:hover,
+.cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn:focus {
+  background-color: var(--fmjr--dkr10);
+}
+
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main {
   height: fit-content;
   width: 100%;
@@ -953,28 +973,43 @@ button {
   gap: 5px;
   color: var(--fmjr--dkr1);
 }
-#crs_clss_detils_crd_subscrptnbox_price {
+
+.enroll_now_pymnt_sctn_subscrptnbox {
+  width: 750px;
+  background-color: var(--fmjr--dkr10);
+  color: var(--fmjr--1);
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  color: var(--fmjr--dkr1);
+}
+.crs_clss_detils_crd_subscrptnbox_price {
   width: 20%;
   font-weight: bolder;
 }
-#crs_clss_detils_crd_subscrptnbox_mid {
+.crs_clss_detils_crd_subscrptnbox_mid {
   width: 50%;
   font-size: 9px;
   box-sizing: border-box;
 }
-#crs_clss_detils_crd_subscrptnbox_enrlld {
+.crs_clss_detils_crd_subscrptnbox_enrlld {
   width: 30%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#crs_clss_detils_crd_subscrptnbox_price_txt {
+.crs_clss_detils_crd_subscrptnbox_price_txt {
   font-size: 6px;
   font-weight: lighter;
   text-align: center;
 }
-#crs_clss_detils_crd_subscrptnbox_enrlld_btn {
+.crs_clss_detils_crd_subscrptnbox_enrlld_btn {
   width: 70%;
   border-radius: 3px;
   outline: none;
@@ -992,7 +1027,7 @@ button {
 .generic_fltrd_icn_cl {
   filter: var(--fmjr-fltr2);
 }
-#crs_clss_detils_crd_subscrptnbox_price_amnt {
+.crs_clss_detils_crd_subscrptnbox_price_amnt {
   font-size: 20px;
   margin: 5px 0px;
   text-align: center;
@@ -1235,6 +1270,7 @@ button {
   box-sizing: border-box;
   border: 1px solid var(--fmjr--dkr2);
   border-radius: 3px;
+  padding: 3px;
 }
 .trck_prgrss_card_lft_ttl {
   width: 100%;
@@ -1246,7 +1282,6 @@ button {
   justify-content: center;
   display: flex;
   align-items: center;
-  margin: 3px;
 }
 .trck_prgrss_card_lft_prntgbar {
   width: 100%;
@@ -1812,6 +1847,10 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+#cors_clss_sctn_ctgrycrd_id_0 {
+  background-color: var(--fmjr--clr1);
+}
+
 .authrbookspgcntnts_ctgry_crd_thumbnl_content {
   height: 25px;
   width: 25px;
@@ -1965,6 +2004,19 @@ button:focus {
 .authrbookspgcntnts_maincntnts_contents_cookcrd_info {
   width: 80%;
   padding-left: 10px;
+}
+#enroll_now_pymnt_sctn {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+#enroll_now_pymnt_sctn_cntnt {
+  width: 70%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 #portflpgcntnts_bksbnnr {
@@ -5887,6 +5939,12 @@ button:focus {
   #cors_clss_wrkspcpg {
     padding: 10px 20px;
   }
+  .cors_clss_wrkspcpg_cntnts_main_crdlet {
+    width: 48%;
+  }
+  .enroll_now_pymnt_sctn_subscrptnbox {
+    width: 400px;
+  }
 }
 
 /* small screen */
@@ -6497,5 +6555,23 @@ button:focus {
   }
   .trck_prgrss_card_lft_prntgbar {
     height: 80%;
+  }
+  .cors_clss_wrkspcpg_cntnts_main_crdlet {
+    font-family: reddir-regular;
+    height: 350px;
+    /*   width: 250px; */
+    width: 48%;
+    padding: 10px;
+    border-radius: 3px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    border: 1px solid var(--fmjr--dkr2);
+    box-shadow: 1px 1px 2px var(--fmjr--dkr3);
+  }
+  #enroll_now_pymnt_sctn_cntnt {
+    width: 100%;
+  }
+  .enroll_now_pymnt_sctn_subscrptnbox {
+    width: 270px;
   }
 }

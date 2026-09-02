@@ -2481,3 +2481,191 @@ home.addEventListener("click", async (e) => {
     prnt.innerHTML = trck_prgrss_temp(0);
   }
 });
+
+//my courses
+const my_cors_clss_tmp = `
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet">
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_img"></div>
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info">
+          <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top">
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags">
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_thumbimg_pnl"><div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_thumbimg"></div>Musonda Fred</div>
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Graphics Design</div>
+            </div>
+          </div>
+          <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid">
+            <p class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ttl">title</p>
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_dscrptn">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
+              minus quasi nemo ex qui sed eos mollitia dolorum, placeat deserunt
+              ipsam velit molestias quia autem quas distinctio explicabo vero
+              adipisci.</div>
+            <br>
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ftr">
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_drtntime"><span><img src="dist/icons/time.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>3 Months</div>
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_sessnvenue"><span><img src="dist/icons/location.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Online Session</div></div>
+          </div>
+        </div>
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm">
+          <button class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn">View
+            Now
+            <img class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn_icn" src="dist/icons/long_forward_arrow.svg" width="15"></button>
+        </div>
+      </div>
+`;
+
+//my courses - click buton
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_0")) {
+    const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+    prnt.innerHTML = "";
+    prnt.innerHTML = my_cors_clss_tmp;
+
+    document
+      .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
+      .forEach((el) => {
+        el.style.backgroundColor = "#707070";
+      });
+    app_btns_getelem("cors_clss_sctn_ctgrycrd_id_0").style.backgroundColor =
+      "#b3324f";
+  }
+});
+
+//All courses
+const all_crs_clss_tmp = `
+<div class="cors_clss_wrkspcpg_cntnts_main_crdlet">
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_img"></div>
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info">
+          <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top">
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags">
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_thumbimg_pnl"><div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_thumbimg"></div>Musonda Fred</div>
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Graphics Design</div>
+            </div>
+          </div>
+          <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid">
+            <p class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ttl">title</p>
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_dscrptn">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
+              minus quasi nemo ex qui sed eos mollitia dolorum, placeat deserunt
+              ipsam velit molestias quia autem quas distinctio explicabo vero
+              adipisci.</div>
+            <br>
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_mid_ftr">
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_drtntime"><span><img src="dist/icons/time.svg" class="cors_clss_wrkspcpg_genric_icn" width="8"></span>3 Months</div>
+              <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_sessnvenue"><span><img src="dist/icons/location.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Online Session</div></div>
+          </div>
+        </div>
+        <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm">
+          <button class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn">Enroll
+            Now
+            <img class="cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_btn_icn" src="dist/icons/long_forward_arrow.svg" width="15"></button>
+        </div>
+      </div>`;
+
+//All courses - click buton
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_1")) {
+    const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+    prnt.innerHTML = "";
+    prnt.innerHTML = all_crs_clss_tmp;
+    document
+      .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
+      .forEach((el) => {
+        el.style.backgroundColor = "#707070";
+      });
+    app_btns_getelem("cors_clss_sctn_ctgrycrd_id_1").style.backgroundColor =
+      "#b3324f";
+  }
+});
+
+//in house courses - click buton
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_2")) {
+    const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+    prnt.innerHTML = "";
+    prnt.innerHTML = all_crs_clss_tmp;
+    document
+      .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
+      .forEach((el) => {
+        el.style.backgroundColor = "#707070";
+      });
+    app_btns_getelem("cors_clss_sctn_ctgrycrd_id_2").style.backgroundColor =
+      "#b3324f";
+  }
+});
+
+//affiliates courses - click buton
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_3")) {
+    const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+    prnt.innerHTML = "";
+    prnt.innerHTML = all_crs_clss_tmp;
+
+    document
+      .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
+      .forEach((el) => {
+        el.style.backgroundColor = "#707070";
+      });
+    app_btns_getelem("cors_clss_sctn_ctgrycrd_id_3").style.backgroundColor =
+      "#b3324f";
+  }
+});
+
+//enroll no button
+const enroll_now_pymnt_sctn = `
+<div id="enroll_now_pymnt_sctn">
+<div id="enroll_now_pymnt_sctn_cntnts">
+
+<div class="enroll_now_pymnt_sctn_subscrptnbox">
+<div class="crs_clss_detils_crd_subscrptnbox_price">
+<p class="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
+<p class="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_mid">
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Full Payment</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_enrlld">
+<button class="crs_clss_detils_crd_subscrptnbox_enrlld_btn">Subscribe</button>
+</div>
+</div>
+
+<br>
+
+<div class="enroll_now_pymnt_sctn_subscrptnbox">
+<div class="crs_clss_detils_crd_subscrptnbox_price">
+<p class="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
+<p class="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_mid">
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Half Payment</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_enrlld">
+<button class="crs_clss_detils_crd_subscrptnbox_enrlld_btn">Subscribe</button>
+</div>
+</div>
+
+<br>
+
+<div class="enroll_now_pymnt_sctn_subscrptnbox">
+<div class="crs_clss_detils_crd_subscrptnbox_price">
+<p class="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
+<p class="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_mid">
+<p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Quarter Payment</p>
+</div>
+<div class="crs_clss_detils_crd_subscrptnbox_enrlld">
+<button class="crs_clss_detils_crd_subscrptnbox_enrlld_btn">Subscribe</button>
+</div>
+</div>
+
+</div>
+</div>
+`;
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(".cors_clss_wrkspcpg_cntnts_main_crdlet_bttm_enrllnow_btn")
+  ) {
+    const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+    prnt.innerHTML = "";
+    prnt.innerHTML = enroll_now_pymnt_sctn;
+  }
+});
