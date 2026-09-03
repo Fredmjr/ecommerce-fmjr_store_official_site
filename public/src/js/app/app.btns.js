@@ -2014,6 +2014,16 @@ home.addEventListener("click", async (e) => {
     const data = await app_btns_request("/app/corsclsswrkspcpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
+
+      let tmp = "";
+      for (let i = 0; i < 1; i++) {
+        tmp += my_cors_clss_tmp;
+        console.log(i);
+      }
+      const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
+      const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
+      prnt.innerHTML = "";
+      prnt.innerHTML = crdlet_prnt;
     }
   }
 });
@@ -2141,6 +2151,9 @@ home.addEventListener("click", async (e) => {
 
     prnt.innerHTML = "";
     prnt.innerHTML = chts_messgs_temp;
+    app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar",
+    ).innerHTML = e.target.innerHTML;
   }
 });
 //Accounts details
@@ -2176,6 +2189,9 @@ home.addEventListener("click", async (e) => {
 
     prnt.innerHTML = "";
     prnt.innerHTML = prfl_sectn_temp;
+    app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar",
+    ).innerHTML = e.target.innerHTML;
   }
 });
 //update accounts details - courses & classes
@@ -2250,17 +2266,17 @@ const crs_clss_detils = `
 </div>
 <br><br>
 <div id="crs_clss_detils_crd_subscrptnbox">
-<div id="crs_clss_detils_crd_subscrptnbox_price">
-<p id="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
-<p id="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
+<div class="crs_clss_detils_crd_subscrptnbox_price">
+<p class="crs_clss_detils_crd_subscrptnbox_price_txt">Subscription Plan</p>
+<p class="crs_clss_detils_crd_subscrptnbox_price_amnt">$10</p>
 </div>
-<div id="crs_clss_detils_crd_subscrptnbox_mid">
+<div class="crs_clss_detils_crd_subscrptnbox_mid">
 <p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Tutor (Tutors)</p>
 <p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Roadmap</p>
 <p class="crs_clss_detils_crd_subscrptnbox_mid_txt"><span><img class="generic_fltrd_icn_cl" width="10" src="dist/icons/check.svg" alt=""></span>Session Materials</p>
 </div>
-<div id="crs_clss_detils_crd_subscrptnbox_enrlld">
-<button id="crs_clss_detils_crd_subscrptnbox_enrlld_btn">Active</button>
+<div class="crs_clss_detils_crd_subscrptnbox_enrlld">
+<button class="crs_clss_detils_crd_subscrptnbox_enrlld_btn" id="crs_clss_detils_crd_subscrptnbox_enrlld_btnid">Active</button>
 </div>
 </div>
 
@@ -2310,6 +2326,9 @@ home.addEventListener("click", async (e) => {
     );
     prnt.innerHTML = "";
     prnt.innerHTML = crs_clss_detils;
+    app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar",
+    ).innerHTML = e.target.innerHTML;
   }
 });
 
@@ -2479,6 +2498,9 @@ home.addEventListener("click", async (e) => {
     );
     prnt.innerHTML = "";
     prnt.innerHTML = trck_prgrss_temp(0);
+    app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar",
+    ).innerHTML = e.target.innerHTML;
   }
 });
 
@@ -2516,10 +2538,15 @@ const my_cors_clss_tmp = `
 //my courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_0")) {
+    let tmp = "";
+    for (let i = 0; i < 1; i++) {
+      tmp += my_cors_clss_tmp;
+      console.log(i);
+    }
+    const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
     const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
     prnt.innerHTML = "";
-    prnt.innerHTML = my_cors_clss_tmp;
-
+    prnt.innerHTML = crdlet_prnt;
     document
       .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
       .forEach((el) => {
@@ -2563,9 +2590,15 @@ const all_crs_clss_tmp = `
 //All courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_1")) {
+    let tmp = "";
+    for (let i = 0; i < 1; i++) {
+      tmp += all_crs_clss_tmp;
+      console.log(i);
+    }
+    const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
     const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
     prnt.innerHTML = "";
-    prnt.innerHTML = all_crs_clss_tmp;
+    prnt.innerHTML = crdlet_prnt;
     document
       .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
       .forEach((el) => {
@@ -2579,9 +2612,15 @@ home.addEventListener("click", async (e) => {
 //in house courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_2")) {
+    let tmp = "";
+    for (let i = 0; i < 1; i++) {
+      tmp += all_crs_clss_tmp;
+      console.log(i);
+    }
+    const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
     const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
     prnt.innerHTML = "";
-    prnt.innerHTML = all_crs_clss_tmp;
+    prnt.innerHTML = crdlet_prnt;
     document
       .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
       .forEach((el) => {
@@ -2595,10 +2634,15 @@ home.addEventListener("click", async (e) => {
 //affiliates courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_3")) {
+    let tmp = "";
+    for (let i = 0; i < 1; i++) {
+      tmp += all_crs_clss_tmp;
+      console.log(i);
+    }
+    const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
     const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
     prnt.innerHTML = "";
-    prnt.innerHTML = all_crs_clss_tmp;
-
+    prnt.innerHTML = crdlet_prnt;
     document
       .querySelectorAll(".authrbookspgcntnts_ctgry_crd_thumbnl")
       .forEach((el) => {
@@ -2667,5 +2711,46 @@ home.addEventListener("click", async (e) => {
     const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
     prnt.innerHTML = "";
     prnt.innerHTML = enroll_now_pymnt_sctn;
+  }
+});
+
+//course / class payment details
+const crs_clss_pymnt_dtls = `
+<div>
+<p class="crs_clss_pymnt_dtls_ttl_cl">Full Payment Status</p>
+<p class="crs_clss_pymnt_dtls_key">Invoice Number: <span class="crs_clss_pymnt_dtls_value">S564 F5677 G6412</span></p>
+<p class="crs_clss_pymnt_dtls_key">Payment Date & Time: <span class="crs_clss_pymnt_dtls_value">01:09AM, 20th Sep 2026</span></p>
+<p class="crs_clss_pymnt_dtls_key">Payment Method: <span class="crs_clss_pymnt_dtls_value">Mobile Money</span></p>
+<p class="crs_clss_pymnt_dtls_key">Amount: <span class="crs_clss_pymnt_dtls_value">K500.00</span></p>
+</br>
+
+<p class="crs_clss_pymnt_dtls_ttl_cl">Complete Payment Status</p>
+<p class="crs_clss_pymnt_dtls_key">Course / Class Title: <span class="crs_clss_pymnt_dtls_value">Graphics Design Crash Course</span></p>
+<p class="crs_clss_pymnt_dtls_key">Payment Status: <span class="crs_clss_pymnt_dtls_value" id="crs_clss_pymnt_dtls_pymntstts_tag">Completed</span></p>
+<p class="crs_clss_pymnt_dtls_key">Total Amount: <span class="crs_clss_pymnt_dtls_value">K500.00</span></p>
+</br></br>
+
+<div id="crs_clss_pymnt_dtls_dwnldrcpt_btnpnl"><button id="crs_clss_pymnt_dtls_dwnldrcpt_btn"><span><img src="dist/icons/download.svg" class="cors_clss_wrkspcpg_genric_icn" width="12"></span>Dowload PDF Receipt</button></div>
+<div>
+`;
+
+//course / class payment details - click
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_2",
+    ) ||
+    e.target.closest(
+      "#cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_2",
+    )
+  ) {
+    app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_ttlbar",
+    ).innerHTML = e.target.innerHTML;
+    const prnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_main",
+    );
+    prnt.innerHTML = "";
+    prnt.innerHTML = crs_clss_pymnt_dtls;
   }
 });

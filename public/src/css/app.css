@@ -384,6 +384,30 @@ button {
   gap: 5px;
   flex-wrap: wrap;
 }
+.cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr::placeholder {
+  color: var(--fmjr--clr1);
+}
+.cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr::-webkit-scrollbar {
+  width: 4px;
+  border-radius: 5px;
+}
+.cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr::-webkit-scrollbar-thumb {
+  background: var(--fmjr--clr1);
+  border-radius: 20px;
+}
+
 .cors_clss_wrkspcpg_cntnts_main_crdlet {
   font-family: reddir-regular;
   height: 350px;
@@ -1016,17 +1040,62 @@ button {
   border: none;
   background-color: var(--fmjr--clr1);
   text-align: center;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: bolder;
   color: var(--fmjr--dkr1);
-  padding: 10px 15px;
+  padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
   white-space: normal;
 }
+#crs_clss_detils_crd_subscrptnbox_enrlld_btnid {
+  font-size: 10px;
+}
+
+.crs_clss_detils_crd_subscrptnbox_enrlld_btn:hover,
+.crs_clss_detils_crd_subscrptnbox_enrlld_btn:active,
+.crs_clss_detils_crd_subscrptnbox_enrlld_btn:focus {
+  background-color: var(--fmjr--clr1);
+}
+.crs_clss_pymnt_dtls_ttl_cl {
+  font-size: 14px;
+  font-weight: bolder;
+  text-align: center;
+  margin: 20px 0px;
+}
+.crs_clss_pymnt_dtls_key {
+  text-align: center;
+}
+.crs_clss_pymnt_dtls_value {
+  font-weight: bolder;
+  color: var(--fmjr--dkr5);
+  padding: 0px 7px;
+}
 .generic_fltrd_icn_cl {
   filter: var(--fmjr-fltr2);
 }
+#crs_clss_pymnt_dtls_dwnldrcpt_btnpnl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#crs_clss_pymnt_dtls_dwnldrcpt_btn {
+  width: 40%;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  background-color: var(--fmjr--clr1);
+  text-align: center;
+  font-size: 9px;
+  font-weight: bolder;
+  color: var(--fmjr--dkr1);
+  padding: 10px 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .crs_clss_detils_crd_subscrptnbox_price_amnt {
   font-size: 20px;
   margin: 5px 0px;
@@ -1044,6 +1113,15 @@ button {
   height: 100%;
   background-color: var(--fmjr--clr1);
   box-sizing: border-box;
+}
+#crs_clss_pymnt_dtls_pymntstts_tag {
+  background-color: var(--fmjr--clr1);
+  padding: 5px 10px;
+  color: var(--fmjr--dkr1);
+  font-size: 8px;
+  box-sizing: border-box;
+  font-weight: bolder;
+  border-radius: 3px;
 }
 .prfl_sectn_tem_crd_pfl_edtbtn:hover,
 .prfl_sectn_tem_crd_pfl_edtbtn:active,
@@ -6560,7 +6638,7 @@ button:focus {
     font-family: reddir-regular;
     height: 350px;
     /*   width: 250px; */
-    width: 48%;
+    width: 100%;
     padding: 10px;
     border-radius: 3px;
     border-radius: 3px;
@@ -6572,6 +6650,12 @@ button:focus {
     width: 100%;
   }
   .enroll_now_pymnt_sctn_subscrptnbox {
-    width: 270px;
+    width: 300px;
+  }
+  .crs_clss_detils_crd_subscrptnbox_price_amnt {
+    font-size: 12px;
+  }
+  #crs_clss_detils_crd_subscrptnbox_enrlld_btnid {
+    font-size: 8px;
   }
 }
