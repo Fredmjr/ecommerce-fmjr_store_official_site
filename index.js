@@ -34,6 +34,13 @@ app.get("/blog", (req, res) => {
 });
 app.use("/blog", corsMiddleware, blogapiRouter);
 
+//store managment
+app.get("/store_manager", (req, res) => {
+  return res
+    .status(200)
+    .render("components/store_managment/store_managment.hbs");
+});
+
 //NORMAL
 /* 
 (async () => {
