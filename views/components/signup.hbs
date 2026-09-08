@@ -6,7 +6,7 @@
     </div>
     <p id="sgnup_ttl">Sign Up</p>
     {{! name }}
-    {{!     <div class="sgnup_inptcrdcl">
+    <div class="sgnup_inptcrdcl">
       <input
         type="text"
         id="sgnup_usrnm"
@@ -15,7 +15,18 @@
         class="sgnup_inptcl"
         required
       />
-    </div> }}
+    </div>
+    {{! contact }}
+    <div class="sgnup_inptcrdcl">
+      <input
+        type="tel"
+        id="sgnup_cntct"
+        name="contact_number"
+        placeholder="e.g., +260 975986004"
+        class="sgnup_inptcl"
+        required
+      />
+    </div>
     {{! email }}
     <div class="sgnup_inptcrdcl">
       <input
@@ -27,6 +38,7 @@
         required
       />
     </div>
+
     {{! password }}
     <div class="sgnup_inptcrdcl">
       <input
@@ -61,8 +73,9 @@
           width="17"
         />
       </button>
-
     </div>
+    {{! error messgae panle }}
+    <div id="sgnup_errmgs_pnl" style="display: none;"></div>
     <br /><br />
     <button id="sgnup_crtaccntBtn">Create Account</button>
     <br />

@@ -4,14 +4,17 @@ import { fileURLToPath } from "url";
 import appRouter from "./routes/app.routes.js";
 import apiRouter from "./routes/api.routes.js";
 import blogapiRouter from "./routes/blogapi.routes.js";
-/*import userRouter from "./routes/user.routes.js"; */
+import userRouter from "./routes/user.routes.js";
 import sequelize from "./config/db.js";
 import corsMiddleware from "./middleware/cors/cors.js";
 import { ws_connect } from "./websockets/ws_connect.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 app.use(express.json());
 const port = 8100;
+/* const port = 8100; */
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(__filename);
@@ -26,7 +29,7 @@ app.get("/", (req, res) => {
 
 app.use("/app", corsMiddleware, appRouter);
 app.use("/api", apiRouter);
-/*app.use("/usr", userRouter); */
+app.use("/usr", userRouter);
 
 //blog
 app.get("/blog", (req, res) => {

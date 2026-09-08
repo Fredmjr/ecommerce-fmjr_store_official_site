@@ -4178,6 +4178,16 @@ button:focus {
   padding: 15px 0px;
   box-sizing: border-box;
 }
+#sgnup_errmgs_pnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
 #navbrloginBtn {
   border: none;
   outline: none;
@@ -4805,7 +4815,15 @@ button:focus {
   gap: 5px;
   font-size: 10px;
 }
-
+.generic_cntrd_txt_cl {
+  display: flex;
+  gap: 5px;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_bulleting_bulletingtxt {
   display: flex;
   gap: 5px;

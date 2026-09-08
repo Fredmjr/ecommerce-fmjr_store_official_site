@@ -1,8 +1,8 @@
 import express from "express";
-import { crtusrUrl } from "../controllers/user.controller.js";
+import { signupusrUrl } from "../controllers/user.controller.js";
 
 const router = express.Router();
 
-router.get("/crtusr", crtusrUrl);
+router.post("/signupusr", signupusrUrl);
 
 export default router;
