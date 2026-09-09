@@ -97,11 +97,12 @@ home.addEventListener("click", async (e) => {
         //token
         const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24hrs
         document.cookie =
-          `usr_accnt_jwt_token=${encodeURIComponent(data.jwtToken)};` +
+          `usr_accnt_jwt_token=${encodeURIComponent(data.usr_accnt_jwt_token)};` +
           `Secure; SameSite=Strict; expires=${expires.toUTCString()}; path=/`;
         //redirect
         setTimeout(() => {
           redir_after_signup();
+          auth_sgnup_getelem("navbrloginBtn").style.display = "none";
         }, 3000);
       }
     }

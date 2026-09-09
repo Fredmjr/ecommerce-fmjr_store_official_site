@@ -189,6 +189,20 @@ const app_btns_scroll_top_elem_fuc = (e) => {
     block: "start",
   });
 };
+
+//reuable cookie
+const app_btns_reusable_cookie = (elem) => {
+  let ckies = document.cookie.split("; ");
+  for (let i = 0; i < ckies.length; i++) {
+    let cookie = ckies[i];
+    let [name, value] = cookie.split("=");
+    if (name === elem) {
+      return decodeURIComponent(value);
+    }
+  }
+  return null;
+};
+
 //main menu
 app_btns_getelem("navbrmenuBtn").addEventListener("click", () => {
   closeopenFunc(app_btns_getelem("navbrmenuBtn_drpdwnmenu"));
@@ -314,9 +328,17 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#nvbr_accntsBtn")) {
     spinner_fuc();
-    const data = await app_btns_request("/app/accntspg", "GET");
-    if (data) {
-      app_btns_getelem("main").innerHTML = data;
+    const cookie = app_btns_reusable_cookie("usr_accnt_jwt_token");
+    const c_url_data = await auth_lgn_request("/api/ckieurl", "POST", {
+      c: cookie,
+      r: "accntspg",
+    });
+    if (c_url_data) {
+      console.log(c_url_data);
+      const data = await app_btns_request(`${c_url_data.dir_url}`, "GET");
+      if (data) {
+        app_btns_getelem("main").innerHTML = data;
+      }
     }
   }
 });

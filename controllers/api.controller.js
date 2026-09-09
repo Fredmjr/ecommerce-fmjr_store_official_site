@@ -815,7 +815,33 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
     <p>Unable to process request!</p>
     <p>Contact customer support, if issue persists</p>
     `;
-    res.status(400).json({
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//APP url cookie checker
+export const ckieUrl = async (req, res) => {
+  const { c, r } = req.body;
+  try {
+    console.log(c, r);
+    if (!c) {
+      return res.status(200).json({
+        dir_url: "/app/lgnpg",
+      });
+    }
+    return res.status(200).json({
+      dir_url: `/app/${r}`,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
       erMgs: erMgs_div,
     });
   }

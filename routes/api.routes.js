@@ -6,6 +6,7 @@ import {
   brndngpstrflyrsindiimgapiUrl,
   chrchflyrsdataapiUrl,
   chrchpstrflyrsindiimgapiUrl,
+  ckieUrl,
   clbrstrntflyrsdataapiUrl,
   clbsrstrntpstrflyrsindiimgapiUrl,
   cnrsatnsapiUrl,
@@ -51,5 +52,6 @@ router.get("/sprtspstrflyrsindiimgapi/:id", sprtspstrflyrsindiimgapiUrl);
 router.get("/brndngpstrflyrsindiimgapi/:id", brndngpstrflyrsindiimgapiUrl);
 router.get("/thmbnlpstrflyrsindiimgapi/:id", thmbnlpstrflyrsindiimgapiUrl);
 router.get("/auhtrbksdatasctnapi", auhtrbksdatasctnapiUrl);
+router.post("/ckieurl", ckieUrl);
 
 export default router;

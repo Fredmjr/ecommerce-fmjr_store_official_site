@@ -2214,6 +2214,20 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#lgn_otp_pg_submitbtn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+
 #sgnuppg {
   width: 100%;
   display: flex;
@@ -4188,6 +4202,18 @@ button:focus {
   border-radius: 3px;
   /*   font-weight: bolder; */
 }
+
+#lgn_errmgs_pnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
+
 #navbrloginBtn {
   border: none;
   outline: none;
@@ -4554,6 +4580,27 @@ button:focus {
   justify-content: space-between;
   align-items: center;
 }
+#lgn_otp_pg_codepnl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.lgn_otp_pg_codecrdcl {
+  width: 12%;
+  padding: 15px 7px;
+  border: 1px solid var(--fmjr--dkr6);
+  border-radius: 3px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  text-align: center;
+  overflow: hidden;
+}
+
 #sgnuppgcntnts_tplogo {
   width: 100%;
   display: flex;
@@ -4726,6 +4773,20 @@ button:focus {
   padding: 5px 5px;
   width: 85%;
 }
+
+.lgn_otp_pg_codecrdlet_cl {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 18px;
+  padding: 5px 5px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #navbrloginBtn:hover {
   filter: opacity(90%);
 }
@@ -4738,6 +4799,8 @@ button:focus {
 }
 #lgn_frgtpwdBtn {
   cursor: pointer;
+
+  box-sizing: border-box;
   border: none;
   outline: none;
   background-color: transparent;
@@ -4745,6 +4808,18 @@ button:focus {
   padding: 0px;
   margin: 0px;
 }
+#lgn_otp_pg_rsbdotpcodebtn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 11px;
+  padding: 0px;
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+}
+
 #lgn_frgtpwdBtn:hover {
   color: var(--fmjr--clr1);
 }
