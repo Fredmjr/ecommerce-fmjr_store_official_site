@@ -125,6 +125,8 @@ home.addEventListener("click", async (e) => {
 
     e.target.innerHTML = "";
     e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: brightness(0) invert(1);" src="dist/icons/loading.svg" alt=""></span>`;
+    auth_lgn_getelem("navbr_lggdintn").outerHTML =
+      `<button id="navbrsgnupBtn">Sign up for free</button>`;
     setTimeout(() => {
       const client_loged_out_mgs = `
     <div id="lggd_out_sctn">
@@ -158,6 +160,9 @@ const auto_lgn = () => {
   console.log(cookie);
   if (!cookie) {
     auth_lgn_getelem("navbrloginBtn").style.display = "block";
+  } else {
+    auth_lgn_getelem("navbrsgnupBtn").outerHTML =
+      `<button id="navbr_lggdintn">Logged In</button>`;
   }
 };
 auto_lgn();
@@ -215,7 +220,170 @@ home.addEventListener("click", async (e) => {
       setTimeout(() => {
         redir_after_signup();
         auth_lgn_getelem("navbrloginBtn").style.display = "none";
+        auth_lgn_getelem("navbrsgnupBtn").outerHTML =
+          `<button id="navbr_lggdintn">Logged In</button>`;
       }, 2000);
+    }
+  }
+});
+//forgot password form
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#frgotpwd_crtaccntBtn")) {
+    const el1 = auth_sgnup_getelem("frgotpwd_eml");
+    const err_pnl = auth_sgnup_getelem("frgotpwderrmgs_pnl");
+
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    const eml = el1 ? el1.value : null;
+    auth_lgn_global_eml = el1 ? el1.value : null;
+
+    console.log(eml);
+
+    const data = await auth_sgnup_request("/usr/frgotpwd", "POST", {
+      eml: eml,
+    });
+    if (data) {
+      //err
+      if (data.erMgs) {
+        e.target.innerHTML = "Submit";
+        err_pnl.style.display = "block";
+        err_pnl.innerHTML = data.erMgs;
+
+        if (err_pnl_time_out) {
+          clearTimeout(err_pnl_time_out);
+        }
+        err_pnl_time_out = setTimeout(() => {
+          err_pnl.style.display = "none";
+        }, 7000);
+      } else {
+        auth_lgn_getelem("main").innerHTML = data;
+      }
+    }
+  }
+});
+
+//code verification - reset password
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#lgn_otp_pg_pwd_reset_submitbtn")) {
+    const el1 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_0");
+    const el2 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_1");
+    const el3 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_2");
+    const el4 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_3");
+    const el5 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_4");
+    const el6 = auth_lgn_getelem("lgn_otp_pg_codecrd_id_5");
+    const auth_lgn_err_pnl = auth_lgn_getelem("lgn_errmgs_pnl");
+
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    const e1 = el1 ? el1.value : null;
+    const e2 = el2 ? el2.value : null;
+    const e3 = el3 ? el3.value : null;
+    const e4 = el4 ? el4.value : null;
+    const e5 = el5 ? el5.value : null;
+    const e6 = el6 ? el6.value : null;
+
+    const code = e1 + e2 + e3 + e4 + e5 + e6;
+    console.log(code, auth_lgn_global_eml);
+    const data = await auth_lgn_request("/usr/lgnusrotpresetpwdpg", "POST", {
+      code: code,
+      eml: auth_lgn_global_eml,
+    });
+    //err
+    if (data.erMgs) {
+      e.target.innerHTML = "Submit";
+      auth_lgn_err_pnl.style.display = "block";
+      auth_lgn_err_pnl.innerHTML = data.erMgs;
+
+      if (auth_lgn_err_pnl_time_out) {
+        clearTimeout(auth_lgn_err_pnl_time_out);
+      }
+      auth_lgn_err_pnl_time_out = setTimeout(() => {
+        auth_lgn_err_pnl.style.display = "none";
+      }, 7000);
+    } else {
+      auth_lgn_getelem("main").innerHTML = data;
+    }
+  }
+});
+
+//code verification - reset password
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#resetpwdpg_btn")) {
+    const el1 = auth_lgn_getelem("resetpwdpg_pwd");
+    const auth_lgn_err_pnl = auth_lgn_getelem("resetpwdpg_pnl");
+
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    const e1 = el1 ? el1.value : null;
+
+    const data = await auth_lgn_request("/usr/lgnusrotpresetpwd", "POST", {
+      pwd: e1,
+      eml: auth_lgn_global_eml,
+    });
+    //err
+    if (data.erMgs) {
+      e.target.innerHTML = "Reset Password";
+      auth_lgn_err_pnl.style.display = "block";
+      auth_lgn_err_pnl.innerHTML = data.erMgs;
+
+      if (auth_lgn_err_pnl_time_out) {
+        clearTimeout(auth_lgn_err_pnl_time_out);
+      }
+      auth_lgn_err_pnl_time_out = setTimeout(() => {
+        auth_lgn_err_pnl.style.display = "none";
+      }, 7000);
+    }
+
+    //success
+    if (data.redir) {
+      //token
+      const expires = new Date(Date.now() + 60 * 60 * 1000); // 24hrs
+      document.cookie =
+        `usr_accnt_jwt_token=${encodeURIComponent(data.usr_accnt_jwt_token)};` +
+        `Secure; SameSite=Strict; expires=${expires.toUTCString()}; path=/`;
+      //redirect
+      setTimeout(() => {
+        auth_lgn_getelem("main").innerHTML = data.reset_mgs;
+      }, 2000);
+    }
+  }
+});
+
+//reset password - return home
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#resetpwdpg_sctn_rtrnhmbtn")) {
+    window.location.href = "/";
+  }
+});
+
+//reset password - accounts page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#resetpwdpg_sctn_accntsbtn")) {
+    const cookie = app_btns_reusable_cookie("usr_accnt_jwt_token");
+    const c_url_data = await auth_lgn_request("/api/ckieurl", "POST", {
+      c: cookie,
+      r: "accntspg",
+    });
+
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    if (c_url_data) {
+      console.log(c_url_data);
+      const data = await app_btns_request(`${c_url_data.dir_url}`, "GET");
+      if (data) {
+        app_btns_getelem("main").innerHTML = data;
+        auth_lgn_getelem("navbrloginBtn").style.display = "none";
+        auth_lgn_getelem("navbrsgnupBtn").outerHTML =
+          `<button id="navbr_lggdintn">Logged In</button>`;
+      }
     }
   }
 });

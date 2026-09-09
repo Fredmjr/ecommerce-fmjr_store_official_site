@@ -26,6 +26,11 @@ const usrModel = sequelize.define("user", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  accunt_otp_status: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+    defaultValue: "Inactive",
+  },
 });
 
 export default usrModel;

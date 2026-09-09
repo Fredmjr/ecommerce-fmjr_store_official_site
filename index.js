@@ -56,7 +56,8 @@ app.get("/store_manager", (req, res) => {
 
 //APP + WEBSOCKET
 (async () => {
-  await sequelize.sync();
+  await sequelize.sync(); //dont detect missing columns
+  /*  await sequelize.sync({ alter: true }); */ //detect missing columns
   //app
   const web_socket = app.listen(port, () => {
     console.log("Application running");

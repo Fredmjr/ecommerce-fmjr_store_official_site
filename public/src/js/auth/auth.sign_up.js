@@ -60,6 +60,10 @@ home.addEventListener("click", async (e) => {
     const el5 = auth_sgnup_getelem("sgnup_cntct");
     const err_pnl = auth_sgnup_getelem("sgnup_errmgs_pnl");
 
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
     const eml = el1 ? el1.value : null;
     const pwd = el2 ? el2.value : null;
     const conf_pwd = el3 ? el3.value : null;
@@ -78,6 +82,7 @@ home.addEventListener("click", async (e) => {
     if (data) {
       //err
       if (data.erMgs) {
+        e.target.innerHTML = "Create Account";
         err_pnl.style.display = "block";
         err_pnl.innerHTML = data.erMgs;
 
@@ -87,9 +92,11 @@ home.addEventListener("click", async (e) => {
         err_pnl_time_out = setTimeout(() => {
           err_pnl.style.display = "none";
         }, 7000);
+      } else {
+        auth_lgn_getelem("main").innerHTML = data;
       }
       //success
-      if (data.redir) {
+      /* if (data.redir) {
         auth_sgnup_getelem("main").innerHTML = `
         <div id="spnrpnl"><br><br><br><br><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span><br><br><br><br></div>
         `;
@@ -104,7 +111,9 @@ home.addEventListener("click", async (e) => {
           redir_after_signup();
           auth_sgnup_getelem("navbrloginBtn").style.display = "none";
         }, 3000);
-      }
+      } */
+
+      //success
     }
   }
 });

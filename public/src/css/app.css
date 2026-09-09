@@ -1736,6 +1736,19 @@ button:focus {
   padding: 12px 15px;
   font-weight: bold;
 }
+#navbr_lggdintn {
+  border: none;
+  outline: none;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 12px 15px;
+  font-weight: bold;
+}
+
 #sgnup_crtaccntBtn {
   border: none;
   outline: none;
@@ -2214,6 +2227,19 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#resetpwdpg_btn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
 #lgn_otp_pg_submitbtn {
   border: none;
   outline: none;
@@ -2227,6 +2253,20 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#lgn_otp_pg_pwd_reset_submitbtn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+
 #lggd_out_sctn_rtrnhmbtn {
   border: none;
   outline: none;
@@ -2240,11 +2280,40 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#resetpwdpg_sctn_rtrnhmbtn {
+  border: none;
+  outline: none;
+  width: 25%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+
+#resetpwdpg_sctn_accntsbtn {
+  border: none;
+  outline: none;
+  width: 25%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+
 #lggd_out_sctn_rtrnhmbtn_pnl {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 5px;
   box-sizing: border-box;
   height: fit-content;
 }
@@ -3564,6 +3633,13 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+#resetpwdpg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #lggd_out_sctn {
   width: 100%;
   display: flex;
@@ -4215,6 +4291,12 @@ button:focus {
   padding: 100px 0px;
   box-sizing: border-box;
 }
+#resetpwdpgcntnts {
+  width: 40%;
+  padding: 100px 0px;
+  box-sizing: border-box;
+}
+
 #lggd_out_sctn_cntnts {
   width: 40%;
   padding: 100px 0px;
@@ -4237,6 +4319,27 @@ button:focus {
 }
 
 #lgn_errmgs_pnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
+
+#frgotpwderrmgs_pnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
+#resetpwdpg_pnl {
   text-align: center;
   padding: 15px 10px;
   background-color: var(--fmjr--clr1);
@@ -4588,7 +4691,17 @@ button:focus {
   justify-content: space-between;
   align-items: center;
 }
-
+.resetpwdpg__inptcrdcl {
+  width: 100%;
+  padding: 10px 7px;
+  border: 1px solid var(--fmjr--dkr6);
+  border-radius: 3px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 #chtpg_inptcrdcl {
   width: 85%;
   padding: 5px;
@@ -4674,6 +4787,18 @@ button:focus {
   justify-content: end;
   display: flex;
 }
+#resetpwdpg_pwd_seecnfrmpwdicn {
+  cursor: pointer;
+  width: 15%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: transparent;
+  justify-content: end;
+  display: flex;
+}
+
 #sgnup_pwd_seepwdicn {
   cursor: pointer;
   width: 15%;
@@ -6075,6 +6200,9 @@ button:focus {
   #frgotpwdpgcntnts {
     width: 50%;
   }
+  #resetpwdpgcntnts {
+    width: 50%;
+  }
   #lggd_out_sctn_cntnts {
     width: 50%;
   }
@@ -6163,7 +6291,10 @@ button:focus {
     font-size: 10px;
     padding: 12px 12px;
   }
-
+  #navbr_lggdintn {
+    font-size: 10px;
+    padding: 12px 12px;
+  }
   #purchase_pnl {
     display: none;
   }
@@ -6488,6 +6619,9 @@ button:focus {
     width: 85%;
   }
   #frgotpwdpgcntnts {
+    width: 85%;
+  }
+  #resetpwdpgcntnts {
     width: 85%;
   }
   #lggd_out_sctn_cntnts {

@@ -270,6 +270,10 @@ home.addEventListener("click", async (e) => {
   if (e.target.closest("#lgn_pwd_seecnfrmpwdicn")) {
     see_hide("lgn_pwd", "lgn_pwd_seecnfrmpwdicnimg");
   }
+  //reset password
+  if (e.target.closest("#resetpwdpg_pwd_seecnfrmpwdicn")) {
+    see_hide("resetpwdpg_pwd", "resetpwdpg_pwd_seecnfrmpwdicnimg");
+  }
   //account management  - old password
   if (e.target.closest("#accntspgcntnts_oldpwdinpt_seepwdicn")) {
     see_hide(
@@ -416,7 +420,6 @@ home.addEventListener("click", async (e) => {
       app_btns_getelem("main").innerHTML = data;
       const prvcy_data = await app_btns_request("/app/prvcydata", "GET");
       if (prvcy_data) {
-        console.log(prvcy_data);
         //title
         const p = `<div class="prvcycrd">
                 <p id="prvcypg_ttl">${prvcy_data.prvcy_data.ttl}</p> 

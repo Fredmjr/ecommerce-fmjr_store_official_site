@@ -15,10 +15,11 @@ const transporter = nodemailer.createTransport({
 
 export const single_nodemailer_fuc = async (usr_otp, usr_eml) => {
   const otp_mgs_temp = {
-    from: '"fmjr_stores" <fmjrstores@gmail.com>',
+    from: `"fmjr_stores" <${process.env.EMAIL_ADDR}>`,
     /* to: "fredmjr37@gmail.com", */
     to: `${usr_eml}`,
     subject: "Security Confirmation Code",
+    text: `Hello,\n\nHere is your confirmation code: ${usr_otp}\n\nPlease enter this code within 10 minutes to verify your account.\n\nIf you did not request this, ignore this email.\n\nBest regards,\nfmjr_stores Team`,
     html: `
     <p style="color:#333;">Hello,</p>
     <p style="color:#333;">Here's your confirmation code:</p>
