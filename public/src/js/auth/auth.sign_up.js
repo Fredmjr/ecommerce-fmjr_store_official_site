@@ -95,7 +95,7 @@ home.addEventListener("click", async (e) => {
         `;
         console.log(data.usr_accnt_jwt_token);
         //token
-        const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24hrs
+        const expires = new Date(Date.now() + 60 * 60 * 1000); // 1hrs
         document.cookie =
           `usr_accnt_jwt_token=${encodeURIComponent(data.usr_accnt_jwt_token)};` +
           `Secure; SameSite=Strict; expires=${expires.toUTCString()}; path=/`;
@@ -107,4 +107,38 @@ home.addEventListener("click", async (e) => {
       }
     }
   }
+});
+
+//
+const lgn_otp_pgbsrvr = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    mutation.addedNodes.forEach((node) => {
+      const el1 = node.matches?.("#lgn_otp_pg_codepnl")
+        ? node
+        : node.querySelector?.("#lgn_otp_pg_codepnl");
+      //
+      if (el1) {
+        const inputs = document.querySelectorAll(".lgn_otp_pg_codecrdlet_cl");
+
+        inputs.forEach((input, index) => {
+          input.addEventListener("input", (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+              inputs[index + 1].focus();
+            }
+          });
+
+          input.addEventListener("keydown", (e) => {
+            if (e.key === "Backspace" && !e.target.value && index > 0) {
+              inputs[index - 1].focus();
+            }
+          });
+        });
+      }
+    });
+  });
+});
+
+lgn_otp_pgbsrvr.observe(app_api_getelem("home"), {
+  childList: true,
+  subtree: true,
 });

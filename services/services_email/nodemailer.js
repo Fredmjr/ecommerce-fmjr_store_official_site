@@ -20,16 +20,16 @@ export const single_nodemailer_fuc = async (usr_otp, usr_eml) => {
     to: `${usr_eml}`,
     subject: "Security Confirmation Code",
     html: `
-    <p style="color:grey;">Hello,</p>
-    <p style="color:grey;">Here's your confirmation code:</p>
+    <p style="color:#333;">Hello,</p>
+    <p style="color:#333;">Here's your confirmation code:</p>
     <br>
     <h1 style="font-size:32px; font-weight:bold; margin:0; color:#333;">
       ${usr_otp}
     </h1>
     <br>
-    <p style="color:grey;">Please enter this code within 10 minutes to verify your account.</p>
-    <p style="color:grey;">If you did not request this, ignore this email.</p>
-    <p style="color:grey;">Best regards,<br/>fmjr_stores Team</p>
+    <p style="color:#333;">Please enter this code within 10 minutes to verify your account.</p>
+    <p style="color:#333;">If you did not request this, ignore this email.</p>
+    <p style="color:#333;">Best regards,<br/>fmjr_stores Team</p>
   `,
   };
   try {

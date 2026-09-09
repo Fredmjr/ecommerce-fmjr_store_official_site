@@ -2227,6 +2227,27 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#lggd_out_sctn_rtrnhmbtn {
+  border: none;
+  outline: none;
+  width: 35%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+#lggd_out_sctn_rtrnhmbtn_pnl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  height: fit-content;
+}
 
 #sgnuppg {
   width: 100%;
@@ -3543,6 +3564,13 @@ button:focus {
   justify-content: center;
   align-items: center;
 }
+#lggd_out_sctn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #lgnpgcntnts {
   width: 40%;
   padding: 15px 0px;
@@ -4187,6 +4215,11 @@ button:focus {
   padding: 100px 0px;
   box-sizing: border-box;
 }
+#lggd_out_sctn_cntnts {
+  width: 40%;
+  padding: 100px 0px;
+  box-sizing: border-box;
+}
 #sgnuppgcntnts {
   width: 40%;
   padding: 15px 0px;
@@ -4781,7 +4814,7 @@ button:focus {
   background-color: transparent;
   font-size: 18px;
   padding: 5px 5px;
-  width: 50%;
+  width: 85%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6042,6 +6075,9 @@ button:focus {
   #frgotpwdpgcntnts {
     width: 50%;
   }
+  #lggd_out_sctn_cntnts {
+    width: 50%;
+  }
   #accntspgcntnts {
     width: 50%;
   }
@@ -6452,6 +6488,9 @@ button:focus {
     width: 85%;
   }
   #frgotpwdpgcntnts {
+    width: 85%;
+  }
+  #lggd_out_sctn_cntnts {
     width: 85%;
   }
   #accntspgcntnts {

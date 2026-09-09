@@ -208,9 +208,8 @@ export const lgnusrUrl = async (req, res) => {
       if (!eml_sent) {
         return res.json({
           erMgs: `
-            <p>err_code: 001</p>
-            <p>Unable to process request!</p>
-            <p>Contact customer support, if issue persists</p>`,
+               <p>Unable to send code to provided email</p>
+    <p>Contact customer support, if issue persists</p>`,
         });
       }
       return res.status(200).render("components/login/login_otp_pg");
@@ -255,7 +254,7 @@ export const lgnusrotpUrl = async (req, res) => {
         usr_id: usr.dataValues.id,
       };
       const JWT = jwt.sign(data, process.env.SECRET_KEY, {
-        expiresIn: "24h",
+        expiresIn: "1h",
       });
       return res.json({
         redir: true,
