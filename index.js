@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import appRouter from "./routes/app.routes.js";
 import apiRouter from "./routes/api.routes.js";
+import store_managerRouter from "./routes/store_manager.routes.js";
 import blogapiRouter from "./routes/blogapi.routes.js";
 import userRouter from "./routes/user.routes.js";
 import sequelize from "./config/db.js";
@@ -43,6 +44,8 @@ app.get("/store_manager", (req, res) => {
     .status(200)
     .render("components/store_managment/store_managment.hbs");
 });
+//store managment - routes
+app.use("/apstore_manager", store_managerRouter);
 
 //NORMAL
 /* 
