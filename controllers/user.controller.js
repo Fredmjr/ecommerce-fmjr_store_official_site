@@ -269,18 +269,21 @@ export const lgnusrotpUrl = async (req, res) => {
       }
       //update user account to active (otherwise will be deleted later)
       //update
-
+      usr.accunt_otp_status = "Active";
+      const updated_usr = await usr.save();
       //jwt
-      const data = {
-        usr_id: usr.dataValues.id,
-      };
-      const JWT = jwt.sign(data, process.env.SECRET_KEY, {
-        expiresIn: "1h",
-      });
-      return res.json({
-        redir: true,
-        usr_accnt_jwt_token: JWT,
-      });
+      if (updated_usr) {
+        const data = {
+          usr_id: usr.dataValues.id,
+        };
+        const JWT = jwt.sign(data, process.env.SECRET_KEY, {
+          expiresIn: "1h",
+        });
+        return res.json({
+          redir: true,
+          usr_accnt_jwt_token: JWT,
+        });
+      }
     }
   } catch (error) {
     console.log(error);
@@ -438,7 +441,7 @@ export const lgnusrotpresetpwdUrl = async (req, res) => {
           <div id="frgotpwdpgcntnts_tplogo">
             <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
           </div>
-          <p id="frgotpwd_ttl">Logged out</p>
+          <p id="frgotpwd_ttl">Password Reset/p>
           <p id="frgotpwd_dscrptn">You have successfully changed your password.</p>
           <br><br>
           <div id="lggd_out_sctn_rtrnhmbtn_pnl">
