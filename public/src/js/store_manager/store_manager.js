@@ -109,14 +109,12 @@ let global_act;
 let global_inact;
 reuable_accnts_render_fuc = (arg_data, prnt_elem, clr, delete_btn_arg) => {
   let delete_btn = "";
-  if (delete_btn_arg) {
-    delete_btn = `<p class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls" id="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls_dltaccntbtn">Delete Account</p>`;
-  }
-
   if (arg_data[0].accunt_otp_status === "Inactive") {
     global_inact = arg_data.length;
+    delete_btn = `<div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_btn" id="strmgmntaccnts_section_crdcl_crdcl_info_rght_dltselected_btn">Delete</div>`;
   } else if (arg_data[0].accunt_otp_status === "Active") {
     global_act = arg_data.length;
+    delete_btn = `<div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_btn" id="strmgmntaccnts_section_crdcl_crdcl_info_rght_actnsonselected_btn">Actions</div>`;
   }
   prnt_elem.innerHTML = "";
   prnt_elem.innerHTML = `
@@ -144,12 +142,8 @@ reuable_accnts_render_fuc = (arg_data, prnt_elem, clr, delete_btn_arg) => {
        </p>
         </div>
        <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
-       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu" style="display: none;">
-       <p class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls_close">Close Menu</p>
-        ${delete_btn}
-        <p class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls">Update Account</p>
+       ${delete_btn}
        </div>
-       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_btn">Actions</div></div>
        </div>
       `;
 
@@ -158,6 +152,17 @@ reuable_accnts_render_fuc = (arg_data, prnt_elem, clr, delete_btn_arg) => {
     prnt_elem.appendChild(p_child);
   }
 };
+
+//remove dropdown menu
+/*    <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu" style="display: none;">
+       <p class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls_close">Close Menu</p>
+        ${delete_btn}
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls">Update Account</p>
+       </div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_btn">Actions</div>
+       </div>*/
+
 document.body.addEventListener("click", async (e) => {
   if (e.target.closest(".strmgmntaccnts_section_crdcl")) {
     console.log("hhh");
@@ -209,48 +214,17 @@ document.body.addEventListener("click", async (e) => {
     }
   }
 });
-//accounts drop down menu - open
-document.body.addEventListener("click", async (e) => {
-  const el = e.target.closest(
-    ".strmgmntaccnts_section_crdcl_crdcl_info_rght_btn",
-  );
-  if (el) {
-    const el_prnt = el.closest(".strmgmntaccnts_section_crdcl_crdcl_info_rght");
-
-    closeopenFunc(
-      el_prnt.querySelector(
-        ".strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu",
-      ),
-    );
-  }
-});
-//accounts drop down menu - close
-document.body.addEventListener("click", async (e) => {
-  const el = e.target.closest(
-    ".strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls_close",
-  );
-  if (el) {
-    const el_prnt = el.closest(
-      ".strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu",
-    );
-
-    closeopenFunc(el_prnt);
-  }
-});
 
 //accounts drop down menu - delete account
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(
-    ".strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu_btncls",
+    "#strmgmntaccnts_section_crdcl_crdcl_info_rght_dltselected_btn",
   );
   if (el) {
-    const el_prnt = el.closest(
-      ".strmgmntaccnts_section_crdcl_crdcl_info_rght_drpdwnmenu",
-    );
-    closeopenFunc(el_prnt);
-
     const accnt_cardlet = el.closest(".strmgmntaccnts_section_crdcl_crdcl");
     const accnt_id = accnt_cardlet.dataset.accnt_id;
+
+    console.log(accnt_id);
     const dlt_data = await store_manager_request(
       `/apstore_manager/dltaccnt/${accnt_id}`,
       "DELETE",

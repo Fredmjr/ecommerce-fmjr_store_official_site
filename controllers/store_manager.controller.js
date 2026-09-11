@@ -45,8 +45,6 @@ export const allaccntsUrl = async (req, res) => {
       ),
     ];
 
-    console.log(all_accnts_fltrd);
-
     return res.status(200).json({
       active_accnts: active_accnts,
       inactive_accnts: inactive_accnts,
@@ -67,7 +65,6 @@ export const allaccntsUrl = async (req, res) => {
 export const dltaccntUrl = async (req, res) => {
   const id = req.params.id;
   try {
-    console.log(id);
     //delete account
     const accnt = await usrModel.findByPk(id);
     if (!accnt) {
@@ -90,10 +87,6 @@ export const dltaccntUrl = async (req, res) => {
       accunt_otp_status: e.dataValues.accunt_otp_status,
     }));
 
-    console.log(
-      "all_accntsssssssssssssssssssssssssssssss: ",
-      all_inactive_fltrd_accnts,
-    );
     return res.status(200).json({
       all_inactive_fltrd_accnts: all_inactive_fltrd_accnts,
     });
