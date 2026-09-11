@@ -10,6 +10,7 @@ import sequelize from "./config/db.js";
 import corsMiddleware from "./middleware/cors/cors.js";
 import { ws_connect } from "./websockets/ws_connect.js";
 import dotenv from "dotenv";
+import { MAS_delete_account_logs_fuc } from "./logs/usr_accounts_logs/delete_account_logs/delete_account_logs.js";
 
 dotenv.config();
 const app = express();
@@ -67,4 +68,7 @@ app.use("/apstore_manager", store_managerRouter);
   });
   //websocket
   ws_connect(web_socket);
+
+  //fmjr_stores Automated Management System functions (MAS)
+  MAS_delete_account_logs_fuc();
 })();
