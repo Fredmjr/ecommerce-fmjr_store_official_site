@@ -5,6 +5,8 @@ import {
   lgnusrotpresetpwdUrl,
   lgnusrotpUrl,
   lgnusrUrl,
+  sgnupusrotpUrl,
+  signupusrrndrotpUrl,
   signupusrUrl,
 } from "../controllers/user.controller.js";
 
@@ -16,5 +18,7 @@ router.post("/lgnusrotp", lgnusrotpUrl);
 router.post("/frgotpwd", frgotpwdUrl);
 router.post("/lgnusrotpresetpwdpg", lgnusrotpresetpwdpgUrl);
 router.post("/lgnusrotpresetpwd", lgnusrotpresetpwdUrl);
+router.post("/signupusrrndrotp", signupusrrndrotpUrl);
+router.post("/sgnupusrotp", sgnupusrotpUrl);
 
 export default router;

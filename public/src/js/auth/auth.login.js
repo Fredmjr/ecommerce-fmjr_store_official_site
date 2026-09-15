@@ -162,7 +162,7 @@ const auto_lgn = () => {
     auth_lgn_getelem("navbrloginBtn").style.display = "block";
   } else {
     auth_lgn_getelem("navbrsgnupBtn").outerHTML =
-      `<button id="navbr_lggdintn">Logged In</button>`;
+      `<button id="navbr_lggdintn">Signed In</button>`;
   }
 };
 auto_lgn();

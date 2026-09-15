@@ -2,14 +2,16 @@ import {
   generate_otp_fuc,
   verify_otp_fuc,
 } from "../inventory_assets/export_fucs/otp/otp.js";
+import { encryptJWT } from "../middleware/jwe/encrypt.js";
 import usrModel from "../models/user.model.js";
 import { single_nodemailer_fuc } from "../services/services_email/nodemailer.js";
 import hashpwd from "../system_auth/argon2/argon2.hash.js";
 import verifypwd from "../system_auth/argon2/argon2.verfy.js";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import { v4 as uuidv4 } from "uuid";
 
-//sign up user
+//sign up user - on account creation only email otp verification
 export const signupusrUrl = async (req, res) => {
   const { eml, pwd, conf_pwd, usr_nm, phn } = req.body;
   try {
@@ -89,47 +91,124 @@ export const signupusrUrl = async (req, res) => {
           "User with provided credentials exists. If this is your account, login.",
       });
     }
-    const hashedpassword = await hashpwd(pwd);
+
+    //opt
+
+    const uuid = uuidv4();
+    const usr_otp = generate_otp_fuc(uuid);
+    const eml_sent = await single_nodemailer_fuc(usr_otp, eml);
+
+    if (!eml_sent) {
+      return res.json({
+        erMgs: `
+           <p>Unable to send code to provided email</p>
+            <p>Contact customer support, if issue persists</p>`,
+      });
+    }
+
+    return res.status(200).json({
+      usr_id: uuid,
+      dir_url: "components/signup/signup_otp_pg",
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//sign up user - redir to otp page based on payload file directory
+export const signupusrrndrotpUrl = async (req, res) => {
+  const { dir_url } = req.body;
+  try {
+    return res.status(200).render(dir_url);
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//sign up user - veryfy otp & create user account
+export const sgnupusrotpUrl = async (req, res) => {
+  const { code, usr_sgn_up_obj } = req.body;
+  try {
+    console.log(code, usr_sgn_up_obj);
+
+    if (!usr_sgn_up_obj || Object.keys(usr_sgn_up_obj).length === 0) {
+      return res.status(400).json({
+        erMgs: "Unable to complete user account registration",
+      });
+    }
+
+    console.log("usriddddddddddddddddddddddddddd", usr_sgn_up_obj.usr_id);
+    const results = await verify_otp_fuc(usr_sgn_up_obj.usr_id, code);
+    console.log(results);
+
+    if (!results || results === false) {
+      return res.status(400).json({
+        erMgs: "Incorrect code or code has expired",
+      });
+    }
+    //create account
+    const hashedpassword = await hashpwd(usr_sgn_up_obj.pwd);
     console.log(hashedpassword);
-    z;
 
     const new_usr = await usrModel.create({
-      usr_nm: usr_nm,
-      phn: valid_phn,
-      eml: eml,
+      usr_nm: usr_sgn_up_obj.usr_nm,
+      phn: usr_sgn_up_obj.phn,
+      eml: usr_sgn_up_obj.eml,
       pwd: hashedpassword,
+      accunt_otp_status: "Active",
     });
-    //1. jwt
-    /*     if (new_usr) {
-      const data = {
-        usr_id: new_usr.dataValues.id,
-      };
-      const JWT = jwt.sign(data, process.env.SECRET_KEY, {
-        expiresIn: "24h",
+    //failed registration
+    if (!new_usr) {
+      return res.status(400).json({
+        erMgs: "Unable to complete user account registration",
       });
-      return res.json({
-        redir: true,
-        usr_accnt_jwt_token: JWT,
-      });
-    } */
-
-    //2. opt
-    if (new_usr) {
-      const usr_otp = generate_otp_fuc(new_usr.dataValues.id);
-      const eml_sent = await single_nodemailer_fuc(
-        usr_otp,
-        new_usr.dataValues.eml,
-      );
-
-      if (!eml_sent) {
-        return res.json({
-          erMgs: `
-               <p>Unable to send code to provided email</p>
-    <p>Contact customer support, if issue persists</p>`,
-        });
-      }
-      return res.status(200).render("components/login/login_otp_pg");
     }
+
+    //jwe
+    const token = {
+      ky: usr_sgn_up_obj.usr_id,
+    };
+    const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+    const usr_jwe = await encryptJWT(token, secretKey);
+
+    //signup success mgs
+    const cmpltd_sgndup_mgs = `
+          <div id="lggd_out_sctn">
+          <div id="lggd_out_sctn_cntnts">
+          <div id="frgotpwdpgcntnts_tplogo">
+            <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
+          </div>
+          <p id="frgotpwd_ttl">Password Reset/p>
+          <p id="frgotpwd_dscrptn">You have successfully changed your password.</p>
+          <br><br>
+          <div id="lggd_out_sctn_rtrnhmbtn_pnl">
+          <button id="resetpwdpg_sctn_rtrnhmbtn">Return Home</button>
+          <button id="resetpwdpg_sctn_accntsbtn">Account</button></div>
+          </div>
+          </div>
+          `;
+
+    return res.json({
+      redir: true,
+      usr_accnt_jwt_token: usr_jwe,
+      cmpltd_sgndup_mgs: cmpltd_sgndup_mgs,
+    });
   } catch (error) {
     console.log(error);
     const erMgs_div = `
