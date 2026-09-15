@@ -349,10 +349,10 @@ export const lgnusrotpUrl = async (req, res) => {
       }
       //update user account to active (otherwise will be deleted later)
       //update
-      usr.accunt_otp_status = "Active";
-      const updated_usr = await usr.save();
+      /*   usr.accunt_otp_status = "Active";
+      const updated_usr = await usr.save(); */
       //jwt
-      if (updated_usr) {
+      /*       if (updated_usr) {
         const data = {
           usr_id: usr.dataValues.id,
         };
@@ -363,7 +363,18 @@ export const lgnusrotpUrl = async (req, res) => {
           redir: true,
           usr_accnt_jwt_token: JWT,
         });
-      }
+      } */
+
+      //jwe
+      const token = {
+        ky: usr.dataValues.id,
+      };
+      const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+      const usr_jwe = await encryptJWT(token, secretKey);
+      return res.status(200).json({
+        redir: true,
+        usr_accnt_jwt_token: usr_jwe,
+      });
     }
   } catch (error) {
     console.log(error);
@@ -504,16 +515,24 @@ export const lgnusrotpresetpwdUrl = async (req, res) => {
     //update password & account otp status
     if (usr) {
       usr.pwd = hashedpassword;
-      usr.accunt_otp_status = "Active";
+      /* usr.accunt_otp_status = "Active"; */
       const updated_usr = await usr.save();
 
       //jwt
-      const data = {
+      /*       const data = {
         usr_id: usr.dataValues.id,
       };
       const JWT = jwt.sign(data, process.env.SECRET_KEY, {
         expiresIn: "1h",
       });
+ */
+      //jwe
+      const token = {
+        ky: usr.dataValues.id,
+      };
+      const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+      const usr_jwe = await encryptJWT(token, secretKey);
+
       //succssful message
       const client_loged_out_mgs = `
           <div id="lggd_out_sctn">
@@ -533,7 +552,7 @@ export const lgnusrotpresetpwdUrl = async (req, res) => {
       if (updated_usr) {
         return res.status(200).json({
           redir: true,
-          usr_accnt_jwt_token: JWT,
+          usr_accnt_jwt_token: usr_jwe,
           reset_mgs: client_loged_out_mgs,
         });
       }

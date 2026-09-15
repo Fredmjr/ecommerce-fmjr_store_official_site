@@ -68,7 +68,7 @@ home.addEventListener("click", async (e) => {
     const eml = el1 ? el1.value : null;
     const pwd = el2 ? el2.value : null;
     auth_lgn_global_eml = el1 ? el1.value : null;
-    console.log(eml, pwd);
+    /* console.log(eml, pwd); */
 
     const data = await auth_lgn_request("/usr/lgnusr", "POST", {
       eml: eml,
@@ -76,10 +76,10 @@ home.addEventListener("click", async (e) => {
     });
 
     if (data) {
-      console.log(data);
+      /* console.log(data); */
       //err
       if (data.erMgs) {
-        console.log(auth_lgn_err_pnl);
+        /* console.log(auth_lgn_err_pnl); */
         btn.innerHTML = "Log In";
         auth_lgn_err_pnl.style.display = "block";
         auth_lgn_err_pnl.innerHTML = data.erMgs;
@@ -157,7 +157,7 @@ home.addEventListener("click", async (e) => {
 //auto log in
 const auto_lgn = () => {
   const cookie = app_btns_reusable_cookie("usr_accnt_jwt_token");
-  console.log(cookie);
+  /* console.log(cookie); */
   if (!cookie) {
     auth_lgn_getelem("navbrloginBtn").style.display = "block";
   } else {
@@ -190,7 +190,7 @@ home.addEventListener("click", async (e) => {
     const e6 = el6 ? el6.value : null;
 
     const code = e1 + e2 + e3 + e4 + e5 + e6;
-    console.log(code, auth_lgn_global_eml);
+    /* console.log(code, auth_lgn_global_eml); */
     const data = await auth_lgn_request("/usr/lgnusrotp", "POST", {
       code: code,
       eml: auth_lgn_global_eml,
@@ -239,7 +239,7 @@ home.addEventListener("click", async (e) => {
     const eml = el1 ? el1.value : null;
     auth_lgn_global_eml = el1 ? el1.value : null;
 
-    console.log(eml);
+    /* console.log(eml); */
 
     const data = await auth_sgnup_request("/usr/frgotpwd", "POST", {
       eml: eml,
@@ -287,7 +287,7 @@ home.addEventListener("click", async (e) => {
     const e6 = el6 ? el6.value : null;
 
     const code = e1 + e2 + e3 + e4 + e5 + e6;
-    console.log(code, auth_lgn_global_eml);
+    /* console.log(code, auth_lgn_global_eml); */
     const data = await auth_lgn_request("/usr/lgnusrotpresetpwdpg", "POST", {
       code: code,
       eml: auth_lgn_global_eml,
@@ -376,7 +376,7 @@ home.addEventListener("click", async (e) => {
     brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
 
     if (c_url_data) {
-      console.log(c_url_data);
+      /* console.log(c_url_data); */
       const data = await app_btns_request(`${c_url_data.dir_url}`, "GET");
       if (data) {
         app_btns_getelem("main").innerHTML = data;

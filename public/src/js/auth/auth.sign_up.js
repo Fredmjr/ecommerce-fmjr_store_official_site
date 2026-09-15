@@ -71,7 +71,7 @@ home.addEventListener("click", async (e) => {
     const usr_nm = el4 ? el4.value : null;
     const phn = el5 ? el5.value : null;
 
-    console.log(eml, pwd, conf_pwd);
+    /* console.log(eml, pwd, conf_pwd); */
 
     global_sign_up_dtls.eml = eml;
     global_sign_up_dtls.pwd = pwd;
@@ -98,7 +98,7 @@ home.addEventListener("click", async (e) => {
           err_pnl.style.display = "none";
         }, 7000);
       } else {
-        console.log(data);
+        /* console.log(data); */
         global_sign_up_dtls.usr_id = data.usr_id;
         const rdir_data = await auth_sgnup_request(
           "/usr/signupusrrndrotp",
@@ -136,7 +136,7 @@ home.addEventListener("click", async (e) => {
     const e6 = el6 ? el6.value : null;
 
     const code = e1 + e2 + e3 + e4 + e5 + e6;
-    console.log(code);
+    /* console.log(code); */
     const data = await auth_lgn_request("/usr/sgnupusrotp", "POST", {
       code: code,
       /*       eml: auth_lgn_global_eml, */
