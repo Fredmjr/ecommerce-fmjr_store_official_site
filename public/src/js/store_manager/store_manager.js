@@ -32,14 +32,11 @@ const store_manager_request = async (
 //Mobile colapse contents
 const mobileQuery = window.matchMedia("(max-width: 576px)");
 const mobile_callapsable_contents_fuc = (e) => {
-  if (e.matches) {
-    //drop down menu
-    const a = store_manager_getelem("store_hero_rght").innerHTML;
-    store_manager_getelem("store_mngrnavbar_lft_drpdwnmenu_cntnts").innerHTML =
-      a;
-  } else {
-    store_manager_getelem("store_mngrnavbar_lft_drpdwnmenu").style.display =
-      "none";
+  if (!e.matches) {
+    const a = store_manager_getelem("store_mngrnavbar_lft_drpdwnmenu");
+    if (a) {
+      a.style.display = "none";
+    }
   }
 };
 
@@ -74,17 +71,23 @@ document.body.addEventListener("click", async (e) => {
 });
 
 //based on chnage
-mobileQuery.addEventListener("change", mobile_callapsable_contents_fuc);
 mobile_callapsable_contents_fuc(mobileQuery);
+mobileQuery.addEventListener("change", mobile_callapsable_contents_fuc);
 
 //menu swap
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest("#store_mngrnavbar_rghtmenubtn");
   if (el) {
     if (mobileQuery.matches) {
-      console.log("hi");
-
+      store_manager_getelem(
+        "store_mngrnavbar_lft_drpdwnmenu_cntnts",
+      ).innerHTML = a = store_manager_getelem("store_hero_rght").innerHTML;
       closeopenFunc(store_manager_getelem("store_mngrnavbar_lft_drpdwnmenu"));
+    } else {
+      const el = store_manager_getelem("store_mngrnavbar_lft_drpdwnmenu");
+      if (el) {
+        el.style.display = "none";
+      }
     }
   }
 });
@@ -93,12 +96,11 @@ document.body.addEventListener("click", async (e) => {
 document.body.addEventListener("click", async (e) => {
   if (e.target.closest("#store_hero_rght_generic_txt_ttl_accnts_id")) {
     const data = await store_manager_request(
-      "/apstore_manager/accntscrdlets",
+      "/store_manager/accntscrdlets",
       "GET",
     );
 
     if (data) {
-      console.log(data);
       store_manager_getelem("store_hero_lft").innerHTML = data.accnt_crdlets;
     }
   }
@@ -125,14 +127,14 @@ reuable_accnts_render_fuc = (arg_data, prnt_elem, clr, delete_btn_arg) => {
     `;
 
   for (let i = 0; i < arg_data.length; i++) {
-    console.log(arg_data[i].eml);
+    /* console.log(arg_data[i].eml); */
     const p_child = document.createElement("div");
     p_child.className = "strmgmntaccnts_section_crdcl_crdcl";
     p_child.id = `strmgmntaccnts_section_crdcl_crdid_${i}`;
     p_child.dataset.accnt_id = arg_data[i].id;
 
     const tmp = `
-      <div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores_courses_classes_thumbnail_img.webp" alt=""></div>
+      <div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores store management thumbnail.webp" alt=""></div>
        <div class="strmgmntaccnts_section_crdcl_crdcl_info">
        <div class="strmgmntaccnts_section_crdcl_crdcl_info_lft">
         <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_eml">${arg_data[i].eml}</p>
@@ -165,14 +167,14 @@ reuable_accnts_render_fuc = (arg_data, prnt_elem, clr, delete_btn_arg) => {
 
 document.body.addEventListener("click", async (e) => {
   if (e.target.closest(".strmgmntaccnts_section_crdcl")) {
-    console.log("hhh");
-    const data = await store_manager_request(
-      "/apstore_manager/allaccnts",
-      "GET",
-    );
-
+    const data = await store_manager_request("/store_manager/allaccnts", "GET");
+    // err
     if (data) {
-      console.log(data);
+      if (data.erMgs) {
+        store_manager_getelem("strmgmntaccnts_section_main").innerHTML =
+          data.erMgs;
+      }
+      //success
       glbal_accnts = data;
       global_act = data.active_accnts.length;
       global_inact = data.inactive_accnts.length;
@@ -224,9 +226,9 @@ document.body.addEventListener("click", async (e) => {
     const accnt_cardlet = el.closest(".strmgmntaccnts_section_crdcl_crdcl");
     const accnt_id = accnt_cardlet.dataset.accnt_id;
 
-    console.log(accnt_id);
+    /* console.log(accnt_id); */
     const dlt_data = await store_manager_request(
-      `/apstore_manager/dltaccnt/${accnt_id}`,
+      `/store_manager/dltaccnt/${accnt_id}`,
       "DELETE",
     );
     if (dlt_data) {
@@ -240,3 +242,22 @@ document.body.addEventListener("click", async (e) => {
     }
   }
 });
+
+//oberserver
+/* const store_manager_bsrvr = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    mutation.addedNodes.forEach((node) => {
+      const el1 = node.matches?.("#store_mngrnavbar_mid")
+        ? node
+        : node.querySelector?.("#store_mngrnavbar_mid");
+      if (el1) {
+        console.log("cookie");
+      }
+    });
+  });
+});
+
+store_manager_bsrvr.observe(document.body, {
+  childList: true,
+  subtree: true,
+}); */

@@ -43,10 +43,10 @@ app.use("/blog", corsMiddleware, blogapiRouter);
 app.get("/store_manager", (req, res) => {
   return res
     .status(200)
-    .render("components/store_managment/store_managment.hbs");
+    .render("components/store_managment/store_managment_login.hbs");
 });
 //store managment - routes
-app.use("/apstore_manager", store_managerRouter);
+app.use("/store_manager", store_managerRouter);
 
 //NORMAL
 /* 

@@ -65,7 +65,7 @@ body {
   margin: 0px;
   font-family: reddir-regular;
   font-size: 11px;
-  background-color: var(--fmjr--dkr5);
+  background-color: var(--fmjr--dkr1);
   height: fit-content;
 }
 
@@ -88,7 +88,7 @@ button {
 }
 
 #home {
-  background-color: var(--drk-theme1);
+  background-color: var(--fmjr--dkr1);
   font-family: reddir-regular;
   /* 2 of 2 js_prtt_scrpt */
   /* no user text selection */

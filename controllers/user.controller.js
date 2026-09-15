@@ -91,6 +91,7 @@ export const signupusrUrl = async (req, res) => {
     }
     const hashedpassword = await hashpwd(pwd);
     console.log(hashedpassword);
+    z;
 
     const new_usr = await usrModel.create({
       usr_nm: usr_nm,

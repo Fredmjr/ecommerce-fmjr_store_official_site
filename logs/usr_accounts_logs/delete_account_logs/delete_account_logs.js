@@ -91,7 +91,7 @@ export const delete_account_logs_fuc = async () => {
       "Accounts that never confirmed using an email otp code deleted every 23hrs when traffic is less.";
 
     //perform delete action
-    /*     await all_inactive_accunts.destroy(); */
+    await all_inactive_accunts.destroy();
 
     //send email notification
     const eml_response = await notfication_nodemailer_fuc(
