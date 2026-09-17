@@ -582,6 +582,15 @@ home.addEventListener("click", async (e) => {
     app_btns_getelem("accntspgcntnts_subbnnrclndrBtnicn").style.transform =
       flip2 ? "rotate(180deg)" : "rotate(0deg)";
   }
+
+  if (e.target.closest("#accntspgcntnts_ttr_crs_clss_bnnr")) {
+    closeopenFunc(app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"));
+
+    flip2 = !flip2;
+    app_btns_getelem(
+      "accntspgcntnts_ttr_crs_clss_bnnr_btnicn",
+    ).style.transform = flip2 ? "rotate(180deg)" : "rotate(0deg)";
+  }
 });
 
 //feedback messages dropdown menu

@@ -69,7 +69,7 @@
       {{! forgot password }}
       {{!       <button id="lgn_frgtpwdBtn">Forgot Password</button> }}
       {{! new passsword }}
-      <label for="accntspgcntnts_newpwdinpt">New Password</label>
+      {{!       <label for="accntspgcntnts_newpwdinpt">New Password</label>
       <div class="accntspgcntnts_inptcrdcl">
         <input
           id="accntspgcntnts_newpwdinpt"
@@ -87,9 +87,9 @@
             src="dist/icons/open-eye.svg"
             width="17"
           /></button>
-      </div>
+      </div> }}
       {{! confirm passsword }}
-      <label for="accntspgcntnts_cnfrmpwdinpt">Confirm Password</label>
+      {{!       <label for="accntspgcntnts_cnfrmpwdinpt">Confirm Password</label>
       <div class="accntspgcntnts_inptcrdcl">
         <input
           id="accntspgcntnts_cnfrmpwdinpt"
@@ -107,13 +107,212 @@
             src="dist/icons/open-eye.svg"
             width="17"
           /></button>
+      </div> }}
+
+      {{!  <button id="accntspgcntnts_svaccntsdtlsBtn">Save Changes</button> }}
+
+      <div id="accntspgcntnts_svaccntsdtls_passwdmngmnt"><img
+          class="ldngicn"
+          width="30"
+          src="dist/icons/loading.svg"
+          alt=""
+        /></div>
+    </div>
+    {{! Tutor, Course &  Class}}
+    {{! title bar }}
+    <button id="accntspgcntnts_ttr_crs_clss_bnnr">
+      <p id="accntspgcntnts_ttr_crs_clss_bnnr_lft">Register Tutor Account</p>
+      <span id="accntspgcntnts_ttr_crs_clss_bnnr_btn">
+        <img
+          id="accntspgcntnts_ttr_crs_clss_bnnr_btnicn"
+          src="dist/icons/down arrow.svg"
+          width="5"
+        />
+      </span>
+    </button>
+    {{! info }}
+    <div id="accntspgcntnts_ttr_crs_clss_sec" style="display: none;">
+      <p>Tutor Account Info Details</p>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_nm"
+          name="ttr_nm"
+          placeholder="Enter Tutor Username"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_eml"
+          name="ttr_eml"
+          placeholder="Enter Email Address"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <br />
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_website"
+          name="ttr_website"
+          placeholder="Enter Website Link (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <br />
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_fb_hndl"
+          name="ttr_fb_hndl"
+          placeholder="Enter Facebook Handle (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_instgrm_hndl"
+          name="ttr_instgrm_hndl"
+          placeholder="Enter Instagram Handle (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_ticktok_hndl"
+          name="ttr_tiktok_hndl"
+          placeholder="Enter Tik Tok Handle (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_bhnc_hndl"
+          name="ttr_bhnc_hndl"
+          placeholder="Enter Behance Handle (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <br />
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_cntct_1"
+          name="ttr_cntct_1"
+          placeholder="Enter Conatct Line 1"
+          class="sgnup_inptcl"
+          required=""
+        />
+      </div>
+      <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+        <input
+          type="text"
+          id="ttr_cntct_2"
+          name="ttr_cntct_2"
+          placeholder="Enter Conatct Line 2 (Optional)"
+          class="sgnup_inptcl"
+          required=""
+        />
       </div>
 
-      <button id="accntspgcntnts_svaccntsdtlsBtn">Save Changes</button>
+      <br /><br />
+      <p>Payment Account Details
+        <p>Mobile Details</p>
+        <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+          <input
+            type="text"
+            id="ttr_mblsrvcs_nm"
+            name="ttr_mblsrvcs_nm"
+            placeholder="Enter Account Username"
+            class="sgnup_inptcl"
+            required=""
+          />
+        </div>
+        <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
+          <input
+            type="tel"
+            id="ttr_mblsrvcs_phn"
+            name="contact_number"
+            placeholder="e.g., +260 975986004"
+            class="sgnup_inptcl"
+            required=""
+          />
+        </div>
+        <p>Choose Mobile Service Operator</p>
+        <div id="accntspgcntnts_ttr_crs_clss_sec_ttrs_mblsrvcs">
+          <div
+            class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
+          >airtel zambia</div>
+          <div
+            class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
+          >mtn zambia</div>
+          <div
+            class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
+          >zamtel zambia</div>
+
+        </div>
+        <br />
+        <br />
+        <p>Bank / Card</p>
+        <p>Service Currently Unavailable.</p>
+
+        <br /><br />
+        <p>Tutor Account Profile Image</p>
+        <br />
+        <div
+          id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl"
+        >
+          <div
+            id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_img"
+          ><img
+              src="dist/imgs/upload_file_thumbnail.webp"
+              width="40"
+              alt=""
+            /></div>
+
+          <p
+            id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txt"
+          >Drag and drop file here or
+            <span
+              id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink"
+            >Choose file</span></p>
+          <input
+            type="file"
+            id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_attcmntfile_pnl_txtlink_filinput"
+            style="display:none;"
+            {{!  multiple="" }}
+            accept=".png"
+          />
+        </div>
+        <div
+          id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_flfrmt"
+        ><span>Supported format: png</span><span>Maximum size: 10MB</span></div>
+        <div
+          id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles_ermgpnl"
+        ></div>
+        <div
+          id="authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_rdytouploadfiles"
+        ></div>
+        <button
+          id="accntspgcntnts_ttr_crs_clss_sec_ttrs_submittttrformbtn"
+        >Submit</button>
+      </p>
     </div>
 
     {{! calendar upload }}
-    {{! title bar }}
+    {{! title bar }}{{! info }}
     <button id="accntspgcntnts_subbnnrclndr">
       <p id="accntspgcntnts_subbnnrclndrlft">Calendar & Schedules</p>
       <span id="accntspgcntnts_subbnnrclndrrghtBtn">

@@ -787,6 +787,19 @@ button {
   box-sizing: border-box;
 }
 
+.accntspgcntnts_accntdtls_info_dscrptncl {
+  padding: 7px 0px;
+  padding-left: 15px;
+  width: 100%;
+  text-align: start;
+  color: var(--fmjr--dkr4);
+  font-size: 11px;
+  border: 1px solid var(--fmjr--dkr2);
+  background-color: var(--fmjr--dkr8);
+  border-radius: 3px;
+  box-sizing: border-box;
+  text-align: center;
+}
 .prfl_sectn_tem_crd_pflinfo_ttlcl {
   font-weight: bolder;
   font-size: 10px;
@@ -794,6 +807,22 @@ button {
   margin: 3px 0ex;
   box-sizing: border-box;
 }
+#accntspgcntnts_svaccntsdtls_passwdmngmnt {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accntspgcntnts_accntdtls_info_ttlcl {
+  font-weight: bolder;
+  font-size: 10px;
+  width: 100%;
+  margin: 3px 0ex;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 #crs_clss_detils_crd_info_uplddate {
   background-color: var(--fmjr--dkr3);
   border-radius: 50px;
@@ -872,6 +901,19 @@ button {
   border: 1px solid var(--fmjr--dkr3);
   margin-top: 7px;
 }
+#accntspgcntnts_accntdtls_info {
+  width: 100%;
+  height: fit-content;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--fmjr--dkr2);
+  margin-top: 7px;
+}
+
 #prfl_sectn_tem_crd_pflimg_id {
   width: 50%;
 }
@@ -2169,6 +2211,19 @@ button:focus {
   font-weight: bold;
 }
 #authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_submtfrmbtn {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: var(--drk-theme3);
+  cursor: pointer;
+  color: var(--clr-theme1);
+  font-family: reddir-regular;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 15px 15px;
+  font-weight: bold;
+}
+#accntspgcntnts_ttr_crs_clss_sec_ttrs_submittttrformbtn {
   border: none;
   outline: none;
   width: 100%;
@@ -4094,7 +4149,7 @@ button:focus {
   padding-bottom: 70px;
   box-sizing: border-box;
 }
-#issbxpgcntnts {
+prfl_sectn_tem_crd_pflinfo #issbxpgcntnts {
   width: 40%;
   padding-top: 30px;
   padding-bottom: 70px;
@@ -4103,6 +4158,9 @@ button:focus {
 #accntspgcntnts_accntdtls {
   width: 100%;
   margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #accntspgcntnts_subbnnrclndrsec {
   width: 100%;
@@ -4264,6 +4322,22 @@ button:focus {
   outline: none;
   cursor: pointer;
 }
+#accntspgcntnts_ttr_crs_clss_bnnr {
+  width: 100%;
+  margin: 3px 0px;
+  padding: 0px 7px;
+  font-size: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
 #accntspgcntnts_bnnrpwsmngmnt {
   width: 100%;
   margin: 3px 0px;
@@ -4294,6 +4368,14 @@ button:focus {
   cursor: pointer;
   padding: 0px 5px;
 }
+#accntspgcntnts_ttr_crs_clss_bnnr_btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0px 5px;
+}
+
 .accntspgcntnts_genericttlbnnricnpnl {
   border: none;
   outline: none;
@@ -4309,6 +4391,10 @@ button:focus {
   padding: 0px 5px;
   margin: 3px;
 }
+#accntspgcntnts_ttr_crs_clss_bnnr_lft {
+  padding: 0px 5px;
+  margin: 3px;
+}
 .accntspgcntnts_genericttlbnnr {
   padding: 0px 5px;
   margin: 3px;
@@ -4319,6 +4405,10 @@ button:focus {
 }
 
 #accntspgcntnts_subbnnrclndrBtnicn {
+  filter: var(--fmjr-fltr2);
+}
+
+#accntspgcntnts_ttr_crs_clss_bnnr_btnicn {
   filter: var(--fmjr-fltr2);
 }
 .accntspgcntnts_genericttlbnnricn {
@@ -4622,8 +4712,29 @@ button:focus {
   text-align: center;
   padding: 0px 70px;
 }
-
+#accntspgcntnts_ttr_crs_clss_sec_ttrs_mblsrvcs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  overflow: hidden;
+}
 .sgnup_inptcrdcl {
+  width: 100%;
+  padding: 10px 7px;
+  border: 1px solid var(--fmjr--dkr6);
+  border-radius: 3px;
+  margin: 7px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl {
   width: 100%;
   padding: 10px 7px;
   border: 1px solid var(--fmjr--dkr6);

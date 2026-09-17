@@ -2,6 +2,7 @@ import {
   generate_otp_fuc,
   verify_otp_fuc,
 } from "../inventory_assets/export_fucs/otp/otp.js";
+import { decryptJWT } from "../middleware/jwe/decrypt.js";
 import { encryptJWT } from "../middleware/jwe/encrypt.js";
 import usrModel from "../models/user.model.js";
 import { single_nodemailer_fuc } from "../services/services_email/nodemailer.js";
@@ -570,6 +571,58 @@ export const lgnusrotpresetpwdUrl = async (req, res) => {
       //reset passsword page
       return res.status(200).render("components/login/login_pwd_reset");
     } */
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//reset user password with otp page
+export const prflUrl = async (req, res) => {
+  const { c } = req.body;
+  try {
+    console.log("cccccccccccccccccccccccccc: ", c);
+
+    const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+    const d_c = await decryptJWT(c, secretKey);
+
+    console.log(d_c);
+
+    const usr_accnt = await usrModel.findOne({
+      where: {
+        id: d_c.payload.ky,
+      },
+    });
+
+    if (!usr_accnt || usr_accnt === "") {
+      return res.status(400).json({
+        erMgs: "Currently unable to fetch user account details.",
+      });
+    }
+
+    const tmp = `
+
+     <div id="accntspgcntnts_accntdtls_info">
+       <p class="accntspgcntnts_accntdtls_info_ttlcl">Account Username</p>
+       <p class="accntspgcntnts_accntdtls_info_dscrptncl">${usr_accnt.dataValues.usr_nm}</p>
+       <p class="accntspgcntnts_accntdtls_info_ttlcl">Account Email Address</p>
+       <p class="accntspgcntnts_accntdtls_info_dscrptncl">${usr_accnt.dataValues.eml}</p>
+       <p class="accntspgcntnts_accntdtls_info_ttlcl">Account Contact Line 1</p>
+       <p class="accntspgcntnts_accntdtls_info_dscrptncl">${usr_accnt.dataValues.phn}</p>
+       </div>
+
+      `;
+
+    return res.status(200).json({
+      usr_dtls_tmp: tmp,
+    });
   } catch (error) {
     console.log(error);
     const erMgs_div = `

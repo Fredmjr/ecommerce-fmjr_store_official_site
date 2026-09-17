@@ -5,6 +5,7 @@ import {
   lgnusrotpresetpwdUrl,
   lgnusrotpUrl,
   lgnusrUrl,
+  prflUrl,
   sgnupusrotpUrl,
   signupusrrndrotpUrl,
   signupusrUrl,
@@ -20,5 +21,6 @@ router.post("/lgnusrotpresetpwdpg", lgnusrotpresetpwdpgUrl);
 router.post("/lgnusrotpresetpwd", lgnusrotpresetpwdUrl);
 router.post("/signupusrrndrotp", signupusrrndrotpUrl);
 router.post("/sgnupusrotp", sgnupusrotpUrl);
+router.post("/prfl", prflUrl);
 
 export default router;
