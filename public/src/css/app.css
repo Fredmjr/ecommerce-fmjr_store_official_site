@@ -1320,6 +1320,11 @@ button {
   justify-content: center;
   align-items: center;
 }
+.cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag:active,
+.cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag:focus {
+  background-color: var(--fmjr--clr5);
+}
+
 .cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_sessnvenue {
   background-color: var(--fmjr--clr1);
   border-radius: 50px;
@@ -4149,7 +4154,8 @@ button:focus {
   padding-bottom: 70px;
   box-sizing: border-box;
 }
-prfl_sectn_tem_crd_pflinfo #issbxpgcntnts {
+#prfl_sectn_tem_crd_pflinfo,
+#issbxpgcntnts {
   width: 40%;
   padding-top: 30px;
   padding-bottom: 70px;
@@ -4458,6 +4464,16 @@ prfl_sectn_tem_crd_pflinfo #issbxpgcntnts {
   /*   font-weight: bolder; */
 }
 
+#authrbookspgcntnts_mainermgs_ermgpnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
 #frgotpwderrmgs_pnl {
   text-align: center;
   padding: 15px 10px;
@@ -5270,7 +5286,8 @@ prfl_sectn_tem_crd_pflinfo #issbxpgcntnts {
   min-height: 70px;
   resize: vertical;
 }
-.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox {
+.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox,
+.accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn_cl {
   width: 100%;
   background-color: var(--fmjr--dkr1);
   color: var(--clr-theme5);
@@ -5287,13 +5304,15 @@ prfl_sectn_tem_crd_pflinfo #issbxpgcntnts {
 }
 
 .accntspgcntnts_subbnnrclndrsec_dscrptnbox::placeholder,
-.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox::placeholder {
+.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox::placeholder,
+.accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn_cl::placeholder {
   font-family: reddir-regular;
   font-size: 12px;
 }
 
 .accntspgcntnts_subbnnrclndrsec_dscrptnbox::-webkit-resizer,
-.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox::-webkit-resizer {
+.authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_dscrptnbox::-webkit-resizer,
+.accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn_cl::-webkit-resizer {
   background-color: var(--fmjr--clr1);
   border: 2px solid transparent;
   background-clip: padding-box;

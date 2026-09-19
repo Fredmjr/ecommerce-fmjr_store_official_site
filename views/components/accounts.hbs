@@ -2,6 +2,7 @@
   <div id="accntspgcntnts">
     {{! x2 banners }}
     <div id="accntspgcntnts_bnnr">Account Management</div>
+
     <div id="accntspgcntnts_bnnrpwsmngmnt_bnnr">
       <span><img
           id="accntspgcntnts_bnnrpwsmngmnt_bnnr_img"
@@ -133,6 +134,11 @@
     {{! info }}
     <div id="accntspgcntnts_ttr_crs_clss_sec" style="display: none;">
       <p>Tutor Account Info Details</p>
+      {{! err panel }}
+      <div
+        id="authrbookspgcntnts_mainermgs_ermgpnl"
+        style="display: none;"
+      ></div>
       <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
         <input
           type="text"
@@ -205,10 +211,12 @@
           required=""
         />
       </div>
+
       <br />
       <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
         <input
-          type="text"
+          type="tel"
+          placeholder="e.g., +260 975986004"
           id="ttr_cntct_1"
           name="ttr_cntct_1"
           placeholder="Enter Conatct Line 1"
@@ -218,7 +226,8 @@
       </div>
       <div class="accntspgcntnts_ttr_crs_clss_sec_ttrs_inputpnl">
         <input
-          type="text"
+          type="tel"
+          placeholder="e.g., +260 975986004"
           id="ttr_cntct_2"
           name="ttr_cntct_2"
           placeholder="Enter Conatct Line 2 (Optional)"
@@ -226,7 +235,18 @@
           required=""
         />
       </div>
-
+      <br />
+      <label for="accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn">Tutor
+        Description</label>
+      <textarea
+        id="accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn"
+        class="accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn_cl"
+        rows="5"
+        cols="40"
+        placeholder="Describe a bit about yourself..."
+        style="height: 41px;"
+      ></textarea>
+      <br />
       <br /><br />
       <p>Payment Account Details
         <p>Mobile Details</p>
@@ -250,15 +270,19 @@
             required=""
           />
         </div>
-        <p>Choose Mobile Service Operator</p>
+        <p>Choose Mobile Service Operator:
+          <span id="tt_usr_dsply_oprtr_id">unlisted operator</span></p>
         <div id="accntspgcntnts_ttr_crs_clss_sec_ttrs_mblsrvcs">
           <div
+            data-oprtr="airtel"
             class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
           >airtel zambia</div>
           <div
+            data-oprtr="mtn"
             class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
           >mtn zambia</div>
           <div
+            data-oprtr="zamtel"
             class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag"
           >zamtel zambia</div>
 
