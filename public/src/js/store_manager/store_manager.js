@@ -261,3 +261,326 @@ store_manager_bsrvr.observe(document.body, {
   childList: true,
   subtree: true,
 }); */
+
+//tutor accounts
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest("#strmgmntaccnts_section_ttraccnts");
+
+  if (el) {
+    const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+    prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+    store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+      "Tutor Accounts";
+    const data = await store_manager_request(`/store_manager/ttraccnts`, "GET");
+    el.innerHTML = "";
+    const rndr_tmp = (el_nm, el_eml, el_sttus, el_dataset) => {
+      const p_child = document.createElement("div");
+      p_child.className = "strmgmntaccnts_section_crdcl_crdcl";
+      const tmp = `
+<div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores store management thumbnail.webp" alt=""></div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_lft">
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_eml">${el_eml}</p>
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot">Username: ${el_nm}
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot_stts" style="background-color: #b3324f;">${el_sttus}</p>
+       <p></p>
+        </div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl" data-ttr="${el_dataset}">View</div>
+       </div>
+        `;
+      p_child.innerHTML = tmp;
+      return p_child;
+    };
+
+    if (data.erMgs) {
+      prnt_el.innerHTML = data.erMgs;
+    }
+    if (!data.erMgs) {
+      prnt_el.innerHTML = "";
+    }
+    console.log("dataaaaaaaaaaaaaaaaaaaaaaaaa", data);
+    //pending
+    if (data.approved_accnts && data.approved_accnts !== 0) {
+      for (let i = 0; i < data.approved_accnts.length; i++) {
+        const cardlet = rndr_tmp(
+          data.approved_accnts[i].ttr_nm,
+          data.approved_accnts[i].ttr_eml,
+          data.approved_accnts[i].ttr_sttus,
+          data.approved_accnts[i].ttr_id,
+        );
+        prnt_el.appendChild(cardlet);
+        console.log(cardlet);
+      }
+    }
+    //Pending
+    //pending
+    if (data.pending_accnts && data.pending_accnts !== 0) {
+      for (let i = 0; i < data.pending_accnts.length; i++) {
+        const cardlet = rndr_tmp(
+          data.approved_accnts[i].ttr_nm,
+          data.approved_accnts[i].ttr_eml,
+          data.approved_accnts[i].ttr_sttus,
+          data.approved_accnts[i].ttr_id,
+        );
+        prnt_el.appendChild(cardlet);
+      }
+    }
+  }
+});
+
+//accounts drop down menu - delete account
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest(
+    ".strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl",
+  );
+  if (el) {
+    console.log(el.dataset.ttr);
+    const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+    prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+    store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+      "Tutor Accounts";
+    const data = await store_manager_request(
+      `/store_manager/indittraccnts/${el.dataset.ttr}`,
+      "GET",
+    );
+    //err
+    if (data.erMgs) {
+      prnt_el.innerHTML = data.erMgs;
+    }
+    //success
+    if (data.usr_accnt_tmp) {
+      prnt_el.innerHTML = data.usr_accnt_tmp;
+    }
+  }
+});
+
+//retrun to tutor accounts section - from individuak account details
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest("#ttraccnt_rtntosctnpg_btn");
+
+  if (el) {
+    const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+    prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+    store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+      "Tutor Accounts";
+    const data = await store_manager_request(`/store_manager/ttraccnts`, "GET");
+    el.innerHTML = "";
+    const rndr_tmp = (el_nm, el_eml, el_sttus, el_dataset) => {
+      const p_child = document.createElement("div");
+      p_child.className = "strmgmntaccnts_section_crdcl_crdcl";
+      const tmp = `
+<div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores store management thumbnail.webp" alt=""></div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_lft">
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_eml">${el_eml}</p>
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot">Username: ${el_nm}
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot_stts" style="background-color: #b3324f;">${el_sttus}</p>
+       <p></p>
+        </div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl" data-ttr="${el_dataset}">View</div>
+       </div>
+        `;
+      p_child.innerHTML = tmp;
+      return p_child;
+    };
+
+    if (data.erMgs) {
+      el.innerHTML = data.erMgs;
+    }
+    console.log(data);
+    prnt_el.innerHTML = "";
+    //pending
+    if (data.approved_accnts) {
+      console.log(data.approved_accnts);
+
+      for (let i = 0; i < data.approved_accnts.length; i++) {
+        const cardlet = rndr_tmp(
+          data.approved_accnts[i].ttr_nm,
+          data.approved_accnts[i].ttr_eml,
+          data.approved_accnts[i].ttr_sttus,
+          data.approved_accnts[i].ttr_id,
+        );
+        prnt_el.appendChild(cardlet);
+        console.log(cardlet);
+      }
+    }
+    //Pending
+    //pending
+    if (data.pending_accnts) {
+      for (let i = 0; i < data.pending_accnts.length; i++) {
+        const cardlet = rndr_tmp(
+          data.approved_accnts[i].ttr_nm,
+          data.approved_accnts[i].ttr_eml,
+          data.approved_accnts[i].ttr_sttus,
+          data.approved_accnts[i].ttr_id,
+        );
+        prnt_el.appendChild(cardlet);
+      }
+    }
+  }
+});
+
+//approve account
+/* document.body.addEventListener("click", async (e) => {
+  if (e.target.closest("#ttraccnt_apprvaccnt_btn")) {
+    const dlt_data = await store_manager_request(
+      "/store_manager/dltttraccnt",
+      "POST",
+      {
+        id: e.target.dataset.id,
+      },
+    );
+
+    if (dlt_data.apprvd_accnt__redir) {
+      console.log(dlt_data.apprvd_accnt__redir);
+
+      const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+      prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+      store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+        "Tutor Accounts";
+      const data = await store_manager_request(
+        `/store_manager/ttraccnts`,
+        "GET",
+      );
+      const rndr_tmp = (el_nm, el_eml, el_sttus, el_dataset) => {
+        const p_child = document.createElement("div");
+        p_child.className = "strmgmntaccnts_section_crdcl_crdcl";
+        const tmp = `
+<div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores store management thumbnail.webp" alt=""></div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_lft">
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_eml">${el_eml}</p>
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot">Username: ${el_nm}
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot_stts" style="background-color: #b3324f;">${el_sttus}</p>
+       <p></p>
+        </div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl" data-ttr="${el_dataset}">View</div>
+       </div>
+        `;
+        p_child.innerHTML = tmp;
+        return p_child;
+      };
+
+      if (data.erMgs) {
+        el.innerHTML = data.erMgs;
+      }
+      //pending
+      if (data.approved_accnts) {
+        prnt_el.innerHTML = "";
+        for (let i = 0; i < data.approved_accnts.length; i++) {
+          const cardlet = rndr_tmp(
+            data.approved_accnts[i].ttr_nm,
+            data.approved_accnts[i].ttr_sttus,
+            data.approved_accnts[i].ttr_eml,
+            data.approved_accnts[i].ttr_id,
+          );
+          prnt_el.appendChild(cardlet);
+        }
+      }
+      //Pending
+      //pending
+      if (data.pending_accnts) {
+        prnt_el.innerHTML = "";
+        for (let i = 0; i < data.pending_accnts.length; i++) {
+          const cardlet = rndr_tmp(
+            data.pending_accnts[i].ttr_nm,
+            data.pending_accnts[i].ttr_eml,
+            data.pending_accnts[i].ttr_sttus,
+            data.pending_accnts[i].ttr_id,
+          );
+          prnt_el.appendChild(cardlet);
+        }
+      }
+    }
+  }
+}); */
+
+//delete eaccount
+document.body.addEventListener("click", async (e) => {
+  const el = e.target.closest("#ttraccnt_dltaccnt_btn");
+  if (el) {
+    console.log(el.dataset.ttr);
+    const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+    prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+    store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+      "Tutor Accounts";
+    const data = await store_manager_request(
+      `/store_manager/dltindittraccnt`,
+      "POST",
+      {
+        id: e.target.dataset.id,
+      },
+    );
+    //err
+    if (data.erMgs) {
+      prnt_el.innerHTML = data.erMgs;
+    }
+    //success
+    if (data.dltd_accnt__redir) {
+      const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
+      prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
+      store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
+        "Tutor Accounts";
+      const data = await store_manager_request(
+        `/store_manager/ttraccnts`,
+        "GET",
+      );
+      el.innerHTML = "";
+      const rndr_tmp = (el_nm, el_eml, el_sttus, el_dataset) => {
+        const p_child = document.createElement("div");
+        p_child.className = "strmgmntaccnts_section_crdcl_crdcl";
+        const tmp = `
+        <div class="strmgmntaccnts_section_crdcl_crdcl_thumg"><img class="strmgmntaccnts_section_crdcl_crdcl_thumg_img" src="dist/imgs/fmjr_stores store management thumbnail.webp" alt=""></div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_lft">
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_eml">${el_eml}</p>
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot">Username: ${el_nm}
+        <p class="strmgmntaccnts_section_crdcl_crdcl_info_lft_foot_stts" style="background-color: #b3324f;">${el_sttus}</p>
+       <p></p>
+        </div>
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght">
+       <div class="strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl" data-ttr="${el_dataset}">View</div>
+       </div>
+        `;
+        p_child.innerHTML = tmp;
+        return p_child;
+      };
+
+      if (data.erMgs) {
+        el.innerHTML = data.erMgs;
+      }
+      console.log(data);
+      prnt_el.innerHTML = "";
+      //pending
+      if (data.approved_accnts) {
+        console.log(data.approved_accnts);
+        for (let i = 0; i < data.approved_accnts.length; i++) {
+          const cardlet = rndr_tmp(
+            data.approved_accnts[i].ttr_nm,
+            data.approved_accnts[i].ttr_eml,
+            data.approved_accnts[i].ttr_sttus,
+            data.approved_accnts[i].ttr_id,
+          );
+          prnt_el.appendChild(cardlet);
+          console.log(cardlet);
+        }
+      }
+      //Pending
+      //pending
+      if (data.pending_accnts) {
+        for (let i = 0; i < data.pending_accnts.length; i++) {
+          const cardlet = rndr_tmp(
+            data.approved_accnts[i].ttr_nm,
+            data.approved_accnts[i].ttr_eml,
+            data.approved_accnts[i].ttr_sttus,
+            data.approved_accnts[i].ttr_id,
+          );
+          prnt_el.appendChild(cardlet);
+        }
+      }
+    }
+  }
+});

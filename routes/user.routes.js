@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  crtttraccntcookielUrl,
   crtttraccntUrl,
   frgotpwdUrl,
   lgnusrotpresetpwdpgUrl,
@@ -24,5 +25,6 @@ router.post("/signupusrrndrotp", signupusrrndrotpUrl);
 router.post("/sgnupusrotp", sgnupusrotpUrl);
 router.post("/prfl", prflUrl);
 router.post("/crtttraccnt", crtttraccntUrl);
+router.post("/crtttraccntcookie", crtttraccntcookielUrl);
 
 export default router;

@@ -45,3 +45,14 @@ export const ttr_usr_saveJsonlfile_fuc = (obj, id) => {
 };
 
 //retrive from file
+export const ttr_usr_loadJsonlfile_fuc = () => {
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+
+  const records = fileContent
+    .trim()
+    .split("\n")
+    .filter((line) => line.trim() !== "")
+    .map((line) => JSON.parse(line));
+
+  return records;
+};

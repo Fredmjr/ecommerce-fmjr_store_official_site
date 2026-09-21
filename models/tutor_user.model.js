@@ -11,7 +11,11 @@ const ttr_usrModel = sequelize.define("tutor", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  ttr_usr_eml: {
+  /*   ttr_usr_eml: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  }, */
+  associated_usr_eml_id: {
     type: DataTypes.TEXT,
     allowNull: false,
   },

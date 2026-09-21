@@ -641,8 +641,185 @@ export const prflUrl = async (req, res) => {
   }
 };
 
-//create tutor account - formdata
+//create tutor account - formdata- optional 2
 export const crtttraccntUrl = async (req, res) => {
+  const busboy = Busboy({ headers: req.headers });
+  const fields = {};
+  let imageBuffer = null;
+
+  try {
+    busboy.on("field", (key, val) => {
+      fields[key] = val;
+    });
+
+    busboy.on("file", (fieldname, fileStream) => {
+      const chunks = [];
+      fileStream.on("data", (data) => chunks.push(data));
+      fileStream.on("end", () => {
+        imageBuffer = Buffer.concat(chunks);
+      });
+    });
+
+    busboy.on("finish", async () => {
+      //1.text
+      //empy field
+      if (
+        fields.ttr_usr_nm === "" ||
+        fields.ttr_usr_cntct_1 === "" ||
+        fields.ttr_usr_mblsrvcs_nm === "" ||
+        fields.ttr_usr_mblsrvcs_phn === "" ||
+        fields.ttr_usr_dscrptn === ""
+      ) {
+        return res.status(200).json({
+          erMgs: "Some required fields are empty",
+        });
+      }
+      //empty operator
+      console.log(
+        "opetrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+        fields.mbl_oprtr,
+      );
+      if (
+        !fields.mbl_oprtr ||
+        fields.mbl_oprtr === "" ||
+        fields.mbl_oprtr === "undefined"
+      ) {
+        return res.status(200).json({
+          erMgs: "Mobile service operator not selected",
+        });
+      }
+      //contact validation x3
+      const valid_eml_fuc = (e) => {
+        const trimmed = e.trim(e);
+        const valid_chars = /^\+?[0-9\s\-\(\)]+$/;
+        if (!valid_chars.test(trimmed)) {
+          return res.status(400).json({
+            erMgs: "Phone number contains invalid characters",
+          });
+        }
+        const digits_only = trimmed.replace(/\D/g, "");
+        if (digits_only.length < 7 || digits_only.length > 15) {
+          return res.json({
+            erMgs: "Phone number must contain between 7 and 15 digits.",
+          });
+        }
+      };
+      if (fields.ttr_usr_cntct_1) {
+        valid_eml_fuc(fields.ttr_usr_cntct_1);
+      }
+      if (fields.ttr_usr_cntct_2) {
+        valid_eml_fuc(fields.ttr_usr_cntct_2);
+      }
+      if (fields.ttr_usr_mblsrvcs_phn) {
+        valid_eml_fuc(fields.ttr_usr_mblsrvcs_phn);
+      }
+
+      //2. img
+      if (
+        !imageBuffer ||
+        !Buffer.isBuffer(imageBuffer) ||
+        imageBuffer.length === 0
+      ) {
+        return res.status(400).json({
+          erMgs: "Profile image not selected, select one",
+        });
+      }
+      const img_path = await sharp_webp_single_img(
+        imageBuffer,
+        "public/dist/imgs/navbar/user_imgs",
+      );
+      if (!img_path) {
+        return res.status(400).json({
+          erMgs: "Unable to complete account details submission",
+        });
+      }
+      //3. save descrption
+      const ttr_usr_dscrptn_id_uuid = uuidv4();
+      console.log(
+        "ssssssssssssssssssssssssssssssssssssssssss",
+        ttr_usr_dscrptn_id_uuid,
+      );
+      console.log(
+        "fields.ttr_usr_dscrptnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+        fields.ttr_usr_dscrptn,
+      );
+
+      const save_drscrption = ttr_usr_saveJsonlfile_fuc(
+        fields.ttr_usr_dscrptn,
+        ttr_usr_dscrptn_id_uuid,
+      );
+      if (!save_drscrption) {
+        return res.status(400).json({
+          erMgs: "Unable to complete account details submission",
+        });
+      }
+
+      //4. save to db & send response
+      //write to db
+      const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+      const d_c = await decryptJWT(fields.usr_accnt_jwt_token, secretKey);
+      const new_usr = await ttr_usrModel.create({
+        //required
+        ttr_usr_nm: fields.ttr_usr_nm,
+        associated_usr_eml_id: d_c.payload.ky,
+        ttr_usr_cntct_1: fields.ttr_usr_cntct_1,
+        ttr_usr_mblsrvcs_nm: fields.ttr_usr_mblsrvcs_nm,
+        ttr_usr_mblsrvcs_phn: fields.ttr_usr_mblsrvcs_phn,
+        mbl_oprtr: fields.mbl_oprtr,
+
+        //optional
+        ttr_usr_website: fields.ttr_usr_website || "unlisted",
+        ttr_usr_fb_hndl: fields.ttr_usr_fb_hndl || "unlisted",
+        ttr_usr_instrm_hndl: fields.ttr_usr_instrm_hndl || "unlisted",
+        ttr_usr_tiktok_hndl: fields.ttr_usr_tiktok_hndl || "unlisted",
+        ttr_usr_bhnc_hndl: fields.ttr_usr_bhnc_hndl || "unlisted",
+        ttr_usr_cntct_2: fields.ttr_usr_cntct_2 || "unlisted",
+        ttr_usr_prflimg_path: img_path,
+        ttr_usr_dscrptn_id: ttr_usr_dscrptn_id_uuid,
+      });
+
+      if (!new_usr) {
+        return res.json({
+          erMgs: "Unable to complete account details submission",
+        });
+      }
+      //cookie for tracking pedning account
+      //send
+      const tmp = `
+    <div id="lggd_out_sctn">
+     <div id="lggd_out_sctn_cntnts">
+    <div id="frgotpwdpgcntnts_tplogo">
+      <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
+    </div>
+    <p id="frgotpwd_ttl">Tutor Account Registration</p>
+    <p id="frgotpwd_dscrptn">Submitted tutor account account is under review. Response to be sent through store messages or email address.</p>
+    <br><br>
+    <div id="lggd_out_sctn_rtrnhmbtn_pnl"><button id="lggd_out_sctn_rtrnhmbtn">Return Home</button></div>
+    </div>
+    </div>
+    `;
+      return res.status(200).json({
+        accnt_sttus: true,
+        accnt_sttus_mgs: tmp,
+      });
+    });
+
+    req.pipe(busboy);
+  } catch (error) {
+    console.log(error.message);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//create tutor account - formdata - optional 1
+/* export const crtttraccntUrl = async (req, res) => {
   const busboy = Busboy({ headers: req.headers });
   const fields = {};
   let imageBuffer = null;
@@ -862,102 +1039,6 @@ export const crtttraccntUrl = async (req, res) => {
     });
 
     req.pipe(busboy);
-
-    /*    //empy field
-    if (
-      p_data.ttr_usr_nm === "" ||
-      p_data.ttr_usr_eml === "" ||
-      p_data.ttr_usr_cntct_1 === "" ||
-      p_data.ttr_usr_mblsrvcs_nm === "" ||
-      p_data.ttr_usr_mblsrvcs_phn === ""
-    ) {
-      return res.status(200).json({
-        erMgs: "Some required fields are empty",
-      });
-    }
-    //empty operator
-    if (!p_data.mbl_oprtr || p_data.mbl_oprtr === "") {
-      return res.status(200).json({
-        erMgs: "Mobile service operator not selected",
-      });
-    }
-    //Email format validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(p_data.ttr_usr_eml)) {
-      return res.json({
-        erMgs: "Please enter a valid email address.",
-      });
-    }
-    //contact validation x3
-    const valid_eml_fuc = (e) => {
-      const trimmed = e.trim(e);
-      const valid_chars = /^\+?[0-9\s\-\(\)]+$/;
-      if (!valid_chars.test(trimmed)) {
-        return res.status(400).json({
-          erMgs: "Phone number contains invalid characters",
-        });
-      }
-      const digits_only = trimmed.replace(/\D/g, "");
-      if (digits_only.length < 7 || digits_only.length > 15) {
-        return res.json({
-          erMgs: "Phone number must contain between 7 and 15 digits.",
-        });
-      }
-    };
-    if (p_data.ttr_usr_cntct_1) {
-      valid_eml_fuc(p_data.ttr_usr_cntct_1);
-    }
-    if (p_data.ttr_usr_cntct_2) {
-      valid_eml_fuc(p_data.ttr_usr_cntct_2);
-    }
-    if (p_data.ttr_usr_mblsrvcs_phn) {
-      valid_eml_fuc(p_data.ttr_usr_mblsrvcs_phn);
-    }
-
-    //profile image compression
-
-    //write to db
-    const new_usr = await ttr_usrModel.create({
-      //required
-      ttr_usr_nm: p_data.ttr_usr_nm,
-      ttr_usr_eml: p_data.ttr_usr_eml,
-      ttr_usr_cntct_1: p_data.ttr_usr_cntct_1,
-      ttr_usr_mblsrvcs_nm: p_data.ttr_usr_mblsrvcs_nm,
-      ttr_usr_mblsrvcs_phn: p_data.ttr_usr_mblsrvcs_phn,
-      mbl_oprtr: p_data.mbl_oprtr,
-
-      //optional
-      ttr_usr_website: p_data.ttr_usr_website || "unlisted",
-      ttr_usr_fb_hndl: p_data.ttr_usr_fb_hndl || "unlisted",
-      ttr_usr_instrm_hndl: p_data.ttr_usr_instrm_hndl || "unlisted",
-      ttr_usr_tiktok_hndl: p_data.ttr_usr_tiktok_hndl || "unlisted",
-      ttr_usr_bhnc_hndl: p_data.ttr_usr_bhnc_hndl || "unlisted",
-      ttr_usr_cntct_2: p_data.ttr_usr_cntct_2 || "unlisted",
-    });
-
-    if (!new_usr) {
-      return res.json({
-        erMgs: "Unable to complete account details submission",
-      });
-    }
-    //send
-    const tmp = `
-    <div id="lggd_out_sctn">
-     <div id="lggd_out_sctn_cntnts">
-    <div id="frgotpwdpgcntnts_tplogo">
-      <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
-    </div>
-    <p id="frgotpwd_ttl">Tutor Account Registration</p>
-    <p id="frgotpwd_dscrptn">Submitted tutor account account is under review. Response to be sent through store messages or email address.</p>
-    <br><br>
-    <div id="lggd_out_sctn_rtrnhmbtn_pnl"><button id="lggd_out_sctn_rtrnhmbtn">Return Home</button></div>
-    </div>
-    </div>
-    `;
-    return res.status(200).json({
-      accnt_sttus: true,
-      accnt_sttus_mgs: tmp,
-    }); */
   } catch (error) {
     console.log(error.message);
     const erMgs_div = `
@@ -969,7 +1050,8 @@ export const crtttraccntUrl = async (req, res) => {
       erMgs: erMgs_div,
     });
   }
-};
+}; */
+
 //create tutor account - normal
 /*
 export const crtttraccntUrl = async (req, res) => {
@@ -1083,3 +1165,62 @@ export const crtttraccntUrl = async (req, res) => {
   }
 };
  */
+
+//create tutor account - exisitng account, pending or approvaed cookie based
+export const crtttraccntcookielUrl = async (req, res) => {
+  const { c } = req.body;
+  try {
+    const secretKey = Buffer.from(process.env.SECRETHEX, "hex");
+    const d_c = await decryptJWT(c, secretKey);
+    const usr = await ttr_usrModel.findOne({
+      where: {
+        associated_usr_eml_id: d_c.payload.ky,
+      },
+    });
+    if (!usr) {
+      return res.status(200).json({
+        regstr: true,
+      });
+    }
+    if (usr.dataValues.accunt_status === "Pending") {
+      const tmp = `
+  <div id="lggd_out_sctn">
+     <div id="lggd_out_sctn_cntnts">
+    <div id="frgotpwdpgcntnts_tplogo">
+      <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
+    </div>
+    <p id="frgotpwd_ttl">Tutor Account Registration</p>
+    <p id="frgotpwd_dscrptn">Submitted tutor account account is under review. Response to be sent through store messages or email address.</p>
+    <br><br>
+    <div id="lggd_out_sctn_rtrnhmbtn_pnl"><button id="lggd_out_sctn_rtrnhmbtn">Return Home</button></div>
+    </div>
+    </div>
+    `;
+
+      return res.status(200).json({
+        pending: true,
+        pending_mgs: tmp,
+      });
+    }
+    if (usr.dataValues.accunt_status === "Approved") {
+      return res.status(200).json({
+        approved: true,
+        approved_mgs: "rendering approvaed mgs",
+      });
+    }
+
+    return res.status(200).json({
+      usr_dtls_tmp: tmp,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};

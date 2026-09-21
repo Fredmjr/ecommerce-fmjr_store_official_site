@@ -5,6 +5,7 @@ import usrModel from "../../../models/user.model.js";
 import cron from "node-cron";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import { Op } from "sequelize";
 
 dotenv.config();
 
@@ -77,7 +78,7 @@ export const delete_account_logs_fuc = async () => {
     },
   });
 
-  if (all_inactive_accunts) {
+  if (all_inactive_accunts && all_inactive_accunts.length > 0) {
     //log & mgs variables
     const service = "delete_inactive_accounts";
     const timestamp = new Intl.DateTimeFormat("en-US", {
@@ -90,8 +91,16 @@ export const delete_account_logs_fuc = async () => {
     const mgs_dscrptn =
       "Accounts that never confirmed using an email otp code deleted every 23hrs when traffic is less.";
 
-    //perform delete action
-    await all_inactive_accunts.destroy();
+    //perform delete action - using their properties fails on direct array destroy
+    console.log(all_inactive_accunts);
+    const accountIds = all_inactive_accunts.map((account) => account.id);
+    await usrModel.destroy({
+      where: {
+        id: {
+          [Op.in]: accountIds,
+        },
+      },
+    });
 
     //send email notification
     const eml_response = await notfication_nodemailer_fuc(
@@ -122,7 +131,7 @@ export const delete_account_logs_fuc = async () => {
 //exported automated management system delete account logs function (MAS)
 export const MAS_delete_account_logs_fuc = () => {
   //delete inactive accounts - every at 23hrs
-  cron.schedule("0 23 * * *", async () => {
+  cron.schedule("55 23 * * *", async () => {
     await delete_account_logs_fuc();
   });
 };

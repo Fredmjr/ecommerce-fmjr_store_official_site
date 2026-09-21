@@ -533,3 +533,78 @@ export const corsclsswrkspcpgUrl = async (req, res) => {
     });
   }
 };
+//mall page
+export const mallpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/mall/mall");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//mall page
+export const clntalpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/cliental");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//ads worksapce page
+export const adswrkspcpgUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/ads_workspace");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//web dev page
+export const webdevUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/web_dev");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//social channel page
+export const sclchnnlUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/social_channels");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};

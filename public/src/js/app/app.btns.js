@@ -584,12 +584,40 @@ home.addEventListener("click", async (e) => {
   }
 
   if (e.target.closest("#accntspgcntnts_ttr_crs_clss_bnnr")) {
-    closeopenFunc(app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"));
+    const elem = app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec");
+    const temporal_content = elem.innerHTML;
+    //loading
+    elem.innerHTML = "";
+    elem.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+    closeopenFunc(elem);
 
     flip2 = !flip2;
     app_btns_getelem(
       "accntspgcntnts_ttr_crs_clss_bnnr_btnicn",
     ).style.transform = flip2 ? "rotate(180deg)" : "rotate(0deg)";
+
+    const usr_accnt_jwt_token = app_btns_reusable_cookie("usr_accnt_jwt_token");
+    const c_url_data = await auth_lgn_request(
+      "/usr/crtttraccntcookie",
+      "POST",
+      {
+        c: usr_accnt_jwt_token,
+      },
+    );
+    //err
+    /* if (condition) {
+  
+    } */
+    //not exist
+    if (c_url_data.regstr === true) {
+      elem.innerHTML = temporal_content;
+    }
+    if (c_url_data.pending === true) {
+      elem.innerHTML = c_url_data.pending_mgs;
+    }
+    if (c_url_data.approved === true) {
+      elem.innerHTML = c_url_data.approved_mgs;
+    }
   }
 });
 
@@ -2804,8 +2832,8 @@ document.body.addEventListener("click", async (e) => {
   }
 });
 
-//create tutor account
-document.body.addEventListener("click", async (e) => {
+//create tutor account - option 1
+/* document.body.addEventListener("click", async (e) => {
   if (
     e.target.closest("#accntspgcntnts_ttr_crs_clss_sec_ttrs_submittttrformbtn")
   ) {
@@ -2869,43 +2897,6 @@ document.body.addEventListener("click", async (e) => {
       ttr_crtd_token_client: ttr_crtd_token_client,
     };
     console.log(ttr_accnt_obj);
-    //empy fields
-    /*     if (
-      ttr_usr_nm === "" ||
-      ttr_usr_eml === "" ||
-      ttr_usr_cntct_1 === "" ||
-      ttr_usr_mblsrvcs_nm === "" ||
-      ttr_usr_mblsrvcs_phn === ""
-    ) {
-      console.log("ttr_accnt_obj");
-      btn.innerHTML = "Submit";
-      auth_lgn_err_pnl.style.display = "block";
-      auth_lgn_err_pnl.innerHTML = "Some required fields are empty";
-      app_btns_scroll_top_elem_fuc(
-        app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"),
-      );
-      if (auth_lgn_err_pnl_time_out) {
-        clearTimeout(auth_lgn_err_pnl_time_out);
-      }
-      auth_lgn_err_pnl_time_out = setTimeout(() => {
-        auth_lgn_err_pnl.style.display = "none";
-      }, 7000);
-    }
-    //operator err
-    if (!mbl_oprtr || mbl_oprtr === "") {
-      btn.innerHTML = "Submit";
-      auth_lgn_err_pnl.style.display = "block";
-      auth_lgn_err_pnl.innerHTML = "Mobile service operator not selected";
-      app_btns_scroll_top_elem_fuc(
-        app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"),
-      );
-      if (auth_lgn_err_pnl_time_out) {
-        clearTimeout(auth_lgn_err_pnl_time_out);
-      }
-      auth_lgn_err_pnl_time_out = setTimeout(() => {
-        auth_lgn_err_pnl.style.display = "none";
-      }, 7000);
-    } */
 
     //profile img
     console.log("global_file_input_files: ", global_file_input_files);
@@ -2958,30 +2949,212 @@ document.body.addEventListener("click", async (e) => {
       })
       .catch((error) => console.error(error));
 
-    /*    const data = await app_btns_request(
-      "/usr/crtttraccnt",
-      "POST",
-      ttr_accnt_obj,
+  }
+}); */
+//create tutor account - option 2
+document.body.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#accntspgcntnts_ttr_crs_clss_sec_ttrs_submittttrformbtn")
+  ) {
+    const el1 = app_btns_getelem("ttr_nm");
+    const el2 = app_btns_getelem("ttr_eml");
+    const el3 = app_btns_getelem("ttr_website");
+    const el4 = app_btns_getelem("ttr_fb_hndl");
+    const el5 = app_btns_getelem("ttr_instgrm_hndl");
+    const el6 = app_btns_getelem("ttr_ticktok_hndl");
+    const el7 = app_btns_getelem("ttr_bhnc_hndl");
+    const el8 = app_btns_getelem("ttr_cntct_1");
+    const el9 = app_btns_getelem("ttr_cntct_2");
+    const el10 = app_btns_getelem("ttr_mblsrvcs_nm");
+    const el11 = app_btns_getelem("ttr_mblsrvcs_phn");
+    const el12 = app_btns_getelem(
+      "accntspgcntnts_ttr_crs_clss_sec_ttrs_dscrptn",
     );
 
-    if (data.erMgs) {
-      btn.innerHTML = "Submit";
-      auth_lgn_err_pnl.style.display = "block";
-      auth_lgn_err_pnl.innerHTML = data.erMgs;
-      app_btns_scroll_top_elem_fuc(
-        app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"),
-      );
-      if (auth_lgn_err_pnl_time_out) {
-        clearTimeout(auth_lgn_err_pnl_time_out);
-      }
-      auth_lgn_err_pnl_time_out = setTimeout(() => {
-        auth_lgn_err_pnl.style.display = "none";
-      }, 7000);
+    const btn = e.target;
+    const mbl_oprtr = tt_sctn_operator;
+
+    const auth_lgn_err_pnl = app_btns_getelem(
+      "authrbookspgcntnts_mainermgs_ermgpnl",
+    );
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    const ttr_usr_nm = el1 ? el1.value : null;
+    const ttr_usr_eml = el2 ? el2.value : null;
+    const ttr_usr_website = el3 ? el3.value : null;
+    const ttr_usr_fb_hndl = el4 ? el4.value : null;
+    const ttr_usr_instrm_hndl = el5 ? el5.value : null;
+    const ttr_usr_tiktok_hndl = el6 ? el6.value : null;
+    const ttr_usr_bhnc_hndl = el7 ? el7.value : null;
+    const ttr_usr_cntct_1 = el8 ? el8.value : null;
+    const ttr_usr_cntct_2 = el9 ? el9.value : null;
+    const ttr_usr_mblsrvcs_nm = el10 ? el10.value : null;
+    const ttr_usr_mblsrvcs_phn = el11 ? el11.value : null;
+    const ttr_usr_dscrptn = el12 ? el12.value : null;
+
+    //cookie
+    const usr_accnt_jwt_token = app_btns_reusable_cookie("usr_accnt_jwt_token");
+    const ttr_accnt_obj = {
+      //required
+      ttr_usr_nm: ttr_usr_nm,
+      ttr_usr_eml: ttr_usr_eml,
+      ttr_usr_cntct_1: ttr_usr_cntct_1,
+      ttr_usr_mblsrvcs_nm: ttr_usr_mblsrvcs_nm,
+      ttr_usr_mblsrvcs_phn: ttr_usr_mblsrvcs_phn,
+      ttr_usr_dscrptn: ttr_usr_dscrptn,
+      mbl_oprtr: mbl_oprtr,
+      //optional
+      ttr_usr_website: ttr_usr_website,
+      ttr_usr_fb_hndl: ttr_usr_fb_hndl,
+      ttr_usr_instrm_hndl: ttr_usr_instrm_hndl,
+      ttr_usr_tiktok_hndl: ttr_usr_tiktok_hndl,
+      ttr_usr_bhnc_hndl: ttr_usr_bhnc_hndl,
+      ttr_usr_cntct_2: ttr_usr_cntct_2,
+      //cookie
+      usr_accnt_jwt_token: usr_accnt_jwt_token,
+    };
+    console.log(ttr_accnt_obj);
+
+    //profile img
+    console.log("global_file_input_files: ", global_file_input_files);
+    const formData = new FormData();
+    if (global_file_input_files && global_file_input_files[0]) {
+      formData.append("prfl_img", global_file_input_files[0]);
     }
- */
-    /*  if (data.accnt_sttus === true) {
-      app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec").innerHTML =
-        data.accnt_sttus_mgs;
-    } */
+    //text
+    Object.keys(ttr_accnt_obj).forEach((key) => {
+      formData.append(key, ttr_accnt_obj[key]);
+    });
+
+    console.log("formDataaaaaaaaaaaaaaaaaaaaaa:", formData);
+
+    //formdata request
+    fetch("/usr/crtttraccnt", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        //err
+        if (data.erMgs) {
+          btn.innerHTML = "Submit";
+          auth_lgn_err_pnl.style.display = "block";
+          auth_lgn_err_pnl.innerHTML = data.erMgs;
+          app_btns_scroll_top_elem_fuc(
+            app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec"),
+          );
+          if (auth_lgn_err_pnl_time_out) {
+            clearTimeout(auth_lgn_err_pnl_time_out);
+          }
+          auth_lgn_err_pnl_time_out = setTimeout(() => {
+            auth_lgn_err_pnl.style.display = "none";
+          }, 7000);
+        } //success
+        if (data.accnt_sttus === true) {
+          app_btns_getelem("accntspgcntnts_ttr_crs_clss_sec").innerHTML =
+            data.accnt_sttus_mgs;
+
+          if (data.ttr_crtd_token) {
+            //token
+            const expires = new Date(Date.now() + 60 * 60 * 1000); // 1hr
+            document.cookie =
+              `ttr_crtd_token=${encodeURIComponent(data.ttr_crtd_token)};` +
+              `Secure; SameSite=Strict; expires=${expires.toUTCString()}; path=/`;
+          }
+        }
+      })
+      .catch((error) => console.error(error));
+  }
+});
+
+//mall page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#navbr_rght_mallbtn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/mallpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//cliental page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_clntalbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_clntalbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/clntalpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//ads worksapce page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_adswrkspcpgbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_adswrkspcpgbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/adswrkspcpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//web dev page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_webdevbbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_webdevbbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/webdev", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//view uiux cardlet
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".glbal_uiux_cadlet")) {
+    const data = await app_btns_request("/app/chtpg", "GET");
+    if (data) {
+      const tmp = `
+      <div id=""glbal_uiux_cadlet_fullview_crd>
+      <div id="glbal_uiux_cadlet_fullview_crd_cls>close</div>
+      <div>
+      title bar
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      </div>
+      `;
+
+      app_btns_getelem("floatpop").innerHTML = "";
+      app_btns_getelem("floatpop").innerHTML = tmp;
+      closeopenFunc(app_btns_getelem("floatpop"));
+      /*     document.body.style.overflow = "hidden";
+      scroll_bar_fuc(app_btns_getelem("floatpop")); */
+    }
+  }
+});
+
+//social channel page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_sclchnnlbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_sclchnnlbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/sclchnnl", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
   }
 });

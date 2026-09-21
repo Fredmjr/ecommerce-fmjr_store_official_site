@@ -11,6 +11,11 @@ import { v4 as uuidv4 } from "uuid";
 import dotenv from "dotenv";
 import { encryptJWT } from "../middleware/jwe/encrypt.js";
 import { decryptJWT } from "../middleware/jwe/decrypt.js";
+import ttr_usrModel from "../models/tutor_user.model.js";
+import {
+  ttr_usr_loadJsonlfile_fuc,
+  ttr_usr_saveJsonlfile_fuc,
+} from "../inventory_assets/data/tutor_usr_jsonl/tutor_usr.js";
 
 dotenv.config();
 
@@ -413,6 +418,210 @@ export const dcrptckieUrl = async (req, res) => {
         .status(200)
         .render("components/store_managment/store_managment");
     }
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//tutor accnts
+export const ttraccntsUrl = async (req, res) => {
+  try {
+    // parent & child accounts
+    const accnts = await ttr_usrModel.findAll();
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", accnts);
+    if (!accnts || accnts.length !== 0) {
+      console.log("emppppppppppppppppppppppppp");
+      return res.status(200).json({
+        erMgs: "No accounts found",
+      });
+    }
+    const prnt_accnts = await usrModel.findAll();
+
+    if (!prnt_accnts) {
+      return res.status(200).json({
+        erMgs: "Unable to find associated emails to accounts",
+      });
+    }
+    //filter & find email by id associated with parent email account
+    const fltrd_accnts = accnts.map((e) => {
+      const found_ttr = prnt_accnts.find(
+        (tutor) => tutor.dataValues.id === e.associated_usr_eml_id,
+      );
+
+      return {
+        ttr_nm: e.ttr_usr_nm,
+        ttr_eml: found_ttr ? found_ttr.eml : null,
+        ttr_id: e.id,
+        ttr_sttus: e.accunt_status,
+      };
+    });
+
+    //Pending
+    const pending_accnts = [
+      ...new Set(fltrd_accnts.filter((obj) => obj.ttr_sttus === "Pending")),
+    ];
+
+    //Approved
+    const approved_accnts = [
+      ...new Set(fltrd_accnts.filter((obj) => obj.ttr_sttus === "Approved")),
+    ];
+    if (approved_accnts.length === 0 && pending_accnts.length === 0) {
+      return res.status(200).json({
+        erMgs: "No accounts found",
+      });
+    }
+    return res.status(200).json({
+      pending_accnts: pending_accnts,
+      approved_accnts: approved_accnts,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+// individual tutor account
+export const indittraccntsUrl = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const usr = await ttr_usrModel.findOne({
+      where: {
+        id: id,
+      },
+    });
+    const usr_for_eml = await usrModel.findOne({
+      where: {
+        id: usr.dataValues.associated_usr_eml_id,
+      },
+    });
+    const ttr_dscrptn_obj = ttr_usr_loadJsonlfile_fuc();
+    const ttr_dscrptn = ttr_dscrptn_obj.find(
+      (item) => item.id === usr.dataValues.ttr_usr_dscrptn_id,
+    );
+    const prfl_img = usr.dataValues.ttr_usr_prflimg_path;
+    const fltrd_prfl_img = prfl_img.replace(/^public\//, "");
+    let el_apprv_btn = "";
+    if (usr.dataValues.Pending === "Pending") {
+      el_apprv_btn = `<button id="ttraccnt_apprvaccnt_btn" data-id="${usr.dataValues.associated_usr_eml_id}">Approve Account</button>`;
+    }
+    const usr_accnt_tmp = `
+    <div id="prfl_sectn_tem_crd_pflinfo_prfl_topcrdlt">
+    <div id="prfl_sectn_tem_crd_pflinfo_prflimg"><img id="prfl_sectn_tem_crd_pflinfo_prflimg_thumbimg" src="${fltrd_prfl_img}" alt=""></div>
+    <div>
+    </div>
+    </div>
+    <br />
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Usrname: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_nm}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Tutor Account Description: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${ttr_dscrptn.data}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Email Address: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr_for_eml.dataValues.eml}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Website: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_website}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Facebook Social Handle: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.tr_usr_fb_hndl}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Instgram Social Handle: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_instrm_hndl}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Tik Tok Social Handle: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_tiktok_hndl}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Behance Social Handle: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_bhnc_hndl}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 1: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_cntct_1}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Contact Line 2: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_cntct_2}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Mobile Service Name: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_mblsrvcs_nm}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Mobile Service Number: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.ttr_usr_mblsrvcs_phn}</p>
+    <p class="prfl_sectn_tem_crd_pflinfo_ttlcl">Mobile Service Operator: </p>
+    <p class="prfl_sectn_tem_crd_pflinfo_dscrptncl">${usr.dataValues.mbl_oprtr}</p>
+    <br /><br />
+    <div><button id="ttraccnt_rtntosctnpg_btn">Return</button>${el_apprv_btn}<button id="ttraccnt_dltaccnt_btn" data-id="${usr.dataValues.associated_usr_eml_id}">Delete Account</button></div>
+    `;
+    return res.status(200).json({
+      usr_accnt_tmp: usr_accnt_tmp,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//approved account
+export const dltttraccntUrl = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const usr = await ttr_usrModel.findOne({
+      where: {
+        associated_usr_eml_id: id,
+      },
+    });
+
+    if (!usr) {
+      return res.status(200).json({
+        erMgs: "No accounts found",
+      });
+    }
+    usr.accunt_status = "Approved";
+    await usr.save();
+    return res.status(200).json({
+      apprvd_accnt__redir: true,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//delete account
+export const dltindittraccntUrl = async (req, res) => {
+  const { id } = req.body;
+  try {
+    const usr = await ttr_usrModel.findOne({
+      where: {
+        associated_usr_eml_id: id,
+      },
+    });
+
+    if (!usr) {
+      return res.status(200).json({
+        erMgs: "No accounts found",
+      });
+    }
+
+    await usr.destroy();
+    return res.status(200).json({
+      dltd_accnt__redir: true,
+    });
   } catch (error) {
     console.log(error);
     const erMgs_div = `

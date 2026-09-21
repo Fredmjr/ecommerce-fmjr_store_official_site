@@ -220,8 +220,10 @@ home.addEventListener("click", async (e) => {
       setTimeout(() => {
         redir_after_signup();
         auth_lgn_getelem("navbrloginBtn").style.display = "none";
-        auth_lgn_getelem("navbrsgnupBtn").outerHTML =
-          `<button id="navbr_lggdintn">Logged In</button>`;
+        const a_lem = auth_lgn_getelem("navbrsgnupBtn");
+        if (a_lem) {
+          a.outerHTML = `<button id="navbr_lggdintn">Logged In</button>`;
+        }
       }, 2000);
     }
   }

@@ -2,12 +2,14 @@ import express from "express";
 
 import {
   accntspgUrl,
+  adswrkspcpgUrl,
   anncmntpgUrl,
   authrbookspgUrl,
   bsktpgUrl,
   cachdsrvcsUrl,
   chtpgUrl,
   clndrpgUrl,
+  clntalpgUrl,
   cookiespgUrl,
   corsclsswrkspcpgUrl,
   dwnldpgUrl,
@@ -22,6 +24,7 @@ import {
   hlppgUrl,
   issbxpgUrl,
   lgnpgUrl,
+  mallpgUrl,
   notfypgUrl,
   onetimemgsUrl,
   portflpgUrl,
@@ -29,8 +32,10 @@ import {
   prvcypgUrl,
   qkprmtnspgUrl,
   rvwpgUrl,
+  sclchnnlUrl,
   sgnuppgUrl,
   trmscndtnspgUrl,
+  webdevUrl,
   whyfmjrstrspgUrl,
   wlcmimgUrl,
 } from "../controllers/app.controller.js";
@@ -68,5 +73,10 @@ router.get("/authrbookspg", authrbookspgUrl);
 router.get("/hirebkspcsctn", hirebkspcsctnUrl);
 router.get("/fmjrgrphcswrkspcpg", fmjrgrphcswrkspcpgUrl);
 router.get("/corsclsswrkspcpg", corsclsswrkspcpgUrl);
+router.get("/mallpg", mallpgUrl);
+router.get("/clntalpg", clntalpgUrl);
+router.get("/adswrkspcpg", adswrkspcpgUrl);
+router.get("/webdev", webdevUrl);
+router.get("/sclchnnl", sclchnnlUrl);
 
 export default router;
