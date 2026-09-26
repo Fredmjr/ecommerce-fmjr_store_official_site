@@ -18,6 +18,7 @@
     "svgo": "node inventory/svgo/svgo.js"
   },
   "dependencies": {
+    "@distube/ytpl": "^1.2.4",
     "argon2": "^0.44.0",
     "busboy": "^1.6.0",
     "clean-css": "^5.3.3",
@@ -36,6 +37,7 @@
     "svgo": "^4.0.1",
     "ttf2woff2": "^8.0.1",
     "uuid": "^13.0.0",
-    "ws": "^8.21.0"
+    "ws": "^8.21.0",
+    "youtubei.js": "^18.1.0"
   }
 }

@@ -3146,6 +3146,7 @@ home.addEventListener("click", async (e) => {
 });
 
 //social channel page
+let global_full_shots_vids;
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_sclchnnlbtn") ||
@@ -3155,6 +3156,215 @@ home.addEventListener("click", async (e) => {
     const data = await app_btns_request("/app/sclchnnl", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
+      //auhtor books category cards
+      const prnt_el = app_btns_getelem("sclchnnlpg_ctgrycrds");
+
+      if (prnt_el) {
+        const a = [
+          {
+            ttl: "Bible Culture TLC",
+            icon: "official_released_books",
+            id: "authrbookspgcntnts_ctgry_crd_thumbnl_offclrlssdbksid_0",
+            sub_txt: "0 In Collection",
+            icn: "assets/logos/bctlc/fmjr_stores _bctlc-logo_color_combo_open",
+          },
+        ];
+        //category cards
+        for (let i = 0; i < a.length; i++) {
+          const chld_el = document.createElement("div");
+          chld_el.className = "authrbookspgcntnts_ctgry_crd";
+          chld_el.id = `sclchnnlpg_ctgrycrds_ctgry_crd_id_${i}`;
+          chld_el.innerHTML = `
+          <div class="authrbookspgcntnts_ctgry_crd">
+            <div class="authrbookspgcntnts_ctgry_crd_thumbnl" id="${a[i].id}"><div class="authrbookspgcntnts_ctgry_crd_thumbnl_content"><img width="18" src="${a[i].icn}.png" alt=""></div></div>
+            <div class="authrbookspgcntnts_ctgry_crd_info">
+              <p class="sclchnnlpg_ctgrycrds_ctgry_crd_info_ttl">${a[i].ttl}</p>
+              <p class="authrbookspgcntnts_ctgry_crd_info_dscrptn">${a[i].sub_txt}</p>
+            </div>
+          </div>`;
+
+          prnt_el.appendChild(chld_el);
+        }
+      }
+      //main playlist cards
+      const plylst_el = app_btns_getelem(
+        "sclchnnlpg_ctgrycrds_ttlplylst_crdspnl",
+      );
+      const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+      plylst_el.innerHTML = spnr;
+      const yt_data = await app_btns_request("/api/ytchnnldata", "GET");
+
+      plylst_el.innerHTML = "";
+      //full vids
+      if (yt_data.full_vids) {
+        for (let i = 0; i < yt_data.full_vids.length; i++) {
+          const chld_el = document.createElement("div");
+          chld_el.className = "sclchnnlpg_ctgrycrds_ttlplylst_crd";
+          chld_el.innerHTML = `
+        <div class="sclchnnlpg_ctgrycrds_ttlplylst_img"><span><img
+              class="sclchnnlpg_ctgrycrds_ttlplylst_img_thumb"
+              src="assets/logos/bctlc/fmjr_stores _bctlc-logo_color_combo.png"
+              width="25"
+            /></span></div>
+        <div class="trck_prgrss_card_rght_crd_info">
+          <div class="trck_prgrss_card_rght_crd_info_lft">
+            <p class="trck_prgrss_card_rght_crd_info_lft_ttl">${yt_data.full_vids[i].title}</p>
+            <p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Duration: ${yt_data.full_vids[i].duration}</p>
+          </div>
+          <div class="trck_prgrss_card_rght_crd_info_rght"><div
+              class="sclchnnlpg_ctgrycrds_ttlplylst_crd_btncl" data-url="${yt_data.full_vids[i].url}"
+            >Watch</div></div>
+        </div>
+        `;
+
+          plylst_el.appendChild(chld_el);
+        }
+      }
+
+      //short vids
+      global_full_shots_vids = yt_data;
+
+      //vid count
+
+      app_btns_getelem("authrbookspgcntnts_ctgry_crd_info_dscrptn").innerHTML =
+        `${yt_data.yt_data_length} In Collection`;
     }
+  }
+});
+//go to bctlc channel
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_sitelinkbtn",
+    )
+  ) {
+    window.location.href = "https://www.youtube.com/@BibleCultureTLC";
+  }
+});
+//go to whatsapp
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_whtsappbtn",
+    )
+  ) {
+    window.location.href = "https://wa.me/260975986004";
+  }
+});
+//show playlist
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_viewbtn")
+  ) {
+    /*     const tmp = `
+         <div id="sclchnnlpg_ctgrycrds_ttlplylst_crdspnl_defultmgs">
+      <img
+            src="assets/logos/bctlc/fmjr_stores _bctlc-logo_color_combo.png"
+            width="35"
+          />
+      </div>
+    `;  const prnt_el = app_btns_getelem("sclchnnlpg_ctgrycrds_ttlplylst_crdspnl");
+    tmprl_prnt_ctnt = prnt_el.innerHTML;
+
+    prnt_el.innerHTML = tmp; */
+    app_btns_scroll_top_elem_fuc(
+      app_btns_getelem("sclchnnlpg_ctgrycrds_ttlplylst"),
+    );
+  }
+});
+//Go to individual video playlist
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".sclchnnlpg_ctgrycrds_ttlplylst_crd_btncl")) {
+    window.open(e.target.dataset.url, "_blank");
+  }
+});
+//shorts- clicked based
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_shtsvidsbtn",
+    )
+  ) {
+    const plylst_el = app_btns_getelem(
+      "sclchnnlpg_ctgrycrds_ttlplylst_crdspnl",
+    );
+    const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+    plylst_el.innerHTML = spnr;
+
+    plylst_el.innerHTML = "";
+    //full vids
+    if (global_full_shots_vids) {
+      for (let i = 0; i < global_full_shots_vids.shorts_vids.length; i++) {
+        const chld_el = document.createElement("div");
+        chld_el.className = "sclchnnlpg_ctgrycrds_ttlplylst_crd";
+        chld_el.innerHTML = `
+        <div class="sclchnnlpg_ctgrycrds_ttlplylst_img"><span><img
+              class="sclchnnlpg_ctgrycrds_ttlplylst_img_thumb"
+              src="assets/logos/bctlc/fmjr_stores _bctlc-logo_color_combo.png"
+              width="25"
+            /></span></div>
+        <div class="trck_prgrss_card_rght_crd_info">
+          <div class="trck_prgrss_card_rght_crd_info_lft">
+            <p class="trck_prgrss_card_rght_crd_info_lft_ttl">${global_full_shots_vids.shorts_vids[i].title}</p>
+            <p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Duration: ${global_full_shots_vids.shorts_vids[i].duration}</p>
+          </div>
+          <div class="trck_prgrss_card_rght_crd_info_rght"><div
+              class="sclchnnlpg_ctgrycrds_ttlplylst_crd_btncl" data-url="${global_full_shots_vids.shorts_vids[i].url}"
+            >Watch</div></div>
+        </div>
+        `;
+
+        plylst_el.appendChild(chld_el);
+      }
+    }
+    e.target.style.backgroundColor = "#b3324f";
+    app_btns_getelem(
+      "sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_fullvidsbtn",
+    ).style.backgroundColor = "#2f2f30";
+  }
+});
+//full - clicked based
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest(
+      "#sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_fullvidsbtn",
+    )
+  ) {
+    const plylst_el = app_btns_getelem(
+      "sclchnnlpg_ctgrycrds_ttlplylst_crdspnl",
+    );
+    const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+    plylst_el.innerHTML = spnr;
+
+    plylst_el.innerHTML = "";
+    //full vids
+    if (global_full_shots_vids) {
+      for (let i = 0; i < global_full_shots_vids.full_vids.length; i++) {
+        const chld_el = document.createElement("div");
+        chld_el.className = "sclchnnlpg_ctgrycrds_ttlplylst_crd";
+        chld_el.innerHTML = `
+        <div class="sclchnnlpg_ctgrycrds_ttlplylst_img"><span><img
+              class="sclchnnlpg_ctgrycrds_ttlplylst_img_thumb"
+              src="assets/logos/bctlc/fmjr_stores _bctlc-logo_color_combo.png"
+              width="25"
+            /></span></div>
+        <div class="trck_prgrss_card_rght_crd_info">
+          <div class="trck_prgrss_card_rght_crd_info_lft">
+            <p class="trck_prgrss_card_rght_crd_info_lft_ttl">${global_full_shots_vids.full_vids[i].title}</p>
+            <p class="trck_prgrss_card_rght_crd_info_lft_dcsrptn">Duration: ${global_full_shots_vids.full_vids[i].duration}</p>
+          </div>
+          <div class="trck_prgrss_card_rght_crd_info_rght"><div
+              class="sclchnnlpg_ctgrycrds_ttlplylst_crd_btncl" data-url="${global_full_shots_vids.full_vids[i].url}"
+            >Watch</div></div>
+        </div>
+        `;
+
+        plylst_el.appendChild(chld_el);
+      }
+    }
+    e.target.style.backgroundColor = "#b3324f";
+    app_btns_getelem(
+      "sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_shtsvidsbtn",
+    ).style.backgroundColor = "#2f2f30";
   }
 });

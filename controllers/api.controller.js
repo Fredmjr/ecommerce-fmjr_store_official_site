@@ -12,6 +12,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonlfile_fuc } from "../inventory_assets/data/jsonl/blog.functions.js";
 import { graphics_design_categories_type } from "../inventory_assets/data/data_components/category.varaibles.data.js";
+import { ytchnnlata_savetojsonlfilefuc } from "../inventory_assets/global_system_fuc/ctrgy_social_channels/ctrgy_social_channels.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -834,6 +835,29 @@ export const ckieUrl = async (req, res) => {
     return res.status(200).json({
       dir_url: `/app/${r}`,
     });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//APP url cookie checker
+export const ytchnnldataUrl = async (req, res) => {
+  try {
+    const yt_data = ytchnnlata_savetojsonlfilefuc();
+    if (!yt_data || yt_data.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    return res.status(200).json(yt_data);
   } catch (error) {
     console.log(error);
     const erMgs_div = `

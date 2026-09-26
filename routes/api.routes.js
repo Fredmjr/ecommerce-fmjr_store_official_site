@@ -23,6 +23,7 @@ import {
   srchddataapiUrl,
   thmbnlpstrflyrsindiimgapiUrl,
   thmbnlsflyrsdataapiUrl,
+  ytchnnldataUrl,
 } from "../controllers/api.controller.js";
 
 const router = express.Router();
@@ -53,5 +54,6 @@ router.get("/brndngpstrflyrsindiimgapi/:id", brndngpstrflyrsindiimgapiUrl);
 router.get("/thmbnlpstrflyrsindiimgapi/:id", thmbnlpstrflyrsindiimgapiUrl);
 router.get("/auhtrbksdatasctnapi", auhtrbksdatasctnapiUrl);
 router.post("/ckieurl", ckieUrl);
+router.get("/ytchnnldata", ytchnnldataUrl);
 
 export default router;
