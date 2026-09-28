@@ -94,6 +94,7 @@ button {
   /* no user text selection */
   user-select: none;
   -webkit-user-select: none;
+  box-sizing: border-box;
 }
 
 #bannr1 {
@@ -103,6 +104,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 #bannr1Cntnts {
@@ -111,12 +114,15 @@ button {
   align-items: center;
   width: 100%;
   font-size: 6px;
+  box-sizing: border-box;
 }
 
 #navbar {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 #ctgry {
@@ -2104,6 +2110,43 @@ button:focus {
   margin-right: 7px;
   padding-left: 3px;
 }
+.shwrmpg_cntnts_ctgry_crd_info_dscrptn {
+  margin: 0px;
+  font-size: 7px;
+  color: var(--fmjr--dkr6);
+  padding-left: 3px;
+}
+#sclchnnlpg_ctgrycrds_ttl_mainscreenbnnr {
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.shwrmpg_cntnts_ctgry_crd_info_ttl {
+  margin: 0px;
+  margin-bottom: 3px;
+  margin-right: 7px;
+  padding-left: 3px;
+}
+#shwrmpg_cntnts_lft_main_thumbnlcvrart_pnl {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 3px;
+}
+#shwrmpg_cntnts_lft_main_thumbnlcvrart {
+  width: 100%;
+  box-sizing: border-box;
+}
 .authrbookspgcntnts_ctgry_crd_thumbnl {
   height: 30px;
   width: 30px;
@@ -2539,6 +2582,91 @@ button:focus {
   padding: 15px 15px;
   font-weight: bold;
 }
+#shwrmpg {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shwrmpg_cntnts {
+  /*   display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 70%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+#shwrmpg_cntnts_rght {
+  width: 28%;
+  padding: 10px;
+}
+#shwrmpg_cntnts_main {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#shwrmpg_cntnts_lft {
+  width: 70%;
+  height: 550px;
+  box-sizing: border-box;
+}
+#shwrmpg_cntnts_lft_main {
+  border: 1px solid var(--fmjr--dkr3);
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.shwrmpg_cntnts_lft_txt_ttl {
+  font-weight: bold;
+  padding: 2px 7px;
+  margin: 5px 0px;
+  border-left: 3px solid var(--fmjr--clr1);
+}
+.shwrmpg_cntnts_lft_txt_btnscl {
+  /*  background-color: var(--fmjr--dkr5);
+  color: var(--fmjr--dkr1);
+  font-size: 9px;
+  font-weight: bolder;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  text-align: center;
+  border: none;
+  padding: 10px;
+  outline: none;
+  cursor: pointer; */
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 9px;
+  cursor: pointer;
+  background-color: var(--fmjr--dkr8);
+  border-radius: 3px;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--fmjr--dkr4);
+  border: 1px solid var(--fmjr--dkr4);
+  margin-bottom: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.shwrmpg_cntnts_lft_txt_btnscl:focus,
+.shwrmpg_cntnts_lft_txt_btnscl:active,
+.shwrmpg_cntnts_lft_txt_btnscl:active {
+  background-color: transparent;
+}
+
 #authrbookspgcntnts_maincntnts_contents_hirebkspc_pnl_submtfrmbtn {
   border: none;
   outline: none;
@@ -6597,6 +6725,7 @@ button:focus {
   box-sizing: border-box;
   background-color: var(--fmjr--dkr5);
   color: var(--fmjr--dkr1);
+  overflow: hidden;
 }
 
 #dvdr {
@@ -7058,6 +7187,9 @@ button:focus {
     width: 90%;
   }
   #clntalpgcntnts {
+    width: 90%;
+  }
+  #shwrmpg_cntnts {
     width: 90%;
   }
 }
@@ -7752,5 +7884,25 @@ button:focus {
   }
   #sclchnnlpg_cntnts_bctlclogo_sreenmain_btnspnl_whtsappbtn {
     font-size: 8px;
+  }
+  #shwrmpg_cntnts_main {
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+  }
+  #shwrmpg_cntnts {
+    width: 100%;
+  }
+  #shwrmpg_cntnts_rght {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #shwrmpg_cntnts_lft {
+    height: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  #shwrmpg_cntnts_lft_main {
+    min-height: 300px;
   }
 }

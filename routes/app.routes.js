@@ -34,6 +34,7 @@ import {
   rvwpgUrl,
   sclchnnlUrl,
   sgnuppgUrl,
+  shwrmpgUrl,
   trmscndtnspgUrl,
   webdevUrl,
   whyfmjrstrspgUrl,
@@ -78,5 +79,6 @@ router.get("/clntalpg", clntalpgUrl);
 router.get("/adswrkspcpg", adswrkspcpgUrl);
 router.get("/webdev", webdevUrl);
 router.get("/sclchnnl", sclchnnlUrl);
+router.get("/shwrmpg", shwrmpgUrl);
 
 export default router;

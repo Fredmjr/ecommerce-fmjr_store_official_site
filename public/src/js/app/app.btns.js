@@ -3368,3 +3368,19 @@ home.addEventListener("click", async (e) => {
     ).style.backgroundColor = "#2f2f30";
   }
 });
+//show room page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#sidemenuCtrycl_shwrmbtn") ||
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_shwrmbtn")
+  ) {
+    const plylst_el = app_btns_getelem("main");
+    const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+    plylst_el.innerHTML = spnr;
+    const data = await app_btns_request("/app/shwrmpg", "GET");
+    if (data) {
+      plylst_el.innerHTML = "";
+      plylst_el.innerHTML = data;
+    }
+  }
+});
