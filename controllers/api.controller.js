@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 import { loadJsonlfile_fuc } from "../inventory_assets/data/jsonl/blog.functions.js";
 import { graphics_design_categories_type } from "../inventory_assets/data/data_components/category.varaibles.data.js";
 import { ytchnnlata_savetojsonlfilefuc } from "../inventory_assets/global_system_fuc/ctrgy_social_channels/ctrgy_social_channels.js";
+import { where } from "sequelize";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -858,6 +859,131 @@ export const ytchnnldataUrl = async (req, res) => {
       });
     }
     return res.status(200).json(yt_data);
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//show room dowlaod - Digital Artboard 2022_2023 Issue #1 pdf
+export const shwrmdwnlddaiss1pdfUrl = async (req, res) => {
+  const img_nm = req.params.id;
+  try {
+    const filePath = path.join(
+      __dirname,
+      "../public/assets/files/pdfs/Digital Artboard 2022_2023 Issue_1.pdf",
+    );
+    console.log(filePath);
+    //retur nothing but handle err in tyrcatch err on client
+    if (!fs.existsSync(filePath)) {
+      console.error(`img_not_found: ${img_nm}`);
+      return res.status(204).end();
+    }
+    //stroightdownload
+    return res.download(filePath, (err) => {
+      if (err) {
+        console.log(`Process interrupted or aborted img for: ${img_nm}`, err);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//APP url cookie checker
+export const dgtlartalldataUrl = async (req, res) => {
+  try {
+    const result = await img_indiModel.findAll({
+      where: {
+        site_sub_sec: "show_room",
+      },
+    });
+
+    if (!result || result.length === 0) {
+      return res.status(404).json({
+        erMgs: "Unable to retrive content",
+      });
+    }
+    const fil_fltrd = result.map((e) => ({
+      img_ttl: e.img_filepath.match(/[^/]+$/)[0],
+      site_sub_sec_group_tag: e.site_sub_sec_group_tag,
+      comments: e.comments,
+      likes: e.likes,
+      share: e.share,
+    }));
+    /* console.log("fil_fltrd: ", fil_fltrd); */
+    //total in collection
+    const total_in_collection = fil_fltrd.length;
+    //seven spirit beasts
+    const all_black_white_data = [
+      ...new Set(
+        fil_fltrd.filter(
+          (obj) => obj.site_sub_sec_group_tag === "all_black_white",
+        ),
+      ),
+    ];
+    //all_color
+    const all_color_data = [
+      ...new Set(
+        fil_fltrd.filter((obj) => obj.site_sub_sec_group_tag === "all_color"),
+      ),
+    ];
+    //twelve_patriarchs
+    const twelve_patriarchs_data = [
+      ...new Set(
+        fil_fltrd.filter(
+          (obj) => obj.site_sub_sec_group_tag === "twelve_patriarchs",
+        ),
+      ),
+    ];
+    //leading_ladies
+    const leading_ladies_data = [
+      ...new Set(
+        fil_fltrd.filter(
+          (obj) => obj.site_sub_sec_group_tag === "leading_ladies",
+        ),
+      ),
+    ];
+    //seven spirit beasts
+    const seven_spirit_beasts_data = [
+      ...new Set(
+        fil_fltrd.filter(
+          (obj) => obj.site_sub_sec_group_tag === "seven_spirit_beasts",
+        ),
+      ),
+    ]; //leading_ladies
+    const outfits_gadgets_data = [
+      ...new Set(
+        fil_fltrd.filter(
+          (obj) => obj.site_sub_sec_group_tag === "outfits_gadgets",
+        ),
+      ),
+    ];
+    /*  console.log(seven_spirit_beasts_data); */
+    return res.status(200).json({
+      seven_spirit_beasts_data: seven_spirit_beasts_data,
+      all_black_white_data: all_black_white_data,
+      all_color_data: all_color_data,
+      twelve_patriarchs_data: twelve_patriarchs_data,
+      leading_ladies_data: leading_ladies_data,
+      outfits_gadgets_data: outfits_gadgets_data,
+      total_in_collection: total_in_collection,
+    });
   } catch (error) {
     console.log(error);
     const erMgs_div = `

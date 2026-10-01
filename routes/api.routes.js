@@ -10,6 +10,7 @@ import {
   clbrstrntflyrsdataapiUrl,
   clbsrstrntpstrflyrsindiimgapiUrl,
   cnrsatnsapiUrl,
+  dgtlartalldataUrl,
   dtmtndataapiUrl,
   gnrlflyrsdataapiUrl,
   gnrlpstrflyrsindiimgapiUrl,
@@ -18,6 +19,7 @@ import {
   prtfloimgsapiUrl,
   prtfloimgsnamesapiUrl,
   rcntpstrflyrsindiimgapiUrl,
+  shwrmdwnlddaiss1pdfUrl,
   sprtsflyrsdataapiUrl,
   sprtspstrflyrsindiimgapiUrl,
   srchddataapiUrl,
@@ -55,5 +57,7 @@ router.get("/thmbnlpstrflyrsindiimgapi/:id", thmbnlpstrflyrsindiimgapiUrl);
 router.get("/auhtrbksdatasctnapi", auhtrbksdatasctnapiUrl);
 router.post("/ckieurl", ckieUrl);
 router.get("/ytchnnldata", ytchnnldataUrl);
+router.get("/shwrmdwnlddaiss1pdf", shwrmdwnlddaiss1pdfUrl);
+router.get("/dgtlartalldata", dgtlartalldataUrl);
 
 export default router;

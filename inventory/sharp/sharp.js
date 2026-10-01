@@ -3,8 +3,9 @@ import fs from "fs";
 import path from "path";
 
 //sub dir images
-const srcDir = "public/assets/imgs";
-const distDir = "public/dist/imgs"; //sub dir images
+/* const srcDir = "public/assets/imgs";
+const distDir = "public/dist/imgs";  */
+//sub dir images
 /* const srcDir = "public/assets/imgs/ctgry/portfolio";
 const distDir = "public/dist/imgs/ctgry/portfolio"; */
 
@@ -15,6 +16,9 @@ const distDir = "public/dist/imgs/ctgry/graphics_design/thumbnail"; */
 //authotrs & books images
 /* const srcDir = "public/assets/imgs/ctgry/author_books/official_released_books";
 const distDir = "public/dist/imgs/ctgry/author_books/official_released_books"; */
+//show room
+const srcDir = "public/assets/imgs/ctgry/showroom/digital_art/covers";
+const distDir = "public/dist/imgs/ctgry/showroom/digital_art/covers";
 
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
@@ -27,7 +31,7 @@ fs.readdirSync(srcDir).forEach(async (file) => {
     const task = await sharp(path.join(srcDir, file))
       /* .webp({ quality: 80 , effort: 6 }) */ //normal
       /* .webp({ quality: 30, effort: 6 }) */ // current
-      .webp({ quality: 30, effort: 6 }) // intense
+      .webp({ quality: 80, effort: 6 }) // intense
       .toFile(path.join(distDir, `${name}.webp`));
     if (task) {
       console.log(`${name}.webp`);

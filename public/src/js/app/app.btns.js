@@ -3381,6 +3381,277 @@ home.addEventListener("click", async (e) => {
     if (data) {
       plylst_el.innerHTML = "";
       plylst_el.innerHTML = data;
+
+      //digital art collection count
+      const dgtl_art_data = await app_btns_request(
+        "/api/dgtlartalldata",
+        "GET",
+      );
+      app_btns_getelem("shwrmpg_cntnts_ctgry_crd_info_dscrptn").innerHTML =
+        `${dgtl_art_data.total_in_collection} In Collection`;
+    }
+  }
+});
+//show room page - affiliates & collaboration digital art
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#shwrmpg_cntnts_lft_affltsalldgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_affltsseriesdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_affltsdwnldbldgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_cllbtrnalldgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_cllbtrnseriesdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_cllbtrndwnldbldgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_anmtnsartdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_chrctrcncptartdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_cncptartdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_idlstriesartdgtlart_btn") ||
+    e.target.closest("#shwrmpg_cntnts_lft_drftsnotesartdgtlart_btn")
+  ) {
+    const p_el = app_btns_getelem("shwrmpg_cntnts_lft_main");
+    const tmp = `
+    <div id="shwrmpg_cntnts_default_unavailable_service">
+      <div>
+        <div id="dwnldpgcntnts_img"><img src="dist/imgs/no_books_unavailable.webp" width="55"></div>
+        <p id="hlppgcntnts_txt">Digital Art Unavailable</p>
+      </div>
+    </div>
+    `;
+    p_el.innerHTML = tmp;
+    app_btns_scroll_top_elem_fuc(p_el);
+  }
+});
+//show room page - in-house all
+let global_shwrmpg_cntnts_lrght_cntnts;
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_cntnts_lft_inhusalldgtlart_btn")) {
+    closeopenFunc(
+      app_btns_getelem("shwrmpg_cntnts_lft_inhusalldgtlart_btn_bttmdrpmenu"),
+    );
+    app_btns_scroll_top_elem_fuc(
+      app_btns_getelem("shwrmpg_cntnts_lft_inhusalldgtlart_btn"),
+    );
+  }
+});
+//show room page - in-house series
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_cntnts_lft_inhusseriesdgtlart_btn")) {
+    const p_el = app_btns_getelem("shwrmpg_cntnts_rght");
+    global_shwrmpg_cntnts_lrght_cntnts = p_el.innerHTML;
+    const tmp = `
+    <div id="shwrmpg_cntnts_rght_contents">
+    <div id="shwrmpg_cntnts_rght_contents_top">
+    <button id="shwrmpg_cntnts_rght_contents_top_rtrnbtn"><span><img id="shwrmpg_cntnts_rght_contents_top_rtrnbtn_icn" src="dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span></button>
+    <button id="shwrmpg_cntnts_rght_contents_top_ttl">In-House Series Digital Art</button>
+    </div>
+    <div id="shwrmpg_cntnts_rght_contents_bttm"><div id="shwrmpg_cntnts_default_unavailable_service">
+      <div>
+        <div id="dwnldpgcntnts_img"><img src="dist/imgs/no_books_unavailable.webp" width="55"></div>
+        <p id="hlppgcntnts_txt">Series Unavailable</p>
+      </div>
+    </div></div>
+    </div>
+    `;
+    p_el.innerHTML = tmp;
+    app_btns_scroll_top_elem_fuc(p_el);
+  }
+});
+
+//show room page - in-house dowload
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_cntnts_lft_inhusdwnldbldgtlart_btn")) {
+    const p_el = app_btns_getelem("shwrmpg_cntnts_rght");
+    global_shwrmpg_cntnts_lrght_cntnts = p_el.innerHTML;
+    const tmp = `
+    <div id="shwrmpg_cntnts_rght_contents">
+    <div id="shwrmpg_cntnts_rght_contents_top">
+    <button id="shwrmpg_cntnts_rght_contents_top_rtrnbtn"><span><img id="shwrmpg_cntnts_rght_contents_top_rtrnbtn_icn" src="dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span></button>
+    <button id="shwrmpg_cntnts_rght_contents_top_ttl">In-House Downloadable Digital Art</button>
+    </div>
+    <div id="shwrmpg_cntnts_rght_contents_bttm">
+     <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_artcrdttl">Digital Artboard Issue #1</p>
+    <div class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_thumbpnl">
+    <div class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_pnl">
+            <img id="shwrmpg_cntnts_lft_main_thumbnlcvrart" src="dist/imgs/ctgry/showroom/digital_art/Digital Artboard Issue_1.webp" alt="">
+          </div>
+    </div>
+    <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_ttl">Digital Artboard Issue #1</p>
+    <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_dscrptn">Digital Artboard 2022/2023 Issue #1, where fiction meets art, consisting of vibrant characters, each with their
+    own distinct backstory, personalities, systems and immersive environments. Join Musonda Fred on his creative journey, as he shares his inspiration, process, and passion for storytelling through digital art. In this new Digital Artboard 2022/2023 Issue #1, take a look at
+    seven selected artworks.</p>
+    <br />
+    <button class="shwrmpg_cntnts_lft_txt_btnscl" id="shwrmpg_dwnldfile_daiss1pdf_btn">Download PDF</button>
+  <br />
+  <br />
+  <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_artcrdttl">Digital Art - Edition 2026</p>
+    <div class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_thumbpnl">
+    <div class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_pnl">
+            <img id="shwrmpg_cntnts_lft_main_thumbnlcvrart" src="dist/imgs/ctgry/showroom/digital_art/Digital Art - Edition 2026.webp" alt="">
+          </div>
+    </div>
+    <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_ttl">Digital Art - Edition 2026</p>
+    <p class="shwrmpg_cntnts_lft_inhusdwnldbldgtlart_dscrptn">Digital Artboard 2022/2023 Issue #1, where fiction meets art, consisting of vibrant characters, each with their
+    own distinct backstory, personalities, systems and immersive environments. Join Musonda Fred on his creative journey, as he shares his inspiration, process, and passion for storytelling through digital art. In this new Digital Artboard 2022/2023 Issue #1, take a look at
+    seven selected artworks.</p>
+    <br />
+    <button class="shwrmpg_cntnts_lft_txt_btnscl" id="shwrmpg_dwnldfile_dae2026pdf_btn">Download PDF</button>
+    
+    </div>
+    </div>
+    `;
+    p_el.innerHTML = tmp;
+    app_btns_scroll_top_elem_fuc(p_el);
+  }
+});
+
+//retrun to side main menu
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_cntnts_rght_contents_top_rtrnbtn")) {
+    const p_el = app_btns_getelem("shwrmpg_cntnts_rght");
+    p_el.innerHTML = "";
+    p_el.innerHTML = global_shwrmpg_cntnts_lrght_cntnts;
+    app_btns_getelem("shwrmpg_cntnts_lft_main").innerHTML = `
+      <div id="shwrmpg_cntnts_lft_main_thumbnlcvrart_pnl">
+      <img id="shwrmpg_cntnts_lft_main_thumbnlcvrart" src="dist/imgs/ctgry/showroom/digital_art/covers/Global Digital Artboard Cover SQ xl.webp" alt="">
+      </div>
+    `;
+    app_btns_scroll_top_elem_fuc(p_el);
+  }
+});
+//retrun to side main menu
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dwnldfile_daiss1pdf_btn")) {
+    window.location.href = "/api/shwrmdwnlddaiss1pdf";
+  }
+});
+
+//
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dwnldfile_dae2026pdf_btn")) {
+    const p_el = app_btns_getelem("shwrmpg_cntnts_lft_main");
+    const tmp = `
+    <div id="shwrmpg_cntnts_default_unavailable_service">
+      <div>
+        <div id="dwnldpgcntnts_img"><img src="dist/imgs/dowload_unavailable.webp" width="55"></div>
+        <p id="hlppgcntnts_txt">Dowload Unavailable</p>
+      </div>
+    </div>
+    `;
+    p_el.innerHTML = tmp;
+    app_btns_scroll_top_elem_fuc(p_el);
+  }
+});
+//resuable digital images function
+const usable_dgtl_art_rndr_fuc = (arg_data, arg_ttl, arg_img_dir) => {
+  console.log(arg_data);
+  const t = document.createElement("div");
+  t.id = "shwrmpg_cntnts_rght_contents_bttm";
+  for (let i = 0; i < arg_data.length; i++) {
+    const img_el = document.createElement("div");
+    img_el.className = "shwrmpg_cntnts_rght_contents_bttm_crdcl";
+    img_el.dataset.img_url = arg_data[i].img_ttl;
+    img_el.dataset.img_dir = arg_img_dir;
+    img_el.innerHTML = `<img class="shwrmpg_cntnts_rght_contents_bttm_crdcl_imgcl" src="dist/imgs/ctgry/showroom/digital_art/${arg_img_dir}/compressed_img/${arg_data[i].img_ttl}" data-img_url="${arg_data[i].img_ttl}" data-img_dir="${arg_img_dir}" alt="">`;
+    t.appendChild(img_el);
+  }
+
+  const p_el = app_btns_getelem("shwrmpg_cntnts_rght");
+  global_shwrmpg_cntnts_lrght_cntnts = p_el.innerHTML;
+  const tmp = `
+    <div id="shwrmpg_cntnts_rght_contents">
+    <div id="shwrmpg_cntnts_rght_contents_top">
+    <button id="shwrmpg_cntnts_rght_contents_top_rtrnbtn"><span><img id="shwrmpg_cntnts_rght_contents_top_rtrnbtn_icn" src="dist/icons/long_back_arrow.svg" width="15" class="app-icon"></span></button>
+    <button id="shwrmpg_cntnts_rght_contents_top_ttl">${arg_ttl}</button>
+    </div>
+    ${t.outerHTML}
+    </div>
+    `;
+  p_el.innerHTML = tmp;
+  app_btns_scroll_top_elem_fuc(p_el);
+};
+
+//all_black_white
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_allblkwhtbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.all_black_white_data) {
+      usable_dgtl_art_rndr_fuc(
+        data.all_black_white_data,
+        "All Black & White",
+        "all_black_white",
+      );
+    }
+  }
+});
+//all_color
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_allclrbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.all_color_data) {
+      usable_dgtl_art_rndr_fuc(data.all_color_data, "All Color", "all_color");
+    }
+  }
+});
+//twelve_patriarchs
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_twlpatrchsbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.twelve_patriarchs_data) {
+      usable_dgtl_art_rndr_fuc(
+        data.twelve_patriarchs_data,
+        "Twelve Patriarchs",
+        "twelve_patriarchs",
+      );
+    }
+  }
+});
+//leading_ladies
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_ldngldiesbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.leading_ladies_data) {
+      usable_dgtl_art_rndr_fuc(
+        data.leading_ladies_data,
+        "Leading Ladies",
+        "leading_ladies",
+      );
+    }
+  }
+});
+//seven_spirit_beasts
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_svnsprtsbstsbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.seven_spirit_beasts_data) {
+      usable_dgtl_art_rndr_fuc(
+        data.seven_spirit_beasts_data,
+        "Seven Spirit Beasts",
+        "seven_spirit_beasts",
+      );
+    }
+  }
+});
+//seven_spirit_beasts
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#shwrmpg_dgtlart_typetag_outfsgdgtsbtn")) {
+    const data = await app_btns_request("/api/dgtlartalldata", "GET");
+    if (data.outfits_gadgets_data) {
+      usable_dgtl_art_rndr_fuc(
+        data.outfits_gadgets_data,
+        "Outfits & Gadgets",
+        "outfits_gadgets",
+      );
+    }
+  }
+});
+//image full view
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".shwrmpg_cntnts_rght_contents_bttm_crdcl")) {
+    if (e.target.dataset.img_url) {
+      console.log(e.target.dataset.img_dir, e.target.dataset.img_url);
+      const p_el = app_btns_getelem("shwrmpg_cntnts_lft_main");
+
+      p_el.innerHTML = `<div id="shwrmpg_cntnts_lft_main_thumbnlcvrart_pnl"><img id="shwrmpg_cntnts_lft_main_thumbnlcvrart_renderedimg" src="dist/imgs/ctgry/showroom/digital_art/${e.target.dataset.img_dir}/normal_img/${e.target.dataset.img_url}" alt=""></div>`;
+      app_btns_scroll_top_elem_fuc(p_el);
     }
   }
 });
