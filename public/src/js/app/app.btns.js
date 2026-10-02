@@ -44,7 +44,7 @@ const disable_scroll_ft_fuc = (e) => {
 const enable_scroll_ft_fuc = () => {
   allowScroll = true;
   document.body.style.overflow = "auto";
-  console.log("enabled");
+  /*   console.log("enabled"); */
 };
 
 //reusable secon spinner
@@ -125,12 +125,12 @@ const app_btns_img_cache_checker_or_dwnld_cache_fuc = async (
   const tasks_array_fuc = obj.map(async (ind_task) => {
     const img = ind_task + ".webp";
     const img_plain_nm = ind_task;
-    console.log(img);
+    /*    console.log(img); */
     const cachedResponse = await caches.match(`${arg_endpoint}/${img}`);
 
     if (cachedResponse) {
       const offline_img_blob = URL.createObjectURL(await cachedResponse.blob());
-      console.log("cached", offline_img_blob);
+      /* console.log("cached", offline_img_blob); */
       //render here v1.0.0.0
       const img_sclspnl = `
                 <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
@@ -154,7 +154,7 @@ const app_btns_img_cache_checker_or_dwnld_cache_fuc = async (
           `${arg_endpoint}/${img}`,
           img_plain_nm,
         );
-        console.log("dwnld thencached img", img);
+        /*  console.log("dwnld thencached img", img); */
         //reuse later
         arr.push(img);
       } catch (err) {
@@ -338,7 +338,7 @@ home.addEventListener("click", async (e) => {
       r: "accntspg",
     });
     if (c_url_data) {
-      console.log(c_url_data);
+      /*  console.log(c_url_data); */
       const data = await app_btns_request(`${c_url_data.dir_url}`, "GET");
       if (data) {
         app_btns_getelem("main").innerHTML = data;
@@ -484,7 +484,7 @@ home.addEventListener("click", async (e) => {
     e.target.closest("#ctgry_menuBtn_drpdwnmenulnkanncmntsBtn") ||
     e.target.closest("#quklnksscls_crdlnks_accmntsbtn")
   ) {
-    console.log("hoahoi");
+    /*  console.log("hoahoi"); */
     spinner_fuc();
     const data = await app_btns_request("/app/anncmntpg", "GET");
     if (data) {
@@ -3028,7 +3028,7 @@ document.body.addEventListener("click", async (e) => {
       formData.append(key, ttr_accnt_obj[key]);
     });
 
-    console.log("formDataaaaaaaaaaaaaaaaaaaaaa:", formData);
+    /*  console.log("formDataaaaaaaaaaaaaaaaaaaaaa:", formData); */
 
     //formdata request
     fetch("/usr/crtttraccnt", {
@@ -3037,7 +3037,7 @@ document.body.addEventListener("click", async (e) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        /*   console.log(data); */
         //err
         if (data.erMgs) {
           btn.innerHTML = "Submit";
@@ -3542,7 +3542,7 @@ home.addEventListener("click", async (e) => {
 });
 //resuable digital images function
 const usable_dgtl_art_rndr_fuc = (arg_data, arg_ttl, arg_img_dir) => {
-  console.log(arg_data);
+  /*  console.log(arg_data); */
   const t = document.createElement("div");
   t.id = "shwrmpg_cntnts_rght_contents_bttm";
   for (let i = 0; i < arg_data.length; i++) {
@@ -3647,10 +3647,18 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (e.target.closest(".shwrmpg_cntnts_rght_contents_bttm_crdcl")) {
     if (e.target.dataset.img_url) {
-      console.log(e.target.dataset.img_dir, e.target.dataset.img_url);
+      /*       console.log(e.target.dataset.img_dir, e.target.dataset.img_url); */
       const p_el = app_btns_getelem("shwrmpg_cntnts_lft_main");
+      //loading
+      p_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
 
-      p_el.innerHTML = `<div id="shwrmpg_cntnts_lft_main_thumbnlcvrart_pnl"><img id="shwrmpg_cntnts_lft_main_thumbnlcvrart_renderedimg" src="dist/imgs/ctgry/showroom/digital_art/${e.target.dataset.img_dir}/normal_img/${e.target.dataset.img_url}" alt=""></div>`;
+      //success
+      const temp_img = new Image();
+      temp_img.onload = () => {
+        /*   console.log("img complete download"); */
+        p_el.innerHTML = `<div id="shwrmpg_cntnts_lft_main_thumbnlcvrart_pnl"><img id="shwrmpg_cntnts_lft_main_thumbnlcvrart_renderedimg" src="dist/imgs/ctgry/showroom/digital_art/${e.target.dataset.img_dir}/normal_img/${e.target.dataset.img_url}" alt=""></div>`;
+      };
+      temp_img.src = `dist/imgs/ctgry/showroom/digital_art/${e.target.dataset.img_dir}/normal_img/${e.target.dataset.img_url}`;
       app_btns_scroll_top_elem_fuc(p_el);
     }
   }
