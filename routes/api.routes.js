@@ -16,6 +16,7 @@ import {
   gnrlpstrflyrsindiimgapiUrl,
   grphcsdsgndataapiUrl,
   grphcsdsgndatasctnapiUrl,
+  orderapiUrl,
   prtfloimgsapiUrl,
   prtfloimgsnamesapiUrl,
   rcntpstrflyrsindiimgapiUrl,
@@ -59,5 +60,6 @@ router.post("/ckieurl", ckieUrl);
 router.get("/ytchnnldata", ytchnnldataUrl);
 router.get("/shwrmdwnlddaiss1pdf", shwrmdwnlddaiss1pdfUrl);
 router.get("/dgtlartalldata", dgtlartalldataUrl);
+router.get("/orderapi", orderapiUrl);
 
 export default router;

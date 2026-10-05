@@ -27,7 +27,9 @@ import {
   mallpgUrl,
   notfypgUrl,
   onetimemgsUrl,
+  ordrnowbkapiUrl,
   portflpgUrl,
+  prordrbkapiUrl,
   prvcydataUrl,
   prvcypgUrl,
   qkprmtnspgUrl,
@@ -80,5 +82,7 @@ router.get("/adswrkspcpg", adswrkspcpgUrl);
 router.get("/webdev", webdevUrl);
 router.get("/sclchnnl", sclchnnlUrl);
 router.get("/shwrmpg", shwrmpgUrl);
+router.get("/prordrbkapi", prordrbkapiUrl);
+router.get("/ordrnowbkapi", ordrnowbkapiUrl);
 
 export default router;

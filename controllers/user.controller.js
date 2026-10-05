@@ -5,6 +5,7 @@ import {
 import { decryptJWT } from "../middleware/jwe/decrypt.js";
 import { encryptJWT } from "../middleware/jwe/encrypt.js";
 import usrModel from "../models/user.model.js";
+import user_bksModel from "../models/user_books.model.js";
 import { single_nodemailer_fuc } from "../services/services_email/nodemailer.js";
 import hashpwd from "../system_auth/argon2/argon2.hash.js";
 import verifypwd from "../system_auth/argon2/argon2.verfy.js";
@@ -16,6 +17,7 @@ import Busboy from "busboy";
 import { sharp_webp_single_img } from "../inventory/sharp/sharp_indi_img.js";
 import { ttr_usr_saveJsonlfile_fuc } from "../inventory_assets/data/tutor_usr_jsonl/tutor_usr.js";
 import sequelize from "../config/db.js";
+import { where } from "sequelize";
 
 //sign up user - on account creation only email otp verification
 export const signupusrUrl = async (req, res) => {
@@ -1212,6 +1214,62 @@ export const crtttraccntcookielUrl = async (req, res) => {
     return res.status(200).json({
       usr_dtls_tmp: tmp,
     });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//
+export const prordrbksctnrgstraccntUrl = async (req, res) => {
+  const { eml } = req.body;
+  try {
+    //empty email
+    if (eml === "") {
+      return res.json({
+        erMgs: "Fill in the field!",
+      });
+    }
+
+    //Check if user exists
+    const accnt_exists = await user_bksModel.findOne({
+      where: {
+        eml: eml,
+      },
+    });
+
+    if (accnt_exists) {
+      return res.status(400).json({
+        erMgs: "User acccount with provided credentials already pre-ordered.",
+      });
+    }
+    console.log(eml);
+    const new_usr = await user_bksModel.create({
+      eml: eml,
+    });
+    const tmp = `
+          <div id="lggd_out_sctn">
+          <div id="lggd_out_sctn_cntnts">
+          <div id="frgotpwdpgcntnts_tplogo">
+            <img src="assets/logos/fmjr_stores official.png" width="25" alt="">
+          </div>
+          <p id="frgotpwd_ttl">Password Reset</p>
+          <p id="frgotpwd_dscrptn">You have successfully registered your email for a book pre-order. You will be notified for further steps by email.</p>
+          <br>
+          </div>
+          `;
+    if (new_usr) {
+      return res.status(200).json({
+        mgs: tmp,
+      });
+    }
   } catch (error) {
     console.log(error);
     const erMgs_div = `

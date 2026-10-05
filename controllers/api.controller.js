@@ -782,7 +782,10 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
     {
       bk_ttl: "Encoded Truth (TTS, The Scripture is Key Uncut Edition)",
       bk_id: "3e629840-c548-418d-9f72-591eec68a6gu",
+      bk_ordrid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_0",
+      bk_prvwid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_0",
       bk_price: "K100",
+      bk_format: "Hardcopy (Physical Format)",
       bk_img_nm: "through_the_scripture_the_scripture_is_key_book_cover",
       bk_img_path:
         "public/dist/imgs/ctgry/author_books/official_released_books",
@@ -791,8 +794,11 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
     },
     {
       bk_ttl: "Through The Scripture, The Scripture is Key",
-      bk_id: "ye629840-c548-418d-9f32-591eec6a6hu",
+      bk_id: "ye629840-c548-418d-9f32-591eec6a6ht",
+      bk_ordrid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1",
+      bk_prvwid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_1",
       bk_price: "K75",
+      bk_format: "Softcopy (Digital Format)",
       bk_img_nm: "encoded_truth_book_coverthrough",
       bk_img_path:
         "public/dist/imgs/ctgry/author_books/official_released_books",
@@ -992,6 +998,40 @@ export const dgtlartalldataUrl = async (req, res) => {
     <p>Contact customer support, if issue persists</p>
     `;
     return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//show room dowlaod - Digital Artboard 2022_2023 Issue #1 pdf
+export const orderapiUrl = async (req, res) => {
+  try {
+    const tmp = `
+    <div id="authrbookspg_bookcrd_beeterui_sctn">
+    <br /><br /><br /><br />
+    <div id="frgotpwdpgcntnts_tplogo">
+      <img src="assets/logos/fmjr_stores official.png" width="50" alt="">
+    </div>
+    <p id="authrbookspg_bookcrd_beeterui_unvblbk_ttl">Unavailable Book Format</p>
+    <p id="authrbookspg_bookcrd_beeterui_unvblbk_dcscrptn">Selected hardcopy book format is unavilable. Make a preorder of the book instead.</p>
+    <br />
+    <br />
+    <div id="authrbookspg_bookcrd_beeterui_rtrnhomrbtn_pnl"><button id="authrbookspg_bookcrd_beeterui_rtrnhomrbtn">Pre-Order Book</button></div>
+    <br /><br /><br />
+    `;
+
+    return res.status(200).json({
+      mgs: tmp,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    </div>
+    `;
+    res.status(400).json({
       erMgs: erMgs_div,
     });
   }

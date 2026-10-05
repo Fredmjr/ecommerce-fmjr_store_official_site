@@ -8,6 +8,7 @@ import {
   lgnusrotpUrl,
   lgnusrUrl,
   prflUrl,
+  prordrbksctnrgstraccntUrl,
   sgnupusrotpUrl,
   signupusrrndrotpUrl,
   signupusrUrl,
@@ -26,5 +27,6 @@ router.post("/sgnupusrotp", sgnupusrotpUrl);
 router.post("/prfl", prflUrl);
 router.post("/crtttraccnt", crtttraccntUrl);
 router.post("/crtttraccntcookie", crtttraccntcookielUrl);
+router.post("/prordrbksctnrgstraccnt", prordrbksctnrgstraccntUrl);
 
 export default router;

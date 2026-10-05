@@ -1765,13 +1765,195 @@ home.addEventListener("click", async (e) => {
             authr_bks_prnt_el.appendChild(chld_el);
           });
         }
+
+        //books - better ui
+        if (authr_bks_obj_data.offcl_rlssd_bks) {
+          authr_bks_prnt_el.innerHTML = "";
+          authr_bks_obj_data.offcl_rlssd_bks.forEach((e) => {
+            const chld_el = document.createElement("div");
+            chld_el.className = "authrbookspg_bookcrd_beeteruicl";
+            chld_el.innerHTML = `
+            <div class="authrbookspg_bookcrd_beeteruicl_top">
+            <div class="authrbookspg_bookcrd_beeteruicl_top_thumb"><img class="authrbookspg_bookcrd_beeteruicl_top_thumb_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="width:80%;"></div>
+
+            <div class="authrbookspg_bookcrd_beeteruicl_top_info">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">${e.bk_ttl}</p>
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">${e.bk_dscrptn}</p>
+            <br />
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">${e.bk_format}</div>
+            </div>
+            </div>
+            <div class="authrbookspg_bookcrd_beeteruicl_top_dvdr"></div>
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm">
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm_lft">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">Book Price</p>            
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">${e.bk_price}</p>
+            </div>
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm_rght">
+            <button class="authrbookspg_bookcrd_beeteruicl_bttm_rght_ordrbtn" id="${e.bk_ordrid_btn}" data-bk_id="${e.bk_id}">Order Now</buton>
+            <button class="authrbookspg_bookcrd_beeteruicl_bttm_rght_prvwbtn" id="${e.bk_prvwid_btn}" data-bk_id="${e.bk_id}">Preview</buton>
+
+            </div>
+            </div>
+            `;
+
+            authr_bks_prnt_el.appendChild(chld_el);
+          });
+        }
       }
     }
   }
 });
 
-//officially released books by click
+//preview book - hardcopy
 home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_0")
+  ) {
+    const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
+    if (data) {
+      console.log(e.target.dataset.bk_id);
+    }
+  }
+});
+
+//preview book - softcopy
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_1")
+  ) {
+    const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
+    if (data) {
+      console.log(e.target.dataset.bk_id);
+      const p_elm = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+
+      p_elm.innerHTML = `
+            <div class="authrbookspg_bookcrd_beeteruicl_top">
+            <div class="authrbookspg_bookcrd_beeteruicl_top_thumb"><img class="authrbookspg_bookcrd_beeteruicl_top_thumb_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/encoded_truth_book_coverthrough.webp" style="width:80%;"></div>
+            <div class="authrbookspg_bookcrd_beeteruicl_top_info">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">Through The Scripture, The Scripture is Key</p>
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">The purpose of the Through The Scripture, The Scripture is Key is to explain how and why the scriptures where introduced and what was the main objective was to bring in the scriptures. nspiration is the building block of all great things, it is the backbone of creativity and production. Even God himself used the word, the spirit, and himself as inspiration to make man. It is the same inspiration that is in the scriptures.</p>
+            <br>
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Softcopy (Digital Format)</div>
+            <br>
+            <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Christianity</div>
+            <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Spiritual Growth</div>
+            <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Inspiration</div>
+            <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Bible Study</div>
+
+            </div>
+            </div>
+      `;
+    }
+  }
+});
+
+//order book - hardcopy
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_0")
+  ) {
+    const data = await app_btns_request("/api/orderapi", "GET");
+    if (data.mgs) {
+      app_btns_getelem("authrbookspgcntnts_maincntnts_contents").innerHTML =
+        data.mgs;
+    }
+  }
+});
+
+//order book - softcopy
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1")
+  ) {
+    const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
+    if (data) {
+      console.log(e.target.dataset.bk_id, "order");
+    }
+  }
+});
+
+//order book - hardcopy - return home
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_0")
+  ) {
+    const data = await app_btns_request("/api/orderapi", "GET");
+    if (data.mgs) {
+      app_btns_getelem("authrbookspgcntnts_maincntnts_contents").innerHTML =
+        data.mgs;
+    }
+  }
+});
+
+//order book - hardcopy - pre-order book page
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspg_bookcrd_beeterui_rtrnhomrbtn")) {
+    const data = await app_btns_request("/app/prordrbkapi", "GET");
+    if (data) {
+      app_btns_getelem("authrbookspg_bookcrd_beeterui_sctn").innerHTML = data;
+    }
+  }
+});
+
+//order book - hardcopy - pre-order book - account registration
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#prordrbksctn_btn")) {
+    const el1 = auth_sgnup_getelem("frgotpwd_eml");
+    const err_pnl = auth_sgnup_getelem("frgotpwderrmgs_pnl");
+
+    e.target.innerHTML = "";
+    e.target.innerHTML = `<span><img class="ldngicn" width="30" style="  filter: invert(24%) sepia(85%) saturate(2206%) hue-rotate(326deg)
+    brightness(87%) contrast(92%);" src="dist/icons/loading.svg" alt=""></span>`;
+
+    const eml = el1 ? el1.value : null;
+    auth_lgn_global_eml = el1 ? el1.value : null;
+
+    /* console.log(eml); */
+
+    const data = await auth_sgnup_request(
+      "/usr/prordrbksctnrgstraccnt",
+      "POST",
+      {
+        eml: eml,
+      },
+    );
+    if (data) {
+      //err
+      if (data.erMgs) {
+        e.target.innerHTML = "Submit";
+        err_pnl.style.display = "block";
+        err_pnl.innerHTML = data.erMgs;
+
+        if (err_pnl_time_out) {
+          clearTimeout(err_pnl_time_out);
+        }
+        err_pnl_time_out = setTimeout(() => {
+          err_pnl.style.display = "none";
+        }, 7000);
+      } else {
+        auth_lgn_getelem("authrbookspg_bookcrd_beeterui_sctn").innerHTML =
+          data.mgs;
+      }
+    }
+  }
+});
+
+//order book - sotfcopy - pre-order book now
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1")
+  ) {
+    const data = await app_btns_request("/app/ordrnowbkapi", "GET");
+    if (data) {
+      app_btns_getelem("authrbookspgcntnts_maincntnts_contents").innerHTML =
+        data;
+    }
+  }
+});
+
+//officially released books by click
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_0")) {
     const authr_bks_prnt_el = app_btns_getelem(
       "authrbookspgcntnts_maincntnts_contents",
@@ -1807,6 +1989,52 @@ home.addEventListener("click", async (e) => {
             </div>
             </div>
                 `;
+
+        authr_bks_prnt_el.appendChild(chld_el);
+      });
+    }
+  }
+}); */
+
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#authrbookspgcntnts_ctgry_crd_id_0")) {
+    const authr_bks_prnt_el = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_contents",
+    );
+    app_btns_spinner_fuc(authr_bks_prnt_el);
+    const authr_bks_obj_data = await app_btns_request(
+      "/api/auhtrbksdatasctnapi",
+      "GET",
+    );
+    if (authr_bks_obj_data.offcl_rlssd_bks) {
+      authr_bks_prnt_el.innerHTML = "";
+      authr_bks_obj_data.offcl_rlssd_bks.forEach((e) => {
+        const chld_el = document.createElement("div");
+        chld_el.className = "authrbookspg_bookcrd_beeteruicl";
+        chld_el.innerHTML = `
+            <div class="authrbookspg_bookcrd_beeteruicl_top">
+            <div class="authrbookspg_bookcrd_beeteruicl_top_thumb"><img class="authrbookspg_bookcrd_beeteruicl_top_thumb_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/${e.bk_img_nm}.webp" style="width:80%;"></div>
+
+            <div class="authrbookspg_bookcrd_beeteruicl_top_info">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">${e.bk_ttl}</p>
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">${e.bk_dscrptn}</p>
+            <br />
+            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">${e.bk_format}</div>
+            </div>
+            </div>
+            <div class="authrbookspg_bookcrd_beeteruicl_top_dvdr"></div>
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm">
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm_lft">
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">Book Price</p>            
+            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">${e.bk_price}</p>
+            </div>
+            <div class="authrbookspg_bookcrd_beeteruicl_bttm_rght">
+            <button class="authrbookspg_bookcrd_beeteruicl_bttm_rght_ordrbtn" id="${e.bk_ordrid_btn}" data-bk_id="${e.bk_id}">Order Now</buton>
+            <button class="authrbookspg_bookcrd_beeteruicl_bttm_rght_prvwbtn" id="${e.bk_prvwid_btn}" data-bk_id="${e.bk_id}">Preview</buton>
+
+            </div>
+            </div>
+            `;
 
         authr_bks_prnt_el.appendChild(chld_el);
       });

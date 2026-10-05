@@ -623,3 +623,33 @@ export const shwrmpgUrl = async (req, res) => {
     });
   }
 };
+//pre-order book page
+export const prordrbkapiUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/show_room/pre_order");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+//order book now
+export const ordrnowbkapiUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/categories/author_books/payment");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
