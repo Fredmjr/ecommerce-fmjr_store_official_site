@@ -1836,11 +1836,12 @@ home.addEventListener("click", async (e) => {
             <br>
             <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Softcopy (Digital Format)</div>
             <br>
+            <div id="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Christianity</div>
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Spiritual Growth</div>
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Inspiration</div>
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Bible Study</div>
-
+            </div>
             </div>
             </div>
       `;
@@ -2304,8 +2305,16 @@ home.addEventListener("click", async (e) => {
     const data = await app_btns_request("/app/corsclsswrkspcpg", "GET");
     if (data) {
       app_btns_getelem("main").innerHTML = data;
-
-      let tmp = "";
+      //beta version edit
+      app_btns_getelem("cors_clss_wrkspcpg_cntnts_main").outerHTML = `
+    <div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/service_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">Service currently unavailable</p>
+    </div>
+    <div></div></div>
+    `;
+      /*         let tmp = "";
       for (let i = 0; i < 1; i++) {
         tmp += my_cors_clss_tmp;
         console.log(i);
@@ -2313,7 +2322,7 @@ home.addEventListener("click", async (e) => {
       const crdlet_prnt = `<div class="cors_clss_wrkspcpg_cntnts_main_crdlet_prntcntnr">${tmp}</div>`;
       const prnt = app_btns_getelem("cors_clss_wrkspcpg_cntnts_main");
       prnt.innerHTML = "";
-      prnt.innerHTML = crdlet_prnt;
+      prnt.innerHTML = crdlet_prnt; */
     }
   }
 });
@@ -2828,7 +2837,8 @@ const my_cors_clss_tmp = `
 //my courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_0")) {
-    let tmp = "";
+    //beta version edit
+    /*     let tmp = "";
     for (let i = 0; i < 1; i++) {
       tmp += my_cors_clss_tmp;
       console.log(i);
@@ -2843,7 +2853,7 @@ home.addEventListener("click", async (e) => {
         el.style.backgroundColor = "#707070";
       });
     app_btns_getelem("cors_clss_sctn_ctgrycrd_id_0").style.backgroundColor =
-      "#b3324f";
+      "#b3324f"; */
   }
 });
 
@@ -2880,7 +2890,8 @@ const all_crs_clss_tmp = `
 //All courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_1")) {
-    let tmp = "";
+    //beta version edit
+    /*     let tmp = "";
     for (let i = 0; i < 1; i++) {
       tmp += all_crs_clss_tmp;
       console.log(i);
@@ -2895,14 +2906,15 @@ home.addEventListener("click", async (e) => {
         el.style.backgroundColor = "#707070";
       });
     app_btns_getelem("cors_clss_sctn_ctgrycrd_id_1").style.backgroundColor =
-      "#b3324f";
+      "#b3324f"; */
   }
 });
 
 //in house courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_2")) {
-    let tmp = "";
+    //beta version edit
+    /*     let tmp = "";
     for (let i = 0; i < 1; i++) {
       tmp += all_crs_clss_tmp;
       console.log(i);
@@ -2917,14 +2929,15 @@ home.addEventListener("click", async (e) => {
         el.style.backgroundColor = "#707070";
       });
     app_btns_getelem("cors_clss_sctn_ctgrycrd_id_2").style.backgroundColor =
-      "#b3324f";
+      "#b3324f"; */
   }
 });
 
 //affiliates courses - click buton
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#corsclsswrkspcpg_ctgrycrd_3")) {
-    let tmp = "";
+    //beta version edit
+    /*     let tmp = "";
     for (let i = 0; i < 1; i++) {
       tmp += all_crs_clss_tmp;
       console.log(i);
@@ -2939,7 +2952,7 @@ home.addEventListener("click", async (e) => {
         el.style.backgroundColor = "#707070";
       });
     app_btns_getelem("cors_clss_sctn_ctgrycrd_id_3").style.backgroundColor =
-      "#b3324f";
+      "#b3324f";*/
   }
 });
 
@@ -3888,6 +3901,70 @@ home.addEventListener("click", async (e) => {
       };
       temp_img.src = `dist/imgs/ctgry/showroom/digital_art/${e.target.dataset.img_dir}/normal_img/${e.target.dataset.img_url}`;
       app_btns_scroll_top_elem_fuc(p_el);
+    }
+  }
+});
+
+//graphics design - beta version btns
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#grphc_dsgn_type_logos") ||
+    e.target.closest("#grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_2") ||
+    e.target.closest("#grphc_dsgn_type_cmpyny_prfl") ||
+    e.target.closest("#grphc_dsgn_type_brshur") ||
+    e.target.closest("#grphc_dsgn_type_bkcvr")
+  ) {
+    //beta version edit
+    app_btns_getelem("grphcsflpgcntnts_bttm_main").innerHTML = `
+    <div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/service_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">Graphics Services currently unavailable</p>
+    </div>
+    <div></div></div>
+    `;
+  }
+});
+//Desktop App Dev page
+home.addEventListener("click", async (e) => {
+  if (
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_dsktpappdevpgbtn") ||
+    e.target.closest("#sidemenuCtrycl_dsktpappdevpgbtn")
+  ) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/dsktpappdevpg", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//Dgraphics design - priscelist section
+let global_for_grphcs;
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#grphcsflpgcntnts_top_btncl_grpcsplstbtn")) {
+    e.target.style.backgroundColor = "#280466";
+    global_for_grphcs = app_btns_getelem("grphcsflpgcntnts_ttm").innerHTML;
+    //beta version edit
+    app_btns_getelem("grphcsflpgcntnts_ttm").innerHTML = `
+    <div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
+    <div>
+    <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/service_unavailable.webp" width="55"></div>
+    <p style="text-align:center;">Service currently unavailable</p>
+    </div>
+    <div></div></div>
+    `;
+  }
+});
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#grphcsflpgcntnts_top_btncl_grpcsprjtsbtn")) {
+    if (global_for_grphcs) {
+      const a = app_btns_getelem("grphcsflpgcntnts_ttm");
+      a.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+      a.style.minHeight = "400px";
+      setTimeout(() => {
+        a.style.height = "fit-content";
+        a.innerHTML = global_for_grphcs;
+      }, 2000);
     }
   }
 });

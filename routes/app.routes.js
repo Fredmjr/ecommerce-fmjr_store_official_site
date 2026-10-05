@@ -12,6 +12,7 @@ import {
   clntalpgUrl,
   cookiespgUrl,
   corsclsswrkspcpgUrl,
+  dsktpappdevpgUrl,
   dwnldpgUrl,
   evntsschdlspgUrl,
   faqspgUrl,
@@ -84,5 +85,6 @@ router.get("/sclchnnl", sclchnnlUrl);
 router.get("/shwrmpg", shwrmpgUrl);
 router.get("/prordrbkapi", prordrbkapiUrl);
 router.get("/ordrnowbkapi", ordrnowbkapiUrl);
+router.get("/dsktpappdevpg", dsktpappdevpgUrl);
 
 export default router;
