@@ -3325,7 +3325,11 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_clntalbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_clntalbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_clntalbtn") ||
+    //ftr links
+    e.target.closest("#quklnksscls_crdttl_trckordrbtn") ||
+    e.target.closest("#quklnksscls_crdttl_pymntmthdbtn") ||
+    e.target.closest("#quklnksscls_crdttl_pkgsordrsbtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/clntalpg", "GET");
@@ -3965,6 +3969,38 @@ home.addEventListener("click", async (e) => {
         a.style.height = "fit-content";
         a.innerHTML = global_for_grphcs;
       }, 2000);
+    }
+  }
+});
+//newsleter subscription
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#newslettersubscrptnBtn")) {
+    const prnt_el = app_btns_getelem("newslettercntnts_card");
+    const orgnl_cntnts = prnt_el.innerHTML;
+    e.target.innerHTML = `<span><img class="ldngicn" width="15" src="dist/icons/loading.svg" style="filter: brightness(0) invert(1);" alt=""></span>`;
+    const eml_el = app_btns_getelem("newsletterinput");
+    console.log(eml_el.value);
+
+    const data = await auth_lgn_request("/usr/nwslttrusr", "POST", {
+      eml: eml_el.value,
+    });
+
+    if (data.erMgs) {
+      prnt_el.innerHTML = `
+    <div id="newsletter_srvr_mgspnl">${data.erMgs}</div>
+      `;
+      setTimeout(() => {
+        prnt_el.innerHTML = orgnl_cntnts;
+      }, 5000);
+    } else if (data.msg) {
+      prnt_el.innerHTML = data.msg;
+      setTimeout(() => {
+        prnt_el.innerHTML = orgnl_cntnts;
+      }, 10000);
+    } else {
+      setTimeout(() => {
+        prnt_el.innerHTML = orgnl_cntnts;
+      }, 5000);
     }
   }
 });

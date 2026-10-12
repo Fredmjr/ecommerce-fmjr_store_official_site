@@ -3,7 +3,7 @@ export const conversation = [
     speaker_1:
       "Have you ever seen a platform bundle Graphics Design, Web & Desktop Developemnt Services, Crash & Normal Online Digital Courses, Digital Art and more?",
     speaker_2:
-      "Right, that's exactly what fmjr_tores is doing. The developer there created a centralized hub that covers everything from graphics and web development to physical books and crash courses.",
+      "Right, that's exactly what fmjr_stores is doing. The developer there created a centralized hub that covers everything from graphics and web development to physical books and crash courses.",
   },
   {
     speaker_1:

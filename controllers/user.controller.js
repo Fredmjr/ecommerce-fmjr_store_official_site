@@ -5,6 +5,7 @@ import {
 import { decryptJWT } from "../middleware/jwe/decrypt.js";
 import { encryptJWT } from "../middleware/jwe/encrypt.js";
 import usrModel from "../models/user.model.js";
+import nwslttr_usrModel from "../models/nwslttr_usr.model.js";
 import user_bksModel from "../models/user_books.model.js";
 import { single_nodemailer_fuc } from "../services/services_email/nodemailer.js";
 import hashpwd from "../system_auth/argon2/argon2.hash.js";
@@ -18,6 +19,7 @@ import { sharp_webp_single_img } from "../inventory/sharp/sharp_indi_img.js";
 import { ttr_usr_saveJsonlfile_fuc } from "../inventory_assets/data/tutor_usr_jsonl/tutor_usr.js";
 import sequelize from "../config/db.js";
 import { where } from "sequelize";
+import { nwslttr_usr_nodemailer_fuc } from "../logs/usr_accounts_logs/newsletter/newsletter_create_usr.js";
 
 //sign up user - on account creation only email otp verification
 export const signupusrUrl = async (req, res) => {
@@ -1270,6 +1272,73 @@ export const prordrbksctnrgstraccntUrl = async (req, res) => {
         mgs: tmp,
       });
     }
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//newsleter subscription
+export const nwslttrusrUrl = async (req, res) => {
+  const { eml } = req.body;
+  try {
+    console.log(eml);
+    if (!eml) {
+      return res.status(400).json({
+        erMgs: "Email address field is empty.",
+      });
+    }
+    //Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(eml)) {
+      return res.json({
+        erMgs: "Please enter a valid email address.",
+      });
+    }
+
+    //Check if user exists
+    const accnt_exists = await nwslttr_usrModel.findOne({
+      where: {
+        eml: eml,
+      },
+    });
+    if (accnt_exists) {
+      return res.status(400).json({
+        erMgs: "Email account already subscribed to store newsletter.",
+      });
+    }
+    //send email to usr & store manager
+    const eml_sent_sttus = await nwslttr_usr_nodemailer_fuc(eml);
+    if (!eml_sent_sttus) {
+      return res.status(400).json({
+        erMgs:
+          "Unable to subscribe to store newsletter, check email or contact support.",
+      });
+    }
+    //write to db
+    const new_usr = await nwslttr_usrModel.create({
+      eml: eml,
+    });
+    if (!new_usr) {
+      return res.status(400).json({
+        erMgs: "Unable to subscribe to store newsletter.",
+      });
+    }
+
+    const msg_tmp = `
+    <div id="newsletter_srvr_mgspnl">
+    <p class="newsletter_srvr_mgspnl_txtcl">Thank You for subscribing.</p>
+    </div>`;
+    return res.status(200).json({
+      msg: msg_tmp,
+    });
   } catch (error) {
     console.log(error);
     const erMgs_div = `

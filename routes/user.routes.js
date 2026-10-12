@@ -7,6 +7,7 @@ import {
   lgnusrotpresetpwdUrl,
   lgnusrotpUrl,
   lgnusrUrl,
+  nwslttrusrUrl,
   prflUrl,
   prordrbksctnrgstraccntUrl,
   sgnupusrotpUrl,
@@ -28,5 +29,6 @@ router.post("/prfl", prflUrl);
 router.post("/crtttraccnt", crtttraccntUrl);
 router.post("/crtttraccntcookie", crtttraccntcookielUrl);
 router.post("/prordrbksctnrgstraccnt", prordrbksctnrgstraccntUrl);
+router.post("/nwslttrusr", nwslttrusrUrl);
 
 export default router;

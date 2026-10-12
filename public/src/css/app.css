@@ -3853,6 +3853,9 @@ button:focus {
 #mallpg {
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #shwrmpg_cntnts_default_unavailable_service {
   width: 100%;
@@ -3868,12 +3871,18 @@ button:focus {
   justify-content: center;
 }
 #mallpg_cntnts {
+  width: 70%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#mallpg_main {
   width: 100%;
-  padding: 150px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 150px 0px;
 }
+
 .glbal_uiux_cadlet {
   width: 32%;
   height: 250px;
@@ -6978,6 +6987,15 @@ button:focus {
   width: 3px;
   background-color: var(--fmjr--clr1);
 }
+#newsletter_srvr_mgspnl {
+  font-size: 12px;
+  border-left: 2px solid var(--fmjr--clr1);
+  padding-left: 5px;
+  font-weight: bold;
+}
+.newsletter_srvr_mgspnl_txtcl {
+  margin: 2px 0px;
+}
 #newslettersubscrptnBtn {
   height: 100%;
   width: 50%;
@@ -7716,6 +7734,9 @@ button:focus {
   }
   .shwrmpg_cntnts_rght_contents_bttm_crdcl {
     width: 48%;
+  }
+  #mallpg_cntnts {
+    width: 100%;
   }
 }
 
@@ -8482,5 +8503,8 @@ button:focus {
     margin-bottom: 7px;
     padding-left: 130px;
     box-sizing: border-box;
+  }
+  #mallpg_cntnts {
+    width: 100%;
   }
 }

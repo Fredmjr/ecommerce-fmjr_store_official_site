@@ -1,9 +1,9 @@
-import usrModel from "../../models/user.model.js";
+import nwslttr_usrModel from "../../models/nwslttr_usr.model.js";
 
 (async () => {
-  const a = await usrModel.findOne({
+  const a = await nwslttr_usrModel.findOne({
     where: {
-      eml: "fmjrstores@gmail.com",
+      eml: "guestgmail01@gmail.com",
     },
   });
 
