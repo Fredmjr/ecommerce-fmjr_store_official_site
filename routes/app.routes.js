@@ -12,6 +12,7 @@ import {
   clntalpgUrl,
   cookiespgUrl,
   corsclsswrkspcpgUrl,
+  dktpdevpricingUrl,
   dsktpappdevpgUrl,
   dwnldpgUrl,
   evntsschdlspgUrl,
@@ -39,6 +40,7 @@ import {
   sgnuppgUrl,
   shwrmpgUrl,
   trmscndtnspgUrl,
+  webdevpricingUrl,
   webdevUrl,
   whyfmjrstrspgUrl,
   wlcmimgUrl,
@@ -86,5 +88,7 @@ router.get("/shwrmpg", shwrmpgUrl);
 router.get("/prordrbkapi", prordrbkapiUrl);
 router.get("/ordrnowbkapi", ordrnowbkapiUrl);
 router.get("/dsktpappdevpg", dsktpappdevpgUrl);
+router.get("/dktpdevpricing", dktpdevpricingUrl);
+router.get("/webdevpricing", webdevpricingUrl);
 
 export default router;

@@ -1649,7 +1649,7 @@ button {
   border-radius: 3px;
 }
 #fmjr_grphcs_wrkspcpg_cntnts_main {
-  height: 80%;
+  height: 70%;
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -3881,6 +3881,8 @@ button:focus {
   justify-content: center;
   align-items: center;
   padding: 150px 0px;
+  border: 1px solid var(--fmjr--dkr2);
+  box-shadow: 1px 1px 2px var(--fmjr--dkr3);
 }
 
 .glbal_uiux_cadlet {
@@ -6955,7 +6957,7 @@ button:focus {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  background: var(--fmjr-grdint1);
+  background-color: var(--fmjr--dkr3);
   overflow: hidden;
   height: 100%;
 }
@@ -7073,6 +7075,13 @@ button:focus {
   font-weight: bold;
   width: 60%;
 }
+
+.semiheropromocard_crdslftBtn:active,
+.semiheropromocard_crdslftBtn:focus,
+.semiheropromocard_crdslftBtn:hover {
+  background-color: var(--fmjr--clr5);
+}
+
 .semiheropromocard_crdslftttl {
   font-weight: bold;
   font-size: 10px;

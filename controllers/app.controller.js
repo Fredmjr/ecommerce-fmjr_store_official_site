@@ -668,3 +668,34 @@ export const dsktpappdevpgUrl = async (req, res) => {
     });
   }
 };
+//web dev pricing
+export const webdevpricingUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/web_dev_pricing");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//desktop dev pricing
+export const dktpdevpricingUrl = async (req, res) => {
+  try {
+    return res.status(200).render("components/desktop_dev_pricing");
+  } catch (error) {
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    `;
+    return res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};

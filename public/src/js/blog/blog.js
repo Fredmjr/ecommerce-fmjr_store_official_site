@@ -178,7 +178,8 @@ main_blog_crd_render_fuc();
 //return to store
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest("#vst_store_bnnr_btn");
-  if (el) {
+  const el_2 = e.target.closest("#disntmainprctagBtn");
+  if (el || el_2) {
     window.location.href = "/";
   }
 });

@@ -687,7 +687,10 @@ home.addEventListener("click", async (e) => {
 
 //Why fmjr_stores?
 home.addEventListener("click", async (e) => {
-  if (e.target.closest("#quklnksscls_crdlnks_whyfmjrstrsbtn")) {
+  if (
+    e.target.closest("#quklnksscls_crdlnks_whyfmjrstrsbtn") ||
+    e.target.closest("#wlcme_hmmgs_getsrtdbtn")
+  ) {
     spinner_fuc();
     const data = await app_btns_request("/app/whyfmjrstrspg", "GET");
     if (data) {
@@ -1055,7 +1058,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgry_ttl_drpdwnmenucl_grphcsdsgnbtn") ||
-    e.target.closest("#sidemenuCtrycl_grphcsdsgnbtn")
+    e.target.closest("#sidemenuCtrycl_grphcsdsgnbtn") ||
+    e.target.closest("#tophdrgrphcsdsgnBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/grphcsflpg", "GET");
@@ -1669,7 +1673,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_authrbooksbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_authrbksbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_authrbksbtn") ||
+    e.target.closest("#tophdrathrbksBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/authrbookspg", "GET");
@@ -2286,7 +2291,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgry_ttl_drpdwnmenucl_fmjrgrphcswrkspbtn") ||
-    e.target.closest("#sidemenuCtrycl_fmjrgrphcswrkspbtn")
+    e.target.closest("#sidemenuCtrycl_fmjrgrphcswrkspbtn") ||
+    e.target.closest("#tophdrfmjrgrphcswrkspcBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/fmjrgrphcswrkspcpg", "GET");
@@ -2299,7 +2305,12 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgry_ttl_drpdwnmenucl_corsclsswrkspcpgbtn") ||
-    e.target.closest("#sidemenuCtrycl_corsclsswrkspcpgbtn")
+    e.target.closest("#sidemenuCtrycl_corsclsswrkspcpgbtn") ||
+    e.target.closest("#semiheropromocard_webdevclss_btn") ||
+    e.target.closest("#semiheropromocard_dsktopdevclss_btn") ||
+    e.target.closest("#hero_todayspecialcrd2rghtBtn") ||
+    e.target.closest("#disntmainprctagBtn") ||
+    e.target.closest("#tophdrcurssclssBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/corsclsswrkspcpg", "GET");
@@ -2314,6 +2325,7 @@ home.addEventListener("click", async (e) => {
     </div>
     <div></div></div>
     `;
+      app_btns_scroll_top_elem_fuc(app_btns_getelem("cors_clss_wrkspcpg"));
       /*         let tmp = "";
       for (let i = 0; i < 1; i++) {
         tmp += my_cors_clss_tmp;
@@ -3326,6 +3338,7 @@ home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_clntalbtn") ||
     e.target.closest("#ctgry_ttl_drpdwnmenucl_clntalbtn") ||
+    e.target.closest("#tophdrclntlBtn") ||
     //ftr links
     e.target.closest("#quklnksscls_crdttl_trckordrbtn") ||
     e.target.closest("#quklnksscls_crdttl_pymntmthdbtn") ||
@@ -3342,7 +3355,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_adswrkspcpgbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_adswrkspcpgbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_adswrkspcpgbtn") ||
+    e.target.closest("#tophdradswrkspcBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/adswrkspcpg", "GET");
@@ -3355,7 +3369,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_webdevbbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_webdevbbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_webdevbbtn") ||
+    e.target.closest("#tophdrwebdevBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/webdev", "GET");
@@ -3395,7 +3410,8 @@ let global_full_shots_vids;
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_sclchnnlbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_sclchnnlbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_sclchnnlbtn") ||
+    e.target.closest("#tophdrsclchnnlsBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/sclchnnl", "GET");
@@ -3617,7 +3633,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#sidemenuCtrycl_shwrmbtn") ||
-    e.target.closest("#ctgry_ttl_drpdwnmenucl_shwrmbtn")
+    e.target.closest("#ctgry_ttl_drpdwnmenucl_shwrmbtn") ||
+    e.target.closest("#tophdrshwrmBtn")
   ) {
     const plylst_el = app_btns_getelem("main");
     const spnr = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
@@ -3933,7 +3950,8 @@ home.addEventListener("click", async (e) => {
 home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgry_ttl_drpdwnmenucl_dsktpappdevpgbtn") ||
-    e.target.closest("#sidemenuCtrycl_dsktpappdevpgbtn")
+    e.target.closest("#sidemenuCtrycl_dsktpappdevpgbtn") ||
+    e.target.closest("#tophdrdsktpdevBtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/dsktpappdevpg", "GET");
@@ -4001,6 +4019,32 @@ home.addEventListener("click", async (e) => {
       setTimeout(() => {
         prnt_el.innerHTML = orgnl_cntnts;
       }, 5000);
+    }
+  }
+});
+//web and desktop classes & courses
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".semiheropromocard_crdslftBtn")) {
+    console.log("unabl");
+  }
+});
+//web - pricing
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semiheropromocard_dsktopdevprcng_btn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/dktpdevpricing", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
+    }
+  }
+});
+//desktop - pricing
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semiheropromocard_webdevprcng_btn")) {
+    spinner_fuc();
+    const data = await app_btns_request("/app/webdevpricing", "GET");
+    if (data) {
+      app_btns_getelem("main").innerHTML = data;
     }
   }
 });
