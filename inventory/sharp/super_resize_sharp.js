@@ -2,10 +2,8 @@ import sharp from "sharp";
 import fs from "fs";
 import path from "path";
 
-const srcDir =
-  "public/assets/imgs/ctgry/showroom/digital_art/seven_spirit_beasts";
-const distDir =
-  "public/dist/imgs/ctgry/showroom/digital_art/compressed_seven_spirit_beasts";
+const srcDir = "public/assets/imgs/promo_cards/web_dev_pricelist";
+const distDir = "public/dist/imgs/promo_cards/web_dev_pricelist";
 
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
@@ -21,8 +19,8 @@ fs.readdirSync(srcDir).forEach(async (file) => {
 
     try {
       await sharp(inputPath)
-        .resize({ width: 55, withoutEnlargement: true })
-        .webp({ quality: 35, effort: 6, smartSubsample: true })
+        .resize({ width: 95, withoutEnlargement: true })
+        .webp({ quality: 100, effort: 6, smartSubsample: true })
         .toFile(outputPath);
 
       console.log(`${cleanName}.webp`);
