@@ -789,6 +789,8 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
       bk_img_nm: "through_the_scripture_the_scripture_is_key_book_cover",
       bk_img_path:
         "public/dist/imgs/ctgry/author_books/official_released_books",
+      bk_img_src:
+        "dist/imgs/ctgry/author_books/official_released_books/through_the_scripture_the_scripture_is_key_book_cover.webp",
       bk_dscrptn:
         "Welcome to Encoded Truth (Also titled as Through The Scripture, The Scripture is Key Uncut Edition), a concise guide to understanding the significance and power of God's written word. This document is designed to provide a brief yet impactful exploration of the scriptures, offering guidance and insight to its readers. And also provide practical guidance for spiritual growth, inspire readers to engage with God's written word. And be inspired to live a life guided by the written word",
     },
@@ -802,6 +804,8 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
       bk_img_nm: "encoded_truth_book_coverthrough",
       bk_img_path:
         "public/dist/imgs/ctgry/author_books/official_released_books",
+      bk_img_src:
+        "dist/imgs/ctgry/author_books/official_released_books/encoded_truth_book_coverthrough.webp",
       bk_dscrptn:
         "The purpose of the Through The Scripture, The Scripture is Key is to explain how and why the scriptures where introduced and what was the main objective was to bring in the scriptures. nspiration is the building block of all great things, it is the backbone of creativity and production. Even God himself used the word, the spirit, and himself as inspiration to make man. It is the same inspiration that is in the scriptures.",
     },

@@ -1810,38 +1810,35 @@ home.addEventListener("click", async (e) => {
   }
 });
 
-//preview book - hardcopy
+//preview book - softcopy & hardcopy
 home.addEventListener("click", async (e) => {
   if (
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_1") ||
     e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_0")
   ) {
     const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
     if (data) {
-      console.log(e.target.dataset.bk_id);
-    }
-  }
-});
-
-//preview book - softcopy
-home.addEventListener("click", async (e) => {
-  if (
-    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_1")
-  ) {
-    const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
-    if (data) {
-      console.log(e.target.dataset.bk_id);
       const p_elm = app_btns_getelem("authrbookspgcntnts_maincntnts_contents");
+      const tmp_rndr_fuc = (arg_ttl, arg_dcsrptn, arg_frmt, arg_img_src) => {
+        let img_el = `<div id="spnrpnl"><span><img class="ldngicn" width="30" src="dist/icons/loading.svg" alt=""></span></div>`;
+        const temp_img = new Image();
+        temp_img.onload = () => {
+          img_el = `<img class="authrbookspg_bookcrd_beeteruicl_prvw_top_thumb_imgcl" src="${arg_img_src}">`;
+        };
+        img_el = `<img class="authrbookspg_bookcrd_beeteruicl_prvw_top_thumb_imgcl" src="${arg_img_src}">`;
 
-      p_elm.innerHTML = `
-            <div class="authrbookspg_bookcrd_beeteruicl_top">
-            <div class="authrbookspg_bookcrd_beeteruicl_top_thumb"><img class="authrbookspg_bookcrd_beeteruicl_top_thumb_imgcl" src="dist/imgs/ctgry/author_books/official_released_books/encoded_truth_book_coverthrough.webp" style="width:80%;"></div>
-            <div class="authrbookspg_bookcrd_beeteruicl_top_info">
-            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_ttl">Through The Scripture, The Scripture is Key</p>
-            <p class="authrbookspgcntnts_maincntnts_contents_cookcrd_info_ttl_dscrptn">The purpose of the Through The Scripture, The Scripture is Key is to explain how and why the scriptures where introduced and what was the main objective was to bring in the scriptures. nspiration is the building block of all great things, it is the backbone of creativity and production. Even God himself used the word, the spirit, and himself as inspiration to make man. It is the same inspiration that is in the scriptures.</p>
+        const tmp = `
+            <div class="authrbookspg_bookcrd_beeteruicl_prvw_top">
+            <div class="authrbookspg_bookcrd_beeteruicl_prvw_top_thumb">${img_el}</div>
+            <div class="authrbookspg_bookcrd_beeteruicl_prvw_top_info"><br>
+            <p class="authrbookspg_bookcrd_beeteruicl_prvw_top_info_ttl">${arg_ttl}</p>
+            <p class="authrbookspg_bookcrd_beeteruicl_prvw_top_info_dscrptn">${arg_dcsrptn}</p>
             <br>
-            <div class="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">Softcopy (Digital Format)</div>
+            <div id="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag_pnl"> 
+            <div class="authrbookspg_bookcrd_beeteruicl_prvw_bkfrmat_tag">${arg_frmt}</div>
+            </div>
             <br>
-            <div id="cors_clss_wrkspcpg_cntnts_main_crdlet_info_top_nmtags_typetag">
+            <div id="cors_clss_wrkspcpg_cntnts_main_crdlet_generetag">
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Christianity</div>
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Spiritual Growth</div>
             <div class="generic_tag_cl"><span><img src="dist/icons/affiliated_books.svg" class="cors_clss_wrkspcpg_genric_icn" width="11"></span>Inspiration</div>
@@ -1850,6 +1847,18 @@ home.addEventListener("click", async (e) => {
             </div>
             </div>
       `;
+        return tmp;
+      };
+      const fnd_obj = data.offcl_rlssd_bks.find(
+        (item) => item.bk_id === e.target.dataset.bk_id,
+      );
+
+      p_elm.innerHTML = tmp_rndr_fuc(
+        fnd_obj.bk_ttl,
+        fnd_obj.bk_dscrptn,
+        fnd_obj.bk_format,
+        fnd_obj.bk_img_src,
+      );
     }
   }
 });
