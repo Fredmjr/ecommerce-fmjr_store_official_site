@@ -1059,7 +1059,9 @@ home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#ctgry_ttl_drpdwnmenucl_grphcsdsgnbtn") ||
     e.target.closest("#sidemenuCtrycl_grphcsdsgnbtn") ||
-    e.target.closest("#tophdrgrphcsdsgnBtn")
+    e.target.closest("#tophdrgrphcsdsgnBtn") ||
+    e.target.closest("#grphc_dsgn_type_pstr_flyrs") ||
+    e.target.closest("#grphcsflpgcntnts_top_btncl_grpcsprjtsbtn")
   ) {
     spinner_fuc();
     const data = await app_btns_request("/app/grphcsflpg", "GET");
@@ -1070,12 +1072,40 @@ home.addEventListener("click", async (e) => {
       document
         .querySelectorAll(".grphcsflpgcntnts_ttm_main_crd")
         .forEach((el) => el.classList.add("is-loading"));
+      //display semi poster/flyer categories
+      const semi_catgry_types = [
+        /*  "All", */
+        "Recent",
+        "General",
+        "Church",
+        "Club/Restaurant",
+        "Sports",
+        "Branding",
+        "Thumbnails",
+      ];
+      const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_semi_ctgry");
+      el_prnt.innerHTML = "";
+      for (let i = 0; i < semi_catgry_types.length; i++) {
+        const el_chld = document.createElement("button");
+        el_chld.className = "semi_grphc_dsgn_type_pstr_flyrs_crdscl";
+        el_chld.id = `semi_grphc_dsgn_type_pstr_flyrs_${i}`;
+        el_chld.innerHTML = semi_catgry_types[i];
+
+        el_prnt.appendChild(el_chld);
+      }
     }
   }
 });
 //display semi poster/flyer categories
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#grphc_dsgn_type_pstr_flyrs")) {
+    const prnt_el = app_btns_getelem(
+      "authrbookspgcntnts_maincntnts_err_icn_mgs_pnl",
+    );
+    if (prnt_el) {
+      prnt_el.outerHTML = `<div id="grphcsflpgcntnts_bttm_main"></div>`;
+    }
+
     const semi_catgry_types = [
       /*  "All", */
       "Recent",
@@ -1086,21 +1116,24 @@ home.addEventListener("click", async (e) => {
       "Branding",
       "Thumbnails",
     ];
-    const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_semi_ctgry");
-    el_prnt.innerHTML = "";
-    for (let i = 0; i < semi_catgry_types.length; i++) {
-      const el_chld = document.createElement("button");
-      el_chld.className = "semi_grphc_dsgn_type_pstr_flyrs_crdscl";
-      el_chld.id = `semi_grphc_dsgn_type_pstr_flyrs_${i}`;
-      el_chld.innerHTML = semi_catgry_types[i];
 
-      el_prnt.appendChild(el_chld);
+    const el_prnt = app_api_getelem("grphcsflpgcntnts_bttm_semi_ctgry");
+    if (el_prnt) {
+      el_prnt.innerHTML = "";
+      for (let i = 0; i < semi_catgry_types.length; i++) {
+        const el_chld = document.createElement("button");
+        el_chld.className = "semi_grphc_dsgn_type_pstr_flyrs_crdscl";
+        el_chld.id = `semi_grphc_dsgn_type_pstr_flyrs_${i}`;
+        el_chld.innerHTML = semi_catgry_types[i];
+
+        el_prnt.appendChild(el_chld);
+      }
     }
   }
 });
 //graphics desgin section
 //recent flyers
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_0")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data_obj = await app_btns_request(
@@ -1163,9 +1196,9 @@ home.addEventListener("click", async (e) => {
       }
     });
   }
-});
+}); */
 //general flyers
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_1")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data_obj = await app_btns_request(
@@ -1230,9 +1263,9 @@ home.addEventListener("click", async (e) => {
       });
     }
   }
-});
+}); */
 //church flyers
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_2")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data = await app_btns_request("/api/chrchflyrsdataapi", "GET");
@@ -1298,8 +1331,8 @@ home.addEventListener("click", async (e) => {
       });
     }
   }
-});
-//club restaurant flyers
+}); */
+/* //club restaurant flyers
 let global_clb_rstrnt_remaining_arr_flyrs;
 home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_3")) {
@@ -1426,8 +1459,305 @@ home.addEventListener("click", async (e) => {
     }
   }
 });
+ */
+//reuables posters & flyers render
+
+const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
+  //shufle into pages
+  const result = [];
+  const pages_arr_fuc = (arg_data, arr_size = 30) => {
+    for (let i = 0; i < arg_data.length; i += arr_size) {
+      const chunk = arg_data.slice(i, i + arr_size);
+      result.push(chunk);
+    }
+    return result;
+  };
+  //redner pages btns
+  const pages_arr = pages_arr_fuc(a_data);
+  global_pages_arr_data = pages_arr;
+  console.log(pages_arr.length);
+  app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+  const btns_pnl = app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm");
+  btns_pnl.innerHTML = "";
+
+  btns_pnl.style.justifyContent = "center";
+  btns_pnl.style.gap = "5px";
+  btns_pnl.style.alignItems = "center";
+  for (let i = 0; i < pages_arr.length; i++) {
+    const el_chld = document.createElement("div");
+    el_chld.className = "grphcs_pgsbtns_cl";
+    el_chld.dataset.pg_index = i;
+    el_chld.innerHTML = `${i + 1}`;
+    btns_pnl.appendChild(el_chld);
+  }
+  /*   btns_pnl.style.display = "flex"; */
+
+  //render flyers for page 1 (current - index 0)
+  const obj_data = global_pages_arr_data[0];
+  const endpoint = a_endpoint;
+  const prnt_e = app_api_getelem("grphcsflpgcntnts_bttm_main");
+  const chld_e_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+
+  prnt_e.innerHTML = "";
+  //1.render, 2.dowload & cache, 3.render downloaded & cached flyers
+  //steps 1 & 2
+  const rndr_flyrs_fuc = async (arg_cached_esponse) => {
+    const offline_img_blob = URL.createObjectURL(
+      await arg_cached_esponse.blob(),
+    );
+    const img_popuppnl = `
+       <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+       <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+      `;
+    const chld_e_img = document.createElement("img");
+    chld_e_img.style.width = "100%";
+    chld_e_img.src = offline_img_blob;
+
+    const chld_e = document.createElement("div");
+    chld_e.className = chld_e_classnm;
+    chld_e.innerHTML = img_popuppnl;
+    chld_e.style.visibility = "hidden";
+    chld_e.appendChild(chld_e_img);
+    prnt_e.appendChild(chld_e);
+
+    //smooth anima img elem insertion
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        chld_e.style.visibility = "";
+        chld_e.animate(
+          [
+            { opacity: 0, transform: "scale(0.9)" },
+            { opacity: 1, transform: "scale(1)" },
+          ],
+          300,
+        );
+      });
+    }, 300);
+  };
+
+  const newly_cached_flyrs = [];
+  for (let i = 0; i < obj_data.length; i++) {
+    const img_url = `${obj_data[i]}.webp`;
+    const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+
+    if (cachedResponse) {
+      await rndr_flyrs_fuc(cachedResponse);
+    } else {
+      console.log(`${endpoint}/${img_url}`, obj_data[i]);
+      const cache = await caches.open(obj_data[i]);
+      await cache.add(`${endpoint}/${img_url}`);
+      newly_cached_flyrs.push(obj_data[i]);
+      console.log("not match", img_url);
+    }
+  }
+
+  //steps 3
+  if (newly_cached_flyrs.length > 0) {
+    for (let i = 0; i < newly_cached_flyrs.length; i++) {
+      const img_url = `${newly_cached_flyrs[i]}.webp`;
+      const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+      await rndr_flyrs_fuc(cachedResponse);
+    }
+  }
+};
+let global_pages_arr_data;
+let global_pages_arr_data_url;
+
+//recent flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_0")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/rcntpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.recnt_flyers, end_point);
+  }
+});
+
+//general flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_1")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/gnrlpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.gnrl_flyrs, end_point);
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "flex";
+  }
+});
+
+//church flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_2")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/chrchpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.church_flyrs, end_point);
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "flex";
+  }
+});
+
+//club restaurant flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_3")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/clbsrstrntpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.clb_rstrnt_flyrs, end_point);
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "flex";
+  }
+});
+
 //sports flyers
 home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_4")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/sprtspstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.sprts_flyrs, end_point);
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "flex";
+  }
+});
+
+//branding flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_5")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/brndngpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.branding_flyrs, end_point);
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "flex";
+  }
+});
+
+//thumbnail flyers
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_6")) {
+    const data_obj = await app_btns_request(
+      "/api/grphcsdsgndatasctnapi",
+      "GET",
+    );
+    const end_point = "/api/thmbnlpstrflyrsindiimgapi";
+    global_pages_arr_data_url = end_point;
+    await reusable_pstrs_flyrs_render_fuc(data_obj.thumbnail_flyrs, end_point);
+  }
+});
+
+//page btns
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".grphcs_pgsbtns_cl")) {
+    //scoll top
+    app_btns_scroll_top_elem_fuc(
+      app_btns_getelem("grphcsflpgcntnts_bttm_main"),
+    );
+    //main
+    const obj_data = global_pages_arr_data[e.target.dataset.pg_index];
+    const endpoint = global_pages_arr_data_url;
+    const prnt_e = app_api_getelem("grphcsflpgcntnts_bttm_main");
+    const chld_e_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+
+    prnt_e.innerHTML = "";
+    //1.render, 2.dowload & cache, 3.render downloaded & cached flyers
+    //steps 1 & 2
+    const rndr_flyrs_fuc = async (arg_cached_esponse) => {
+      const offline_img_blob = URL.createObjectURL(
+        await arg_cached_esponse.blob(),
+      );
+      const img_popuppnl = `
+       <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+       <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+      `;
+      const chld_e_img = document.createElement("img");
+      chld_e_img.style.width = "100%";
+      chld_e_img.src = offline_img_blob;
+      const chld_e = document.createElement("div");
+      chld_e.className = chld_e_classnm;
+      chld_e.innerHTML = img_popuppnl;
+      chld_e.style.visibility = "hidden";
+      chld_e.appendChild(chld_e_img);
+      prnt_e.appendChild(chld_e);
+
+      //smooth anima img elem insertion
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          chld_e.style.visibility = "";
+          chld_e.animate(
+            [
+              { opacity: 0, transform: "scale(0.9)" },
+              { opacity: 1, transform: "scale(1)" },
+            ],
+            300,
+          );
+        });
+      }, 300);
+    };
+
+    const newly_cached_flyrs = [];
+    for (let i = 0; i < obj_data.length; i++) {
+      const img_url = `${obj_data[i]}.webp`;
+      const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+
+      if (cachedResponse) {
+        await rndr_flyrs_fuc(cachedResponse);
+      } else {
+        console.log(`${endpoint}/${img_url}`, obj_data[i]);
+        const cache = await caches.open(obj_data[i]);
+        await cache.add(`${endpoint}/${img_url}`);
+        newly_cached_flyrs.push(obj_data[i]);
+        console.log("not match", img_url);
+      }
+    }
+
+    //steps 3
+    if (newly_cached_flyrs.length > 0) {
+      for (let i = 0; i < newly_cached_flyrs.length; i++) {
+        const img_url = `${newly_cached_flyrs[i]}.webp`;
+        const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+        await rndr_flyrs_fuc(cachedResponse);
+      }
+    }
+  }
+});
+
+//all semi catgory cl btns
+home.addEventListener("click", async (e) => {
+  if (e.target.closest(".semi_grphc_dsgn_type_pstr_flyrs_crdscl")) {
+    home
+      .querySelectorAll(".semi_grphc_dsgn_type_pstr_flyrs_crdscl")
+      .forEach((el) => {
+        el.style.backgroundColor = "#f2f2f2";
+
+        el.style.color = "#707070";
+        el.style.border = "1px solid #707070";
+      });
+    e.target.style.backgroundColor = "#b3324f";
+    e.target.style.color = "#fff";
+    e.target.style.border = "none";
+    const rcnt_btn = app_btns_getelem("semi_grphc_dsgn_type_pstr_flyrs_0");
+    rcnt_btn.style.backgroundColor = "#f2f2f2";
+    rcnt_btn.style.color = "#707070";
+    rcnt_btn.style.border = "1px solid #707070";
+  }
+});
+
+//sports flyers
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_4")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data_obj = await app_btns_request(
@@ -1492,9 +1822,9 @@ home.addEventListener("click", async (e) => {
       });
     }
   }
-});
+}); */
 //branding flyers
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_5")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data_obj = await app_btns_request(
@@ -1559,9 +1889,9 @@ home.addEventListener("click", async (e) => {
       });
     }
   }
-});
+}); */
 //thumbnail flyers
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (e.target.closest("#semi_grphc_dsgn_type_pstr_flyrs_6")) {
     app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
     const data_obj = await app_btns_request(
@@ -1626,7 +1956,7 @@ home.addEventListener("click", async (e) => {
       });
     }
   }
-});
+}); */
 //flyers popup menu
 home.addEventListener("click", async (e) => {
   if (e.target.closest(".grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl")) {
@@ -3942,17 +4272,26 @@ home.addEventListener("click", async (e) => {
     e.target.closest("#grphcsflpgcntnts_bttm_ctgry_crd_dscrptn_id_2") ||
     e.target.closest("#grphc_dsgn_type_cmpyny_prfl") ||
     e.target.closest("#grphc_dsgn_type_brshur") ||
-    e.target.closest("#grphc_dsgn_type_bkcvr")
+    e.target.closest("#grphc_dsgn_type_bkcvr") ||
+    e.target.closest("#grphc_dsgn_type_crds")
   ) {
     //beta version edit
-    app_btns_getelem("grphcsflpgcntnts_bttm_main").innerHTML = `
+    app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm").style.display = "none";
+    const prnt_el = app_btns_getelem("grphcsflpgcntnts_bttm_main");
+    if (prnt_el) {
+      app_btns_getelem("grphcsflpgcntnts_bttm_semi_ctgry").style.display =
+        "none";
+      prnt_el.outerHTML = `
+    <div id="authrbookspgcntnts_maincntnts_err_icn_mgs_pnl">
     <div id="authrbookspgcntnts_maincntnts_err_icn_mgs">
     <div>
     <div id="generic_empty_event_clndnr_img"><img src="dist/imgs/service_unavailable.webp" width="55"></div>
     <p style="text-align:center;">Graphics Services currently unavailable</p>
     </div>
     <div></div></div>
+    </div>
     `;
+    }
   }
 });
 //Desktop App Dev page

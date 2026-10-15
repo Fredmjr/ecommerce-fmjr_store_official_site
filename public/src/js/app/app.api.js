@@ -604,8 +604,8 @@ const apibsrvr = new MutationObserver((mutations) => {
         grphc_dsgn_auto_data_api();
       }
 
-      //total all flyers counts
-      if (el8) {
+      //total all flyers counts - solution 1 (one big data with substrate after render)
+      /* if (el8) {
         (async (e) => {
           const data_obj = await app_btns_request(
             "/api/grphcsdsgndatasctnapi",
@@ -668,6 +668,130 @@ const apibsrvr = new MutationObserver((mutations) => {
               })();
             }
           });
+        })();
+      } */
+      const app_api_reusable_pstrs_flyrs_render_fuc = async (
+        a_data,
+        a_endpoint,
+      ) => {
+        //shufle into pages
+        const result = [];
+        const pages_arr_fuc = (arg_data, arr_size = 30) => {
+          for (let i = 0; i < arg_data.length; i += arr_size) {
+            const chunk = arg_data.slice(i, i + arr_size);
+            result.push(chunk);
+          }
+          return result;
+        };
+        //redner pages btns
+        const pages_arr = pages_arr_fuc(a_data);
+        global_pages_arr_data = pages_arr;
+        console.log(pages_arr.length);
+        app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
+        const btns_pnl = app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm");
+        btns_pnl.innerHTML = "";
+
+        btns_pnl.style.justifyContent = "center";
+        btns_pnl.style.gap = "5px";
+        btns_pnl.style.alignItems = "center";
+        for (let i = 0; i < pages_arr.length; i++) {
+          const el_chld = document.createElement("div");
+          el_chld.className = "grphcs_pgsbtns_cl";
+          el_chld.dataset.pg_index = i;
+          el_chld.innerHTML = `${i + 1}`;
+          btns_pnl.appendChild(el_chld);
+        }
+        /*   btns_pnl.style.display = "flex"; */
+
+        //render flyers for page 1 (current - index 0)
+        const obj_data = global_pages_arr_data[0];
+        const endpoint = a_endpoint;
+        const prnt_e = app_api_getelem("grphcsflpgcntnts_bttm_main");
+        const chld_e_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
+
+        prnt_e.innerHTML = "";
+        //1.render, 2.dowload & cache, 3.render downloaded & cached flyers
+        //steps 1 & 2
+        const rndr_flyrs_fuc = async (arg_cached_esponse) => {
+          const offline_img_blob = URL.createObjectURL(
+            await arg_cached_esponse.blob(),
+          );
+          const img_popuppnl = `
+       <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnl">
+       <img class="grphcsflpgcntnts_ttm_main_crd_thumbnail_img_popuppnll_icncl" src="dist/icons/like_2.svg" width="10">
+      `;
+          const chld_e_img = document.createElement("img");
+          chld_e_img.style.width = "100%";
+          chld_e_img.src = offline_img_blob;
+
+          const chld_e = document.createElement("div");
+          chld_e.className = chld_e_classnm;
+          chld_e.innerHTML = img_popuppnl;
+          chld_e.style.visibility = "hidden";
+          chld_e.appendChild(chld_e_img);
+          prnt_e.appendChild(chld_e);
+
+          //smooth anima img elem insertion
+          setTimeout(() => {
+            requestAnimationFrame(() => {
+              chld_e.style.visibility = "";
+              chld_e.animate(
+                [
+                  { opacity: 0, transform: "scale(0.9)" },
+                  { opacity: 1, transform: "scale(1)" },
+                ],
+                300,
+              );
+            });
+          }, 300);
+        };
+
+        const newly_cached_flyrs = [];
+        for (let i = 0; i < obj_data.length; i++) {
+          const img_url = `${obj_data[i]}.webp`;
+          const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+
+          if (cachedResponse) {
+            await rndr_flyrs_fuc(cachedResponse);
+          } else {
+            console.log(`${endpoint}/${img_url}`, obj_data[i]);
+            const cache = await caches.open(obj_data[i]);
+            await cache.add(`${endpoint}/${img_url}`);
+            newly_cached_flyrs.push(obj_data[i]);
+            console.log("not match", img_url);
+          }
+        }
+
+        //steps 3
+        if (newly_cached_flyrs.length > 0) {
+          for (let i = 0; i < newly_cached_flyrs.length; i++) {
+            const img_url = `${newly_cached_flyrs[i]}.webp`;
+            const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
+            await rndr_flyrs_fuc(cachedResponse);
+          }
+        }
+      };
+      if (el8) {
+        (async () => {
+          const data_obj = await app_btns_request(
+            "/api/grphcsdsgndatasctnapi",
+            "GET",
+          );
+          //all posters & flyers total number
+          el8.innerHTML = `${data_obj.all_flyers_count} in Collection`;
+          //recent flyers
+          const prnt_el = app_btns_getelem(
+            "authrbookspgcntnts_maincntnts_err_icn_mgs_pnl",
+          );
+          if (prnt_el) {
+            prnt_el.outerHTML = `<div id="grphcsflpgcntnts_bttm_main"></div>`;
+            const end_point = "/api/rcntpstrflyrsindiimgapi";
+            global_pages_arr_data_url = end_point;
+            await app_api_reusable_pstrs_flyrs_render_fuc(
+              data_obj.recnt_flyers,
+              end_point,
+            );
+          }
         })();
       }
     });
