@@ -304,6 +304,7 @@ button {
 .ctgryctgries_cntntsBtns:hover {
   background-color: var(--fmjr--dkr5);
 }
+
 .ctgryctgries_cntntsBtns:focus {
   background-color: var(--fmjr--dkr5);
 }
@@ -718,6 +719,7 @@ button {
   border: none;
   outline: none;
 }
+
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_sndmgs_btn:hover,
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_sndmgs_btn:active,
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_sndmgs_btn:focus {
@@ -760,6 +762,7 @@ button {
   font-size: 11px;
   color: var(--fmjr--dkr5);
 }
+
 #cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_pnl_chtsmsgs_section_ftr_txtarainpt::placeholder {
   color: var(--fmjr--dkr5);
 }
@@ -1481,6 +1484,7 @@ button {
   font-weight: bold;
   box-sizing: border-box;
   color: var(--fmjr--dkr1);
+
   justify-content: center;
   align-items: center;
   gap: 3px;
@@ -1821,6 +1825,7 @@ button {
   align-items: center;
   font-size: 8px;
 }
+
 #disntdmainprice {
   text-align: center;
   color: var(--fmjr--clr3);
@@ -2727,6 +2732,7 @@ button:focus {
   align-items: center;
   gap: 5px;
 }
+
 #sclchnnlpg_cntntsbnnr {
   width: 100%;
   border-radius: 3px;
@@ -7351,6 +7357,7 @@ button:focus {
   box-sizing: border-box;
   overflow: hidden;
 }
+
 #hero_todayspecialcrd2midcntnts1prsubctag {
   font-size: 9px;
   color: var(--fmjr--clr3);

@@ -131,7 +131,7 @@ export const delete_account_logs_fuc = async () => {
 //exported automated management system delete account logs function (MAS)
 export const MAS_delete_account_logs_fuc = () => {
   //delete inactive accounts - every at 23hrs
-  cron.schedule("55 23 * * *", async () => {
+  cron.schedule("0 23 * * *", async () => {
     await delete_account_logs_fuc();
   });
 };
