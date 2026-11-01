@@ -26,6 +26,12 @@ const protectContent = (home) => {
       return false;
     }
   });
+
+  target.addEventListener("selectstart", (e) => {
+    e.preventDefault();
+  });
+
+  target.addEventListener("touchstart", (e) => {}, { passive: false });
 };
 
 protectContent("home");

@@ -217,6 +217,8 @@ app_btns_getelem("ctgry_ttl").addEventListener("click", () => {
     closeopenFunc(app_btns_getelem("ctgry_ttl_drpdwnmenu"));
     app_btns_getelem("navbrmenuBtn_drpdwnmenu").style.display = "none";
     app_btns_getelem("ctgry_menuBtn_drpdwnmenu").style.display = "none";
+  } else {
+    window.location.reload();
   }
 });
 //updates menu + small screen query reeesponsiveness
