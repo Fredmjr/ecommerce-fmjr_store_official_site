@@ -121,7 +121,7 @@ export const deadlinefile_fuc = async () => {
 };
 
 export const MAS_alwaysdata_logs_fuc = () => {
-  cron.schedule("35 21 * * *", async () => {
+  cron.schedule("0 23 * * *", async () => {
     await deadlinefile_fuc();
   });
 };
