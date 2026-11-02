@@ -7,6 +7,7 @@ import { conversation } from "../inventory_assets/data/data_components/data.conv
 import { faqs_data } from "../inventory_assets/data/data_components/data.faqs.js";
 import imgModel from "../models/img.model.js";
 import img_indiModel from "../models/img_indi.model.js";
+import sggtn_issue_model from "../models/suggestion_issues.model.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -1026,6 +1027,94 @@ export const orderapiUrl = async (req, res) => {
 
     return res.status(200).json({
       mgs: tmp,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    </div>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+////issue box
+export const rprtissueapiUrl = async (req, res) => {
+  const { eml, issue_dscrptn } = req.body;
+  try {
+    console.log(eml, issue_dscrptn);
+    if (eml === "" || issue_dscrptn === "") {
+      return res.status(200).json({
+        erMgs: "Fill in all fields!",
+      });
+    }
+    //Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(eml)) {
+      return res.json({
+        erMgs: "Please enter a valid email address.",
+      });
+    }
+
+    const [new_usr, task] = await sggtn_issue_model.findOrCreate({
+      where: {
+        eml: eml,
+      },
+      defaults: {
+        eml: eml,
+        reported_issue_count: 1,
+      },
+    });
+
+    //check report count
+    if (!task) {
+      if (new_usr.dataValues.reported_issue_count >= 5) {
+        return res.json({
+          erMgs:
+            "You have 3 reports pending. Wait for them to be resolved before submiTting another one.",
+        });
+      }
+
+      await new_usr.update({
+        reported_issue_count: new_usr.dataValues.reported_issue_count + 1,
+      });
+    }
+
+    //save report locally to json file
+    const filePath = path.join(
+      __dirname,
+      "..",
+      "inventory_assets",
+      "data",
+      "store_reports",
+      "issue_reports.jsonl",
+    );
+    const stream = fs.createWriteStream(filePath, { flags: "a" });
+    const isoString = new Date().toISOString();
+    const log_data = {
+      usr_id: new_usr.dataValues.id,
+      usr_eml: eml,
+      timestamp: new Intl.DateTimeFormat("en-US", {
+        dateStyle: "full",
+        timeStyle: "medium",
+      }).format(new Date(isoString)),
+      report_mgs: issue_dscrptn,
+      eml_sent: false,
+    };
+    stream.write(JSON.stringify(log_data) + "\n");
+
+    const tmp = `
+    <div class="whyfmjrstrspgcrd_bttm_lftcntnts_thumbimg"><img src="assets/logos/fmjr_stores_pw.png" width="35"></div>
+    <br />
+    <p id="issbxpg_ttl">Issue Submission</p>
+    <p class="issbxpgcntnts_bulletingtxt">Issue has been reported, response will be sent through provided email or in-store messages.</p>
+    `;
+    return res.status(200).json({
+      reported: true,
+      reported_mgs: tmp,
     });
   } catch (error) {
     console.log(error);

@@ -4398,3 +4398,44 @@ home.addEventListener("click", async (e) => {
     }
   }
 });
+
+//issue box
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#issbxpgcntnts_rvwBtn")) {
+    const spinner = `<span><img class="ldngicn" width="15" src="dist/icons/loading.svg" style="filter: brightness(0) invert(1);" alt=""></span>`;
+    e.target.innerHTML = "";
+    e.target.innerHTML = spinner;
+
+    const issue_dscrptn = app_btns_getelem("issbxpg_rvwbox").value;
+    const eml = app_btns_getelem("issbxpg_eml").value;
+    const err_pnl = app_btns_getelem("issbxpgcntnts_errmgspnl");
+
+    if (!issue_dscrptn || !eml) {
+      err_pnl.innerHTML = "";
+      err_pnl.innerHTML = "Fill in all fields!";
+      err_pnl.style.display = "block";
+      e.target.innerHTML = "Submit";
+      setTimeout(() => {
+        err_pnl.style.display = "none";
+      }, 5000);
+    }
+    const data = await auth_lgn_request("/api/rprtissueapi", "POST", {
+      eml,
+      issue_dscrptn,
+    });
+
+    if (data.erMgs) {
+      console.log(data.erMgs);
+      err_pnl.innerHTML = data.erMgs;
+      err_pnl.style.display = "block";
+      setTimeout(() => {
+        err_pnl.style.display = "none";
+        e.target.innerHTML = "Submit";
+      }, 5000);
+    }
+
+    if (data.reported === true) {
+      app_btns_getelem("issbxpgcntnts").innerHTML = data.reported_mgs;
+    }
+  }
+});

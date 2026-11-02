@@ -20,6 +20,7 @@ import {
   prtfloimgsapiUrl,
   prtfloimgsnamesapiUrl,
   rcntpstrflyrsindiimgapiUrl,
+  rprtissueapiUrl,
   shwrmdwnlddaiss1pdfUrl,
   sprtsflyrsdataapiUrl,
   sprtspstrflyrsindiimgapiUrl,
@@ -61,5 +62,6 @@ router.get("/ytchnnldata", ytchnnldataUrl);
 router.get("/shwrmdwnlddaiss1pdf", shwrmdwnlddaiss1pdfUrl);
 router.get("/dgtlartalldata", dgtlartalldataUrl);
 router.get("/orderapi", orderapiUrl);
+router.post("/rprtissueapi", rprtissueapiUrl);
 
 export default router;
