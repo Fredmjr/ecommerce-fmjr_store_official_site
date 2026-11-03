@@ -33,7 +33,6 @@ const customer_nodemailer_fuc = async (usr_eml, report_mgs) => {
     html: `
     <p style="color:#333;">Hello there,</p>
     <p style="color:#333; margin:3px 0px;">This message serves to notify you that you have noticed and reported an issue on our online store, fmjr_stores (https://www.fmjrstores.com).</p>
-    <p style="color:#333; margin:3px 0px;">Response will be sent through this provided email address or through our in-store messages on my our store.</p>
     <br>
     <p style="color:#333; margin:3px 0px;">Issue Report Description;</p>
     <p style="color:#333; margin:3px 0px; color:wheat;">${report_mgs}</p>
