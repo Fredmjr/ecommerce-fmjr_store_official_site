@@ -1099,10 +1099,12 @@ export const rprtissueapiUrl = async (req, res) => {
     }
 
     const tmp = `
+    <br /><br />
     <div class="whyfmjrstrspgcrd_bttm_lftcntnts_thumbimg"><img src="assets/logos/fmjr_stores_pw.png" width="35"></div>
     <br />
     <p class="sggtn_rprt_issue_bulletingtxt_ttl">Issue Submission</p>
     <p class="sggtn_rprt_issue_bulletingtxt">Issue has been reported, response will be sent through provided email or in-store messages.</p>
+    <br /><br />
     `;
     return res.status(200).json({
       reported: true,
@@ -1175,10 +1177,12 @@ export const rvwsggtnsboxapiUrl = async (req, res) => {
     }
 
     const tmp = `
+    <br /><br />
     <div class="whyfmjrstrspgcrd_bttm_lftcntnts_thumbimg"><img src="assets/logos/fmjr_stores_pw.png" width="35"></div>
     <br />
     <p class="sggtn_rprt_issue_bulletingtxt_ttl">Suggestion Submission</p>
     <p class="sggtn_rprt_issue_bulletingtxt">Suggestion has been submitted, response will be sent through provided email or in-store messages.</p>
+    <br /><br />
     `;
     return res.status(200).json({
       reported: true,
