@@ -15,6 +15,7 @@ import { loadJsonlfile_fuc } from "../inventory_assets/data/jsonl/blog.functions
 import { graphics_design_categories_type } from "../inventory_assets/data/data_components/category.varaibles.data.js";
 import { ytchnnlata_savetojsonlfilefuc } from "../inventory_assets/global_system_fuc/ctrgy_social_channels/ctrgy_social_channels.js";
 import { where } from "sequelize";
+import { issue_reports_fuc } from "../inventory_assets/data/store_reports/store_reports_fuc.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -1071,10 +1072,10 @@ export const rprtissueapiUrl = async (req, res) => {
 
     //check report count
     if (!task) {
-      if (new_usr.dataValues.reported_issue_count >= 5) {
+      if (new_usr.dataValues.reported_issue_count >= 3) {
         return res.json({
           erMgs:
-            "You have 3 reports pending. Wait for them to be resolved before submiTting another one.",
+            "You have 3 reports pending. Wait for them to be resolved before submitting another one.",
         });
       }
 
@@ -1083,28 +1084,17 @@ export const rprtissueapiUrl = async (req, res) => {
       });
     }
 
-    //save report locally to json file
-    const filePath = path.join(
-      __dirname,
-      "..",
-      "inventory_assets",
-      "data",
-      "store_reports",
-      "issue_reports.jsonl",
+    //send email & save report locally to json file
+    const { task_done } = await issue_reports_fuc(
+      new_usr.dataValues.id,
+      eml,
+      issue_dscrptn,
     );
-    const stream = fs.createWriteStream(filePath, { flags: "a" });
-    const isoString = new Date().toISOString();
-    const log_data = {
-      usr_id: new_usr.dataValues.id,
-      usr_eml: eml,
-      timestamp: new Intl.DateTimeFormat("en-US", {
-        dateStyle: "full",
-        timeStyle: "medium",
-      }).format(new Date(isoString)),
-      report_mgs: issue_dscrptn,
-      eml_sent: false,
-    };
-    stream.write(JSON.stringify(log_data) + "\n");
+    if (!task_done) {
+      return res.json({
+        erMgs: "Unable to complete your report submission. Try again later.",
+      });
+    }
 
     const tmp = `
     <div class="whyfmjrstrspgcrd_bttm_lftcntnts_thumbimg"><img src="assets/logos/fmjr_stores_pw.png" width="35"></div>
