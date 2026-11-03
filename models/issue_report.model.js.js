@@ -1,7 +1,7 @@
 import sequelize from "../config/db.js";
 import { DataTypes } from "sequelize";
 
-const sggtn_issue_model = sequelize.define("sggtn_issue", {
+const issue_report_model = sequelize.define("issue_report", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -18,4 +18,4 @@ const sggtn_issue_model = sequelize.define("sggtn_issue", {
   },
 });
 
-export default sggtn_issue_model;
+export default issue_report_model;

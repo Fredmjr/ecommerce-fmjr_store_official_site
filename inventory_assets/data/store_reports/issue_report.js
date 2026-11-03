@@ -9,8 +9,6 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const isoString = new Date().toISOString();
-const msg_dscrptn =
-  "Login back to Alwaysdata.net, today is day 80, approaching 90 days of inactive account activities. Login for the following gmail accounts";
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -87,7 +85,7 @@ const strmngr_nodemailer_fuc = async (usr_eml, report_mgs, usr_id) => {
   }
 };
 
-export const issue_reports_fuc = async (usr_id, usr_eml, report_mgs) => {
+export const issue_report_fuc = async (usr_id, usr_eml, report_mgs) => {
   //send email
   const eml_response = await customer_nodemailer_fuc(usr_eml, report_mgs);
   let eml_sent = false;
@@ -100,10 +98,8 @@ export const issue_reports_fuc = async (usr_id, usr_eml, report_mgs) => {
   const filePath = path.join(
     __dirname,
     "..",
-    "inventory_assets",
-    "data",
     "store_reports",
-    "issue_reports.jsonl",
+    "issue_report.jsonl",
   );
   const stream = fs.createWriteStream(filePath, { flags: "a" });
   const isoString = new Date().toISOString();

@@ -5877,7 +5877,16 @@ button:focus {
   border-radius: 3px;
   /*   font-weight: bolder; */
 }
-
+#rvwpgcntnts_errmgspnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
 #frgotpwderrmgs_pnl {
   text-align: center;
   padding: 15px 10px;
@@ -6617,6 +6626,24 @@ button:focus {
   display: flex;
   gap: 5px;
   font-size: 10px;
+}
+.sggtn_rprt_issue_bulletingtxt {
+  display: flex;
+  gap: 5px;
+  font-size: 10px;
+  text-align: center;
+  margin: 3px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.sggtn_rprt_issue_bulletingtxt_ttl {
+  font-size: 20px;
+  text-align: center;
+  margin: 15px 0px;
+  font-family: reddir-extrabold;
+  margin-bottom: 5px;
 }
 .generic_cntrd_txt_cl {
   display: flex;

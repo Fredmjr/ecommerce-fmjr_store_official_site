@@ -1,6 +1,7 @@
 import ttr_usrModel from "../../models/tutor_user.model.js";
-import sggtn_issue_model from "../../models/suggestion_issues.model.js";
+import sggtn_box_model from "../../models/suggestions.model.js";
+
 //delete table
 (async () => {
-  await sggtn_issue_model.drop();
+  await sggtn_box_model.drop();
 })();
