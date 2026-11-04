@@ -57,7 +57,7 @@ const appbsrvr = new MutationObserver((mutations) => {
       if (el1 && main) {
         el1.addEventListener("click", async () => {
           const data = await request("/app/portflpg", "GET");
-          console.log("hi");
+          /*  console.log("hi"); */
           main.innerHTML = data;
         });
       }
