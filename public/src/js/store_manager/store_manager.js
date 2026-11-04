@@ -299,7 +299,7 @@ document.body.addEventListener("click", async (e) => {
     if (!data.erMgs) {
       prnt_el.innerHTML = "";
     }
-    console.log("dataaaaaaaaaaaaaaaaaaaaaaaaa", data);
+    /* console.log("dataaaaaaaaaaaaaaaaaaaaaaaaa", data); */
     //pending
     if (data.approved_accnts && data.approved_accnts !== 0) {
       for (let i = 0; i < data.approved_accnts.length; i++) {
@@ -310,7 +310,7 @@ document.body.addEventListener("click", async (e) => {
           data.approved_accnts[i].ttr_id,
         );
         prnt_el.appendChild(cardlet);
-        console.log(cardlet);
+        /*  console.log(cardlet); */
       }
     }
     //Pending
@@ -335,7 +335,7 @@ document.body.addEventListener("click", async (e) => {
     ".strmgmntaccnts_section_crdcl_crdcl_info_rght_ttraccnt_btncl",
   );
   if (el) {
-    console.log(el.dataset.ttr);
+    /*   console.log(el.dataset.ttr); */
     const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
     prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
     store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
@@ -389,7 +389,7 @@ document.body.addEventListener("click", async (e) => {
     if (data.erMgs) {
       el.innerHTML = data.erMgs;
     }
-    console.log(data);
+    /*  console.log(data); */
     prnt_el.innerHTML = "";
     //pending
     if (data.approved_accnts) {
@@ -403,7 +403,7 @@ document.body.addEventListener("click", async (e) => {
           data.approved_accnts[i].ttr_id,
         );
         prnt_el.appendChild(cardlet);
-        console.log(cardlet);
+        /*   console.log(cardlet); */
       }
     }
     //Pending
@@ -502,7 +502,7 @@ document.body.addEventListener("click", async (e) => {
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest("#ttraccnt_dltaccnt_btn");
   if (el) {
-    console.log(el.dataset.ttr);
+    /*  console.log(el.dataset.ttr); */
     const prnt_el = store_manager_getelem("strmgmntaccnts_section_main");
     prnt_el.innerHTML = `<div id="spnrpnl"><span><img class="ldngicn" width="15" src="dist/icons/loading.svg" alt=""></span></div>`;
     store_manager_getelem("strmgmntaccnts_section_ttl").innerHTML =
@@ -552,7 +552,7 @@ document.body.addEventListener("click", async (e) => {
       if (data.erMgs) {
         el.innerHTML = data.erMgs;
       }
-      console.log(data);
+      /*  console.log(data); */
       prnt_el.innerHTML = "";
       //pending
       if (data.approved_accnts) {
@@ -565,7 +565,7 @@ document.body.addEventListener("click", async (e) => {
             data.approved_accnts[i].ttr_id,
           );
           prnt_el.appendChild(cardlet);
-          console.log(cardlet);
+          /*  console.log(cardlet); */
         }
       }
       //Pending
