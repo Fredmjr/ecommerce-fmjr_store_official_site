@@ -748,7 +748,7 @@ home.addEventListener("click", async (e) => {
         "/api/prtfloimgsnamesapi",
         "GET",
       );
-      console.log("data_imgs_nms: ", data_imgs_nms);
+      /*  console.log("data_imgs_nms: ", data_imgs_nms); */
 
       //2. dowload each image & cache it
       let set;
@@ -764,7 +764,7 @@ home.addEventListener("click", async (e) => {
             /* `https://guest.alwaysdata.net/app/onetimemgs/${e}`, */
             plain_nm,
           );
-          console.log("cached img", plain_nm_ext, set);
+          /*      console.log("cached img", plain_nm_ext, set); */
         } catch (error) {
           console.log(err);
         }
@@ -798,7 +798,7 @@ home.addEventListener("click", async (e) => {
 
       //4. render page images
       const a_fuc = async () => {
-        console.log("testing");
+        /*    console.log("testing"); */
         //render images panel
 
         //...............LETS START HERE TODAY FRED, IM TIRED - YESTERNIGHT ME :)
@@ -810,7 +810,7 @@ home.addEventListener("click", async (e) => {
               /\/([^/]+)\.webp$/,
             )?.[1];
           plain_nm_ext = plain_nm + ".webp";
-          console.log(plain_nm_ext);
+          /*   console.log(plain_nm_ext); */
           try {
             if (set) {
               const cachedResponse = await caches.match(
@@ -821,7 +821,7 @@ home.addEventListener("click", async (e) => {
                 const offline_img_blob = URL.createObjectURL(
                   await cachedResponse.blob(),
                 );
-                console.log(offline_img_blob);
+                /* console.log(offline_img_blob); */
                 const temp_el = document.createElement("div");
 
                 temp_el.className =
@@ -846,7 +846,7 @@ home.addEventListener("click", async (e) => {
                 /*   app_api_getelem(
                   "portflpgcntnts_archdsgn_prtflomain_lft_bttmpalete",
                 ).appendChild(temp_el); */
-                console.log("adding");
+                /*  console.log("adding"); */
               }
             }
           } catch (err) {
@@ -864,7 +864,7 @@ home.addEventListener("click", async (e) => {
               /\/([^/]+)\.webp$/,
             )?.[1];
           plain_nm_ext = plain_nm + ".webp";
-          console.log("wdadadadadad", plain_nm_ext);
+          /*   console.log("wdadadadadad", plain_nm_ext); */
           const cachedResponse = await caches.match(
             `/api/prtfloimgsapi/${plain_nm_ext}`,
           );
@@ -873,7 +873,7 @@ home.addEventListener("click", async (e) => {
             const offline_img_blob = URL.createObjectURL(
               await cachedResponse.blob(),
             );
-            console.log(offline_img_blob);
+            /*  console.log(offline_img_blob); */
             const temp_img_el = document.createElement("img");
             temp_img_el.src = `${offline_img_blob}`;
             temp_img_el.id =
@@ -927,7 +927,7 @@ home.addEventListener("click", async (e) => {
       //default cover image function
       await imgs_render_default_cover_fuc();
     } else {
-      console.log("Unable to preview Portfolio File");
+      /*   console.log("Unable to preview Portfolio File"); */
     }
   }
 });
@@ -947,7 +947,7 @@ home.addEventListener("click", async (e) => {
         const offline_img_blob = URL.createObjectURL(
           await cachedResponse.blob(),
         );
-        console.log(offline_img_blob);
+        /*    console.log(offline_img_blob); */
         const temp_img_el = document.createElement("img");
         temp_img_el.src = `${offline_img_blob}`;
         temp_img_el.id = "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg";
@@ -975,7 +975,7 @@ home.addEventListener("click", async (e) => {
         setTimeout(() => {
           smooth_append_anima_3(img_el, temp_img_el);
           //chnage fullview card dataset
-          console.log("chnageeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
+          c; /* onsole.log("chnageeeeeeeeeeeeeeeee", el.dataset.prtflo_img); */
           app_btns_getelem(
             "portflpgcntnts_archdsgn_prtflomain_lft_top_thumbimg",
           ).dataset.prtflo_img = el.dataset.prtflo_img;
@@ -994,7 +994,7 @@ home.addEventListener("click", async (e) => {
   );
   if (el) {
     try {
-      console.log("heeeeeeeeeeeeeeeeee", el.dataset.prtflo_img);
+      /*  console.log("heeeeeeeeeeeeeeeeee", el.dataset.prtflo_img); */
       const cachedResponse = await caches.match(
         `/api/prtfloimgsapi/${el.dataset.prtflo_img}`,
       );
@@ -1003,7 +1003,7 @@ home.addEventListener("click", async (e) => {
         const offline_img_blob = URL.createObjectURL(
           await cachedResponse.blob(),
         );
-        console.log(offline_img_blob);
+        /*     console.log(offline_img_blob); */
         /* const temp_img_el = document.createElement("img");
         temp_img_el.src = `${offline_img_blob}`;
         temp_img_el.id = "fullview_pnl_mid_thumbimg";
@@ -1477,7 +1477,7 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
   //redner pages btns
   const pages_arr = pages_arr_fuc(a_data);
   global_pages_arr_data = pages_arr;
-  console.log(pages_arr.length);
+  /*  console.log(pages_arr.length); */
   app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
   const btns_pnl = app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm");
   btns_pnl.innerHTML = "";
@@ -1545,11 +1545,11 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
     if (cachedResponse) {
       await rndr_flyrs_fuc(cachedResponse);
     } else {
-      console.log(`${endpoint}/${img_url}`, obj_data[i]);
+      /*    console.log(`${endpoint}/${img_url}`, obj_data[i]); */
       const cache = await caches.open(obj_data[i]);
       await cache.add(`${endpoint}/${img_url}`);
       newly_cached_flyrs.push(obj_data[i]);
-      console.log("not match", img_url);
+      /*  console.log("not match", img_url); */
     }
   }
 
@@ -1718,11 +1718,11 @@ home.addEventListener("click", async (e) => {
       if (cachedResponse) {
         await rndr_flyrs_fuc(cachedResponse);
       } else {
-        console.log(`${endpoint}/${img_url}`, obj_data[i]);
+        /*  console.log(`${endpoint}/${img_url}`, obj_data[i]); */
         const cache = await caches.open(obj_data[i]);
         await cache.add(`${endpoint}/${img_url}`);
         newly_cached_flyrs.push(obj_data[i]);
-        console.log("not match", img_url);
+        /*  console.log("not match", img_url); */
       }
     }
 
@@ -1962,7 +1962,7 @@ home.addEventListener("click", async (e) => {
 //flyers popup menu
 home.addEventListener("click", async (e) => {
   if (e.target.closest(".grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl")) {
-    console.log("s");
+    /*  console.log("s"); */
   }
 });
 //flyers popup menu - like icon
@@ -2215,7 +2215,7 @@ home.addEventListener("click", async (e) => {
   ) {
     const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
     if (data) {
-      console.log(e.target.dataset.bk_id, "order");
+      /*   console.log(e.target.dataset.bk_id, "order"); */
     }
   }
 });
@@ -2698,7 +2698,7 @@ home.addEventListener("click", async (e) => {
       e.id = `cors_clss_wrkspcpg_cntnts_main_prvwpnl_lft_main_linkbtn_id_${i}`;
       e.textContent = arr_d[i];
       linkbtns_pnl.appendChild(e);
-      console.log(e);
+      /*   console.log(e); */
     }
     //small screen dop down menu
     //small screen dop down menu
@@ -2712,7 +2712,7 @@ home.addEventListener("click", async (e) => {
       e.id = `cors_clss_wrkspcpg_cntnts_main_prvwpnl_rght_menu_popupdrpmenu_btnid_${i}`;
       e.textContent = arr_d[i];
       drpdwn_linkbtns_pnl.appendChild(e);
-      console.log(e);
+      /*   console.log(e); */
     }
 
     if (linkbtns_pnl) {
@@ -2986,7 +2986,7 @@ home.addEventListener("click", async (e) => {
 
 //Track Progress
 const trck_prgrss_temp = (percntg_bar) => {
-  console.log(percntg_bar);
+  /*   console.log(percntg_bar); */
   //percentage bar
   const r = 35,
     c = 2 * Math.PI * r;
@@ -3609,10 +3609,10 @@ document.body.addEventListener("click", async (e) => {
       //cookie
       usr_accnt_jwt_token: usr_accnt_jwt_token,
     };
-    console.log(ttr_accnt_obj);
+    /*    console.log(ttr_accnt_obj); */
 
     //profile img
-    console.log("global_file_input_files: ", global_file_input_files);
+    /*  console.log("global_file_input_files: ", global_file_input_files); */
     const formData = new FormData();
     if (global_file_input_files && global_file_input_files[0]) {
       formData.append("prfl_img", global_file_input_files[0]);
@@ -4347,7 +4347,7 @@ home.addEventListener("click", async (e) => {
     const orgnl_cntnts = prnt_el.innerHTML;
     e.target.innerHTML = `<span><img class="ldngicn" width="15" src="dist/icons/loading.svg" style="filter: brightness(0) invert(1);" alt=""></span>`;
     const eml_el = app_btns_getelem("newsletterinput");
-    console.log(eml_el.value);
+    /*     console.log(eml_el.value); */
 
     const data = await auth_lgn_request("/usr/nwslttrusr", "POST", {
       eml: eml_el.value,
@@ -4375,7 +4375,7 @@ home.addEventListener("click", async (e) => {
 //web and desktop classes & courses
 home.addEventListener("click", async (e) => {
   if (e.target.closest(".semiheropromocard_crdslftBtn")) {
-    console.log("unabl");
+    /*  console.log("unabl"); */
   }
 });
 //web - pricing
@@ -4425,7 +4425,7 @@ home.addEventListener("click", async (e) => {
     });
 
     if (data.erMgs) {
-      console.log(data.erMgs);
+      /*  console.log(data.erMgs); */
       err_pnl.innerHTML = data.erMgs;
       err_pnl.style.display = "block";
       setTimeout(() => {
@@ -4460,14 +4460,14 @@ home.addEventListener("click", async (e) => {
       }, 5000);
     }
 
-    console.log(eml, issue_dscrptn);
+    /*  console.log(eml, issue_dscrptn); */
     const data = await auth_lgn_request("/api/rvwsggtnsboxapi", "POST", {
       eml,
       issue_dscrptn,
     });
 
     if (data.erMgs) {
-      console.log(data.erMgs);
+      /*   console.log(data.erMgs); */
       err_pnl.innerHTML = data.erMgs;
       err_pnl.style.display = "block";
       setTimeout(() => {
