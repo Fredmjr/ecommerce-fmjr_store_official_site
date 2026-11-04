@@ -50,12 +50,12 @@ const app_api_img_cache_checker_or_dwnld_cache_fuc = async (
   const tasks_array_fuc = obj.map(async (ind_task) => {
     const img = ind_task + ".webp";
     const img_plain_nm = ind_task;
-    console.log(img);
+    /*  console.log(img); */
     const cachedResponse = await caches.match(`${arg_endpoint}/${img}`);
 
     if (cachedResponse) {
       const offline_img_blob = URL.createObjectURL(await cachedResponse.blob());
-      console.log("cached", offline_img_blob);
+      /*  console.log("cached", offline_img_blob); */
       //render here v1.0.0.0
       const img_sclspnl = `
                 <div class="grphcsflpgcntnts_ttm_main_crd_thumbnail_sclspnl">
@@ -79,7 +79,7 @@ const app_api_img_cache_checker_or_dwnld_cache_fuc = async (
           `${arg_endpoint}/${img}`,
           img_plain_nm,
         );
-        console.log("dwnld thencached img", img);
+        /*  console.log("dwnld thencached img", img); */
         //reuse later
         arr.push(img);
       } catch (err) {
@@ -146,10 +146,10 @@ home.addEventListener("click", async (e) => {
   ) {
     const data = await app_api_request("/api/dtmtndataapi", "GET");
     if (data) {
-      console.log(
+      /*   console.log(
         "clicked and showing data.usr_clndr_evnt_data: ",
         data.usr_clndr_evnt_data,
-      );
+      ); */
       /*  app_api_getelem("clndrcrd_bttm_lftcndrpnl_dayscntnr").innerHTML =
         "loading"; */
       //localstorage - mont & days
@@ -213,7 +213,7 @@ const apibsrvr = new MutationObserver((mutations) => {
       if (el2) {
         //calendar year range data - data render
         el2.textContent = `${calendar_obj_data[0].month}`;
-        console.log(calendar_obj_data[0]);
+        /*  console.log(calendar_obj_data[0]); */
 
         const now = new Date();
         const options = { month: "long", year: "numeric" };
@@ -222,7 +222,7 @@ const apibsrvr = new MutationObserver((mutations) => {
           (obj) => obj.month === current_month_year,
         );
 
-        console.log("index", index);
+        /*   console.log("index", index); */
         let new_index = index;
         const cntr_num = app_api_getelem("clndrcrd_bttm_lftcndrpnl_dayscntnr");
         let forwrdbtn_clicked = false;
@@ -533,14 +533,14 @@ const apibsrvr = new MutationObserver((mutations) => {
         });
         //final create event
         el5.addEventListener("click", () => {
-          console.log(
+          /*   console.log(
             "EVENT DETAILS - DATE: ",
             el_day.innerText,
             el_mnth.innerText,
             el_yr.innerText,
           );
           console.log("EVENT DETAILS - TITLE: ", el_ttl.value);
-          console.log("EVENT DETAILS - DESCRPTION: ", el_dscrptn.value);
+          console.log("EVENT DETAILS - DESCRPTION: ", el_dscrptn.value); */
         });
       }
 
@@ -551,7 +551,7 @@ const apibsrvr = new MutationObserver((mutations) => {
           const data = await app_btns_request("/api/cnrsatnsapi", "GET");
           if (data) {
             /*  app_btns_getelem("main").innerHTML = data */
-            console.log(data);
+            /* console.log(data); */
             data.conversation.forEach((e) => {
               const temp_el = document.createElement("p");
               const p_el = app_api_getelem("whyfmjrstrspgcrd_bttm_rght");
@@ -686,7 +686,7 @@ const apibsrvr = new MutationObserver((mutations) => {
         //redner pages btns
         const pages_arr = pages_arr_fuc(a_data);
         global_pages_arr_data = pages_arr;
-        console.log(pages_arr.length);
+        /*   console.log(pages_arr.length); */
         app_btns_spinner_fuc(app_btns_getelem("grphcsflpgcntnts_bttm_main"));
         const btns_pnl = app_btns_getelem("grphcsflpgcntnts_ttm_lwstbttm");
         btns_pnl.innerHTML = "";
@@ -754,11 +754,11 @@ const apibsrvr = new MutationObserver((mutations) => {
           if (cachedResponse) {
             await rndr_flyrs_fuc(cachedResponse);
           } else {
-            console.log(`${endpoint}/${img_url}`, obj_data[i]);
+            /*  console.log(`${endpoint}/${img_url}`, obj_data[i]); */
             const cache = await caches.open(obj_data[i]);
             await cache.add(`${endpoint}/${img_url}`);
             newly_cached_flyrs.push(obj_data[i]);
-            console.log("not match", img_url);
+            /*     console.log("not match", img_url); */
           }
         }
 
