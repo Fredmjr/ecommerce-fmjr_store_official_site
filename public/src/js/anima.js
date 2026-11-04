@@ -31,7 +31,7 @@ const request2 = async (url, method, body = null, customHeaders = {}) => {
   const data = await request2("/app/hdrdt", "GET");
 
   if (data.erMgs) {
-    console.log("err!");
+    /*  console.log("err!"); */
   } else if (data.data_sttus === true) {
     const items = data.data;
     const container = document.querySelector("#header_thmubrghtthumbCntnts");
