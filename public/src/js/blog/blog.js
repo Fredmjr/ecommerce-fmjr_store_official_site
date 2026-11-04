@@ -138,9 +138,9 @@ const main_blog_crd_render_fuc = async () => {
       //side menu recent blog
       const side_blog_crd_redner_fuc = () => {
         if (external_blog_data_obj) {
-          console.log(external_blog_data_obj);
-          console.log(external_blog_data_obj.blog_data);
-          const list = external_blog_data_obj.blog_data;
+          /* console.log(external_blog_data_obj);
+          console.log(external_blog_data_obj.blog_data) */ const list =
+            external_blog_data_obj.blog_data;
           //unique tags
           const allTags = list.flatMap((item) =>
             Object.values(item.data?.blog_tags || {}),
@@ -151,11 +151,11 @@ const main_blog_crd_render_fuc = async () => {
             ),
           ];
 
-          console.log("duplicate_tags: ", duplicate_tags);
+          /*  console.log("duplicate_tags: ", duplicate_tags); */
           const p = blog_getelem("blog_hero_rght_poplrtagspnl");
           p.innerHTML = "";
           for (let i = 0; i < duplicate_tags.length; i++) {
-            console.log(duplicate_tags[i]);
+            /* console.log(duplicate_tags[i]); */
 
             const e = document.createElement("div");
             e.className = "blog_hero_rght_poplrtags_crdcl";
@@ -188,7 +188,7 @@ document.body.addEventListener("click", async (e) => {
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(".blog_hero_lft_crdmain_info_top_crdcl");
   if (el) {
-    console.log(el.innerHTML);
+    /*   console.log(el.innerHTML); */
   }
 });
 //click on main card
@@ -300,7 +300,7 @@ document.body.addEventListener("click", async (e) => {
     blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
       `<div id="blog_hero_lft_nxtpgpopupbtn">Next Page</div>`;
     const key_tag = el.innerHTML;
-    console.log(key_tag);
+    /*  console.log(key_tag); */
     const filtered_blog_tag_data = external_blog_data_obj.blog_data.filter(
       (item) => {
         const tags = item.data?.blog_tags;
@@ -308,7 +308,7 @@ document.body.addEventListener("click", async (e) => {
       },
     );
 
-    console.log("filtered_blog_tag_data: ", filtered_blog_tag_data);
+    /*  console.log("filtered_blog_tag_data: ", filtered_blog_tag_data); */
 
     const temp = (arg_data) => {
       blog_getelem("blog_hero_lft").innerHTML = "";
@@ -318,7 +318,7 @@ document.body.addEventListener("click", async (e) => {
         calculated_loop = arg_data.length;
       }
       for (let i = 0; i < calculated_loop; i++) {
-        console.log("arg_data: ", arg_data);
+        /*   console.log("arg_data: ", arg_data); */
         //tag cards
         //THSE EG LESS THAN 3 SHOW ERR FIX BY ONLY LOOP FOR THOSE
         const tagsObj = arg_data[i].data.blog_tags;
@@ -350,17 +350,17 @@ document.body.addEventListener("click", async (e) => {
     };
     const arg_data = filtered_blog_tag_data;
     if (filtered_blog_tag_data.length <= 4) {
-      console.log("less", filtered_blog_tag_data.length);
+      /*  console.log("less", filtered_blog_tag_data.length);
       console.log(
         "filtered_blog_tag_dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         arg_data,
-      );
+      ); */
       temp(arg_data);
       blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
         `<button id="blog_hero_lft_rtrntohmblogsg_btn" >Home Blogs</button>`;
       blog_getelem("blog_hero_lft_rtrntohmblogsg_btn").style.display = "block";
     } else {
-      console.log("great", filtered_blog_tag_data.length);
+      /* console.log("great", filtered_blog_tag_data.length); */
       const remaining_num = filtered_blog_tag_data.length - 4;
       //remove first 4 blogs coz they being rendered, the rest pass the over for next page blogs display
       const blogs_indexed_to_remove = new Set([0, 1, 2, 3]);
@@ -368,10 +368,10 @@ document.body.addEventListener("click", async (e) => {
         (_, index) => !blogs_indexed_to_remove.has(index),
       );
       blog_getelem("blog_hero_lft_nxtpgpopupbtn").style.display = "block";
-      console.log(
+      /*   console.log(
         "filtered_blog_tag_datatttttttttttttttttttttttttttttttttttt",
         arg_data,
-      );
+      ); */
       temp(arg_data);
       next_pg_blogs_fuc = temp;
     }
@@ -383,10 +383,10 @@ document.body.addEventListener("click", async (e) => {
 document.body.addEventListener("click", async (e) => {
   const el = e.target.closest("#blog_hero_lft_nxtpgpopupbtn");
   if (el) {
-    console.log(
+    /*   console.log(
       "remaining_unrendered_blogssssssssssssssssssssssss: ",
       remaining_unrendered_blogs.length,
-    );
+    ); */
     if (remaining_unrendered_blogs.length <= 4) {
       next_pg_blogs_fuc(remaining_unrendered_blogs);
       blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
@@ -427,7 +427,7 @@ document.body.addEventListener("click", async (e) => {
   const el = e.target.closest(".quklnksbrf_sclsicns");
   if (el) {
     const srchd_ttl = blog_getelem("blog_hero_rght_poplrtags_srch").value;
-    console.log(srchd_ttl);
+    /*  console.log(srchd_ttl); */
     if (srchd_ttl) {
       const data = await blog_request("/api/srchddataapi", "POST", {
         srchd_ttl: srchd_ttl,
@@ -442,10 +442,10 @@ document.body.addEventListener("click", async (e) => {
       `;
       } else if (data.blog_data) {
         //good data
-        console.log(
+        /*  console.log(
           "leghttttttttttttttttttttttttttttttt",
           data.blog_data.length,
-        );
+        ); */
         const reusable_crds_redner_data = data.blog_data;
         const reusable_crds_redner = () => {
           blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
@@ -459,7 +459,7 @@ document.body.addEventListener("click", async (e) => {
               calculated_loop = arg_data.length;
             }
             for (let i = 0; i < calculated_loop; i++) {
-              console.log("arg_data: ", arg_data);
+              /*  console.log("arg_data: ", arg_data); */
               //tag cards
               //THSE EG LESS THAN 3 SHOW ERR FIX BY ONLY LOOP FOR THOSE
               const tagsObj = arg_data[i].data.blog_tags;
@@ -491,28 +491,28 @@ document.body.addEventListener("click", async (e) => {
           };
           const arg_data = reusable_crds_redner_data;
           if (reusable_crds_redner_data.length <= 4) {
-            console.log("less", reusable_crds_redner_data.length);
+            /*  console.log("less", reusable_crds_redner_data.length);
             console.log(
               "reusable_crds_redner_dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
               arg_data,
-            );
+            ); */
             temp(arg_data);
             blog_getelem("blog_hero_lft_nxtpgpopupbtn_pnl").innerHTML =
               `<button id="blog_hero_lft_rtrntohmblogsg_btn" >Home Blogs</button>`;
             blog_getelem("blog_hero_lft_rtrntohmblogsg_btn").style.display =
               "block";
           } else {
-            console.log("great", reusable_crds_redner_data.length);
+            /*  console.log("great", reusable_crds_redner_data.length); */
             //remove first 4 blogs coz they being rendered, the rest pass the over for next page blogs display
             const blogs_indexed_to_remove = new Set([0, 1, 2, 3]);
             remaining_unrendered_blogs = reusable_crds_redner_data.filter(
               (_, index) => !blogs_indexed_to_remove.has(index),
             );
             blog_getelem("blog_hero_lft_nxtpgpopupbtn").style.display = "block";
-            console.log(
+            /*   console.log(
               "reusable_crds_redner_dataatttttttttttttttttttttttttttttttttttt",
               arg_data,
-            );
+            ); */
             temp(arg_data);
             next_pg_blogs_fuc = temp;
           }
@@ -551,10 +551,10 @@ document.body.addEventListener("click", async (e) => {
     top3Latest_obj = top3Latest;
     blog_getelem("blog_hero_rght_rcnttpostspnl").innerHTML = "";
     for (let i = 0; i < top3Latest.length; i++) {
-      console.log(
+      /*   console.log(
         "taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag",
         top3Latest[i].id,
-      );
+      ); */
       const e = document.createElement("div");
       e.className = "blog_hero_rght_rcnttposts_crd";
       e.dataset.blog_tag = top3Latest[i].id;
@@ -568,8 +568,8 @@ document.body.addEventListener("click", async (e) => {
       blog_getelem("blog_hero_rght_rcnttpostspnl").appendChild(e);
     }
 
-    console.log(top3Latest);
-    console.log("for side menu", data.blog_data);
+    /*  console.log(top3Latest);
+    console.log("for side menu", data.blog_data); */
   }
 })();
 
@@ -651,7 +651,7 @@ const mobile_callapsable_contents_fuc = (e) => {
     const el2 = blog_getelem("blog_hero_rght_poplrtags_srchpnl");
     const el3 = blog_getelem("blog_hero_rght_txt_pplrblgtgsttl");
     const el4 = blog_getelem("blog_hero_rght_poplrtagspnl");
-    console.log("changed", el1, el2, el3, el4);
+    /*  console.log("changed", el1, el2, el3, el4); */
     const e_array = [el1, el2, el3, el4];
     for (let i = 0; i < e_array.length; i++) {
       blog_getelem(
@@ -666,7 +666,7 @@ const mobile_callapsable_contents_fuc = (e) => {
     const e = document.createElement("div");
     e.className = "media_query_section_cntnts";
     for (let i = 0; i < t.length; i++) {
-      console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]);
+      /*   console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]); */
       blog_getelem("media_query_section").appendChild(t[i]);
       blog_getelem("blog_hero_rght_promcrd").style.display = "none";
     }
@@ -683,11 +683,11 @@ const mobile_callapsable_contents_fuc = (e) => {
     const media_el3 = blog_getelem("blog_hero_rght_promcrd");
 
     const t = [el1, el2, el3, el4, media_el1, media_el2, media_el3];
-    console.log("tttttttttttt: ", t);
+    /* console.log("tttttttttttt: ", t); */
     const e = document.createElement("div");
     e.className = "media_query_section_cntnts";
     for (let i = 0; i < t.length; i++) {
-      console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]);
+      /*  console.log("tttttttttttttttttttttttttttttttttttttttttt", t[i]); */
       blog_getelem("blog_hero_rght").appendChild(t[i]);
     }
     blog_getelem("blog_hero_rght_promcrd").style.display = "block";
@@ -723,7 +723,7 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
-    console.log("buessinss, with id: ", id);
+    /*   console.log("buessinss, with id: ", id); */
     window.location.href = `https://api.whatsapp.com/send?text=https://guest.alwaysdata.net/blog/share/${id}`;
   }
 });
@@ -735,7 +735,7 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
-    console.log("whatsapp, with id: ", id);
+    /*     console.log("whatsapp, with id: ", id); */
     window.location.href = `https://api.whatsapp.com/send?text=https://guest.alwaysdata.net/blog/share/${id}`;
   }
 });
@@ -747,7 +747,7 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
-    console.log("facebook, with id: ", id);
+    /*   console.log("facebook, with id: ", id); */
     window.location.href = `https://www.facebook.com/sharer/sharer.php?u=https://guest.alwaysdata.net/blog/share/${id}`;
   }
 });
@@ -783,7 +783,7 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
-    console.log("email, with id: ", id);
+    /*    console.log("email, with id: ", id); */
     window.location.href = `mailto:?subject=Check%20this%20out&body=https://guest.alwaysdata.net/blog/share/${id}`;
   }
 });
@@ -795,7 +795,7 @@ document.body.addEventListener("click", async (e) => {
   if (el) {
     const id = blog_getelem("blog_hero_lft_crdmain_selectedcrd_topbnnr").dataset
       .blog_share_id;
-    console.log("email, with id: ", id);
+    /*  console.log("email, with id: ", id); */
     const smsLink = `sms:?&body=${encodeURIComponent(`Check this out: https://guest.alwaysdata.net/blog/share/${id}`)}`;
     window.location.href = smsLink;
   }
