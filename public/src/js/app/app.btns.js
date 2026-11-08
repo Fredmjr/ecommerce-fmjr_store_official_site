@@ -1544,6 +1544,7 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
     if (emptied_prnt_e === false) {
       prnt_e.innerHTML = "";
       emptied_prnt_e = true;
+      console.log("cached");
     }
     const img_url = `${obj_data[i]}.webp`;
     const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
