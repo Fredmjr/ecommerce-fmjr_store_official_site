@@ -1500,7 +1500,8 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
   const prnt_e = app_api_getelem("grphcsflpgcntnts_bttm_main");
   const chld_e_classnm = "grphcsflpgcntnts_ttm_main_crd_thumbnail";
 
-  prnt_e.innerHTML = "";
+  /*  prnt_e.innerHTML = ""; */
+  let emptied_prnt_e = false;
   //1.render, 2.dowload & cache, 3.render downloaded & cached flyers
   //steps 1 & 2
   const rndr_flyrs_fuc = async (arg_cached_esponse) => {
@@ -1539,6 +1540,11 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
 
   const newly_cached_flyrs = [];
   for (let i = 0; i < obj_data.length; i++) {
+    //empty prnt elem only once when flyrs are actually ready
+    if (emptied_prnt_e === false) {
+      prnt_e.innerHTML = "";
+      emptied_prnt_e = true;
+    }
     const img_url = `${obj_data[i]}.webp`;
     const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
 
