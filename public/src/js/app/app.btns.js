@@ -2211,7 +2211,8 @@ home.addEventListener("click", async (e) => {
 //order book - hardcopy
 home.addEventListener("click", async (e) => {
   if (
-    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_0")
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_0") ||
+    e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1")
   ) {
     const data = await app_btns_request("/api/orderapi", "GET");
     if (data.mgs) {
@@ -2222,16 +2223,16 @@ home.addEventListener("click", async (e) => {
 });
 
 //order book - softcopy
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1")
   ) {
     const data = await app_btns_request("/api/auhtrbksdatasctnapi", "GET");
     if (data) {
-      /*   console.log(e.target.dataset.bk_id, "order"); */
+      console.log(e.target.dataset.bk_id, "order"); 
     }
   }
-});
+}); */
 
 //order book - hardcopy - return home
 home.addEventListener("click", async (e) => {
@@ -2300,7 +2301,7 @@ home.addEventListener("click", async (e) => {
 });
 
 //order book - sotfcopy - pre-order book now
-home.addEventListener("click", async (e) => {
+/* home.addEventListener("click", async (e) => {
   if (
     e.target.closest("#authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1")
   ) {
@@ -2310,7 +2311,7 @@ home.addEventListener("click", async (e) => {
         data;
     }
   }
-});
+}); */
 
 //officially released books by click
 /* home.addEventListener("click", async (e) => {

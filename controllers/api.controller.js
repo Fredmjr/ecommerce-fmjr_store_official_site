@@ -806,7 +806,8 @@ export const auhtrbksdatasctnapiUrl = async (req, res) => {
       bk_ordrid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_ordrbtn_id_1",
       bk_prvwid_btn: "authrbookspg_bookcrd_beeterui_bttm_rght_prvwbtn_id_1",
       bk_price: "K75",
-      bk_format: "Softcopy (Digital Format)",
+      bk_format: "Hardcopy (Physical Format)",
+      /*       bk_format: "Softcopy (Digital Format)", */
       bk_img_nm: "encoded_truth_book_coverthrough",
       bk_img_path:
         "public/dist/imgs/ctgry/author_books/official_released_books",
