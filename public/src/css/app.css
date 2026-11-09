@@ -389,6 +389,7 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 3px;
+  background-color: var(--fmjr--dkr7);
 }
 
 #cors_clss_wrkspcpg_cntnts_bnnr {
@@ -400,6 +401,7 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 3px;
+  background-color: var(--fmjr--dkr7);
 }
 
 #accntspgcntnts_bnnrpwsmngmnt_bnnr_img {
@@ -2415,6 +2417,7 @@ button:focus {
   align-items: center;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  background-color: var(--fmjr--dkr7);
 }
 .shwrmpg_cntnts_ctgry_crd_info_ttl {
   margin: 0px;
@@ -2689,6 +2692,7 @@ button:focus {
   justify-content: center;
   align-items: center;
   border-radius: 3px;
+  background-color: var(--fmjr--dkr7);
 }
 .portflpgcntnts_bksbnnr_thumbnl {
   height: 100%;
@@ -2708,6 +2712,7 @@ button:focus {
 .globalwallpaper_bnnr_thumb {
   height: 100%;
   box-sizing: border-box;
+  background-color: var(--fmjr--dkr7);
 }
 #ordrnowbk_sctn {
   width: 100%;
