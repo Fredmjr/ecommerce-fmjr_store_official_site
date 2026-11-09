@@ -1540,16 +1540,16 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
 
   const newly_cached_flyrs = [];
   for (let i = 0; i < obj_data.length; i++) {
-    //empty prnt elem only once when flyrs are actually ready
-    if (emptied_prnt_e === false) {
-      prnt_e.innerHTML = "";
-      emptied_prnt_e = true;
-      console.log("cached");
-    }
     const img_url = `${obj_data[i]}.webp`;
     const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
 
     if (cachedResponse) {
+      //empty prnt elem only once when flyrs are actually ready
+      if (emptied_prnt_e === false) {
+        prnt_e.innerHTML = "";
+        emptied_prnt_e = true;
+        console.log("cached");
+      }
       await rndr_flyrs_fuc(cachedResponse);
     } else {
       /*    console.log(`${endpoint}/${img_url}`, obj_data[i]); */
@@ -1563,6 +1563,12 @@ const reusable_pstrs_flyrs_render_fuc = async (a_data, a_endpoint) => {
   //steps 3
   if (newly_cached_flyrs.length > 0) {
     for (let i = 0; i < newly_cached_flyrs.length; i++) {
+      //empty prnt elem only once when flyrs are actually ready
+      if (emptied_prnt_e === false) {
+        prnt_e.innerHTML = "";
+        emptied_prnt_e = true;
+        console.log("cached");
+      }
       const img_url = `${newly_cached_flyrs[i]}.webp`;
       const cachedResponse = await caches.match(`${endpoint}/${img_url}`);
       await rndr_flyrs_fuc(cachedResponse);
@@ -4485,6 +4491,57 @@ home.addEventListener("click", async (e) => {
 
     if (data.reported === true) {
       app_btns_getelem("rvwpgcntnts").innerHTML = data.reported_mgs;
+    }
+  }
+});
+//Graphics Design Crash Course Registration
+home.addEventListener("click", async (e) => {
+  if (e.target.closest("#cors_clss_wrkspcpg_prrgstr_stcn_submtbtn")) {
+    const spinner = `<span><img class="ldngicn" width="15" src="dist/icons/loading.svg" style="filter: brightness(0) invert(1);" alt=""></span>`;
+    e.target.innerHTML = "";
+    e.target.innerHTML = spinner;
+
+    const cntnt = app_btns_getelem(
+      "cors_clss_wrkspcpg_prrgstr_stcn_cntct",
+    ).value;
+    const eml = app_btns_getelem("cors_clss_wrkspcpg_prrgstr_stcn_eml").value;
+    const err_pnl = app_btns_getelem(
+      "cors_clss_wrkspcpg_prrgstr_stcn_errmgspnl",
+    );
+
+    if (!cntnt || !eml) {
+      err_pnl.innerHTML = "";
+      err_pnl.innerHTML = "Fill in all fields!";
+      err_pnl.style.display = "block";
+      e.target.innerHTML = "Submit";
+      setTimeout(() => {
+        err_pnl.style.display = "none";
+      }, 5000);
+    }
+
+    /*  console.log(eml, cntnt); */
+    const data = await auth_lgn_request(
+      "/api/grphcdsgncrshcursrgstrtnapi",
+      "POST",
+      {
+        eml,
+        cntnt,
+      },
+    );
+
+    if (data.erMgs) {
+      /*   console.log(data.erMgs); */
+      err_pnl.innerHTML = data.erMgs;
+      err_pnl.style.display = "block";
+      setTimeout(() => {
+        err_pnl.style.display = "none";
+        e.target.innerHTML = "Submit";
+      }, 5000);
+    }
+
+    if (data.reported === true) {
+      app_btns_getelem("cors_clss_wrkspcpg_prrgstr_stcn").innerHTML =
+        data.reported_mgs;
     }
   }
 });

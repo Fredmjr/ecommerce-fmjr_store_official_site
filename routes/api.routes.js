@@ -14,6 +14,7 @@ import {
   dtmtndataapiUrl,
   gnrlflyrsdataapiUrl,
   gnrlpstrflyrsindiimgapiUrl,
+  grphcdsgncrshcursrgstrtnapiUrl,
   grphcsdsgndataapiUrl,
   grphcsdsgndatasctnapiUrl,
   orderapiUrl,
@@ -65,5 +66,6 @@ router.get("/dgtlartalldata", dgtlartalldataUrl);
 router.get("/orderapi", orderapiUrl);
 router.post("/rprtissueapi", rprtissueapiUrl);
 router.post("/rvwsggtnsboxapi", rvwsggtnsboxapiUrl);
+router.post("/grphcdsgncrshcursrgstrtnapi", grphcdsgncrshcursrgstrtnapiUrl);
 
 export default router;

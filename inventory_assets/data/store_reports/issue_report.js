@@ -111,7 +111,7 @@ export const issue_report_fuc = async (usr_id, usr_eml, report_mgs) => {
       timeStyle: "medium",
     }).format(new Date(isoString)),
     report_mgs: report_mgs,
-    eml_sent: false,
+    eml_sent: eml_sent,
   };
   stream.write(JSON.stringify(log_data) + "\n");
 

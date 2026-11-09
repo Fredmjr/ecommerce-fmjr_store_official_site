@@ -5934,6 +5934,18 @@ button:focus {
   border-radius: 3px;
   /*   font-weight: bolder; */
 }
+
+#cors_clss_wrkspcpg_prrgstr_stcn_errmgspnl {
+  text-align: center;
+  padding: 15px 10px;
+  background-color: var(--fmjr--clr1);
+  color: var(--fmjr--dkr1);
+  margin: 5px 0px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  /*   font-weight: bolder; */
+}
+
 #frgotpwderrmgs_pnl {
   text-align: center;
   padding: 15px 10px;

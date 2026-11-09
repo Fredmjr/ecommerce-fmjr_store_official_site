@@ -7,7 +7,6 @@ import { conversation } from "../inventory_assets/data/data_components/data.conv
 import { faqs_data } from "../inventory_assets/data/data_components/data.faqs.js";
 import imgModel from "../models/img.model.js";
 import img_indiModel from "../models/img_indi.model.js";
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -19,6 +18,8 @@ import { issue_report_fuc } from "../inventory_assets/data/store_reports/issue_r
 import issue_report_model from "../models/issue_report.model.js.js";
 import sggtn_box_model from "../models/suggestions.model.js";
 import { sggtn_box_fuc } from "../inventory_assets/data/store_reports/sggtn_box.js";
+import lessions_model from "../models/lessions.model.js";
+import { lessons_nodemailer_fuc } from "../logs/lessons_logs/lessons_logs.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -1183,6 +1184,90 @@ export const rvwsggtnsboxapiUrl = async (req, res) => {
     <p class="sggtn_rprt_issue_bulletingtxt_ttl">Suggestion Submission</p>
     <p class="sggtn_rprt_issue_bulletingtxt">Suggestion has been submitted, response will be sent through provided email or in-store messages.</p>
     <br /><br />
+    `;
+    return res.status(200).json({
+      reported: true,
+      reported_mgs: tmp,
+    });
+  } catch (error) {
+    console.log(error);
+    const erMgs_div = `
+    <p>err_code: 001</p>
+    <p>Unable to process request!</p>
+    <p>Contact customer support, if issue persists</p>
+    </div>
+    `;
+    res.status(400).json({
+      erMgs: erMgs_div,
+    });
+  }
+};
+
+//
+export const grphcdsgncrshcursrgstrtnapiUrl = async (req, res) => {
+  const { eml, cntnt } = req.body;
+  try {
+    if (eml === "" || cntnt === "") {
+      return res.status(200).json({
+        erMgs: "Fill in all fields!",
+      });
+    }
+    //Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(eml)) {
+      return res.json({
+        erMgs: "Please enter a valid email address.",
+      });
+    }
+    //contact validation
+    const trimmed = cntnt.trim();
+    const valid_chars = /^\+?[0-9\s\-\(\)]+$/;
+    if (!valid_chars.test(trimmed)) {
+      return res.status(400).json({
+        erMgs: "Phone number contains invalid characters",
+      });
+    }
+    const digits_only = trimmed.replace(/\D/g, "");
+    if (digits_only.length < 7 || digits_only.length > 15) {
+      return res.json({
+        erMgs: "Phone number must contain between 7 and 15 digits.",
+      });
+    }
+
+    const [new_usr, task] = await lessions_model.findOrCreate({
+      where: {
+        eml: eml,
+      },
+      defaults: {
+        eml: eml,
+        graphics_design_crash_course: true,
+        phn: cntnt,
+      },
+    });
+    if (!task) {
+      return res.json({
+        erMgs: "Provided email account is already registered.",
+      });
+    }
+
+    //send email & save suggestion locally to json file
+    const { task_done } = await lessons_nodemailer_fuc(eml);
+    if (!task_done) {
+      return res.json({
+        erMgs: "Unable to complete your registration. Try again later.",
+      });
+    }
+
+    const tmp = `
+    <div id="cors_clss_wrkspcpg_prrgstr_stcn_tmpmgs">
+    <br /><br />
+    <div class="whyfmjrstrspgcrd_bttm_lftcntnts_thumbimg"><img src="assets/logos/fmjr_stores_pw.png" width="35"></div>
+    <br />
+    <p class="sggtn_rprt_issue_bulletingtxt_ttl">Registration Completed</p>
+    <p class="sggtn_rprt_issue_bulletingtxt">You have successfully registered for a graphics design crash course.</p>
+    <p class="sggtn_rprt_issue_bulletingtxt">check your email or in-store messages for any updates.</p>
+    <br /><br />
+    </div>
     `;
     return res.status(200).json({
       reported: true,
